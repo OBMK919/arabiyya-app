@@ -1,21 +1,17 @@
 /* ============================================================
-   ARABIYYA — Service Worker (Version 2.2)
-   Corrections v2.2 :
-   - Cache individuel (tolerant aux fichiers manquants)
-   - Version alignée avec l'app
-   - Meilleur fallback hors ligne
-   - Log discret en cas de problème
+   ARABIYYA — Service Worker (Version 5.0)
+   Cache pour fonctionnement 100% hors ligne
    ============================================================ */
 
-var CACHE_NAME = 'arabiyya-v2.2';
+var CACHE_NAME = 'arabiyya-v5';
 
-/* Liste des ressources à mettre en cache */
 var ASSETS = [
   './',
   './index.html',
   './style.css',
   './data.js',
   './nour.js',
+  './madinah.js',
   './app.js',
   './manifest.json'
 ];
@@ -24,11 +20,10 @@ var ASSETS = [
 self.addEventListener('install', function(event){
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache){
-      /* Cache un par un : si un fichier manque, on continue quand même */
       return Promise.all(
         ASSETS.map(function(url){
           return cache.add(url).catch(function(err){
-            console.warn('[SW] Impossible de cacher : ' + url, err);
+            console.warn('[SW] Impossible de cacher : ' + url);
           });
         })
       );
@@ -44,10 +39,7 @@ self.addEventListener('activate', function(event){
     caches.keys().then(function(keys){
       return Promise.all(
         keys.filter(function(k){ return k !== CACHE_NAME; })
-            .map(function(k){
-              console.log('[SW] Suppression ancien cache : ' + k);
-              return caches.delete(k);
-            })
+            .map(function(k){ return caches.delete(k); })
       );
     }).then(function(){
       return self.clients.claim();
@@ -59,10 +51,8 @@ self.addEventListener('activate', function(event){
 self.addEventListener('fetch', function(event){
   var req = event.request;
 
-  /* On ne gère que les GET */
   if (req.method !== 'GET') return;
 
-  /* On ignore les URLs externes */
   var url = req.url;
   if (url.indexOf('http') === 0 && url.indexOf(self.location.origin) !== 0){
     return;
@@ -73,18 +63,15 @@ self.addEventListener('fetch', function(event){
       if (cached) return cached;
 
       return fetch(req).then(function(response){
-        /* Cache les nouvelles ressources valides */
         if (response && response.status === 200 && response.type === 'basic'){
           var clone = response.clone();
           caches.open(CACHE_NAME).then(function(cache){
             cache.put(req, clone);
-          }).catch(function(){ /* quota dépassé, on ignore */ });
+          }).catch(function(){});
         }
         return response;
       }).catch(function(){
-        /* Hors ligne et non caché */
         if (req.mode === 'navigate'){
-          /* Pour la navigation : on retombe sur index.html */
           return caches.match('./index.html').then(function(page){
             if (page) return page;
             return new Response(
@@ -93,7 +80,6 @@ self.addEventListener('fetch', function(event){
             );
           });
         }
-        /* Pour les autres ressources : 503 explicite */
         return new Response('Ressource indisponible hors ligne', {
           status: 503,
           statusText: 'Hors ligne',
@@ -104,7 +90,7 @@ self.addEventListener('fetch', function(event){
   );
 });
 
-/* ---------- MESSAGES (pour forcer la mise à jour) ---------- */
+/* ---------- MESSAGES ---------- */
 self.addEventListener('message', function(event){
   if (event.data === 'skipWaiting'){
     self.skipWaiting();
