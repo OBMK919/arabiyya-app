@@ -1,6 +1,9 @@
 /* =====================================================
    ARABIYYA — Logique principale
-   Version 2.1 — Corrections de compatibilité
+   Version 3.1 — Sans Alphabet ni Grammaire
+   Modules actifs : Nour Al Bayan · Tomes de Médine · SRS · Leçons · 
+                    Vocabulaire · Dialogues · Écriture · Memory · 
+                    Quiz · Stats · Réglages
    ===================================================== */
 
 /* ---------- SRS : Répétition espacée (SM-2 simplifié) ---------- */
@@ -12,7 +15,7 @@ var SRS = {
   },
   save: function(d){
     try { localStorage.setItem(this.KEY, JSON.stringify(d)); }
-    catch(e){ /* quota dépassé ou mode privé */ }
+    catch(e){ }
   },
   update: function(id, q){
     var all = this.load();
@@ -75,7 +78,7 @@ var Stats = {
   },
   save: function(d){
     try { localStorage.setItem(this.KEY, JSON.stringify(d)); }
-    catch(e){ /* ignore */ }
+    catch(e){ }
   },
   get: function(){
     var s = this.load();
@@ -95,7 +98,7 @@ var Stats = {
     var today = new Date().setHours(0, 0, 0, 0);
     var last = s.lastStudy ? new Date(s.lastStudy).setHours(0, 0, 0, 0) : 0;
     var diff = (today - last) / 86400000;
-    if (diff === 0){ /* même jour, on ne change rien */ }
+    if (diff === 0){ }
     else if (diff === 1){ s.streak = (s.streak || 0) + 1; }
     else { s.streak = 1; }
     s.lastStudy = Date.now();
@@ -103,7 +106,7 @@ var Stats = {
   },
   reset: function(){
     try { localStorage.removeItem(this.KEY); }
-    catch(e){ /* ignore */ }
+    catch(e){ }
   }
 };
 
@@ -116,7 +119,6 @@ function speak(text){
     var u = new SpeechSynthesisUtterance(text);
     u.lang = 'ar-SA';
     u.rate = 0.8;
-    /* CORRECTION : boucle for au lieu de .find() (compatibilité) */
     var voices = speechSynthesis.getVoices();
     var arabicVoice = null;
     if (voices && voices.length){
@@ -131,7 +133,7 @@ function speak(text){
     if (arabicVoice) u.voice = arabicVoice;
     speechSynthesis.speak(u);
   } catch(e){
-    /* Ne jamais laisser une erreur audio casser l'app */
+    /* Ne jamais casser l'app pour une erreur audio */
   }
 }
 
@@ -196,6 +198,12 @@ var App = {
         '<div class="sub" style="color:rgba(255,255,255,.85)">Méthode complète · 7 niveaux</div></div>' +
       '</button>' +
 
+      '<button class="menu-btn" onclick="MadinahScreen.home()" style="background:linear-gradient(135deg,#8b0000,#b71c1c);color:#fff">' +
+        '<div class="icon" style="background:rgba(255,255,255,.2)">📖</div>' +
+        '<div><div class="label" style="color:#fff">📖 Tomes de Médine</div>' +
+        '<div class="sub" style="color:rgba(255,255,255,.85)">Méthode du Dr. V. Abdur Rahim</div></div>' +
+      '</button>' +
+
       '<button class="menu-btn" onclick="App.study()">' +
         '<div class="icon">📚</div>' +
         '<div><div class="label">Étudier maintenant</div><div class="sub">Répétition espacée</div></div>' +
@@ -206,11 +214,6 @@ var App = {
         '<div><div class="label">Leçons guidées</div><div class="sub">' + LESSONS.length + ' leçons progressives</div></div>' +
       '</button>' +
 
-      '<button class="menu-btn" onclick="App.alphabet()">' +
-        '<div class="icon">🔤</div>' +
-        '<div><div class="label">Alphabet</div><div class="sub">28 lettres · audio</div></div>' +
-      '</button>' +
-
       '<button class="menu-btn" onclick="App.vocab()">' +
         '<div class="icon">📚</div>' +
         '<div><div class="label">Vocabulaire</div><div class="sub">' + VOCAB.length + ' mots · A1 → B1</div></div>' +
@@ -219,11 +222,6 @@ var App = {
       '<button class="menu-btn" onclick="App.dialogues()">' +
         '<div class="icon">💬</div>' +
         '<div><div class="label">Dialogues</div><div class="sub">' + DIALOGUES.length + ' scènes du quotidien</div></div>' +
-      '</button>' +
-
-      '<button class="menu-btn" onclick="App.grammar()">' +
-        '<div class="icon">📝</div>' +
-        '<div><div class="label">Grammaire</div><div class="sub">' + GRAMMAR.length + ' règles essentielles</div></div>' +
       '</button>' +
 
       '<button class="menu-btn" onclick="App.writing()">' +
@@ -251,44 +249,6 @@ var App = {
         '<div><div class="label">Réglages</div><div class="sub">Thème · Voix · Reset</div></div>' +
       '</button>'
     );
-  },
-
-  /* ---------- ALPHABET ---------- */
-  alphabet: function(){
-    var h = '<button class="back" onclick="App.home()">← Retour</button>' +
-      '<h2>Alphabet</h2>' +
-      '<div class="grid-4">';
-    for (var i = 0; i < ALPHABET.length; i++){
-      h += '<button class="tile" onclick="App.letter(' + i + ')">' +
-        '<span class="ar">' + ALPHABET[i].ar + '</span>' +
-        '<span class="name">' + ALPHABET[i].name + '</span></button>';
-    }
-    h += '</div>';
-    $(h);
-  },
-
-  letter: function(i){
-    var l = ALPHABET[i];
-    if (!l) return;
-    $('<button class="back" onclick="App.alphabet()">← Alphabet</button>' +
-      '<div class="hero">' +
-        '<div class="big ar">' + l.ar + '</div>' +
-        '<div class="name">' + l.name + '</div>' +
-        '<div class="translit">son [' + l.tr + ']</div>' +
-        '<button onclick="speak(\'' + esc(l.ar) + '\')" style="background:rgba(255,255,255,.25);border:none;color:#fff;margin-top:14px;padding:10px 20px;border-radius:30px;font-weight:700;cursor:pointer;font-family:inherit">🔊 Écouter</button>' +
-      '</div>' +
-      '<div class="card"><h3>Les 4 formes</h3>' +
-        '<div class="grid-4" style="margin-top:10px">' +
-          '<div class="tile" style="cursor:default"><span class="ar">' + l.iso + '</span><span class="name">Isolée</span></div>' +
-          '<div class="tile" style="cursor:default"><span class="ar">' + l.ini + '</span><span class="name">Début</span></div>' +
-          '<div class="tile" style="cursor:default"><span class="ar">' + l.med + '</span><span class="name">Milieu</span></div>' +
-          '<div class="tile" style="cursor:default"><span class="ar">' + l.fin + '</span><span class="name">Fin</span></div>' +
-        '</div>' +
-      '</div>' +
-      '<div style="display:flex;gap:10px">' +
-        (i > 0 ? '<button class="btn secondary" onclick="App.letter(' + (i - 1) + ')">←</button>' : '') +
-        (i < ALPHABET.length - 1 ? '<button class="btn" onclick="App.letter(' + (i + 1) + ')">→</button>' : '') +
-      '</div>');
   },
 
   /* ---------- LEÇONS ---------- */
@@ -476,23 +436,6 @@ var App = {
     $(h);
   },
 
-  /* ---------- GRAMMAIRE ---------- */
-  grammar: function(){
-    var h = '<button class="back" onclick="App.home()">← Retour</button><h2>Grammaire</h2>';
-    for (var i = 0; i < GRAMMAR.length; i++){
-      var g = GRAMMAR[i];
-      h += '<div class="card"><h3>' + g.title + '</h3>' +
-        '<div class="ar" style="font-size:24px;color:var(--primary);text-align:center;margin:10px 0">' + g.ar + '</div>' +
-        '<p style="font-size:14px;line-height:1.6;margin-bottom:12px">' + g.desc + '</p>' +
-        '<div style="background:#e6eeea;padding:12px;border-radius:12px;text-align:center">' +
-          '<div class="ar" style="font-size:18px;color:var(--primary)">' + g.ex + '</div>' +
-          '<div style="font-size:12px;color:var(--muted);margin-top:4px">' + g.exFr + '</div>' +
-        '</div>' +
-      '</div>';
-    }
-    $(h);
-  },
-
   /* ---------- ÉCRITURE ---------- */
   writing: function(){
     var h = '<button class="back" onclick="App.home()">← Retour</button><h2>Écriture</h2>' +
@@ -524,7 +467,6 @@ var App = {
     var c = document.getElementById('writeCanvas');
     if (!c) return;
     var r = c.getBoundingClientRect();
-    /* CORRECTION : garde pour éviter les dimensions nulles */
     if (r.width < 10 || r.height < 10) return;
 
     var ctx = c.getContext('2d');
@@ -572,7 +514,6 @@ var App = {
     var c = document.getElementById('writeCanvas');
     if (!c) return;
     var ctx = c.getContext('2d');
-    /* CORRECTION : reset transformation avant clear */
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, c.width, c.height);
@@ -772,11 +713,11 @@ var App = {
         '<p class="muted" style="margin:8px 0 12px">Efface toute la progression.</p>' +
         '<button class="btn danger" onclick="App.resetAll()">Réinitialiser</button>' +
       '</div>' +
-      '<div class="card" style="text-align:center;font-size:13px;color:var(--muted)"><strong style="color:var(--primary)">Arabiyya</strong> v2.1 · 100% hors ligne</div>');
+      '<div class="card" style="text-align:center;font-size:13px;color:var(--muted)"><strong style="color:var(--primary)">Arabiyya</strong> v3.1 · 100% hors ligne</div>');
   },
 
   setTheme: function(t){
-    try { localStorage.setItem('theme', t); } catch(e){}
+    try { localStorage.setItem('theme', t); } catch(e){ }
     document.documentElement.setAttribute('data-theme', t);
     this.settings();
   },
@@ -808,7 +749,6 @@ function initApp(){
   }
 }
 
-/* CORRECTION : check readyState pour ne jamais rater le rendu */
 if (document.readyState === 'loading'){
   document.addEventListener('DOMContentLoaded', initApp);
 } else {
