@@ -3592,7 +3592,9 @@ var TOMES = [
    EXPORT + AGRÉGATION POUR L'APP
    ============================================================ */
 
-/* ---------- 1. AGRÉGATION DES DONNÉES ---------- */
+/* ============================================================
+   AGRÉGATION DES DONNÉES POUR L'APP
+   ============================================================ */
 var MADINAH_VOCAB = [];
 var MADINAH_EXERCISES = [];
 
@@ -3623,7 +3625,9 @@ for (var ti = 0; ti < TOMES.length; ti++){
   }
 }
 
-/* ---------- 2. INTERFACE MADINAH ---------- */
+/* ============================================================
+   INTERFACE MADINAH
+   ============================================================ */
 var MadinahScreen = {
 
   home: function(){
@@ -3643,7 +3647,7 @@ var MadinahScreen = {
       for (var l = 0; l < tome.lessons.length; l++){
         var les = tome.lessons[l];
         if (!les.active) continue;
-        h += '<button class="lesson-item" onclick="MadinahScreen.lesson(\'' + tome.id + '\',\'' + les.id + '\')">' +
+        h += '<button type="button" class="lesson-item" onclick="MadinahScreen.lesson(\'' + tome.id + '\',\'' + les.id + '\')">' +
           '<div class="num" style="background:#8b0000">' + les.num + '</div>' +
           '<div><div class="title">' + les.title + '</div>' +
           '<div class="desc">' + les.desc + ' · ' + les.vocab.length + ' mots · ' + les.exercises.length + ' ex.</div></div>' +
@@ -3664,25 +3668,28 @@ var MadinahScreen = {
         break;
       }
     }
-    if (!lesson) return;
+    if (!lesson) {
+      console.error('[Madinah] Leçon non trouvée :', tomeId, lessonId);
+      return;
+    }
 
-    var h = '<button class="back" onclick="MadinahScreen.home()">← Leçons</button>' +
+    var h = '<button type="button" class="back" onclick="MadinahScreen.home()">← Leçons</button>' +
       '<h2>' + lesson.title + '</h2>' +
       '<p class="muted" style="margin-bottom:14px">' + lesson.desc + '</p>' +
       '<div class="grid-2" style="margin-bottom:16px">' +
-        '<button class="btn" onclick="MadinahScreen.text(\'' + lesson.id + '\')">📖 Textes</button>' +
-        '<button class="btn" onclick="MadinahScreen.vocab(\'' + lesson.id + '\')">📚 Vocabulaire</button>' +
-        '<button class="btn" onclick="MadinahScreen.grammar(\'' + lesson.id + '\')">📝 Grammaire</button>' +
-        '<button class="btn" onclick="MadinahScreen.dialogue(\'' + lesson.id + '\')">💬 Dialogue</button>' +
+        '<button type="button" class="btn" onclick="MadinahScreen.text(\'' + lesson.id + '\')">📖 Textes</button>' +
+        '<button type="button" class="btn" onclick="MadinahScreen.vocab(\'' + lesson.id + '\')">📚 Vocabulaire</button>' +
+        '<button type="button" class="btn" onclick="MadinahScreen.grammar(\'' + lesson.id + '\')">📝 Grammaire</button>' +
+        '<button type="button" class="btn" onclick="MadinahScreen.dialogue(\'' + lesson.id + '\')">💬 Dialogue</button>' +
       '</div>' +
-      '<button class="btn" style="background:var(--accent)" onclick="MadinahScreen.exercises(\'' + lesson.id + '\')">✏️ ' + lesson.exercises.length + ' Exercices</button>';
+      '<button type="button" class="btn" style="background:var(--accent)" onclick="MadinahScreen.exercises(\'' + lesson.id + '\')">✏️ ' + lesson.exercises.length + ' Exercices</button>';
     document.getElementById('app').innerHTML = h;
   },
 
   text: function(lessonId){
     var les = findLesson(lessonId);
     if (!les) return;
-    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
+    var h = '<button type="button" class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
       '<h2>' + les.title + ' · Textes</h2>';
     for (var i = 0; i < les.text.length; i++){
       h += '<div class="card" style="cursor:pointer;text-align:center;padding:16px" onclick="speak(\'' + esc(les.text[i]) + '\')">' +
@@ -3696,7 +3703,7 @@ var MadinahScreen = {
   vocab: function(lessonId){
     var les = findLesson(lessonId);
     if (!les) return;
-    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
+    var h = '<button type="button" class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
       '<h2>' + les.title + ' · Vocabulaire</h2>' +
       '<p class="muted" style="margin-bottom:12px">' + les.vocab.length + ' mots</p>';
     for (var i = 0; i < les.vocab.length; i++){
@@ -3716,7 +3723,7 @@ var MadinahScreen = {
     var les = findLesson(lessonId);
     if (!les || !les.grammar) return;
     var g = les.grammar;
-    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
+    var h = '<button type="button" class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
       '<h2>' + g.title + '</h2>' +
       '<div class="card"><p style="font-size:14px;line-height:1.7">' + g.rule + '</p></div>';
     if (g.examples && g.examples.length){
@@ -3733,7 +3740,7 @@ var MadinahScreen = {
   dialogue: function(lessonId){
     var les = findLesson(lessonId);
     if (!les || !les.dialogue) return;
-    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
+    var h = '<button type="button" class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
       '<h2>' + les.title + ' · Dialogue</h2>' +
       '<div class="dialogue-wrap">';
     for (var i = 0; i < les.dialogue.length; i++){
@@ -3749,19 +3756,46 @@ var MadinahScreen = {
   exercises: function(lessonId){
     var les = findLesson(lessonId);
     if (!les) return;
+    if (!les.exercises || les.exercises.length === 0){
+      document.getElementById('app').innerHTML =
+        '<div class="empty"><div class="big">⚠️</div><h2>Aucun exercice</h2>' +
+        '<button type="button" class="btn" onclick="MadinahScreen.home()">Retour</button></div>';
+      return;
+    }
     MadinahQuiz.start(les);
   }
 };
 
-/* ---------- 3. QUIZ MADINAH ---------- */
+/* ============================================================
+   QUIZ MADINAH — MOTEUR D'EXERCICES
+   ============================================================ */
 var MadinahQuiz = {
   session: null,
 
   start: function(lesson){
+    /* Filtrer les exercices non supportés */
+    var supported = [];
+    for (var i = 0; i < lesson.exercises.length; i++){
+      var ex = lesson.exercises[i];
+      if (ex.type === 'qcm' || ex.type === 'tf' || ex.type === 'fill' || ex.type === 'type' || ex.type === 'order'){
+        supported.push(ex);
+      }
+    }
+    if (supported.length === 0){
+      document.getElementById('app').innerHTML =
+        '<div class="empty"><div class="big">⚠️</div><h2>Aucun exercice supporté</h2>' +
+        '<button type="button" class="btn" onclick="MadinahScreen.home()">Retour</button></div>';
+      return;
+    }
     this.session = {
-      queue: shuffleMadinah(lesson.exercises.slice()),
-      index: 0, correct: 0, total: lesson.exercises.length,
-      lessonTitle: lesson.title
+      queue: shuffleMadinah(supported.slice()),
+      index: 0,
+      correct: 0,
+      total: supported.length,
+      lessonTitle: lesson.title,
+      lessonId: lesson.id,
+      currentAnswer: null,
+      currentOrder: []
     };
     this.render();
   },
@@ -3770,17 +3804,23 @@ var MadinahQuiz = {
     var s = this.session;
     if (!s || s.index >= s.queue.length) return this.end();
     var ex = s.queue[s.index];
+    s.currentAnswer = null;
+    s.currentOrder = [];
+
     var p = Math.round((s.index / s.total) * 100);
-    var h = '<button class="back" onclick="MadinahScreen.home()">← Quitter</button>' +
-      '<div class="counter">' + s.lessonTitle + ' · ' + (s.index + 1) + ' / ' + s.total + '</div>' +
+    var h = '<button type="button" class="back" onclick="MadinahScreen.home()">← Quitter</button>' +
+      '<div class="counter">' + s.lessonTitle + ' · ' + (s.index + 1) + ' / ' + s.total + ' · Score : ' + s.correct + '</div>' +
       '<div class="progress"><div class="progress-bar" style="width:' + p + '%"></div></div>';
 
     /* --- QCM --- */
     if (ex.type === 'qcm'){
-      h += '<div class="card" style="text-align:center;padding:24px"><p style="font-size:16px;font-weight:700;line-height:1.6">' + ex.q + '</p></div>';
+      h += '<div class="card" style="text-align:center;padding:24px">' +
+        '<p style="font-size:16px;font-weight:700;line-height:1.6">' + ex.q + '</p></div>' +
+        '<div id="optionsZone">';
       for (var i = 0; i < ex.options.length; i++){
-        h += '<button class="quiz-option" onclick="MadinahQuiz.answer(' + i + ')">' + ex.options[i] + '</button>';
+        h += '<button type="button" class="quiz-option" data-index="' + i + '" onclick="MadinahQuiz.answerQCM(' + i + ')">' + ex.options[i] + '</button>';
       }
+      h += '</div>';
     }
     /* --- Vrai/Faux --- */
     else if (ex.type === 'tf'){
@@ -3788,106 +3828,161 @@ var MadinahQuiz = {
         (ex.ar ? '<div class="ar" style="font-size:26px;color:var(--primary);margin-bottom:10px">' + ex.ar + '</div>' : '') +
         '<p style="font-size:16px;font-weight:700;line-height:1.6">' + ex.q + '</p></div>' +
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
-          '<button class="btn" style="background:var(--success)" onclick="MadinahQuiz.answerTF(true)">✅ Vrai</button>' +
-          '<button class="btn" style="background:var(--danger)" onclick="MadinahQuiz.answerTF(false)">❌ Faux</button>' +
+          '<button type="button" class="btn" style="background:var(--success)" onclick="MadinahQuiz.answerTF(true)">✅ Vrai</button>' +
+          '<button type="button" class="btn" style="background:var(--danger)" onclick="MadinahQuiz.answerTF(false)">❌ Faux</button>' +
         '</div>';
     }
     /* --- Fill --- */
     else if (ex.type === 'fill'){
-      h += '<div class="card" style="text-align:center;padding:24px"><p class="ar" style="font-size:24px;font-weight:700">' + ex.sentence + '</p></div>';
+      h += '<div class="card" style="text-align:center;padding:24px">' +
+        '<p class="ar" style="font-size:24px;font-weight:700">' + ex.sentence + '</p></div>' +
+        '<div id="optionsZone">';
       for (var j = 0; j < ex.options.length; j++){
-        h += '<button class="quiz-option" onclick="MadinahQuiz.answer(' + j + ')">' + ex.options[j] + '</button>';
+        h += '<button type="button" class="quiz-option" data-index="' + j + '" onclick="MadinahQuiz.answerQCM(' + j + ')">' + ex.options[j] + '</button>';
       }
+      h += '</div>';
     }
-    /* --- Type (saisie) --- */
+    /* --- Type (saisie libre) --- */
     else if (ex.type === 'type'){
       h += '<div class="card" style="text-align:center;padding:24px">' +
         '<p style="font-size:16px;font-weight:700">' + ex.q + '</p>' +
         (ex.hint ? '<p style="font-size:12px;color:var(--muted);margin-top:8px">💡 ' + ex.hint + '</p>' : '') +
-        '<input type="text" id="typeInput" class="ar" style="width:100%;margin-top:14px;padding:14px;border-radius:12px;border:2px solid var(--primary);font-size:22px;text-align:center;font-family:inherit;background:var(--card);color:var(--text)" />' +
-        '<button class="btn" style="margin-top:14px" onclick="MadinahQuiz.answerType()">Valider</button>' +
+        '<input type="text" id="typeInput" class="ar" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:100%;margin-top:14px;padding:14px;border-radius:12px;border:2px solid var(--primary);font-size:22px;text-align:center;font-family:inherit;background:var(--card);color:var(--text)" />' +
+        '<button type="button" class="btn" style="margin-top:14px" onclick="MadinahQuiz.answerType()">Valider</button>' +
       '</div>';
+      /* Focus automatique sur le champ */
+      setTimeout(function(){
+        var inp = document.getElementById('typeInput');
+        if (inp) inp.focus();
+      }, 100);
     }
-    /* --- Order --- */
+    /* --- Order (remettre en ordre) --- */
     else if (ex.type === 'order'){
       h += '<div class="card" style="text-align:center;padding:24px">' +
         '<p style="font-size:14px;font-weight:700;margin-bottom:14px">' + ex.q + '</p>' +
-        '<div id="orderZone" class="ar" style="min-height:50px;font-size:22px;padding:10px;border:2px dashed var(--muted);border-radius:12px;color:var(--primary)"></div>' +
+        '<div id="orderZone" class="ar" style="min-height:60px;font-size:22px;padding:12px;border:2px dashed var(--muted);border-radius:12px;color:var(--primary);line-height:1.8"></div>' +
         '<div id="orderWords" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center">';
       for (var k = 0; k < ex.words.length; k++){
-        h += '<button class="btn secondary" style="width:auto;padding:8px 14px" onclick="MadinahQuiz.addWord(\'' + ex.words[k].replace(/'/g, "\\'") + '\')">' + ex.words[k] + '</button>';
+        h += '<button type="button" class="btn secondary" style="width:auto;padding:8px 14px" data-word="' + esc(ex.words[k]) + '" onclick="MadinahQuiz.addWord(this)">' + ex.words[k] + '</button>';
       }
       h += '</div>' +
-        '<button class="btn" style="margin-top:14px" onclick="MadinahQuiz.answerOrder()">Valider</button>' +
+        '<button type="button" class="btn" style="margin-top:14px" onclick="MadinahQuiz.answerOrder()">Valider</button>' +
       '</div>';
     }
+
     document.getElementById('app').innerHTML = h;
   },
 
-  answer: function(i){
-    var s = this.session; var ex = s.queue[s.index];
-    if (ex.answered) return;
-    ex.answered = true;
-    var correctText = ex.options[ex.correct];
+  /* --- Réponse QCM / Fill --- */
+  answerQCM: function(i){
+    var s = this.session;
+    if (!s || s.currentAnswer !== null) return;
+    var ex = s.queue[s.index];
+    s.currentAnswer = i;
+
+    var correctIndex = (typeof ex.correct === 'number') ? ex.correct : 0;
+    var correctText = ex.options[correctIndex];
     var sel = ex.options[i];
-    var btns = document.querySelectorAll('.quiz-option');
+    var isCorrect = (sel === correctText);
+
+    /* Désactiver tous les boutons + colorer */
+    var btns = document.querySelectorAll('#optionsZone .quiz-option');
     for (var k = 0; k < btns.length; k++){
       btns[k].disabled = true;
-      if (ex.options[k] === correctText) btns[k].classList.add('correct');
-      else if (k === i) btns[k].classList.add('wrong');
+      var idx = parseInt(btns[k].getAttribute('data-index'), 10);
+      if (idx === correctIndex) btns[k].classList.add('correct');
+      else if (idx === i) btns[k].classList.add('wrong');
     }
-    if (sel === correctText) s.correct++;
+
+    if (isCorrect){ s.correct++; toast('✅ Correct !'); }
+    else { toast('❌ Mauvaise réponse'); }
+
     var self = this;
-    setTimeout(function(){ s.index++; self.render(); }, 1000);
+    setTimeout(function(){ s.index++; self.render(); }, 1200);
   },
 
+  /* --- Réponse Vrai/Faux --- */
   answerTF: function(val){
-    var s = this.session; var ex = s.queue[s.index];
-    if (ex.answered) return;
-    ex.answered = true;
-    if (val === ex.correct) s.correct++;
+    var s = this.session;
+    if (!s || s.currentAnswer !== null) return;
+    var ex = s.queue[s.index];
+    s.currentAnswer = val;
+
+    var isCorrect = (val === ex.correct);
+    if (isCorrect){ s.correct++; toast('✅ Correct !'); }
+    else { toast('❌ Faux — c\'était ' + (ex.correct ? 'Vrai' : 'Faux')); }
+
+    if (!isCorrect && ex.explain){
+      setTimeout(function(){ toast('💡 ' + ex.explain); }, 1400);
+    }
+
     var self = this;
-    setTimeout(function(){ s.index++; self.render(); }, 1000);
+    setTimeout(function(){ s.index++; self.render(); }, 1600);
   },
 
+  /* --- Réponse Type (saisie) --- */
   answerType: function(){
-    var s = this.session; var ex = s.queue[s.index];
+    var s = this.session;
+    if (!s || s.currentAnswer !== null) return;
+    var ex = s.queue[s.index];
     var input = document.getElementById('typeInput');
     if (!input) return;
-    var val = input.value.trim();
-    var answers = ex.answers || [ex.answer];
-    var ok = false;
+    var val = (input.value || '').trim();
+    if (!val) return;
+
+    s.currentAnswer = val;
+    var answers = ex.answers || (ex.answer ? [ex.answer] : []);
+    var isCorrect = false;
     for (var i = 0; i < answers.length; i++){
-      if (val === answers[i]){ ok = true; break; }
+      if (val === answers[i]){ isCorrect = true; break; }
     }
-    if (ok) s.correct++;
+
+    if (isCorrect){ s.correct++; toast('✅ Correct !'); }
+    else { toast('❌ Réponse : ' + (answers[0] || '?')); }
+
     input.disabled = true;
-    input.style.borderColor = ok ? 'var(--success)' : 'var(--danger)';
-    toast(ok ? '✅ Correct' : '❌ Réponse : ' + answers[0]);
+    input.style.borderColor = isCorrect ? 'var(--success)' : 'var(--danger)';
+    input.style.background = isCorrect ? '#e8f5e9' : '#ffebee';
+
     var self = this;
-    setTimeout(function(){ s.index++; self.render(); }, 1400);
+    setTimeout(function(){ s.index++; self.render(); }, 1600);
   },
 
-  addWord: function(w){
-    var z = document.getElementById('orderZone');
-    var words = z.dataset.words ? z.dataset.words.split('|') : [];
-    words.push(w);
-    z.dataset.words = words.join('|');
-    z.textContent = words.join(' ');
+  /* --- Ajouter un mot dans l'ordre --- */
+  addWord: function(btn){
+    var s = this.session;
+    if (!s || s.currentAnswer !== null) return;
+    var word = btn.getAttribute('data-word');
+    s.currentOrder.push(word);
+    btn.disabled = true;
+    btn.style.opacity = '0.4';
+    var zone = document.getElementById('orderZone');
+    if (zone){
+      zone.textContent = s.currentOrder.join(' ');
+    }
   },
 
+  /* --- Valider l'ordre --- */
   answerOrder: function(){
-    var s = this.session; var ex = s.queue[s.index];
-    var z = document.getElementById('orderZone');
-    var val = z.dataset.words ? z.dataset.words.split('|').join(' ') : '';
-    if (val === ex.answer) s.correct++;
+    var s = this.session;
+    if (!s || s.currentAnswer !== null) return;
+    var ex = s.queue[s.index];
+    var val = s.currentOrder.join(' ');
+    s.currentAnswer = val;
+
+    var isCorrect = (val === ex.answer);
+    if (isCorrect){ s.correct++; toast('✅ Correct !'); }
+    else { toast('❌ Réponse : ' + ex.answer); }
+
     var self = this;
-    setTimeout(function(){ s.index++; self.render(); }, 800);
+    setTimeout(function(){ s.index++; self.render(); }, 1600);
   },
 
+  /* --- Fin de session --- */
   end: function(){
     var s = this.session;
-    var pct = Math.round((s.correct / s.total) * 100);
+    if (!s) return;
+    var pct = s.total ? Math.round((s.correct / s.total) * 100) : 0;
     var em = pct >= 80 ? '🏆' : (pct >= 50 ? '👍' : '💪');
     document.getElementById('app').innerHTML =
       '<div class="empty" style="padding-top:60px"><div class="big">' + em + '</div>' +
@@ -3896,12 +3991,15 @@ var MadinahQuiz = {
         '<div class="stat"><div class="num">' + s.correct + '/' + s.total + '</div><div class="lbl">Score</div></div>' +
         '<div class="stat"><div class="num">' + pct + '%</div><div class="lbl">Réussite</div></div>' +
       '</div>' +
-      '<button class="btn" onclick="MadinahScreen.home()">Retour Médine</button>' +
-      '<button class="btn secondary" onclick="App.home()">Accueil</button></div>';
+      '<button type="button" class="btn" onclick="MadinahQuiz.start({ id: \'' + s.lessonId + '\', title: \'' + esc(s.lessonTitle) + '\', exercises: (function(){ var l = findLesson(\'' + s.lessonId + '\'); return l ? l.exercises : []; })() })">🔄 Recommencer</button>' +
+      '<button type="button" class="btn secondary" onclick="MadinahScreen.home()">Retour Médine</button>' +
+      '<button type="button" class="btn secondary" onclick="App.home()">Accueil</button></div>';
   }
 };
 
-/* ---------- 4. UTILITAIRES INTERNES ---------- */
+/* ============================================================
+   UTILITAIRES INTERNES
+   ============================================================ */
 function findLesson(lessonId){
   for (var t = 0; t < TOMES.length; t++){
     for (var l = 0; l < TOMES[t].lessons.length; l++){
@@ -3923,13 +4021,21 @@ function shuffleMadinah(a){
   return a;
 }
 
-/* ---------- 5. EXPORT GLOBAL ---------- */
+/* ============================================================
+   EXPORT GLOBAL
+   ============================================================ */
 if (typeof module !== 'undefined' && module.exports){
-  module.exports = { TOMES: TOMES, esc: esc, MadinahScreen: MadinahScreen };
+  module.exports = {
+    TOMES: TOMES,
+    esc: esc,
+    MadinahScreen: MadinahScreen,
+    MadinahQuiz: MadinahQuiz
+  };
 } else if (typeof window !== 'undefined'){
   window.TOMES = TOMES;
   window.esc = esc;
   window.MadinahScreen = MadinahScreen;
+  window.MadinahQuiz = MadinahQuiz;
   window.MADINAH_VOCAB = MADINAH_VOCAB;
   window.MADINAH_EXERCISES = MADINAH_EXERCISES;
 }
