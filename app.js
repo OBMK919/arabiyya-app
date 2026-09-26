@@ -1,6 +1,6 @@
 /* =====================================================
    ARABIYYA — Logique principale
-   Version 5.0 — Intégration complète Tomes de Médine
+   Version 5.1 — Intégration complète Tomes de Médine
    ===================================================== */
 
 /* ---------- AGRÉGATION DES SOURCES ---------- */
@@ -208,6 +208,7 @@ var App = {
     var due = SRS.due().length;
     var nw = SRS.newOnes().length;
     var totalVocab = getAllVocab().length;
+    var totalEx = getAllExercises().length;
     var theme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', theme);
 
@@ -236,6 +237,12 @@ var App = {
         '<div class="sub" style="color:rgba(255,255,255,.85)">Méthode du Dr. V. Abdur Rahim</div></div>' +
       '</button>' +
 
+      '<button class="menu-btn" onclick="GrammaireScreen.home()" style="background:linear-gradient(135deg,#4a148c,#7b1fa2);color:#fff">' +
+        '<div class="icon" style="background:rgba(255,255,255,.2)">📝</div>' +
+        '<div><div class="label" style="color:#fff">📝 Grammaire</div>' +
+        '<div class="sub" style="color:rgba(255,255,255,.85)">49 règles essentielles</div></div>' +
+      '</button>' +
+
       '<button class="menu-btn" onclick="App.study()">' +
         '<div class="icon">📚</div>' +
         '<div><div class="label">Étudier maintenant</div><div class="sub">Répétition espacée · ' + totalVocab + ' cartes</div></div>' +
@@ -243,7 +250,7 @@ var App = {
 
       '<button class="menu-btn" onclick="App.lessons()">' +
         '<div class="icon">📖</div>' +
-        '<div><div class="label">Leçons guidées</div><div class="sub">' + LESSONS.length + ' leçons progressives</div></div>' +
+        '<div><div class="label">Leçons guidées</div><div class="sub">8 leçons de base · 30 leçons de Médine</div></div>' +
       '</button>' +
 
       '<button class="menu-btn" onclick="App.vocab()">' +
@@ -268,7 +275,7 @@ var App = {
 
       '<button class="menu-btn" onclick="App.quizStart()">' +
         '<div class="icon">🎯</div>' +
-        '<div><div class="label">Quiz</div><div class="sub">Mots + exercices du Tome 1</div></div>' +
+        '<div><div class="label">Quiz</div><div class="sub">Mots + ' + totalEx + ' exercices du Tome 1</div></div>' +
       '</button>' +
 
       '<button class="menu-btn" onclick="App.statsScreen()">' +
@@ -725,7 +732,7 @@ var App = {
         '<p class="muted" style="margin:8px 0 12px">Efface toute la progression.</p>' +
         '<button class="btn danger" onclick="App.resetAll()">Réinitialiser</button>' +
       '</div>' +
-      '<div class="card" style="text-align:center;font-size:13px;color:var(--muted)"><strong style="color:var(--primary)">Arabiyya</strong> v5.0 · 100% hors ligne</div>');
+      '<div class="card" style="text-align:center;font-size:13px;color:var(--muted)"><strong style="color:var(--primary)">Arabiyya</strong> v5.1 · 100% hors ligne</div>');
   },
 
   setTheme: function(t){

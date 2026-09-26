@@ -1,6 +1,6 @@
 /* ============================================================
-   MADINAH — Tomes de Médine (Version 5.0)
-   Contenu enrichi · 23 leçons · 40-50 mots/leçon
+   MADINAH — Tomes de Médine (Version 6.0 — Complète)
+   Contenu enrichi · 12 leçons · ~44 mots/leçon
    Sources : méthode du Dr. V. Abdur Rahim
    Crédits : Université Islamique de Médine
    ============================================================ */
@@ -10,7 +10,12 @@
 /* ---------- Échappement local ---------- */
 function esc(s){
   if (s === null || s === undefined) return '';
-  return String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  return String(s)
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '\\r');
 }
 
 /* ============================================================
@@ -20,120 +25,145 @@ var TOMES = [
   {
     id:"t1", num:1, title:"Tome 1",
     subtitle:"Bases de la lecture et de la grammaire",
-    desc:"23 leçons · Du débutant à la phrase simple",
+    desc:"12 leçons · Du débutant à la phrase simple",
     active:true,
     pdf:"COURS D'ARABE TOME 1 DE MEDINE.pdf",
     lessons:[
 
     /* ===== LEÇON 1 ===== */
-    {id:"t1l1", num:1, title:"Leçon 1", desc:"هَذَا (Ceci) · Objets de la maison",
-     active:true, audio:"assets/audio/madinah/tome1/L01.mp3",
-     text:["هَذَا بَيْتٌ","هَذَا مَسْجِدٌ","هَذَا بَابٌ","هَذَا كِتَابٌ","هَذَا قَلَمٌ",
-           "هَذَا مِفْتَاحٌ","هَذَا مَكْتَبٌ","هَذَا سَرِيرٌ","هَذَا كُرْسِيٌّ","هَذَا نَافِذَةٌ",
-           "هَذَا حَائِطٌ","هَذَا سَقْفٌ","هَذَا أَرْضٌ","هَذَا كُوبٌ","هَذَا مِصْبَاحٌ"],
+    {id:"t1l1", num:1, title:"Leçon 1", desc:"الاسْتِفْهَام · أ (Est-ce que) et مَا (Qu'est-ce que)",
+     active:true, audio:null, pdf:"",
+     text:[
+       "مَا هَذَا؟","هَذَا قَلَمٌ","أَهَذَا بَيْتٌ؟","نَعَمْ، هَذَا بَيْتٌ",
+       "أَهَذَا نَجْمٌ؟","لَا، هَذَا قَلَمٌ","أَهَذَا مِفْتَاحٌ؟","لَا، هَذَا قَلَمٌ",
+       "مَا هَذَا؟","هَذَا كُرْسِيٌّ","هَذَا قَمِيصٌ","هَذَا بَيْتٌ","هَذَا نَجْمٌ",
+       "هَذَا بَابٌ","هَذَا مَسْجِدٌ","هَذَا كِتَابٌ","هَذَا سَرِيرٌ","هَذَا مَكْتَبٌ",
+       "هَذَا مِنْدِيلٌ","هَذَا دِيكٌ","هَذَا حِصَانٌ","هَذَا حِمَارٌ"
+     ],
      vocab:[
-       {ar:"هَذَا",fr:"Ceci (masc.)",tr:"hādhā"},
-       {ar:"بَيْتٌ",fr:"Maison",tr:"bayt"},
-       {ar:"مَسْجِدٌ",fr:"Mosquée",tr:"masjid"},
-       {ar:"مَدْرَسَةٌ",fr:"École",tr:"madrasa"},
-       {ar:"بَابٌ",fr:"Porte",tr:"bāb"},
-       {ar:"نَافِذَةٌ",fr:"Fenêtre",tr:"nāfidha"},
-       {ar:"كِتَابٌ",fr:"Livre",tr:"kitāb"},
-       {ar:"قَلَمٌ",fr:"Stylo",tr:"qalam"},
-       {ar:"دَفْتَرٌ",fr:"Cahier",tr:"daftar"},
-       {ar:"مِمْحَاةٌ",fr:"Gomme",tr:"mimḥā"},
-       {ar:"مِسْطَرَةٌ",fr:"Règle",tr:"misṭara"},
-       {ar:"مِفْتَاحٌ",fr:"Clé",tr:"miftāḥ"},
-       {ar:"مَكْتَبٌ",fr:"Bureau (meuble)",tr:"maktab"},
-       {ar:"طَاوِلَةٌ",fr:"Table",tr:"ṭāwila"},
-       {ar:"سَرِيرٌ",fr:"Lit",tr:"sarīr"},
-       {ar:"كُرْسِيٌّ",fr:"Chaise",tr:"kursī"},
-       {ar:"وِسَادَةٌ",fr:"Oreiller",tr:"wisāda"},
-       {ar:"بِطَانِيَّةٌ",fr:"Couverture",tr:"biṭāniyya"},
-       {ar:"سَجَّادَةٌ",fr:"Tapis",tr:"sajjāda"},
-       {ar:"حَائِطٌ",fr:"Mur",tr:"ḥāʾiṭ"},
-       {ar:"سَقْفٌ",fr:"Plafond",tr:"saqf"},
-       {ar:"أَرْضٌ",fr:"Sol / Terre",tr:"arḍ"},
-       {ar:"كُوبٌ",fr:"Verre",tr:"kūb"},
-       {ar:"فِنْجَانٌ",fr:"Tasse",tr:"finjān"},
-       {ar:"إِبْرِيقٌ",fr:"Théière",tr:"ibrīq"},
-       {ar:"مِصْبَاحٌ",fr:"Lampe",tr:"miṣbāḥ"},
-       {ar:"مِرْآةٌ",fr:"Miroir",tr:"mirʾā"},
-       {ar:"سَاعَةٌ",fr:"Montre / Heure",tr:"sāʿa"},
-       {ar:"هَاتِفٌ",fr:"Téléphone",tr:"hātif"},
-       {ar:"تِلْفَازٌ",fr:"Télévision",tr:"tilfāz"},
-       {ar:"ثَلَّاجَةٌ",fr:"Réfrigérateur",tr:"thallāja"},
-       {ar:"مِكْوَاةٌ",fr:"Fer à repasser",tr:"mikwāh"},
-       {ar:"مِكْنَسَةٌ",fr:"Balai",tr:"miknasa"},
-       {ar:"سِلَّةٌ",fr:"Corbeille",tr:"silla"},
-       {ar:"مِظَلَّةٌ",fr:"Parapluie",tr:"miẓalla"},
-       {ar:"حَقِيبَةٌ",fr:"Sac",tr:"ḥaqība"},
-       {ar:"مِحْفَظَةٌ",fr:"Portefeuille",tr:"miḥfaẓa"},
-       {ar:"مِفْتَاحٌ صَغِيرٌ",fr:"Petite clé",tr:"miftāḥ ṣaghīr"},
-       {ar:"وَرَقٌ",fr:"Papier",tr:"waraq"},
-       {ar:"مَا؟",fr:"Quoi ?",tr:"mā?"},
+       {ar:"مَا؟",fr:"Quoi ? (Qu'est-ce que ?)",tr:"mā?"},
        {ar:"أَ؟",fr:"Est-ce que ?",tr:"a?"},
        {ar:"نَعَمْ",fr:"Oui",tr:"naʿam"},
-       {ar:"لَا",fr:"Non",tr:"lā"}
+       {ar:"لَا",fr:"Non",tr:"lā"},
+       {ar:"هَذَا",fr:"Ceci (masc.)",tr:"hādhā"},
+       {ar:"قَلَمٌ",fr:"Stylo",tr:"qalam"},
+       {ar:"بَيْتٌ",fr:"Maison",tr:"bayt"},
+       {ar:"نَجْمٌ",fr:"Étoile",tr:"najm"},
+       {ar:"كُرْسِيٌّ",fr:"Chaise",tr:"kursī"},
+       {ar:"قَمِيصٌ",fr:"Chemise",tr:"qamīṣ"},
+       {ar:"مِفْتَاحٌ",fr:"Clé",tr:"miftāḥ"},
+       {ar:"سَرِيرٌ",fr:"Lit",tr:"sarīr"},
+       {ar:"كَلْبٌ",fr:"Chien",tr:"kalb"},
+       {ar:"قِطٌّ",fr:"Chat",tr:"qiṭṭ"},
+       {ar:"دِيكٌ",fr:"Coq",tr:"dīk"},
+       {ar:"حِصَانٌ",fr:"Cheval",tr:"ḥiṣān"},
+       {ar:"حِمَارٌ",fr:"Âne",tr:"ḥimār"},
+       {ar:"مِنْدِيلٌ",fr:"Mouchoir",tr:"mindīl"},
+       {ar:"وَلَدٌ",fr:"Garçon",tr:"walad"},
+       {ar:"رَجُلٌ",fr:"Homme",tr:"rajul"},
+       {ar:"طَبِيبٌ",fr:"Médecin",tr:"ṭabīb"},
+       {ar:"بَابٌ",fr:"Porte",tr:"bāb"},
+       {ar:"مَسْجِدٌ",fr:"Mosquée",tr:"masjid"},
+       {ar:"كِتَابٌ",fr:"Livre",tr:"kitāb"},
+       {ar:"مَكْتَبٌ",fr:"Bureau",tr:"maktab"},
+       {ar:"إِمَامٌ",fr:"Imam",tr:"imām"},
+       {ar:"سُكَّرٌ",fr:"Sucre",tr:"sukkar"},
+       {ar:"حَجَرٌ",fr:"Pierre",tr:"ḥajar"},
+       {ar:"لَبَنٌ",fr:"Lait",tr:"laban"},
+       {ar:"مَاءٌ",fr:"Eau",tr:"māʾ"}
      ],
-     grammar:{title:"La phrase nominale (الْجُمْلَة الاِسْمِيَّة)",
-       rule:"En arabe, une phrase simple se compose d'un sujet (مُبْتَدَأ) et d'un attribut (خَبَر), sans verbe « être ». Exemple : هَذَا بَيْتٌ = « ceci maison » = c'est une maison.",
-       examples:["هَذَا كِتَابٌ = C'est un livre","هَذَا مَسْجِدٌ = C'est une mosquée","هَذَا قَلَمٌ = C'est un stylo","هَذَا بَابٌ كَبِيرٌ = C'est une grande porte"]},
+     grammar:{title:"L'interrogation (الاسْتِفْهَام)",
+       rule:"En arabe, il y a deux outils d'interrogation dans cette leçon : أ (hamza) et مَا. أ est une particule (حَرْف) qui pose une question fermée : la réponse se fait par نَعَمْ (oui) ou لَا (non). مَا est un nom (اسْم) qui pose une question ouverte sur un être non doué de raison (غَيْرِ عَاقِل) : la réponse est le nom de l'objet. On ne confond pas مَا avec مَنْ (qui ?) qui s'utilise pour les êtres doués de raison.",
+       examples:["أَهَذَا بَيْتٌ؟ = Est-ce que c'est une maison ?","مَا هَذَا؟ = Qu'est-ce que c'est ?","أَهَذَا قَلَمٌ؟ نَعَمْ = Est-ce un stylo ? Oui","أَهَذَا نَجْمٌ؟ لَا = Est-ce une étoile ? Non"]},
      dialogue:[
-       {sp:"A",ar:"السَّلَامُ عَلَيْكُمْ.",fr:"Bonjour (paix sur vous)."},
-       {sp:"B",ar:"وَعَلَيْكُمُ السَّلَامُ.",fr:"Bonjour (à vous aussi)."},
        {sp:"A",ar:"مَا هَذَا؟",fr:"Qu'est-ce que c'est ?"},
-       {sp:"B",ar:"هَذَا بَيْتٌ.",fr:"C'est une maison."},
-       {sp:"A",ar:"أَهَذَا مَسْجِدٌ؟",fr:"Est-ce que c'est une mosquée ?"},
-       {sp:"B",ar:"نَعَمْ، هَذَا مَسْجِدٌ.",fr:"Oui, c'est une mosquée."},
-       {sp:"A",ar:"أَهَذَا كِتَابٌ؟",fr:"Est-ce que c'est un livre ?"},
+       {sp:"B",ar:"هَذَا قَلَمٌ.",fr:"C'est un stylo."},
+       {sp:"A",ar:"أَهَذَا بَيْتٌ؟",fr:"Est-ce que c'est une maison ?"},
+       {sp:"B",ar:"نَعَمْ، هَذَا بَيْتٌ.",fr:"Oui, c'est une maison."},
+       {sp:"A",ar:"أَهَذَا نَجْمٌ؟",fr:"Est-ce que c'est une étoile ?"},
        {sp:"B",ar:"لَا، هَذَا قَلَمٌ.",fr:"Non, c'est un stylo."},
        {sp:"A",ar:"مَا هَذَا؟",fr:"Qu'est-ce que c'est ?"},
-       {sp:"B",ar:"هَذَا مِفْتَاحٌ وَهَذَا بَابٌ.",fr:"C'est une clé, et c'est une porte."}
+       {sp:"B",ar:"هَذَا كُرْسِيٌّ.",fr:"C'est une chaise."},
+       {sp:"A",ar:"أَهَذَا مِفْتَاحٌ؟",fr:"Est-ce que c'est une clé ?"},
+       {sp:"B",ar:"لَا، هَذَا قَلَمٌ.",fr:"Non, c'est un stylo."},
+       {sp:"A",ar:"مَا هَذَا؟",fr:"Qu'est-ce que c'est ?"},
+       {sp:"B",ar:"هَذَا قَمِيصٌ.",fr:"C'est une chemise."},
+       {sp:"A",ar:"أَهَذَا بَيْتٌ؟",fr:"Est-ce que c'est une maison ?"},
+       {sp:"B",ar:"نَعَمْ، هَذَا بَيْتٌ.",fr:"Oui, c'est une maison."}
      ],
      exercises:[
-       {type:"qcm",q:"Que veut dire هَذَا ?",options:["Ceci (masc.)","Cela","Où ?","Quoi ?"],correct:0},
-       {type:"qcm",q:"Comment dit-on « une maison » ?",options:["بَيْتٌ","مَسْجِدٌ","بَابٌ","كِتَابٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « une mosquée » ?",options:["مَسْجِدٌ","بَيْتٌ","نَافِذَةٌ","قَلَمٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire قَلَمٌ ?",options:["Un stylo","Un livre","Une clé","Un lit"],correct:0},
-       {type:"qcm",q:"Que veut dire كُرْسِيٌّ ?",options:["Chaise","Lit","Bureau","Table"],correct:0},
-       {type:"qcm",q:"Comment dit-on « fenêtre » ?",options:["نَافِذَةٌ","بَابٌ","حَائِطٌ","سَقْفٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « lampe » ?",options:["مِصْبَاحٌ","سَرِيرٌ","مِرْآةٌ","كُوبٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire سَاعَةٌ ?",options:["Montre / Heure","Téléphone","Chaise","Verre"],correct:0},
-       {type:"qcm",q:"Comment dit-on « cahier » ?",options:["دَفْتَرٌ","مِمْحَاةٌ","مِسْطَرَةٌ","كِتَابٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire ثَلَّاجَةٌ ?",options:["Réfrigérateur","Télévision","Téléphone","Montre"],correct:0},
-       {type:"tf",ar:"هَذَا بَيْتٌ",q:"Signifie « Ceci est une maison »",correct:true},
-       {type:"tf",ar:"هَذَا مَسْجِدٌ",q:"Signifie « Ceci est une école »",correct:false,explain:"مَسْجِدٌ = mosquée."},
-       {type:"tf",ar:"هَذَا كُرْسِيٌّ",q:"Signifie « C'est une chaise »",correct:true},
-       {type:"tf",ar:"هَذَا قَلَمٌ",q:"Signifie « C'est un livre »",correct:false,explain:"قَلَمٌ = stylo."},
-       {type:"fill",sentence:"___ بَيْتٌ",options:["هَذَا","هَذِهِ","ذَلِكَ","تِلْكَ"],correct:0},
-       {type:"fill",sentence:"هَذَا ___",options:["مَسْجِدٌ","مَسْجِدَةٌ","مَسَاجِدُ","الْمَسْجِدُ"],correct:0},
-       {type:"fill",sentence:"هَذَا ___",options:["مِفْتَاحٌ","مِفْتَاحَةٌ","مَفَاتِيحُ","الْمِفْتَاحُ"],correct:0},
-       {type:"fill",sentence:"هَذَا ___",options:["قَلَمٌ","قَلَمَةٌ","أَقْلَامٌ","الْقَلَمُ"],correct:0},
-       {type:"type",q:"Écris « une maison » :",answer:"بَيْتٌ",hint:"3 lettres : ب ي ت"},
-       {type:"type",q:"Écris « un livre » :",answer:"كِتَابٌ",hint:"4 lettres : ك ت ا ب"},
-       {type:"type",q:"Écris « un stylo » :",answer:"قَلَمٌ",hint:"3 lettres : ق ل م"},
-       {type:"type",q:"Écris « une chaise » :",answer:"كُرْسِيٌّ",hint:"5 lettres"},
-       {type:"type",q:"Écris « une fenêtre » :",answer:"نَافِذَةٌ",hint:"ن ا ف ذ + ة"},
-       {type:"type",q:"Écris « une table » :",answer:"طَاوِلَةٌ",hint:"ط ا و ل + ة"},
-       {type:"order",q:"Reconstitue :",words:["بَيْتٌ","هَذَا"],answer:"هَذَا بَيْتٌ"},
+       {type:"qcm",q:"Que veut dire الكلمة ?",options:["Le mot","La phrase","Le verbe","La lettre"],correct:0},
+       {type:"qcm",q:"Combien de catégories de mots en arabe ?",options:["3","2","4","5"],correct:0},
+       {type:"qcm",q:"Le nom (اسم) est un mot qui :",options:["A un sens par lui-même, sans temps","Indique une action + un temps","N'a de sens qu'avec un autre mot","Indique une qualité"],correct:0},
+       {type:"qcm",q:"Le verbe (فعل) indique :",options:["Une action + un temps","Un sens par lui-même","Une qualité","Une particule"],correct:0},
+       {type:"qcm",q:"La particule (حرف) :",options:["N'a de sens qu'avec un autre mot","A un sens par elle-même","Indique une action","Indique un temps"],correct:0},
+       {type:"qcm",q:"هَذَا appartient à quelle catégorie ?",options:["اسم","فعل","حرف","صفة"],correct:0},
+       {type:"qcm",q:"أَ appartient à quelle catégorie ?",options:["حرف","اسم","فعل","صفة"],correct:0},
+       {type:"qcm",q:"مَا appartient à quelle catégorie ?",options:["اسم","حرف","فعل","صفة"],correct:0},
+       {type:"qcm",q:"Que veut dire هَذَا ?",options:["Ceci","Cela","Où ?","Quoi ?"],correct:0},
+       {type:"qcm",q:"هَذَا désigne : singulier / duel / pluriel ?",options:["Singulier","Duel","Pluriel","Collectif"],correct:0},
+       {type:"qcm",q:"هَذَا désigne : masculin / féminin ?",options:["Masculin","Féminin","Neutre","Les deux"],correct:0},
+       {type:"qcm",q:"هَذَا désigne : proche / lointain ?",options:["Proche","Lointain","Intermédiaire","Les deux"],correct:0},
+       {type:"fill",sentence:"___ بَيْتٌ (proche)",options:["هَذَا","هَذِهِ","ذَلِكَ","تِلْكَ"],correct:0},
+       {type:"fill",sentence:"___ كِتَابٌ (proche)",options:["هَذَا","هَذِهِ","ذَلِكَ","تِلْكَ"],correct:0},
+       {type:"fill",sentence:"___ مَسْجِدٌ (proche)",options:["هَذَا","هَذِهِ","ذَلِكَ","تِلْكَ"],correct:0},
+       {type:"fill",sentence:"___ قَلَمٌ (proche)",options:["هَذَا","هَذِهِ","ذَلِكَ","تِلْكَ"],correct:0},
+       {type:"fill",sentence:"___ نَجْمٌ (proche)",options:["هَذَا","هَذِهِ","ذَلِكَ","تِلْكَ"],correct:0},
+       {type:"qcm",q:"Formule complète de هَذَا :",options:["مفرد + مذكر + قريب","مفرد + مؤنث + قريب","مثنى + مذكر + قريب","جمع + مذكر + قريب"],correct:0},
+       {type:"qcm",q:"أ est : اسم / فعل / حرف ?",options:["حرف","اسم","فعل","صفة"],correct:0},
+       {type:"qcm",q:"مَا est : اسم / فعل / حرف ?",options:["اسم","حرف","فعل","صفة"],correct:0},
+       {type:"qcm",q:"Réponse à أ :",options:["نعم / لا","Un nom","Un verbe","Une phrase"],correct:0},
+       {type:"qcm",q:"Réponse à مَا :",options:["Un nom","نعم / لا","Un verbe","Une phrase"],correct:0},
+       {type:"fill",sentence:"___ هَذَا كِتَابٌ ؟",options:["أَ","مَا","هَذَا","نَعَمْ"],correct:0},
+       {type:"fill",sentence:"___ هَذَا ؟",options:["مَا","أَ","نَعَمْ","لَا"],correct:0},
+       {type:"qcm",q:"Différence entre أ et مَا ?",options:["أ = question fermée / مَا = question ouverte","أ = question ouverte / مَا = question fermée","Aucune différence","أ = nom / مَا = particule"],correct:0},
+       {type:"qcm",q:"Répondre positivement : أَهَذَا بَيْتٌ ؟",options:["نَعَمْ، هَذَا بَيْتٌ","لَا، هَذَا قَلَمٌ","مَا هَذَا","هَذَا بَيْتٌ"],correct:0},
+       {type:"tf",q:"أَ est une particule",correct:true,explain:""},
+       {type:"tf",q:"مَا s'utilise pour les êtres doués de raison",correct:false,explain:"Non, مَا s'utilise pour les êtres non doués de raison. Pour les êtres doués de raison, on utilise مَنْ."},
+       {type:"qcm",q:"Qu'est-ce qu'une جملة اسمية ?",options:["Phrase qui commence par un nom","Phrase qui commence par un verbe","Phrase qui commence par une particule","Phrase interrogative"],correct:0},
+       {type:"qcm",q:"Structure d'une جملة اسمية :",options:["مبتدأ + خبر","فعل + فاعل","حرف + اسم","اسم + فعل"],correct:0},
+       {type:"qcm",q:"Dans : هَذَا كِتَابٌ — le مبتدأ ?",options:["هَذَا","كِتَابٌ","هَذَا كِتَابٌ","كِتَابٌ هَذَا"],correct:0},
+       {type:"qcm",q:"Dans : هَذَا كِتَابٌ — le خبر ?",options:["كِتَابٌ","هَذَا","هَذَا كِتَابٌ","كِتَابٌ هَذَا"],correct:0},
+       {type:"qcm",q:"Dans : هَذَا بَابٌ — le مبتدأ ?",options:["هَذَا","بَابٌ","هَذَا بَابٌ","بَابٌ هَذَا"],correct:0},
+       {type:"qcm",q:"Dans : هَذَا بَابٌ — le خبر ?",options:["بَابٌ","هَذَا","هَذَا بَابٌ","بَابٌ هَذَا"],correct:0},
+       {type:"tf",q:"Y a-t-il un verbe dans : هَذَا مَسْجِدٌ ?",correct:false,explain:"Non, il n'y a pas de verbe. Pas de verbe « être » au présent en arabe."},
+       {type:"qcm",q:"Pourquoi n'y a-t-il pas de verbe dans : هَذَا مَسْجِدٌ ?",options:["Pas de verbe « être » au présent en arabe","Parce que c'est une phrase verbale","Parce que le sujet est défini","Parce que l'attribut est indéfini"],correct:0},
+       {type:"type",q:"Traduire : هَذَا كِتَابٌ",answers:["Ceci est un livre","C'est un livre"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَذَا بَيْتٌ",answers:["Ceci est une maison","C'est une maison"],hint:"Phrase nominale"},
+       {type:"qcm",q:"Que veut dire بَابٌ ?",options:["Porte","Fenêtre","Mur","Toit"],correct:0},
+       {type:"qcm",q:"Que veut dire مَسْجِدٌ ?",options:["Mosquée","École","Maison","Marché"],correct:0},
+       {type:"qcm",q:"Que veut dire كِتَابٌ ?",options:["Livre","Stylo","Clé","Lit"],correct:0},
+       {type:"qcm",q:"Que veut dire قَلَمٌ ?",options:["Stylo","Livre","Clé","Bureau"],correct:0},
+       {type:"qcm",q:"Que veut dire مِفْتَاحٌ ?",options:["Clé","Porte","Serrure","Mur"],correct:0},
+       {type:"qcm",q:"Que veut dire كُرْسِيٌّ ?",options:["Chaise","Table","Lit","Bureau"],correct:0},
+       {type:"qcm",q:"Que veut dire سَرِيرٌ ?",options:["Lit","Chaise","Bureau","Table"],correct:0},
+       {type:"qcm",q:"Que veut dire مَكْتَبٌ ?",options:["Bureau","Lit","Chaise","Table"],correct:0},
+       {type:"qcm",q:"Que veut dire نَجْمٌ ?",options:["Étoile","Lune","Soleil","Nuage"],correct:0},
+       {type:"qcm",q:"Que veut dire إِمَامٌ ?",options:["Imam","Roi","Prophète","Juge"],correct:0},
+       {type:"qcm",q:"Que veut dire قَمِيصٌ ?",options:["Chemise","Pantalon","Veste","Chaussure"],correct:0},
+       {type:"qcm",q:"Que veut dire مَاءٌ ?",options:["Eau","Lait","Jus","Thé"],correct:0},
+       {type:"type",q:"Écris « une porte » :",answers:["بَابٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « un livre » :",answers:["كِتَابٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « une maison » :",answers:["بَيْتٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « une étoile » :",answers:["نَجْمٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « de l'eau » :",answers:["مَاءٌ"],hint:"3 lettres"},
        {type:"order",q:"Reconstitue :",words:["كِتَابٌ","هَذَا"],answer:"هَذَا كِتَابٌ"},
-       {type:"order",q:"Reconstitue :",words:["مِفْتَاحٌ","هَذَا"],answer:"هَذَا مِفْتَاحٌ"},
+       {type:"order",q:"Reconstitue :",words:["بَيْتٌ","هَذَا"],answer:"هَذَا بَيْتٌ"},
+       {type:"order",q:"Reconstitue :",words:["مَسْجِدٌ","هَذَا"],answer:"هَذَا مَسْجِدٌ"},
        {type:"order",q:"Reconstitue :",words:["قَلَمٌ","هَذَا"],answer:"هَذَا قَلَمٌ"},
-       {type:"order",q:"Reconstitue :",words:["كُرْسِيٌّ","هَذَا"],answer:"هَذَا كُرْسِيٌّ"},
-       {type:"audio",audioText:"هَذَا بَيْتٌ",options:["هَذَا بَيْتٌ","هَذَا مَسْجِدٌ","هَذَا بَابٌ","هَذَا كِتَابٌ"],correct:0},
-       {type:"audio",audioText:"هَذَا قَلَمٌ",options:["هَذَا كِتَابٌ","هَذَا مِفْتَاحٌ","هَذَا قَلَمٌ","هَذَا بَيْتٌ"],correct:2},
-       {type:"audio",audioText:"هَذَا كُرْسِيٌّ",options:["هَذَا مَكْتَبٌ","هَذَا كُرْسِيٌّ","هَذَا سَرِيرٌ","هَذَا بَابٌ"],correct:1},
-       {type:"audio",audioText:"هَذَا نَافِذَةٌ",options:["هَذَا بَابٌ","هَذَا حَائِطٌ","هَذَا نَافِذَةٌ","هَذَا سَقْفٌ"],correct:2},
-       {type:"audio",audioText:"هَذَا مِفْتَاحٌ",options:["هَذَا مِفْتَاحٌ","هَذَا قَلَمٌ","هَذَا كِتَابٌ","هَذَا كُوبٌ"],correct:0}
+       {type:"order",q:"Reconstitue :",words:["نَجْمٌ","هَذَا"],answer:"هَذَا نَجْمٌ"}
      ]},
 
     /* ===== LEÇON 2 ===== */
     {id:"t1l2", num:2, title:"Leçon 2", desc:"ذَلِكَ (Cela) · Objets éloignés",
-     active:true, audio:"assets/audio/madinah/tome1/L02.mp3",
-     text:["ذَلِكَ بَيْتٌ","ذَلِكَ مَسْجِدٌ","ذَلِكَ بَابٌ","ذَلِكَ كِتَابٌ","ذَلِكَ قَلَمٌ",
-           "ذَلِكَ مَكْتَبٌ","ذَلِكَ سَرِيرٌ","ذَلِكَ كُرْسِيٌّ","ذَلِكَ نَافِذَةٌ","ذَلِكَ جَبَلٌ",
-           "تِلْكَ مَدْرَسَةٌ","تِلْكَ حَدِيقَةٌ","تِلْكَ سَيَّارَةٌ"],
+     active:true, audio:null, pdf:"",
+     text:[
+       "ذَلِكَ بَيْتٌ","ذَلِكَ مَسْجِدٌ","ذَلِكَ بَابٌ","ذَلِكَ كِتَابٌ","ذَلِكَ قَلَمٌ",
+       "ذَلِكَ مَكْتَبٌ","ذَلِكَ سَرِيرٌ","ذَلِكَ كُرْسِيٌّ","تِلْكَ نَافِذَةٌ","ذَلِكَ جَبَلٌ",
+       "تِلْكَ مَدْرَسَةٌ","تِلْكَ حَدِيقَةٌ","تِلْكَ سَيَّارَةٌ","ذَلِكَ نَهْرٌ","ذَلِكَ بَحْرٌ",
+       "ذَلِكَ حَجَرٌ","ذَلِكَ لَبَنٌ","ذَلِكَ مَاءٌ","ذَلِكَ خُبْزٌ","ذَلِكَ عَسَلٌ",
+       "تِلْكَ شَجَرَةٌ","تِلْكَ زَهْرَةٌ"
+     ],
      vocab:[
        {ar:"ذَلِكَ",fr:"Cela (lointain)",tr:"dhālika"},
        {ar:"تِلْكَ",fr:"Celle-là (fém. lointain)",tr:"tilka"},
@@ -176,11 +206,12 @@ var TOMES = [
        {ar:"بَقَرَةٌ",fr:"Vache",tr:"baqara"},
        {ar:"خَرُوفٌ",fr:"Mouton",tr:"kharūf"},
        {ar:"دَجَاجَةٌ",fr:"Poule",tr:"dajāja"},
+       {ar:"نَافِذَةٌ",fr:"Fenêtre",tr:"nāfidha"},
        {ar:"وَ",fr:"Et",tr:"wa"},
        {ar:"أَوْ",fr:"Ou",tr:"aw"}
      ],
      grammar:{title:"Les démonstratifs (أَسْمَاء الإِشَارَة)",
-       rule:"Pour le lointain : ذَلِكَ (masc.) et تِلْكَ (fém.). Le tanwin (double voyelle) marque l'indéfini.",
+       rule:"Pour le lointain : ذَلِكَ (masc.) et تِلْكَ (fém.). Le tanwin (double voyelle) marque l'indéfini. ذَلِكَ = (مفرد + مذكر + بعيد) et تِلْكَ = (مفرد + مؤنث + بعيد).",
        examples:["ذَلِكَ كِتَابٌ = C'est un livre (là-bas)","تِلْكَ مَدْرَسَةٌ = C'est une école (là-bas)","هَذَا قَلَمٌ وَذَلِكَ مِفْتَاحٌ = Ceci est un stylo et cela est une clé"]},
      dialogue:[
        {sp:"A",ar:"مَا ذَلِكَ؟",fr:"Qu'est-ce que cela ?"},
@@ -192,95 +223,107 @@ var TOMES = [
        {sp:"A",ar:"أَهَذَا مِفْتَاحٌ؟",fr:"Est-ce une clé ?"},
        {sp:"B",ar:"لَا، هَذَا قَلَمٌ وَذَلِكَ مِفْتَاحٌ.",fr:"Non, ceci est un stylo et cela est une clé."},
        {sp:"A",ar:"مَا تِلْكَ؟",fr:"Qu'est-ce que celle-là ?"},
-       {sp:"B",ar:"تِلْكَ مَدْرَسَةٌ.",fr:"C'est une école."}
+       {sp:"B",ar:"تِلْكَ مَدْرَسَةٌ.",fr:"C'est une école."},
+       {sp:"A",ar:"أَتِلْكَ حَدِيقَةٌ؟",fr:"Est-ce que celle-là est un jardin ?"},
+       {sp:"B",ar:"لَا، تِلْكَ مَدْرَسَةٌ.",fr:"Non, celle-là est une école."},
+       {sp:"A",ar:"مَا ذَلِكَ؟",fr:"Qu'est-ce que cela ?"},
+       {sp:"B",ar:"ذَلِكَ جَبَلٌ.",fr:"Cela est une montagne."}
      ],
      exercises:[
        {type:"qcm",q:"Que veut dire ذَلِكَ ?",options:["Cela (lointain)","Ceci (proche)","Où ?","Qui ?"],correct:0},
        {type:"qcm",q:"Que veut dire تِلْكَ ?",options:["Celle-là (fém.)","Celui-là (masc.)","Ceci","Quoi"],correct:0},
-       {type:"qcm",q:"Que veut dire لَبَنٌ ?",options:["Lait","Sucre","Pierre","Imam"],correct:0},
-       {type:"qcm",q:"Comment dit-on « eau » ?",options:["مَاءٌ","لَبَنٌ","خُبْزٌ","حَجَرٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « pain » ?",options:["خُبْزٌ","مَاءٌ","تُفَّاحٌ","عَسَلٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire تُفَّاحٌ ?",options:["Pomme","Banane","Orange","Raisin"],correct:0},
-       {type:"qcm",q:"Comment dit-on « datte » ?",options:["تَمْرٌ","تِينٌ","عِنَبٌ","مَوْزٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire عَسَلٌ ?",options:["Miel","Huile","Lait","Sucre"],correct:0},
-       {type:"qcm",q:"Comment dit-on « montagne » ?",options:["جَبَلٌ","نَهْرٌ","بَحْرٌ","شَجَرَةٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire طَائِرٌ ?",options:["Oiseau","Poisson","Chat","Chien"],correct:0},
-       {type:"tf",ar:"ذَلِكَ كِتَابٌ",q:"Signifie « Cela est un livre »",correct:true},
-       {type:"tf",ar:"تِلْكَ مَدْرَسَةٌ",q:"Signifie « Celle-là est une école »",correct:true},
-       {type:"tf",q:"ذَلِكَ est utilisé pour un objet proche",correct:false,explain:"Non, ذَلِكَ = lointain."},
-       {type:"tf",ar:"تِلْكَ حَدِيقَةٌ",q:"Signifie « Celle-là est un jardin »",correct:true},
-       {type:"fill",sentence:"___ بَيْتٌ",options:["ذَلِكَ","هَذَا","تِلْكَ","هَذِهِ"],correct:0},
+       {type:"qcm",q:"ذَلِكَ désigne : singulier / duel / pluriel ?",options:["Singulier","Duel","Pluriel","Collectif"],correct:0},
+       {type:"qcm",q:"ذَلِكَ désigne : masculin / féminin ?",options:["Masculin","Féminin","Neutre","Les deux"],correct:0},
+       {type:"qcm",q:"ذَلِكَ désigne : proche / lointain ?",options:["Lointain","Proche","Intermédiaire","Les deux"],correct:0},
+       {type:"qcm",q:"تِلْكَ désigne : masculin / féminin ?",options:["Féminin","Masculin","Neutre","Les deux"],correct:0},
+       {type:"fill",sentence:"___ بَيْتٌ (lointain)",options:["ذَلِكَ","هَذَا","تِلْكَ","هَذِهِ"],correct:0},
+       {type:"fill",sentence:"___ مَدْرَسَةٌ (lointain, fém.)",options:["تِلْكَ","ذَلِكَ","هَذَا","أُولَئِكَ"],correct:0},
+       {type:"qcm",q:"Formule complète de ذَلِكَ :",options:["مفرد + مذكر + بعيد","مفرد + مؤنث + بعيد","مثنى + مذكر + بعيد","جمع + مذكر + بعيد"],correct:0},
+       {type:"qcm",q:"Formule complète de تِلْكَ :",options:["مفرد + مؤنث + بعيد","مفرد + مذكر + بعيد","مثنى + مؤنث + بعيد","جمع + مؤنث + بعيد"],correct:0},
+       {type:"qcm",q:"Qu'est-ce qu'une جملة اسمية ?",options:["Phrase qui commence par un nom","Phrase qui commence par un verbe","Phrase qui commence par une particule","Phrase interrogative"],correct:0},
+       {type:"qcm",q:"Structure d'une جملة اسمية :",options:["مبتدأ + خبر","فعل + فاعل","حرف + اسم","اسم + فعل"],correct:0},
+       {type:"qcm",q:"Dans : ذَلِكَ كِتَابٌ — le مبتدأ ?",options:["ذَلِكَ","كِتَابٌ","ذَلِكَ كِتَابٌ","كِتَابٌ ذَلِكَ"],correct:0},
+       {type:"qcm",q:"Dans : ذَلِكَ كِتَابٌ — le خبر ?",options:["كِتَابٌ","ذَلِكَ","ذَلِكَ كِتَابٌ","كِتَابٌ ذَلِكَ"],correct:0},
+       {type:"qcm",q:"Dans : تِلْكَ مَدْرَسَةٌ — le مبتدأ ?",options:["تِلْكَ","مَدْرَسَةٌ","تِلْكَ مَدْرَسَةٌ","مَدْرَسَةٌ تِلْكَ"],correct:0},
+       {type:"qcm",q:"Dans : تِلْكَ مَدْرَسَةٌ — le خبر ?",options:["مَدْرَسَةٌ","تِلْكَ","تِلْكَ مَدْرَسَةٌ","مَدْرَسَةٌ تِلْكَ"],correct:0},
+       {type:"tf",q:"Y a-t-il un verbe dans : ذَلِكَ مَسْجِدٌ ?",correct:false,explain:"Non, il n'y a pas de verbe. Pas de verbe « être » au présent en arabe."},
+       {type:"qcm",q:"Pourquoi n'y a-t-il pas de verbe dans : ذَلِكَ مَسْجِدٌ ?",options:["Pas de verbe « être » au présent en arabe","Parce que c'est une phrase verbale","Parce que le sujet est défini","Parce que l'attribut est indéfini"],correct:0},
+       {type:"type",q:"Traduire : ذَلِكَ كِتَابٌ",answers:["Cela est un livre","C'est un livre"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : تِلْكَ مَدْرَسَةٌ",answers:["Celle-là est une école","C'est une école"],hint:"Phrase nominale"},
+       {type:"qcm",q:"أ est : اسم / فعل / حرف ?",options:["حرف","اسم","فعل","صفة"],correct:0},
+       {type:"qcm",q:"مَا est : اسم / فعل / حرف ?",options:["اسم","حرف","فعل","صفة"],correct:0},
+       {type:"qcm",q:"Réponse à أ :",options:["نعم / لا","Un nom","Un verbe","Une phrase"],correct:0},
+       {type:"qcm",q:"Réponse à مَا :",options:["Un nom","نعم / لا","Un verbe","Une phrase"],correct:0},
+       {type:"fill",sentence:"___ ذَلِكَ كِتَابٌ ؟",options:["أَ","مَا","هَذَا","نَعَمْ"],correct:0},
+       {type:"fill",sentence:"___ ذَلِكَ ؟",options:["مَا","أَ","نَعَمْ","لَا"],correct:0},
+       {type:"fill",sentence:"___ تِلْكَ مَدْرَسَةٌ ؟",options:["أَ","مَا","هَذَا","نَعَمْ"],correct:0},
+       {type:"fill",sentence:"___ تِلْكَ ؟",options:["مَا","أَ","نَعَمْ","لَا"],correct:0},
+       {type:"qcm",q:"Différence entre أ et مَا ?",options:["أ = question fermée / مَا = question ouverte","أ = question ouverte / مَا = question fermée","Aucune différence","أ = nom / مَا = particule"],correct:0},
+       {type:"qcm",q:"Répondre positivement : أَذَلِكَ بَيْتٌ ؟",options:["نَعَمْ، ذَلِكَ بَيْتٌ","لَا، ذَلِكَ قَلَمٌ","مَا ذَلِكَ","ذَلِكَ بَيْتٌ"],correct:0},
+       {type:"qcm",q:"Que veut dire وَ ?",options:["Et","Ou","Où","Quoi"],correct:0},
+       {type:"qcm",q:"وَ est : اسم / فعل / حرف ?",options:["حرف","اسم","فعل","صفة"],correct:0},
        {type:"fill",sentence:"هَذَا قَلَمٌ ___ ذَلِكَ مِفْتَاحٌ",options:["وَ","أَوْ","مَا","هَذَا"],correct:0},
-       {type:"fill",sentence:"___ مَدْرَسَةٌ",options:["تِلْكَ","ذَلِكَ","هَذَا","أُولَئِكَ"],correct:0},
-       {type:"type",q:"Écris « cela » (masc.) :",answer:"ذَلِكَ",hint:"3 lettres"},
-       {type:"type",q:"Écris « du lait » :",answer:"لَبَنٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « de l'eau » :",answer:"مَاءٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « du pain » :",answer:"خُبْزٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « montagne » :",answer:"جَبَلٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « miel » :",answer:"عَسَلٌ",hint:"3 lettres"},
+       {type:"fill",sentence:"ذَلِكَ كِتَابٌ ___ تِلْكَ مَدْرَسَةٌ",options:["وَ","أَوْ","مَا","هَذَا"],correct:0},
+       {type:"type",q:"Traduire : هَذَا قَلَمٌ وَذَلِكَ مِفْتَاحٌ",answers:["Ceci est un stylo et cela est une clé"],hint:"وَ = et"},
+       {type:"type",q:"Traduire : ذَلِكَ بَيْتٌ وَتِلْكَ مَدْرَسَةٌ",answers:["Cela est une maison et celle-là est une école"],hint:"وَ = et"},
+       {type:"qcm",q:"Quelle est la fonction de وَ ?",options:["Joindre deux mots ou deux phrases","Interroger","Nier","Affirmer"],correct:0},
+       {type:"qcm",q:"وَ se place :",options:["Entre les deux éléments joints","Au début de la phrase","À la fin de la phrase","Avant le verbe"],correct:0},
+       {type:"qcm",q:"Que veut dire إِمَامٌ ?",options:["Imam","Roi","Prophète","Juge"],correct:0},
+       {type:"qcm",q:"Que veut dire سُكَّرٌ ?",options:["Sucre","Sel","Miel","Farine"],correct:0},
+       {type:"qcm",q:"Que veut dire حَجَرٌ ?",options:["Pierre","Bois","Métal","Verre"],correct:0},
+       {type:"qcm",q:"Que veut dire لَبَنٌ ?",options:["Lait","Eau","Jus","Thé"],correct:0},
+       {type:"qcm",q:"Que veut dire خُبْزٌ ?",options:["Pain","Riz","Viande","Poisson"],correct:0},
+       {type:"qcm",q:"Que veut dire عَسَلٌ ?",options:["Miel","Sucre","Confiture","Sirop"],correct:0},
+       {type:"qcm",q:"Que veut dire جَبَلٌ ?",options:["Montagne","Rivière","Mer","Forêt"],correct:0},
+       {type:"qcm",q:"Que veut dire نَهْرٌ ?",options:["Rivière","Mer","Lac","Puits"],correct:0},
+       {type:"qcm",q:"Que veut dire بَحْرٌ ?",options:["Mer","Rivière","Océan","Lac"],correct:0},
+       {type:"qcm",q:"Que veut dire شَجَرَةٌ ?",options:["Arbre","Fleur","Fruit","Feuille"],correct:0},
+       {type:"qcm",q:"Que veut dire زَهْرَةٌ ?",options:["Fleur","Arbre","Fruit","Graine"],correct:0},
+       {type:"type",q:"Écris « cela » (masc.) :",answers:["ذَلِكَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « celle-là » (fém.) :",answers:["تِلْكَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « du lait » :",answers:["لَبَنٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « montagne » :",answers:["جَبَلٌ"],hint:"3 lettres"},
        {type:"order",q:"Reconstitue :",words:["كِتَابٌ","ذَلِكَ"],answer:"ذَلِكَ كِتَابٌ"},
        {type:"order",q:"Reconstitue :",words:["مَسْجِدٌ","ذَلِكَ"],answer:"ذَلِكَ مَسْجِدٌ"},
        {type:"order",q:"Reconstitue :",words:["قَلَمٌ","وَ","هَذَا","مِفْتَاحٌ","ذَلِكَ"],answer:"هَذَا قَلَمٌ وَذَلِكَ مِفْتَاحٌ"},
        {type:"order",q:"Reconstitue :",words:["مَدْرَسَةٌ","تِلْكَ"],answer:"تِلْكَ مَدْرَسَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["حَدِيقَةٌ","تِلْكَ"],answer:"تِلْكَ حَدِيقَةٌ"},
-       {type:"audio",audioText:"ذَلِكَ بَيْتٌ",options:["ذَلِكَ بَيْتٌ","ذَلِكَ مَسْجِدٌ","هَذَا بَيْتٌ","ذَلِكَ كِتَابٌ"],correct:0},
-       {type:"audio",audioText:"ذَلِكَ لَبَنٌ",options:["ذَلِكَ مَاءٌ","ذَلِكَ لَبَنٌ","هَذَا لَبَنٌ","ذَلِكَ خُبْزٌ"],correct:1},
-       {type:"audio",audioText:"تِلْكَ مَدْرَسَةٌ",options:["تِلْكَ مَسْجِدٌ","هَذِهِ مَدْرَسَةٌ","تِلْكَ مَدْرَسَةٌ","تِلْكَ حَدِيقَةٌ"],correct:2},
-       {type:"audio",audioText:"ذَلِكَ جَبَلٌ",options:["ذَلِكَ نَهْرٌ","ذَلِكَ بَحْرٌ","ذَلِكَ جَبَلٌ","ذَلِكَ شَجَرَةٌ"],correct:2},
-       {type:"audio",audioText:"تِلْكَ حَدِيقَةٌ",options:["تِلْكَ حَدِيقَةٌ","تِلْكَ مَدْرَسَةٌ","هَذِهِ حَدِيقَةٌ","تِلْكَ سَيَّارَةٌ"],correct:0}
+       {type:"order",q:"Reconstitue :",words:["حَدِيقَةٌ","تِلْكَ"],answer:"تِلْكَ حَدِيقَةٌ"}
      ]},
 
     /* ===== LEÇON 3 ===== */
-    {id:"t1l3", num:3, title:"Leçon 3", desc:"L'article défini ال",
-     active:true, audio:"assets/audio/madinah/tome1/L03.mp3",
-     text:["الْبَيْتُ جَدِيدٌ","الْمَسْجِدُ كَبِيرٌ","الْبَابُ مَفْتُوحٌ","الْكِتَابُ جَدِيدٌ",
-           "الْقَلَمُ صَغِيرٌ","الطَّالِبُ مُجْتَهِدٌ","الْبِنْتُ جَمِيلَةٌ","الرَّجُلُ طَوِيلٌ",
-           "الشَّمْسُ مُشْرِقَةٌ","الْقَمَرُ مُنِيرٌ"],
+    {id:"t1l3", num:3, title:"Leçon 3", desc:"ال (L'article défini) · Lettres solaires et lunaires",
+     active:true, audio:null, pdf:"",
+     text:[
+       "الْبَيْتُ جَدِيدٌ","الْمَسْجِدُ كَبِيرٌ","الْبَابُ مَفْتُوحٌ","الْكِتَابُ جَدِيدٌ",
+       "الْقَلَمُ صَغِيرٌ","الطَّالِبُ مُجْتَهِدٌ","الْبِنْتُ الْجَمِيلَةُ","الرَّجُلُ طَوِيلٌ",
+       "الشَّمْسُ مُشْرِقَةٌ","الْقَمَرُ مُنِيرٌ","الْوَلَدُ صَغِيرٌ","الْفَصْلُ كَبِيرٌ",
+       "الْغُرْفَةُ نَظِيفَةٌ","السَّاعَةُ جَدِيدَةٌ","الدَّرَّاجَةُ سَرِيعَةٌ","الطَّائِرَةُ سَرِيعَةٌ",
+       "الْكُرْسِيُّ مَكْسُورٌ","النَّافِذَةُ مَفْتُوحَةٌ","الْحَدِيقَةُ جَمِيلَةٌ","الزَّهْرَةُ جَمِيلَةٌ",
+       "الْحِمَارُ صَغِيرٌ","الْقِطُّ جَالِسٌ"
+     ],
      vocab:[
-       {ar:"ثَقِيلٌ",fr:"Lourd",tr:"thaqīl"},
-       {ar:"خَفِيفٌ",fr:"Léger",tr:"khafīf"},
-       {ar:"نَظِيفٌ",fr:"Propre",tr:"naẓīf"},
-       {ar:"وَسِخٌ",fr:"Sale",tr:"wasikh"},
-       {ar:"فَقِيرٌ",fr:"Pauvre",tr:"faqīr"},
-       {ar:"غَنِيٌّ",fr:"Riche",tr:"ghaniyy"},
-       {ar:"حُلْوٌ",fr:"Doux / Beau",tr:"ḥulw"},
-       {ar:"مُرٌّ",fr:"Amer",tr:"murr"},
-       {ar:"مَالِحٌ",fr:"Salé",tr:"māliḥ"},
-       {ar:"حَامِضٌ",fr:"Acide",tr:"ḥāmiḍ"},
-       {ar:"مَرِيضٌ",fr:"Malade",tr:"marīḍ"},
-       {ar:"صَحِيحٌ",fr:"En bonne santé",tr:"ṣaḥīḥ"},
-       {ar:"كَبِيرٌ",fr:"Grand",tr:"kabīr"},
-       {ar:"صَغِيرٌ",fr:"Petit",tr:"ṣaghīr"},
-       {ar:"جَدِيدٌ",fr:"Nouveau",tr:"jadīd"},
-       {ar:"قَدِيمٌ",fr:"Vieux",tr:"qadīm"},
-       {ar:"مَفْتُوحٌ",fr:"Ouvert",tr:"maftūḥ"},
-       {ar:"مُغْلَقٌ",fr:"Fermé",tr:"mughlaq"},
-       {ar:"جَمِيلٌ",fr:"Beau",tr:"jamīl"},
-       {ar:"قَبِيحٌ",fr:"Laid",tr:"qabīḥ"},
-       {ar:"طَوِيلٌ",fr:"Long / Grand",tr:"ṭawīl"},
-       {ar:"قَصِيرٌ",fr:"Court / Petit",tr:"qaṣīr"},
-       {ar:"سَعِيدٌ",fr:"Heureux",tr:"saʿīd"},
-       {ar:"حَزِينٌ",fr:"Triste",tr:"ḥazīn"},
-       {ar:"مُجْتَهِدٌ",fr:"Travailleur",tr:"mujtahid"},
-       {ar:"كَسُولٌ",fr:"Paresseux",tr:"kasūl"},
-       {ar:"سَرِيعٌ",fr:"Rapide",tr:"sarīʿ"},
-       {ar:"بَطِيءٌ",fr:"Lent",tr:"baṭīʾ"},
-       {ar:"قَوِيٌّ",fr:"Fort",tr:"qawiyy"},
-       {ar:"ضَعِيفٌ",fr:"Faible",tr:"ḍaʿīf"},
-       {ar:"شَابٌّ",fr:"Jeune",tr:"shābb"},
-       {ar:"عَجُوزٌ",fr:"Vieux (personne)",tr:"ʿajūz"},
-       {ar:"ذَكِيٌّ",fr:"Intelligent",tr:"dhakiyy"},
-       {ar:"غَبِيٌّ",fr:"Bête",tr:"ghabiyy"},
-       {ar:"كَرِيمٌ",fr:"Généreux",tr:"karīm"},
-       {ar:"بَخِيلٌ",fr:"Avare",tr:"bakhīl"},
-       {ar:"شُجَاعٌ",fr:"Courageux",tr:"shujāʿ"},
-       {ar:"جَبَانٌ",fr:"Peureux",tr:"jabān"},
-       {ar:"صَادِقٌ",fr:"Véridique",tr:"ṣādiq"},
-       {ar:"كَاذِبٌ",fr:"Menteur",tr:"kādhib"},
-       {ar:"الطَّالِبُ",fr:"L'étudiant",tr:"aṭ-ṭālib"},
-       {ar:"الْبِنْتُ",fr:"La fille",tr:"al-bint"},
-       {ar:"الرَّجُلُ",fr:"L'homme",tr:"ar-rajul"},
-       {ar:"الشَّمْسُ",fr:"Le soleil",tr:"ash-shams"},
+       {ar:"ثَقِيلٌ",fr:"Lourd",tr:"thaqīl"},{ar:"خَفِيفٌ",fr:"Léger",tr:"khafīf"},
+       {ar:"نَظِيفٌ",fr:"Propre",tr:"naẓīf"},{ar:"وَسِخٌ",fr:"Sale",tr:"wasikh"},
+       {ar:"فَقِيرٌ",fr:"Pauvre",tr:"faqīr"},{ar:"غَنِيٌّ",fr:"Riche",tr:"ghaniyy"},
+       {ar:"حُلْوٌ",fr:"Doux / Beau",tr:"ḥulw"},{ar:"مُرٌّ",fr:"Amer",tr:"murr"},
+       {ar:"مَالِحٌ",fr:"Salé",tr:"māliḥ"},{ar:"حَامِضٌ",fr:"Acide",tr:"ḥāmiḍ"},
+       {ar:"مَرِيضٌ",fr:"Malade",tr:"marīḍ"},{ar:"صَحِيحٌ",fr:"En bonne santé",tr:"ṣaḥīḥ"},
+       {ar:"كَبِيرٌ",fr:"Grand",tr:"kabīr"},{ar:"صَغِيرٌ",fr:"Petit",tr:"ṣaghīr"},
+       {ar:"جَدِيدٌ",fr:"Nouveau",tr:"jadīd"},{ar:"قَدِيمٌ",fr:"Vieux",tr:"qadīm"},
+       {ar:"مَفْتُوحٌ",fr:"Ouvert",tr:"maftūḥ"},{ar:"مُغْلَقٌ",fr:"Fermé",tr:"mughlaq"},
+       {ar:"جَمِيلٌ",fr:"Beau",tr:"jamīl"},{ar:"قَبِيحٌ",fr:"Laid",tr:"qabīḥ"},
+       {ar:"طَوِيلٌ",fr:"Long / Grand",tr:"ṭawīl"},{ar:"قَصِيرٌ",fr:"Court / Petit",tr:"qaṣīr"},
+       {ar:"سَعِيدٌ",fr:"Heureux",tr:"saʿīd"},{ar:"حَزِينٌ",fr:"Triste",tr:"ḥazīn"},
+       {ar:"مُجْتَهِدٌ",fr:"Travailleur",tr:"mujtahid"},{ar:"كَسُولٌ",fr:"Paresseux",tr:"kasūl"},
+       {ar:"سَرِيعٌ",fr:"Rapide",tr:"sarīʿ"},{ar:"بَطِيءٌ",fr:"Lent",tr:"baṭīʾ"},
+       {ar:"قَوِيٌّ",fr:"Fort",tr:"qawiyy"},{ar:"ضَعِيفٌ",fr:"Faible",tr:"ḍaʿīf"},
+       {ar:"شَابٌّ",fr:"Jeune",tr:"shābb"},{ar:"عَجُوزٌ",fr:"Vieux (personne)",tr:"ʿajūz"},
+       {ar:"ذَكِيٌّ",fr:"Intelligent",tr:"dhakiyy"},{ar:"غَبِيٌّ",fr:"Bête",tr:"ghabiyy"},
+       {ar:"كَرِيمٌ",fr:"Généreux",tr:"karīm"},{ar:"بَخِيلٌ",fr:"Avare",tr:"bakhīl"},
+       {ar:"شُجَاعٌ",fr:"Courageux",tr:"shujāʿ"},{ar:"جَبَانٌ",fr:"Peureux",tr:"jabān"},
+       {ar:"صَادِقٌ",fr:"Véridique",tr:"ṣādiq"},{ar:"كَاذِبٌ",fr:"Menteur",tr:"kādhib"},
+       {ar:"الطَّالِبُ",fr:"L'étudiant",tr:"aṭ-ṭālib"},{ar:"الْبِنْتُ",fr:"La fille",tr:"al-bint"},
+       {ar:"الرَّجُلُ",fr:"L'homme",tr:"ar-rajul"},{ar:"الشَّمْسُ",fr:"Le soleil",tr:"ash-shams"},
        {ar:"الْقَمَرُ",fr:"La lune",tr:"al-qamar"}
      ],
      grammar:{title:"L'article défini ال et les lettres solaires/lunaires",
@@ -296,97 +339,114 @@ var TOMES = [
        {sp:"A",ar:"أَهُوَ قَدِيمٌ؟",fr:"Est-elle vieille ?"},
        {sp:"B",ar:"لَا، هُوَ جَدِيدٌ.",fr:"Non, elle est nouvelle."},
        {sp:"A",ar:"وَالْقَمَرُ؟",fr:"Et la lune ?"},
-       {sp:"B",ar:"الْقَمَرُ مُنِيرٌ.",fr:"La lune est lumineuse."}
+       {sp:"B",ar:"الْقَمَرُ مُنِيرٌ.",fr:"La lune est lumineuse."},
+       {sp:"A",ar:"وَالشَّمْسُ؟",fr:"Et le soleil ?"},
+       {sp:"B",ar:"الشَّمْسُ مُشْرِقَةٌ.",fr:"Le soleil est brillant."},
+       {sp:"A",ar:"أَهَذَا الْكِتَابُ جَدِيدٌ؟",fr:"Est-ce que ce livre est nouveau ?"},
+       {sp:"B",ar:"نَعَمْ، هَذَا الْكِتَابُ جَدِيدٌ.",fr:"Oui, ce livre est nouveau."}
      ],
      exercises:[
+       {type:"qcm",q:"Que veut dire ال ?",options:["L'article défini","La préposition","Le démonstratif","La conjonction"],correct:0},
+       {type:"qcm",q:"ال rend un nom :",options:["Défini","Indéfini","Pluriel","Féminin"],correct:0},
+       {type:"type",q:"Compléter : بَيْتٌ → ___",answers:["الْبَيْتُ"],hint:"avec ال"},
+       {type:"type",q:"Compléter : مَسْجِدٌ → ___",answers:["الْمَسْجِدُ"],hint:"avec ال"},
+       {type:"type",q:"Compléter : كِتَابٌ → ___",answers:["الْكِتَابُ"],hint:"avec ال"},
+       {type:"type",q:"Compléter : قَلَمٌ → ___",answers:["الْقَلَمُ"],hint:"avec ال"},
+       {type:"type",q:"Compléter : بَابٌ → ___",answers:["الْبَابُ"],hint:"avec ال"},
+       {type:"type",q:"Compléter : وَلَدٌ → ___",answers:["الْوَلَدُ"],hint:"avec ال"},
+       {type:"type",q:"Compléter : فَصْلٌ → ___",answers:["الْفَصْلُ"],hint:"avec ال"},
+       {type:"type",q:"Compléter : غُرْفَةٌ → ___",answers:["الْغُرْفَةُ"],hint:"avec ال"},
+       {type:"qcm",q:"Qu'est-ce qu'une lettre lunaire ?",options:["Une lettre où le lam de ال se prononce","Une lettre où le lam ne se prononce pas","Une lettre qui n'accepte pas ال","Une lettre qui double le lam"],correct:0},
+       {type:"qcm",q:"ق est une lettre :",options:["Lunaire","Solaire","Neutre","Double"],correct:0},
+       {type:"qcm",q:"ك est une lettre :",options:["Lunaire","Solaire","Neutre","Double"],correct:0},
+       {type:"qcm",q:"ب est une lettre :",options:["Lunaire","Solaire","Neutre","Double"],correct:0},
+       {type:"type",q:"Compléter : ___ قَمَرُ",answers:["الْقَمَرُ"],hint:"lettre lunaire"},
+       {type:"type",q:"Compléter : ___ كِتَابُ",answers:["الْكِتَابُ"],hint:"lettre lunaire"},
+       {type:"type",q:"Compléter : ___ بَيْتُ",answers:["الْبَيْتُ"],hint:"lettre lunaire"},
+       {type:"type",q:"Compléter : ___ مَسْجِدُ",answers:["الْمَسْجِدُ"],hint:"lettre lunaire"},
+       {type:"type",q:"Compléter : ___ جَنَّةُ",answers:["الْجَنَّةُ"],hint:"lettre lunaire"},
+       {type:"qcm",q:"Le lam de ال se prononce devant :",options:["Les lettres lunaires","Les lettres solaires","Toutes les lettres","Aucune lettre"],correct:0},
+       {type:"qcm",q:"Qu'est-ce qu'une lettre solaire ?",options:["Une lettre où le lam de ال ne se prononce pas et la lettre est doublée","Une lettre où le lam se prononce","Une lettre qui n'accepte pas ال","Une lettre qui double le lam"],correct:0},
+       {type:"qcm",q:"ش est une lettre :",options:["Solaire","Lunaire","Neutre","Double"],correct:0},
+       {type:"qcm",q:"ر est une lettre :",options:["Solaire","Lunaire","Neutre","Double"],correct:0},
+       {type:"qcm",q:"ط est une lettre :",options:["Solaire","Lunaire","Neutre","Double"],correct:0},
+       {type:"type",q:"Compléter : ___ شَمْسُ",answers:["الشَّمْسُ"],hint:"lettre solaire"},
+       {type:"type",q:"Compléter : ___ رَجُلُ",answers:["الرَّجُلُ"],hint:"lettre solaire"},
+       {type:"type",q:"Compléter : ___ طَالِبُ",answers:["الطَّالِبُ"],hint:"lettre solaire"},
+       {type:"type",q:"Compléter : ___ نَجْمُ",answers:["النَّجْمُ"],hint:"lettre solaire"},
+       {type:"type",q:"Compléter : ___ سَاعَةُ",answers:["السَّاعَةُ"],hint:"lettre solaire"},
+       {type:"qcm",q:"Le lam de ال ne se prononce pas devant :",options:["Les lettres solaires","Les lettres lunaires","Toutes les lettres","Aucune lettre"],correct:0},
+       {type:"qcm",q:"Structure d'une جملة اسمية :",options:["مبتدأ + خبر","فعل + فاعل","حرف + اسم","اسم + فعل"],correct:0},
+       {type:"qcm",q:"Dans : الْبَيْتُ جَدِيدٌ — le مبتدأ ?",options:["الْبَيْتُ","جَدِيدٌ","الْبَيْتُ جَدِيدٌ","جَدِيدٌ الْبَيْتُ"],correct:0},
+       {type:"qcm",q:"Dans : الْبَيْتُ جَدِيدٌ — le خبر ?",options:["جَدِيدٌ","الْبَيْتُ","الْبَيْتُ جَدِيدٌ","جَدِيدٌ الْبَيْتُ"],correct:0},
+       {type:"qcm",q:"Dans : الْمَسْجِدُ كَبِيرٌ — le مبتدأ ?",options:["الْمَسْجِدُ","كَبِيرٌ","الْمَسْجِدُ كَبِيرٌ","كَبِيرٌ الْمَسْجِدُ"],correct:0},
+       {type:"qcm",q:"Dans : الْمَسْجِدُ كَبِيرٌ — le خبر ?",options:["كَبِيرٌ","الْمَسْجِدُ","الْمَسْجِدُ كَبِيرٌ","كَبِيرٌ الْمَسْجِدُ"],correct:0},
+       {type:"type",q:"Traduire : الْبَيْتُ جَدِيدٌ",answers:["La maison est nouvelle"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْبَابُ مَفْتُوحٌ",answers:["La porte est ouverte"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْقَمَرُ مُنِيرٌ",answers:["La lune est lumineuse"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الشَّمْسُ مُشْرِقَةٌ",answers:["Le soleil est brillant"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الطَّالِبُ مُجْتَهِدٌ",answers:["L'étudiant est travailleur"],hint:"Phrase nominale"},
        {type:"qcm",q:"Que veut dire ثَقِيلٌ ?",options:["Lourd","Léger","Propre","Sale"],correct:0},
-       {type:"qcm",q:"Comment dit-on « propre » ?",options:["نَظِيفٌ","وَسِخٌ","فَقِيرٌ","غَنِيٌّ"],correct:0},
-       {type:"qcm",q:"Que veut dire خَفِيفٌ ?",options:["Léger","Lourd","Propre","Sale"],correct:0},
+       {type:"qcm",q:"Que veut dire خَفِيفٌ ?",options:["Léger","Lourd","Grand","Petit"],correct:0},
+       {type:"qcm",q:"Que veut dire نَظِيفٌ ?",options:["Propre","Sale","Beau","Laid"],correct:0},
        {type:"qcm",q:"Que veut dire غَنِيٌّ ?",options:["Riche","Pauvre","Grand","Petit"],correct:0},
-       {type:"qcm",q:"Comment dit-on « nouveau » ?",options:["جَدِيدٌ","قَدِيمٌ","كَبِيرٌ","صَغِيرٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « laid » ?",options:["قَبِيحٌ","جَمِيلٌ","حُلْوٌ","سَعِيدٌ"],correct:0},
+       {type:"qcm",q:"Que veut dire جَدِيدٌ ?",options:["Nouveau","Vieux","Grand","Petit"],correct:0},
+       {type:"qcm",q:"Que veut dire قَدِيمٌ ?",options:["Vieux","Nouveau","Beau","Laid"],correct:0},
        {type:"qcm",q:"Que veut dire مُجْتَهِدٌ ?",options:["Travailleur","Paresseux","Heureux","Triste"],correct:0},
-       {type:"qcm",q:"Comment dit-on « rapide » ?",options:["سَرِيعٌ","بَطِيءٌ","طَوِيلٌ","قَصِيرٌ"],correct:0},
+       {type:"qcm",q:"Que veut dire سَرِيعٌ ?",options:["Rapide","Lent","Fort","Faible"],correct:0},
        {type:"qcm",q:"Que veut dire قَوِيٌّ ?",options:["Fort","Faible","Grand","Petit"],correct:0},
-       {type:"qcm",q:"Quel est l'article défini ?",options:["ال","وَ","مَا","هَذَا"],correct:0},
-       {type:"qcm",q:"Comment dit-on « intelligent » ?",options:["ذَكِيٌّ","غَبِيٌّ","كَسُولٌ","مُجْتَهِدٌ"],correct:0},
+       {type:"qcm",q:"Que veut dire ذَكِيٌّ ?",options:["Intelligent","Idiot","Paresseux","Travailleur"],correct:0},
        {type:"qcm",q:"Que veut dire شُجَاعٌ ?",options:["Courageux","Peureux","Menteur","Véridique"],correct:0},
-       {type:"tf",ar:"الْبَيْتُ جَدِيدٌ",q:"Signifie « La maison est nouvelle »",correct:true},
-       {type:"tf",ar:"الْبَابُ مَفْتُوحٌ",q:"Signifie « La porte est fermée »",correct:false,explain:"مَفْتُوحٌ = ouverte."},
-       {type:"tf",ar:"الْمَسْجِدُ كَبِيرٌ",q:"Signifie « La mosquée est grande »",correct:true},
-       {type:"tf",ar:"الْقَمَرُ مُنِيرٌ",q:"Signifie « La lune est lumineuse »",correct:true},
-       {type:"fill",sentence:"___ جَدِيدٌ",options:["الْبَيْتُ","بَيْتٌ","بَيْتُ","بَيْتًا"],correct:0},
-       {type:"fill",sentence:"الْمَسْجِدُ ___",options:["كَبِيرٌ","كَبِيرَةٌ","كِبَارٌ","كَبِيرَاتٌ"],correct:0},
-       {type:"fill",sentence:"___ مُشْرِقَةٌ",options:["الشَّمْسُ","شَمْسٌ","شَمْسُ","شَمْسًا"],correct:0},
-       {type:"type",q:"Écris « lourd » :",answer:"ثَقِيلٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « nouveau » :",answer:"جَدِيدٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « grand » :",answer:"كَبِيرٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « petit » :",answer:"صَغِيرٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « beau » :",answer:"جَمِيلٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « la lune » (avec ال) :",answer:"الْقَمَرُ",hint:"avec ال"},
+       {type:"qcm",q:"Que veut dire جَمِيلٌ ?",options:["Beau","Laid","Grand","Petit"],correct:0},
+       {type:"type",q:"Écris « lourd » :",answers:["ثَقِيلٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « nouveau » :",answers:["جَدِيدٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « grand » :",answers:["كَبِيرٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « petit » :",answers:["صَغِيرٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « la lune » (avec ال) :",answers:["الْقَمَرُ"],hint:"avec ال"},
        {type:"order",q:"Reconstitue :",words:["جَدِيدٌ","الْبَيْتُ"],answer:"الْبَيْتُ جَدِيدٌ"},
        {type:"order",q:"Reconstitue :",words:["مَفْتُوحٌ","الْبَابُ"],answer:"الْبَابُ مَفْتُوحٌ"},
        {type:"order",q:"Reconstitue :",words:["كَبِيرٌ","الْمَسْجِدُ"],answer:"الْمَسْجِدُ كَبِيرٌ"},
-       {type:"order",q:"Reconstitue :",words:["جَمِيلَةٌ","الْبِنْتُ"],answer:"الْبِنْتُ جَمِيلَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["مُنِيرٌ","الْقَمَرُ"],answer:"الْقَمَرُ مُنِيرٌ"},
-       {type:"audio",audioText:"الْبَيْتُ جَدِيدٌ",options:["الْبَيْتُ جَدِيدٌ","الْبَيْتُ قَدِيمٌ","الْبَابُ جَدِيدٌ","الْمَسْجِدُ جَدِيدٌ"],correct:0},
-       {type:"audio",audioText:"الْمَسْجِدُ كَبِيرٌ",options:["الْمَسْجِدُ صَغِيرٌ","الْمَسْجِدُ كَبِيرٌ","الْبَيْتُ كَبِيرٌ","الْقَلَمُ كَبِيرٌ"],correct:1},
-       {type:"audio",audioText:"الْبَابُ مَفْتُوحٌ",options:["الْبَابُ مُغْلَقٌ","النَّافِذَةُ مَفْتُوحَةٌ","الْبَابُ مَفْتُوحٌ","الْبَيْتُ مَفْتُوحٌ"],correct:2},
-       {type:"audio",audioText:"الْقَمَرُ مُنِيرٌ",options:["الْقَمَرُ مُنِيرٌ","الشَّمْسُ مُشْرِقَةٌ","الْقَمَرُ جَمِيلٌ","الشَّمْسُ كَبِيرَةٌ"],correct:0}
+       {type:"order",q:"Reconstitue :",words:["الْجَمِيلَةُ","الْبِنْتُ"],answer:"الْبِنْتُ الْجَمِيلَةُ"},
+       {type:"order",q:"Reconstitue :",words:["مُنِيرٌ","الْقَمَرُ"],answer:"الْقَمَرُ مُنِيرٌ"}
      ]},
 
     /* ===== LEÇON 4 ===== */
     {id:"t1l4", num:4, title:"Leçon 4", desc:"Prépositions · فِي / عَلَى / تَحْتَ",
-     active:true, audio:"assets/audio/madinah/tome1/L04.mp3",
-     text:["مُحَمَّدٌ فِي الْغُرْفَةِ","الْكِتَابُ عَلَى الْمَكْتَبِ","الْمِفْتَاحُ عَلَى السَّرِيرِ",
-           "السَّمَاءُ فَوْقَ الْبَيْتِ","الْقِطُّ تَحْتَ الْكُرْسِيِّ","الْقَلَمُ فِي الْحَقِيبَةِ",
-           "الْبَيْتُ أَمَامَ الْمَسْجِدِ","الْحَدِيقَةُ وَرَاءَ الْبَيْتِ"],
+     active:true, audio:null, pdf:"",
+     text:[
+       "مُحَمَّدٌ فِي الْغُرْفَةِ","الْكِتَابُ عَلَى الْمَكْتَبِ","الْمِفْتَاحُ عَلَى السَّرِيرِ",
+       "السَّمَاءُ فَوْقَ الْبَيْتِ","الْقِطُّ تَحْتَ الْكُرْسِيِّ","الْقَلَمُ فِي الْحَقِيبَةِ",
+       "الْبَيْتُ أَمَامَ الْمَسْجِدِ","الْحَدِيقَةُ وَرَاءَ الْبَيْتِ","الْقَلَمُ عَلَى الطَّاوِلَةِ",
+       "الْكِتَابُ فِي الْمَكْتَبَةِ","الطَّالِبُ فِي الْفَصْلِ","الْمُدَرِّسُ فِي الْمَدْرَسَةِ",
+       "الْقِطُّ تَحْتَ الطَّاوِلَةِ","الطَّائِرُ فَوْقَ الشَّجَرَةِ","الْقَمَرُ فِي السَّمَاءِ",
+       "السَّمَكُ فِي الْمَاءِ","الْوَلَدُ فِي الْحَدِيقَةِ","الْبِنْتُ فِي الْمَطْبَخِ",
+       "الْكِتَابُ عَلَى الرَّفِّ","الْقَلَمُ فِي الْمِحْفَظَةِ","الْقِطُّ أَمَامَ الْبَابِ",
+       "الْكَلْبُ وَرَاءَ الْبَيْتِ"
+     ],
      vocab:[
-       {ar:"مِرْحَاضٌ",fr:"Toilettes",tr:"mirḥāḍ"},
-       {ar:"حَمَّامٌ",fr:"Salle de bain",tr:"ḥammām"},
-       {ar:"سَمَاءٌ",fr:"Ciel",tr:"samāʾ"},
-       {ar:"غُرْفَةٌ",fr:"Chambre",tr:"ghurfa"},
-       {ar:"صَالَةٌ",fr:"Salon",tr:"ṣāla"},
-       {ar:"مَطْبَخٌ",fr:"Cuisine",tr:"maṭbakh"},
-       {ar:"مَدْرَسَةٌ",fr:"École",tr:"madrasa"},
-       {ar:"جَامِعَةٌ",fr:"Université",tr:"jāmiʿa"},
-       {ar:"حَدِيقَةٌ",fr:"Jardin",tr:"ḥadīqa"},
-       {ar:"مَكْتَبَةٌ",fr:"Bibliothèque",tr:"maktaba"},
-       {ar:"مَطْعَمٌ",fr:"Restaurant",tr:"maṭʿam"},
-       {ar:"مَطَارٌ",fr:"Aéroport",tr:"maṭār"},
-       {ar:"مُسْتَشْفَى",fr:"Hôpital",tr:"mustashfā"},
-       {ar:"مَحَطَّةٌ",fr:"Gare / Station",tr:"maḥaṭṭa"},
-       {ar:"سُوقٌ",fr:"Marché",tr:"sūq"},
-       {ar:"شَارِعٌ",fr:"Rue",tr:"shāriʿ"},
-       {ar:"بِنَايَةٌ",fr:"Bâtiment",tr:"bināya"},
-       {ar:"بُرْجٌ",fr:"Tour",tr:"burj"},
-       {ar:"مَسْبَحٌ",fr:"Piscine",tr:"masbaḥ"},
-       {ar:"مَلْعَبٌ",fr:"Terrain de jeu",tr:"malʿab"},
-       {ar:"مَوْقِفٌ",fr:"Parking",tr:"mawqif"},
-       {ar:"جِسْرٌ",fr:"Pont",tr:"jisr"},
-       {ar:"مَزْرَعَةٌ",fr:"Ferme",tr:"mazraʿa"},
-       {ar:"قَرْيَةٌ",fr:"Village",tr:"qarya"},
-       {ar:"مَدِينَةٌ",fr:"Ville",tr:"madīna"},
-       {ar:"بَلَدٌ",fr:"Pays",tr:"balad"},
-       {ar:"حَقِيبَةٌ",fr:"Sac",tr:"ḥaqība"},
-       {ar:"صُنْدُوقٌ",fr:"Boîte / Coffre",tr:"ṣundūq"},
-       {ar:"فِي",fr:"Dans",tr:"fī"},
-       {ar:"عَلَى",fr:"Sur",tr:"ʿalā"},
-       {ar:"تَحْتَ",fr:"Sous",tr:"taḥta"},
-       {ar:"فَوْقَ",fr:"Au-dessus",tr:"fawqa"},
-       {ar:"أَمَامَ",fr:"Devant",tr:"amāma"},
-       {ar:"وَرَاءَ",fr:"Derrière",tr:"warāʾa"},
-       {ar:"بِجَانِبِ",fr:"À côté de",tr:"bijānibi"},
-       {ar:"بَيْنَ",fr:"Entre",tr:"bayna"},
-       {ar:"حَوْلَ",fr:"Autour de",tr:"ḥawla"},
-       {ar:"عِنْدَ",fr:"Chez",tr:"ʿinda"},
-       {ar:"مَعَ",fr:"Avec",tr:"maʿa"},
-       {ar:"بِدُونِ",fr:"Sans",tr:"bidūni"},
-       {ar:"أَيْنَ",fr:"Où ?",tr:"ayna"},
-       {ar:"هُنَا",fr:"Ici",tr:"hunā"},
-       {ar:"هُنَاكَ",fr:"Là-bas",tr:"hunāka"},
-       {ar:"قُرْبَ",fr:"Près de",tr:"qurba"},
-       {ar:"بَعِيدٌ",fr:"Loin",tr:"baʿīd"}
+       {ar:"فِي",fr:"Dans",tr:"fī"},{ar:"عَلَى",fr:"Sur",tr:"ʿalā"},
+       {ar:"تَحْتَ",fr:"Sous",tr:"taḥta"},{ar:"فَوْقَ",fr:"Au-dessus",tr:"fawqa"},
+       {ar:"أَمَامَ",fr:"Devant",tr:"amāma"},{ar:"وَرَاءَ",fr:"Derrière",tr:"warāʾa"},
+       {ar:"بِجَانِبِ",fr:"À côté de",tr:"bijānibi"},{ar:"بَيْنَ",fr:"Entre",tr:"bayna"},
+       {ar:"حَوْلَ",fr:"Autour de",tr:"ḥawla"},{ar:"عِنْدَ",fr:"Chez",tr:"ʿinda"},
+       {ar:"مَعَ",fr:"Avec",tr:"maʿa"},{ar:"بِدُونِ",fr:"Sans",tr:"bidūni"},
+       {ar:"أَيْنَ",fr:"Où ?",tr:"ayna"},{ar:"هُنَا",fr:"Ici",tr:"hunā"},
+       {ar:"هُنَاكَ",fr:"Là-bas",tr:"hunāka"},{ar:"قُرْبَ",fr:"Près de",tr:"qurba"},
+       {ar:"بَعِيدٌ",fr:"Loin",tr:"baʿīd"},{ar:"غُرْفَةٌ",fr:"Chambre",tr:"ghurfa"},
+       {ar:"صَالَةٌ",fr:"Salon",tr:"ṣāla"},{ar:"مَطْبَخٌ",fr:"Cuisine",tr:"maṭbakh"},
+       {ar:"حَمَّامٌ",fr:"Salle de bain",tr:"ḥammām"},{ar:"مِرْحَاضٌ",fr:"Toilettes",tr:"mirḥāḍ"},
+       {ar:"مَدْرَسَةٌ",fr:"École",tr:"madrasa"},{ar:"جَامِعَةٌ",fr:"Université",tr:"jāmiʿa"},
+       {ar:"حَدِيقَةٌ",fr:"Jardin",tr:"ḥadīqa"},{ar:"مَكْتَبَةٌ",fr:"Bibliothèque",tr:"maktaba"},
+       {ar:"مَطْعَمٌ",fr:"Restaurant",tr:"maṭʿam"},{ar:"مَطَارٌ",fr:"Aéroport",tr:"maṭār"},
+       {ar:"مُسْتَشْفَى",fr:"Hôpital",tr:"mustashfā"},{ar:"مَحَطَّةٌ",fr:"Gare",tr:"maḥaṭṭa"},
+       {ar:"سُوقٌ",fr:"Marché",tr:"sūq"},{ar:"شَارِعٌ",fr:"Rue",tr:"shāriʿ"},
+       {ar:"بِنَايَةٌ",fr:"Bâtiment",tr:"bināya"},{ar:"بُرْجٌ",fr:"Tour",tr:"burj"},
+       {ar:"مَسْبَحٌ",fr:"Piscine",tr:"masbaḥ"},{ar:"مَلْعَبٌ",fr:"Terrain de jeu",tr:"malʿab"},
+       {ar:"مَوْقِفٌ",fr:"Parking",tr:"mawqif"},{ar:"جِسْرٌ",fr:"Pont",tr:"jisr"},
+       {ar:"مَزْرَعَةٌ",fr:"Ferme",tr:"mazraʿa"},{ar:"قَرْيَةٌ",fr:"Village",tr:"qarya"},
+       {ar:"مَدِينَةٌ",fr:"Ville",tr:"madīna"},{ar:"بَلَدٌ",fr:"Pays",tr:"balad"},
+       {ar:"سَمَاءٌ",fr:"Ciel",tr:"samāʾ"},{ar:"حَقِيبَةٌ",fr:"Sac",tr:"ḥaqība"},
+       {ar:"الرَّفُّ",fr:"L'étagère",tr:"ar-raff"},{ar:"الْمِحْفَظَةُ",fr:"Le portefeuille",tr:"al-miḥfaẓa"}
      ],
      grammar:{title:"Les prépositions de lieu",
        rule:"Les prépositions فِي (dans), عَلَى (sur), تَحْتَ (sous), فَوْقَ (au-dessus), أَمَامَ (devant), وَرَاءَ (derrière), بَيْنَ (entre) sont suivies d'un nom au génitif (majrūr, kasra finale).",
@@ -401,98 +461,109 @@ var TOMES = [
        {sp:"A",ar:"أَيْنَ الْقَلَمُ؟",fr:"Où est le stylo ?"},
        {sp:"B",ar:"هُوَ فِي الْحَقِيبَةِ.",fr:"Il est dans le sac."},
        {sp:"A",ar:"أَيْنَ الْبَيْتُ؟",fr:"Où est la maison ?"},
-       {sp:"B",ar:"هُوَ أَمَامَ الْمَسْجِدِ.",fr:"Elle est devant la mosquée."}
+       {sp:"B",ar:"هُوَ أَمَامَ الْمَسْجِدِ.",fr:"Elle est devant la mosquée."},
+       {sp:"A",ar:"أَيْنَ الْحَدِيقَةُ؟",fr:"Où est le jardin ?"},
+       {sp:"B",ar:"هِيَ وَرَاءَ الْبَيْتِ.",fr:"Il est derrière la maison."},
+       {sp:"A",ar:"أَيْنَ الطَّائِرُ؟",fr:"Où est l'oiseau ?"},
+       {sp:"B",ar:"هُوَ فَوْقَ الشَّجَرَةِ.",fr:"Il est au-dessus de l'arbre."}
      ],
      exercises:[
        {type:"qcm",q:"Que veut dire فِي ?",options:["Dans","Sur","Sous","Devant"],correct:0},
        {type:"qcm",q:"Que veut dire عَلَى ?",options:["Sur","Dans","Sous","Devant"],correct:0},
        {type:"qcm",q:"Que veut dire تَحْتَ ?",options:["Sous","Sur","Au-dessus","Devant"],correct:0},
-       {type:"qcm",q:"Comment dit-on « devant » ?",options:["أَمَامَ","وَرَاءَ","تَحْتَ","فَوْقَ"],correct:0},
-       {type:"qcm",q:"Que veut dire غُرْفَةٌ ?",options:["Chambre","Cuisine","Toilettes","Salon"],correct:0},
-       {type:"qcm",q:"Comment dit-on « cuisine » ?",options:["مَطْبَخٌ","غُرْفَةٌ","حَمَّامٌ","مِرْحَاضٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « école » ?",options:["مَدْرَسَةٌ","جَامِعَةٌ","مَكْتَبَةٌ","حَدِيقَةٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire مَكْتَبَةٌ ?",options:["Bibliothèque","Livre","Bureau","Marché"],correct:0},
-       {type:"qcm",q:"Comment dit-on « hôpital » ?",options:["مُسْتَشْفَى","مَطَارٌ","مَحَطَّةٌ","سُوقٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « où ? »",options:["أَيْنَ","مَا","مَنْ","كَيْفَ"],correct:0},
-       {type:"qcm",q:"Que veut dire سُوقٌ ?",options:["Marché","Rue","Ville","Village"],correct:0},
-       {type:"qcm",q:"Comment dit-on « ville » ?",options:["مَدِينَةٌ","قَرْيَةٌ","بَلَدٌ","شَارِعٌ"],correct:0},
-       {type:"tf",ar:"الْكِتَابُ عَلَى الْمَكْتَبِ",q:"Signifie « Le livre est sur le bureau »",correct:true},
-       {type:"tf",ar:"الْقَلَمُ فِي الْحَقِيبَةِ",q:"Signifie « Le stylo est sur le sac »",correct:false,explain:"فِي = dans."},
-       {type:"tf",ar:"الْقِطُّ تَحْتَ الْكُرْسِيِّ",q:"Signifie « Le chat est sous la chaise »",correct:true},
-       {type:"tf",ar:"الْبَيْتُ أَمَامَ الْمَسْجِدِ",q:"Signifie « La maison est devant la mosquée »",correct:true},
+       {type:"qcm",q:"Que veut dire فَوْقَ ?",options:["Au-dessus","Sous","Sur","Devant"],correct:0},
+       {type:"qcm",q:"Que veut dire أَمَامَ ?",options:["Devant","Derrière","Sous","Sur"],correct:0},
+       {type:"qcm",q:"Que veut dire وَرَاءَ ?",options:["Derrière","Devant","Sous","Sur"],correct:0},
        {type:"fill",sentence:"الْكِتَابُ ___ الْمَكْتَبِ",options:["عَلَى","فِي","مِنْ","إِلَى"],correct:0},
        {type:"fill",sentence:"الْقَلَمُ ___ الْحَقِيبَةِ",options:["فِي","عَلَى","مِنْ","إِلَى"],correct:0},
        {type:"fill",sentence:"الْقِطُّ ___ الْكُرْسِيِّ",options:["تَحْتَ","فَوْقَ","أَمَامَ","وَرَاءَ"],correct:0},
-       {type:"type",q:"Écris « dans » :",answer:"فِي",hint:"2 lettres"},
-       {type:"type",q:"Écris « sur » :",answer:"عَلَى",hint:"3 lettres"},
-       {type:"type",q:"Écris « sous » :",answer:"تَحْتَ",hint:"3 lettres"},
-       {type:"type",q:"Écris « chambre » :",answer:"غُرْفَةٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « ville » :",answer:"مَدِينَةٌ",hint:"م د ي ن + ة"},
-       {type:"type",q:"Écris « hôpital » :",answer:"مُسْتَشْفَى",hint:"م س ت ش ف ى"},
+       {type:"fill",sentence:"الطَّائِرُ ___ الشَّجَرَةِ",options:["فَوْقَ","تَحْتَ","فِي","مِنْ"],correct:0},
+       {type:"qcm",q:"Que veut dire أَيْنَ ?",options:["Où ?","Qui ?","Quoi ?","Quand ?"],correct:0},
+       {type:"qcm",q:"أَيْنَ est : اسم / فعل / حرف ?",options:["اسم","فعل","حرف","صفة"],correct:0},
+       {type:"qcm",q:"أَيْنَ interroge sur :",options:["Le lieu","Le temps","La personne","La chose"],correct:0},
+       {type:"qcm",q:"Réponse à أَيْنَ :",options:["Un lieu","Un nom","نعم / لا","Un verbe"],correct:0},
+       {type:"fill",sentence:"___ الْكِتَابُ ؟",options:["أَيْنَ","مَا","مَنْ","كَيْفَ"],correct:0},
+       {type:"fill",sentence:"___ مُحَمَّدٌ ؟",options:["أَيْنَ","مَا","مَنْ","كَيْفَ"],correct:0},
+       {type:"fill",sentence:"___ الْقِطُّ ؟",options:["أَيْنَ","مَا","مَنْ","كَيْفَ"],correct:0},
+       {type:"type",q:"Traduire : أَيْنَ الْكِتَابُ ؟",answers:["Où est le livre ?"],hint:"Question sur le lieu"},
+       {type:"type",q:"Traduire : أَيْنَ مُحَمَّدٌ ؟",answers:["Où est Muhammad ?"],hint:"Question sur le lieu"},
+       {type:"type",q:"Traduire : أَيْنَ الْقِطُّ ؟",answers:["Où est le chat ?"],hint:"Question sur le lieu"},
+       {type:"qcm",q:"Le nom après une préposition est :",options:["مَجْرُور (génitif)","مَرْفُوع (nominatif)","مَنْصُوب (accusatif)","مَجْزُوم"],correct:0},
+       {type:"qcm",q:"La voyelle finale du nom après une préposition est :",options:["كسرة (i)","ضمة (u)","فتحة (a)","سكون"],correct:0},
+       {type:"qcm",q:"Dans : فِي الْبَيْتِ — le mot الْبَيْتِ est :",options:["مَجْرُور","مَرْفُوع","مَنْصُوب","مَجْزُوم"],correct:0},
+       {type:"qcm",q:"Dans : عَلَى الْمَكْتَبِ — le mot الْمَكْتَبِ est :",options:["مَجْرُور","مَرْفُوع","مَنْصُوب","مَجْزُوم"],correct:0},
+       {type:"qcm",q:"Dans : مِنَ الْمَسْجِدِ — le mot الْمَسْجِدِ est :",options:["مَجْرُور","مَرْفُوع","مَنْصُوب","مَجْزُوم"],correct:0},
+       {type:"qcm",q:"Dans : إِلَى الْمَدْرَسَةِ — le mot الْمَدْرَسَةِ est :",options:["مَجْرُور","مَرْفُوع","مَنْصُوب","مَجْزُوم"],correct:0},
+       {type:"type",q:"Traduire : فِي الْبَيْتِ",answers:["Dans la maison"],hint:"فِي = dans"},
+       {type:"type",q:"Traduire : عَلَى الْمَكْتَبِ",answers:["Sur le bureau"],hint:"عَلَى = sur"},
+       {type:"type",q:"Traduire : مِنَ الْمَسْجِدِ",answers:["De la mosquée"],hint:"مِنْ = de"},
+       {type:"type",q:"Traduire : إِلَى الْمَدْرَسَةِ",answers:["Vers l'école"],hint:"إِلَى = vers"},
+       {type:"qcm",q:"Que veut dire غُرْفَةٌ ?",options:["Chambre","Cuisine","Toilettes","Salon"],correct:0},
+       {type:"qcm",q:"Que veut dire مَطْبَخٌ ?",options:["Cuisine","Chambre","Salon","Jardin"],correct:0},
+       {type:"qcm",q:"Que veut dire مَدْرَسَةٌ ?",options:["École","Université","Bibliothèque","Jardin"],correct:0},
+       {type:"qcm",q:"Que veut dire مَكْتَبَةٌ ?",options:["Bibliothèque","Livre","Bureau","Marché"],correct:0},
+       {type:"qcm",q:"Que veut dire مُسْتَشْفَى ?",options:["Hôpital","Aéroport","Gare","Marché"],correct:0},
+       {type:"qcm",q:"Que veut dire سُوقٌ ?",options:["Marché","Rue","Ville","Village"],correct:0},
+       {type:"qcm",q:"Que veut dire مَدِينَةٌ ?",options:["Ville","Village","Pays","Rue"],correct:0},
+       {type:"qcm",q:"Que veut dire شَارِعٌ ?",options:["Rue","Ville","Marché","Jardin"],correct:0},
+       {type:"qcm",q:"Que veut dire حَدِيقَةٌ ?",options:["Jardin","École","Maison","Marché"],correct:0},
+       {type:"qcm",q:"Que veut dire مَطَارٌ ?",options:["Aéroport","Gare","Hôpital","Marché"],correct:0},
+       {type:"type",q:"Écris « dans » :",answers:["فِي"],hint:"2 lettres"},
+       {type:"type",q:"Écris « sur » :",answers:["عَلَى"],hint:"3 lettres"},
+       {type:"type",q:"Écris « sous » :",answers:["تَحْتَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « chambre » :",answers:["غُرْفَةٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « ville » :",answers:["مَدِينَةٌ"],hint:"م د ي ن + ة"},
+       {type:"type",q:"Traduire : الْكِتَابُ عَلَى الْمَكْتَبِ",answers:["Le livre est sur le bureau"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : مُحَمَّدٌ فِي الْغُرْفَةِ",answers:["Muhammad est dans la chambre"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْقِطُّ تَحْتَ الْكُرْسِيِّ",answers:["Le chat est sous la chaise"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْبَيْتُ أَمَامَ الْمَسْجِدِ",answers:["La maison est devant la mosquée"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْحَدِيقَةُ وَرَاءَ الْبَيْتِ",answers:["Le jardin est derrière la maison"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْقَلَمُ فِي الْحَقِيبَةِ",answers:["Le stylo est dans le sac"],hint:"Phrase nominale"},
        {type:"order",q:"Reconstitue :",words:["الْمَكْتَبِ","عَلَى","الْكِتَابُ"],answer:"الْكِتَابُ عَلَى الْمَكْتَبِ"},
        {type:"order",q:"Reconstitue :",words:["الْغُرْفَةِ","فِي","مُحَمَّدٌ"],answer:"مُحَمَّدٌ فِي الْغُرْفَةِ"},
        {type:"order",q:"Reconstitue :",words:["الْكُرْسِيِّ","تَحْتَ","الْقِطُّ"],answer:"الْقِطُّ تَحْتَ الْكُرْسِيِّ"},
        {type:"order",q:"Reconstitue :",words:["الْمَسْجِدِ","أَمَامَ","الْبَيْتُ"],answer:"الْبَيْتُ أَمَامَ الْمَسْجِدِ"},
-       {type:"order",q:"Reconstitue :",words:["الْبَيْتِ","وَرَاءَ","الْحَدِيقَةُ"],answer:"الْحَدِيقَةُ وَرَاءَ الْبَيْتِ"},
-       {type:"audio",audioText:"الْكِتَابُ عَلَى الْمَكْتَبِ",options:["الْكِتَابُ عَلَى الْمَكْتَبِ","الْكِتَابُ فِي الْمَكْتَبِ","الْقَلَمُ عَلَى الْمَكْتَبِ","الْكِتَابُ عَلَى السَّرِيرِ"],correct:0},
-       {type:"audio",audioText:"الْقِطُّ تَحْتَ الْكُرْسِيِّ",options:["الْقِطُّ فَوْقَ الْكُرْسِيِّ","الْقِطُّ تَحْتَ الْكُرْسِيِّ","الْقِطُّ أَمَامَ الْكُرْسِيِّ","الْقِطُّ فِي الْكُرْسِيِّ"],correct:1},
-       {type:"audio",audioText:"مُحَمَّدٌ فِي الْغُرْفَةِ",options:["مُحَمَّدٌ فِي الْغُرْفَةِ","مُحَمَّدٌ فِي الْمَطْبَخِ","مُحَمَّدٌ فِي الْمَدْرَسَةِ","مُحَمَّدٌ فِي الصَّالَةِ"],correct:0},
-       {type:"audio",audioText:"الْبَيْتُ أَمَامَ الْمَسْجِدِ",options:["الْبَيْتُ وَرَاءَ الْمَسْجِدِ","الْبَيْتُ بِجَانِبِ الْمَسْجِدِ","الْبَيْتُ أَمَامَ الْمَسْجِدِ","الْبَيْتُ فِي الْمَسْجِدِ"],correct:2}
+       {type:"order",q:"Reconstitue :",words:["الْبَيْتِ","وَرَاءَ","الْحَدِيقَةُ"],answer:"الْحَدِيقَةُ وَرَاءَ الْبَيْتِ"}
      ]},
 
     /* ===== LEÇON 5 ===== */
     {id:"t1l5", num:5, title:"Leçon 5", desc:"La possession · Suffixes possessifs",
-     active:true, audio:"assets/audio/madinah/tome1/L05.mp3",
-     text:["يَا عَلِيُّ، أَيْنَ كِتَابِي؟","هَذَا كِتَابِي","هَذَا بَيْتُكَ","هَذَا بَيْتُهُ",
-           "هَذَا بَيْتُهَا","هَذِهِ أُمِّي","هَذَا أَبِي","أَيْنَ قَلَمُكَ؟",
-           "أَيْنَ مَدْرَسَتُكُمْ؟"],
+     active:true, audio:null, pdf:"",
+     text:[
+       "يَا عَلِيُّ، أَيْنَ كِتَابِي ؟","هَذَا كِتَابِي","هَذَا بَيْتُكَ","هَذَا بَيْتُهُ",
+       "هَذَا بَيْتُهَا","هَذِهِ أُمِّي","هَذَا أَبِي","أَيْنَ قَلَمُكَ ؟",
+       "أَيْنَ مَدْرَسَتُكُمْ ؟","هَذَا كِتَابُهُ","هَذَا كِتَابُهَا","هَذَا كِتَابُنَا",
+       "هَذَا كِتَابُكُمْ","هَذَا كِتَابُهُمْ","اسْمِي مُحَمَّدٌ","مَا اسْمُكَ ؟",
+       "مَا اسْمُهُ ؟","بَيْتِي كَبِيرٌ","مَدْرَسَتِي جَدِيدَةٌ","أَخِي طَالِبٌ",
+       "أُخْتِي مُدَرِّسَةٌ","بَلَدِي جَمِيلٌ"
+     ],
      vocab:[
-       {ar:"يَا",fr:"Ô (vocatif)",tr:"yā"},
-       {ar:"كِتَابِي",fr:"Mon livre",tr:"kitābī"},
-       {ar:"كِتَابُكَ",fr:"Ton livre",tr:"kitābuka"},
-       {ar:"كِتَابُهُ",fr:"Son livre (lui)",tr:"kitābuhu"},
-       {ar:"كِتَابُهَا",fr:"Son livre (elle)",tr:"kitābuhā"},
-       {ar:"كِتَابُنَا",fr:"Notre livre",tr:"kitābunā"},
-       {ar:"كِتَابُكُمْ",fr:"Votre livre",tr:"kitābukum"},
-       {ar:"كِتَابُهُمْ",fr:"Leur livre",tr:"kitābuhum"},
-       {ar:"بَيْتُكَ",fr:"Ta maison",tr:"baytuka"},
-       {ar:"بَيْتُهُ",fr:"Sa maison (lui)",tr:"baytuhu"},
-       {ar:"بَيْتُهَا",fr:"Sa maison (elle)",tr:"baytuhā"},
-       {ar:"بَيْتِي",fr:"Ma maison",tr:"baytī"},
-       {ar:"قَلَمِي",fr:"Mon stylo",tr:"qalamī"},
-       {ar:"قَلَمُكَ",fr:"Ton stylo",tr:"qalamuka"},
-       {ar:"قَلَمُهُ",fr:"Son stylo (lui)",tr:"qalamuhu"},
-       {ar:"قَلَمُهَا",fr:"Son stylo (elle)",tr:"qalamuhā"},
-       {ar:"أُمِّي",fr:"Ma mère",tr:"ummī"},
-       {ar:"أُمُّكَ",fr:"Ta mère",tr:"ummuka"},
-       {ar:"أُمُّهُ",fr:"Sa mère (lui)",tr:"ummuhu"},
-       {ar:"أُمُّهَا",fr:"Sa mère (elle)",tr:"ummuhā"},
-       {ar:"أَبِي",fr:"Mon père",tr:"abī"},
-       {ar:"أَبُوكَ",fr:"Ton père",tr:"abūka"},
-       {ar:"أَبُوهُ",fr:"Son père (lui)",tr:"abūhu"},
-       {ar:"أَخِي",fr:"Mon frère",tr:"akhī"},
-       {ar:"أَخُوكَ",fr:"Ton frère",tr:"akhūka"},
-       {ar:"أُخْتِي",fr:"Ma sœur",tr:"ukhtī"},
-       {ar:"أُخْتُكَ",fr:"Ta sœur",tr:"ukhtuka"},
-       {ar:"ابْنِي",fr:"Mon fils",tr:"ibnī"},
-       {ar:"بِنْتِي",fr:"Ma fille",tr:"bintī"},
-       {ar:"صَدِيقِي",fr:"Mon ami",tr:"ṣadīqī"},
-       {ar:"صَدِيقُهُ",fr:"Son ami (lui)",tr:"ṣadīquhu"},
-       {ar:"الْمُدَرِّسُ",fr:"Le professeur",tr:"al-mudarris"},
-       {ar:"الطَّالِبُ",fr:"L'étudiant",tr:"aṭ-ṭālib"},
-       {ar:"وَطَنِي",fr:"Ma patrie",tr:"waṭanī"},
-       {ar:"اسْمِي",fr:"Mon nom",tr:"ismī"},
-       {ar:"عُمْرِي",fr:"Mon âge",tr:"ʿumrī"},
-       {ar:"عَمَلِي",fr:"Mon travail",tr:"ʿamalī"},
-       {ar:"مَدْرَسَتِي",fr:"Mon école",tr:"madrasatī"},
-       {ar:"مَدْرَسَتُهُ",fr:"Son école (lui)",tr:"madrasatuhu"},
-       {ar:"مَدْرَسَتُهَا",fr:"Son école (elle)",tr:"madrasatuhā"},
-       {ar:"بَلَدِي",fr:"Mon pays",tr:"baladī"},
-       {ar:"دَارِي",fr:"Ma demeure",tr:"dārī"}
+       {ar:"يَا",fr:"Ô (vocatif)",tr:"yā"},{ar:"كِتَابِي",fr:"Mon livre",tr:"kitābī"},
+       {ar:"كِتَابُكَ",fr:"Ton livre",tr:"kitābuka"},{ar:"كِتَابُهُ",fr:"Son livre (lui)",tr:"kitābuhu"},
+       {ar:"كِتَابُهَا",fr:"Son livre (elle)",tr:"kitābuhā"},{ar:"كِتَابُنَا",fr:"Notre livre",tr:"kitābunā"},
+       {ar:"كِتَابُكُمْ",fr:"Votre livre",tr:"kitābukum"},{ar:"كِتَابُهُمْ",fr:"Leur livre",tr:"kitābuhum"},
+       {ar:"بَيْتُكَ",fr:"Ta maison",tr:"baytuka"},{ar:"بَيْتُهُ",fr:"Sa maison (lui)",tr:"baytuhu"},
+       {ar:"بَيْتُهَا",fr:"Sa maison (elle)",tr:"baytuhā"},{ar:"بَيْتِي",fr:"Ma maison",tr:"baytī"},
+       {ar:"قَلَمِي",fr:"Mon stylo",tr:"qalamī"},{ar:"قَلَمُكَ",fr:"Ton stylo",tr:"qalamuka"},
+       {ar:"قَلَمُهُ",fr:"Son stylo (lui)",tr:"qalamuhu"},{ar:"قَلَمُهَا",fr:"Son stylo (elle)",tr:"qalamuhā"},
+       {ar:"أُمِّي",fr:"Ma mère",tr:"ummī"},{ar:"أُمُّكَ",fr:"Ta mère",tr:"ummuka"},
+       {ar:"أُمُّهُ",fr:"Sa mère (lui)",tr:"ummuhu"},{ar:"أُمُّهَا",fr:"Sa mère (elle)",tr:"ummuhā"},
+       {ar:"أَبِي",fr:"Mon père",tr:"abī"},{ar:"أَبُوكَ",fr:"Ton père",tr:"abūka"},
+       {ar:"أَبُوهُ",fr:"Son père (lui)",tr:"abūhu"},{ar:"أَخِي",fr:"Mon frère",tr:"akhī"},
+       {ar:"أَخُوكَ",fr:"Ton frère",tr:"akhūka"},{ar:"أُخْتِي",fr:"Ma sœur",tr:"ukhtī"},
+       {ar:"أُخْتُكَ",fr:"Ta sœur",tr:"ukhtuka"},{ar:"ابْنِي",fr:"Mon fils",tr:"ibnī"},
+       {ar:"بِنْتِي",fr:"Ma fille",tr:"bintī"},{ar:"صَدِيقِي",fr:"Mon ami",tr:"ṣadīqī"},
+       {ar:"صَدِيقُهُ",fr:"Son ami (lui)",tr:"ṣadīquhu"},{ar:"الْمُدَرِّسُ",fr:"Le professeur",tr:"al-mudarris"},
+       {ar:"الطَّالِبُ",fr:"L'étudiant",tr:"aṭ-ṭālib"},{ar:"وَطَنِي",fr:"Ma patrie",tr:"waṭanī"},
+       {ar:"اسْمِي",fr:"Mon nom",tr:"ismī"},{ar:"عُمْرِي",fr:"Mon âge",tr:"ʿumrī"},
+       {ar:"عَمَلِي",fr:"Mon travail",tr:"ʿamalī"},{ar:"مَدْرَسَتِي",fr:"Mon école",tr:"madrasatī"},
+       {ar:"مَدْرَسَتُهُ",fr:"Son école (lui)",tr:"madrasatuhu"},{ar:"مَدْرَسَتُهَا",fr:"Son école (elle)",tr:"madrasatuhā"},
+       {ar:"بَلَدِي",fr:"Mon pays",tr:"baladī"},{ar:"دَارِي",fr:"Ma demeure",tr:"dārī"},
+       {ar:"زَيْدٌ",fr:"Zayd",tr:"zayd"},{ar:"عَلِيٌّ",fr:"Ali",tr:"ʿaliyy"}
      ],
      grammar:{title:"Les pronoms possessifs suffixes",
-       rule:"On ajoute un suffixe au nom : ي (mon), كَ (ton), هُ (son, à lui), هَا (sa, à elle), نَا (notre), كُمْ (votre), هُمْ (leur).",
-       examples:["كِتَابٌ → كِتَابِي = mon livre","بَيْتٌ → بَيْتُكَ = ta maison","قَلَمٌ → قَلَمُهُ = son stylo","مَدْرَسَةٌ → مَدْرَسَتِي = mon école"]},
+       rule:"On ajoute un suffixe au nom : ي (mon), كَ (ton), هُ (son, à lui), هَا (sa, à elle), نَا (notre), كُمْ (votre), هُمْ (leur). Le nom avec suffixe possessif ne prend ni ال ni tanwin. On peut aussi interroger sur le lieu avec أَيْنَ + nom avec suffixe possessif.",
+       examples:["كِتَابٌ → كِتَابِي = mon livre","بَيْتٌ → بَيْتُكَ = ta maison","قَلَمٌ → قَلَمُهُ = son stylo","مَدْرَسَةٌ → مَدْرَسَتِي = mon école","أَيْنَ كِتَابِي ؟ = Où est mon livre ?"]},
      dialogue:[
        {sp:"A",ar:"السَّلَامُ عَلَيْكُمْ يَا عَلِيُّ.",fr:"Bonjour Ali."},
        {sp:"B",ar:"وَعَلَيْكُمُ السَّلَامُ.",fr:"Bonjour."},
@@ -503,97 +574,112 @@ var TOMES = [
        {sp:"A",ar:"قَلَمِي فِي الْحَقِيبَةِ.",fr:"Mon stylo est dans le sac."},
        {sp:"B",ar:"وَمَا اسْمُكَ؟",fr:"Et comment t'appelles-tu ?"},
        {sp:"A",ar:"اسْمِي مُحَمَّدٌ. وَاسْمُكَ؟",fr:"Je m'appelle Muhammad. Et toi ?"},
-       {sp:"B",ar:"اسْمِي عَلِيٌّ.",fr:"Je m'appelle Ali."}
+       {sp:"B",ar:"اسْمِي عَلِيٌّ.",fr:"Je m'appelle Ali."},
+       {sp:"A",ar:"أَيْنَ بَيْتُكَ؟",fr:"Où est ta maison ?"},
+       {sp:"B",ar:"بَيْتِي فِي الْمَدِينَةِ.",fr:"Ma maison est dans la ville."},
+       {sp:"A",ar:"أَيْنَ مَدْرَسَتُكَ؟",fr:"Où est ton école ?"},
+       {sp:"B",ar:"مَدْرَسَتِي قَرِيبَةٌ.",fr:"Mon école est proche."}
      ],
      exercises:[
+       {type:"qcm",q:"Que signifie le suffixe ـِي ?",options:["Mon","Ton","Son","Notre"],correct:0},
+       {type:"qcm",q:"Que signifie le suffixe ـكَ ?",options:["Ton","Mon","Son","Notre"],correct:0},
+       {type:"qcm",q:"Que signifie le suffixe ـهُ ?",options:["Son (à lui)","Son (à elle)","Mon","Ton"],correct:0},
+       {type:"qcm",q:"Que signifie le suffixe ـهَا ?",options:["Sa (à elle)","Son (à lui)","Mon","Ton"],correct:0},
+       {type:"qcm",q:"Que signifie le suffixe ـنَا ?",options:["Notre","Votre","Leur","Mon"],correct:0},
+       {type:"qcm",q:"Que signifie le suffixe ـكُمْ ?",options:["Votre","Notre","Leur","Mon"],correct:0},
+       {type:"qcm",q:"Que signifie le suffixe ـهُمْ ?",options:["Leur","Votre","Notre","Mon"],correct:0},
+       {type:"fill",sentence:"كِتَابٌ + ـِي = ___",options:["كِتَابِي","كِتَابُكَ","كِتَابُهُ","كِتَابُهَا"],correct:0},
+       {type:"fill",sentence:"بَيْتٌ + ـكَ = ___",options:["بَيْتُكَ","بَيْتِي","بَيْتُهُ","بَيْتُهَا"],correct:0},
+       {type:"fill",sentence:"قَلَمٌ + ـهُ = ___",options:["قَلَمُهُ","قَلَمِي","قَلَمُكَ","قَلَمُهَا"],correct:0},
        {type:"qcm",q:"Que veut dire يَا ?",options:["Ô (vocatif)","Et","Où","Quoi"],correct:0},
-       {type:"qcm",q:"Comment dit-on « mon livre » ?",options:["كِتَابِي","كِتَابُكَ","كِتَابُهُ","كِتَابُهَا"],correct:0},
-       {type:"qcm",q:"Comment dit-on « ta maison » ?",options:["بَيْتُكَ","بَيْتِي","بَيْتُهُ","بَيْتُهَا"],correct:0},
-       {type:"qcm",q:"Que veut dire بَيْتُهُ ?",options:["Sa maison (à lui)","Ma maison","Ta maison","Sa maison (à elle)"],correct:0},
-       {type:"qcm",q:"Comment dit-on « ma mère » ?",options:["أُمِّي","أُمُّكَ","أُمُّهُ","أُمُّهَا"],correct:0},
-       {type:"qcm",q:"Comment dit-on « mon père » ?",options:["أَبِي","أَبُوكَ","أَبُوهُ","أَبُوهَا"],correct:0},
-       {type:"qcm",q:"Que veut dire صَدِيقِي ?",options:["Mon ami","Ton ami","Son ami","Notre ami"],correct:0},
-       {type:"qcm",q:"Quel suffixe signifie « mon » ?",options:["ـي","ـكَ","ـهُ","ـهَا"],correct:0},
-       {type:"qcm",q:"Quel suffixe signifie « ton » ?",options:["ـكَ","ـي","ـهُ","ـهَا"],correct:0},
-       {type:"qcm",q:"Que veut dire اسْمِي ?",options:["Mon nom","Ton nom","Son nom","Le nom"],correct:0},
-       {type:"qcm",q:"Que veut dire مَدْرَسَتِي ?",options:["Mon école","Ton école","Son école","L'école"],correct:0},
-       {type:"qcm",q:"Que veut dire بَلَدِي ?",options:["Mon pays","Ton pays","Son pays","Le pays"],correct:0},
-       {type:"tf",q:"Le suffixe ـي signifie « mon »",correct:true},
-       {type:"tf",q:"Le suffixe ـكَ signifie « son » (à lui)",correct:false,explain:"ـكَ = ton."},
-       {type:"tf",ar:"هَذَا كِتَابِي",q:"Signifie « C'est mon livre »",correct:true},
-       {type:"tf",ar:"هَذَا بَيْتُهُ",q:"Signifie « C'est ta maison »",correct:false,explain:"بَيْتُهُ = sa maison (à lui)."},
-       {type:"fill",sentence:"هَذَا كِتَابُ ___",options:["ـهُ","ـي","ـهَا","ـكَ"],correct:0},
-       {type:"fill",sentence:"هَذَا بَيْتُ ___",options:["ـكَ","ـي","ـهُ","ـهَا"],correct:0},
-       {type:"fill",sentence:"هَذِهِ أُمُّ ___",options:["ـهُ","ـي","ـهَا","ـكَ"],correct:0},
-       {type:"type",q:"Écris « mon livre » :",answer:"كِتَابِي",hint:"ك ت ا ب + ي"},
-       {type:"type",q:"Écris « ta maison » :",answer:"بَيْتُكَ",hint:"ب ي ت + ك"},
-       {type:"type",q:"Écris « mon stylo » :",answer:"قَلَمِي",hint:"ق ل م + ي"},
-       {type:"type",q:"Écris « ma mère » :",answer:"أُمِّي",hint:"أ م + ي"},
-       {type:"type",q:"Écris « mon nom » :",answer:"اسْمِي",hint:"ا س م + ي"},
-       {type:"type",q:"Écris « mon école » :",answer:"مَدْرَسَتِي",hint:"م د ر س ت + ي"},
+       {type:"qcm",q:"يَا est : اسم / فعل / حرف ?",options:["حرف","اسم","فعل","صفة"],correct:0},
+       {type:"fill",sentence:"___ عَلِيُّ",options:["يَا","وَ","مَا","أَيْنَ"],correct:0},
+       {type:"fill",sentence:"___ مُحَمَّدُ",options:["يَا","وَ","مَا","أَيْنَ"],correct:0},
+       {type:"type",q:"Traduire : يَا عَلِيُّ",answers:["Ô Ali"],hint:"Vocatif"},
+       {type:"type",q:"Traduire : يَا مُحَمَّدُ",answers:["Ô Muhammad"],hint:"Vocatif"},
+       {type:"qcm",q:"Le nom après يَا perd :",options:["Son tanwin","Son ال","Sa voyelle","Sa hamza"],correct:0},
+       {type:"qcm",q:"يَا se place :",options:["Avant le nom interpellé","Après le nom interpellé","Au milieu de la phrase","À la fin de la phrase"],correct:0},
+       {type:"qcm",q:"Qu'est-ce que l'annexion ?",options:["Associer deux noms pour exprimer la possession","Ajouter un suffixe au nom","Définir un nom avec ال","Interroger sur un lieu"],correct:0},
+       {type:"qcm",q:"Le premier nom (المُضَاف) ne prend ni :",options:["ال ni tanwin","Ni voyelle ni tanwin","Ni ال ni voyelle","Ni hamza ni tanwin"],correct:0},
+       {type:"qcm",q:"Le deuxième nom (المُضَاف إِلَيْهِ) est :",options:["مَجْرُور","مَرْفُوع","مَنْصُوب","مَجْزُوم"],correct:0},
+       {type:"fill",sentence:"كِتَابُ ___",options:["زَيْدٍ","زَيْدٌ","زَيْدًا","زَيْدُ"],correct:0},
+       {type:"fill",sentence:"بَابُ ___",options:["الْمَسْجِدِ","الْمَسْجِدُ","الْمَسْجِدَ","الْمَسْجِدْ"],correct:0},
+       {type:"type",q:"Traduire : كِتَابُ زَيْدٍ",answers:["Le livre de Zayd"],hint:"Annexion"},
+       {type:"type",q:"Traduire : بَابُ الْمَسْجِدِ",answers:["La porte de la mosquée"],hint:"Annexion"},
+       {type:"qcm",q:"Dans : كِتَابُ زَيْدٍ — le مُضَاف ?",options:["كِتَابُ","زَيْدٍ","كِتَابُ زَيْدٍ","زَيْدٌ"],correct:0},
+       {type:"qcm",q:"Dans : كِتَابُ زَيْدٍ — le مُضَاف إِلَيْهِ ?",options:["زَيْدٍ","كِتَابُ","كِتَابُ زَيْدٍ","زَيْدٌ"],correct:0},
+       {type:"fill",sentence:"مِفْتَاحُ ___",options:["الْبَيْتِ","الْبَيْتُ","الْبَيْتَ","الْبَيْتْ"],correct:0},
+       {type:"type",q:"Traduire : هَذَا كِتَابِي",answers:["Ceci est mon livre","C'est mon livre"],hint:"Suffixe ـِي"},
+       {type:"type",q:"Traduire : هَذَا بَيْتُكَ",answers:["Ceci est ta maison","C'est ta maison"],hint:"Suffixe ـكَ"},
+       {type:"type",q:"Traduire : هَذَا بَيْتُهُ",answers:["Ceci est sa maison (à lui)","C'est sa maison"],hint:"Suffixe ـهُ"},
+       {type:"type",q:"Traduire : هَذِهِ أُمِّي",answers:["Ceci est ma mère","C'est ma mère"],hint:"Suffixe ـِي"},
+       {type:"type",q:"Traduire : هَذَا أَبِي",answers:["Ceci est mon père","C'est mon père"],hint:"Suffixe ـِي"},
+       {type:"type",q:"Traduire : أَيْنَ قَلَمُكَ ؟",answers:["Où est ton stylo ?"],hint:"Question + suffixe"},
+       {type:"type",q:"Traduire : اسْمِي مُحَمَّدٌ",answers:["Mon nom est Muhammad"],hint:"Suffixe ـِي"},
+       {type:"type",q:"Traduire : مَا اسْمُكَ ؟",answers:["Quel est ton nom ?"],hint:"Question + suffixe"},
+       {type:"type",q:"Traduire : بَيْتِي كَبِيرٌ",answers:["Ma maison est grande"],hint:"Suffixe ـِي"},
+       {type:"type",q:"Traduire : مَدْرَسَتِي جَدِيدَةٌ",answers:["Mon école est nouvelle"],hint:"Suffixe ـِي"},
+       {type:"qcm",q:"Que veut dire أُمٌّ ?",options:["Mère","Père","Sœur","Frère"],correct:0},
+       {type:"qcm",q:"Que veut dire أَبٌ ?",options:["Père","Mère","Frère","Sœur"],correct:0},
+       {type:"qcm",q:"Que veut dire أَخٌ ?",options:["Frère","Sœur","Père","Mère"],correct:0},
+       {type:"qcm",q:"Que veut dire أُخْتٌ ?",options:["Sœur","Frère","Mère","Père"],correct:0},
+       {type:"qcm",q:"Que veut dire ابْنٌ ?",options:["Fils","Fille","Frère","Sœur"],correct:0},
+       {type:"qcm",q:"Que veut dire بِنْتٌ ?",options:["Fille","Fils","Sœur","Frère"],correct:0},
+       {type:"qcm",q:"Que veut dire صَدِيقٌ ?",options:["Ami","Ennemi","Frère","Voisin"],correct:0},
+       {type:"qcm",q:"Que veut dire اسْمٌ ?",options:["Nom","Prénom","Titre","Surnom"],correct:0},
+       {type:"qcm",q:"Que veut dire بَلَدٌ ?",options:["Pays","Ville","Village","Rue"],correct:0},
+       {type:"qcm",q:"Que veut dire مَدْرَسَةٌ ?",options:["École","Université","Bibliothèque","Jardin"],correct:0},
+       {type:"type",q:"Écris « mon livre » :",answers:["كِتَابِي"],hint:"ك ت ا ب + ي"},
+       {type:"type",q:"Écris « ta maison » :",answers:["بَيْتُكَ"],hint:"ب ي ت + ك"},
+       {type:"type",q:"Écris « mon stylo » :",answers:["قَلَمِي"],hint:"ق ل م + ي"},
+       {type:"type",q:"Écris « ma mère » :",answers:["أُمِّي"],hint:"أ م + ي"},
+       {type:"type",q:"Écris « mon nom » :",answers:["اسْمِي"],hint:"ا س م + ي"},
        {type:"order",q:"Reconstitue :",words:["كِتَابِي","هَذَا"],answer:"هَذَا كِتَابِي"},
        {type:"order",q:"Reconstitue :",words:["بَيْتُهُ","هَذَا"],answer:"هَذَا بَيْتُهُ"},
        {type:"order",q:"Reconstitue :",words:["أُمِّي","هَذِهِ"],answer:"هَذِهِ أُمِّي"},
        {type:"order",q:"Reconstitue :",words:["قَلَمِي","أَيْنَ","؟"],answer:"أَيْنَ قَلَمِي ؟"},
-       {type:"order",q:"Reconstitue :",words:["اسْمُكَ","مَا","؟"],answer:"مَا اسْمُكَ ؟"},
-       {type:"audio",audioText:"هَذَا كِتَابِي",options:["هَذَا كِتَابِي","هَذَا كِتَابُكَ","هَذَا كِتَابُهُ","هَذَا كِتَابُهَا"],correct:0},
-       {type:"audio",audioText:"هَذَا بَيْتُهُ",options:["هَذَا بَيْتِي","هَذَا بَيْتُكَ","هَذَا بَيْتُهُ","هَذَا بَيْتُهَا"],correct:2},
-       {type:"audio",audioText:"هَذِهِ أُمِّي",options:["هَذِهِ أُمِّي","هَذِهِ أُخْتِي","هَذِهِ بِنْتِي","هَذِهِ مُدَرِّسَةٌ"],correct:0},
-       {type:"audio",audioText:"مَا اسْمُكَ؟",options:["مَا اسْمُكَ؟","مَا اسْمُهُ؟","مَا اسْمُهَا؟","مَا عُمْرُكَ؟"],correct:0}
-     ]},    /* ===== LEÇON 6 ===== */
+       {type:"order",q:"Reconstitue :",words:["اسْمُكَ","مَا","؟"],answer:"مَا اسْمُكَ ؟"}
+     ]},
+
+    /* ===== LEÇON 6 ===== */
     {id:"t1l6", num:6, title:"Leçon 6", desc:"Corps humain · Le pluriel",
-     active:true, audio:"assets/audio/madinah/tome1/L06.mp3",
-     text:["هَذَا رَأْسِي","هَذَا أَنْفِي","هَذِهِ أُذُنِي","هَذِهِ يَدِي","هَذِهِ رِجْلِي",
-           "هَذَا فَمِي","هَذَا وَجْهِي","هَذِهِ عَيْنِي","هَذَا قَلْبِي","الْمُسْلِمُونَ إِخْوَةٌ"],
+     active:true, audio:null, pdf:"",
+     text:[
+       "هَذَا رَأْسِي","هَذَا أَنْفِي","هَذِهِ أُذُنِي","هَذِهِ يَدِي","هَذِهِ رِجْلِي",
+       "هَذَا فَمِي","هَذَا وَجْهِي","هَذِهِ عَيْنِي","هَذَا قَلْبِي","الْمُسْلِمُونَ إِخْوَةٌ",
+       "الْمُسْلِمَاتُ أَخَوَاتٌ","الطُّلَّابُ مُجْتَهِدُونَ","الْمُدَرِّسُونَ فِي الْفَصْلِ",
+       "الْكُتُبُ عَلَى الْمَكْتَبِ","الْأَقْلَامُ فِي الْحَقِيبَةِ","الْبُيُوتُ كَبِيرَةٌ",
+       "الرِّجَالُ فِي السُّوقِ","النِّسَاءُ فِي الْبَيْتِ","الْأَخَوَاتُ فِي الْمَدْرَسَةِ",
+       "الْإِخْوَةُ فِي الْمَسْجِدِ","هَذِهِ أَعْيُنِي","هَذِهِ أَيْدِينَا"
+     ],
      vocab:[
-       {ar:"رَأْسٌ",fr:"Tête",tr:"raʾs"},
-       {ar:"وَجْهٌ",fr:"Visage",tr:"wajh"},
-       {ar:"أَنْفٌ",fr:"Nez",tr:"anf"},
-       {ar:"أُذُنٌ",fr:"Oreille",tr:"udhun"},
-       {ar:"فَمٌ",fr:"Bouche",tr:"fam"},
-       {ar:"عَيْنٌ",fr:"Œil",tr:"ʿayn"},
-       {ar:"يَدٌ",fr:"Main",tr:"yad"},
-       {ar:"رِجْلٌ",fr:"Pied / Jambe",tr:"rijl"},
-       {ar:"قَلْبٌ",fr:"Cœur",tr:"qalb"},
-       {ar:"شَعْرٌ",fr:"Cheveux",tr:"shaʿr"},
-       {ar:"سِنٌّ",fr:"Dent",tr:"sinn"},
-       {ar:"لِسَانٌ",fr:"Langue",tr:"lisān"},
-       {ar:"بَطْنٌ",fr:"Ventre",tr:"baṭn"},
-       {ar:"ظَهْرٌ",fr:"Dos",tr:"ẓahr"},
-       {ar:"كَتِفٌ",fr:"Épaule",tr:"katif"},
-       {ar:"أَصْبَعٌ",fr:"Doigt",tr:"aṣbaʿ"},
-       {ar:"ذِرَاعٌ",fr:"Bras",tr:"dhirāʿ"},
-       {ar:"سَاقٌ",fr:"Tibia / Jambe",tr:"sāq"},
-       {ar:"عُنُقٌ",fr:"Cou",tr:"ʿunuq"},
-       {ar:"صَدْرٌ",fr:"Poitrine",tr:"ṣadr"},
-       {ar:"كَبِدٌ",fr:"Foie",tr:"kabid"},
-       {ar:"مَعِدَةٌ",fr:"Estomac",tr:"maʿida"},
-       {ar:"دِمَاغٌ",fr:"Cerveau",tr:"dimāgh"},
-       {ar:"عَظْمٌ",fr:"Os",tr:"ʿaẓm"},
-       {ar:"جِلْدٌ",fr:"Peau",tr:"jild"},
-       {ar:"دَمٌ",fr:"Sang",tr:"dam"},
-       {ar:"عَرَقٌ",fr:"Sueur",tr:"ʿaraq"},
-       {ar:"دَمْعٌ",fr:"Larme",tr:"damʿ"},
-       {ar:"أَخٌ",fr:"Frère",tr:"akh"},
-       {ar:"أُخْتٌ",fr:"Sœur",tr:"ukht"},
-       {ar:"مُسْلِمٌ",fr:"Musulman",tr:"muslim"},
-       {ar:"مُسْلِمَةٌ",fr:"Musulmane",tr:"muslima"},
-       {ar:"إِخْوَةٌ",fr:"Frères",tr:"ikhwa"},
-       {ar:"أَخَوَاتٌ",fr:"Sœurs",tr:"akhawāt"},
-       {ar:"رَجُلٌ",fr:"Homme",tr:"rajul"},
-       {ar:"رِجَالٌ",fr:"Hommes",tr:"rijāl"},
-       {ar:"اِمْرَأَةٌ",fr:"Femme",tr:"imraʾa"},
-       {ar:"نِسَاءٌ",fr:"Femmes",tr:"nisāʾ"},
-       {ar:"طِفْلٌ",fr:"Enfant (masc.)",tr:"ṭifl"},
-       {ar:"طِفْلَةٌ",fr:"Enfant (fém.)",tr:"ṭifla"},
-       {ar:"شَايٌ",fr:"Thé",tr:"shāy"},
-       {ar:"قَهْوَةٌ",fr:"Café",tr:"qahwa"},
-       {ar:"أَيْضًا",fr:"Aussi",tr:"ayḍan"},
-       {ar:"جِدًّا",fr:"Très",tr:"jiddan"}
+       {ar:"رَأْسٌ",fr:"Tête",tr:"raʾs"},{ar:"وَجْهٌ",fr:"Visage",tr:"wajh"},
+       {ar:"أَنْفٌ",fr:"Nez",tr:"anf"},{ar:"أُذُنٌ",fr:"Oreille",tr:"udhun"},
+       {ar:"فَمٌ",fr:"Bouche",tr:"fam"},{ar:"عَيْنٌ",fr:"Œil",tr:"ʿayn"},
+       {ar:"يَدٌ",fr:"Main",tr:"yad"},{ar:"رِجْلٌ",fr:"Pied / Jambe",tr:"rijl"},
+       {ar:"قَلْبٌ",fr:"Cœur",tr:"qalb"},{ar:"شَعْرٌ",fr:"Cheveux",tr:"shaʿr"},
+       {ar:"سِنٌّ",fr:"Dent",tr:"sinn"},{ar:"لِسَانٌ",fr:"Langue",tr:"lisān"},
+       {ar:"بَطْنٌ",fr:"Ventre",tr:"baṭn"},{ar:"ظَهْرٌ",fr:"Dos",tr:"ẓahr"},
+       {ar:"كَتِفٌ",fr:"Épaule",tr:"katif"},{ar:"أَصْبَعٌ",fr:"Doigt",tr:"aṣbaʿ"},
+       {ar:"ذِرَاعٌ",fr:"Bras",tr:"dhirāʿ"},{ar:"سَاقٌ",fr:"Tibia / Jambe",tr:"sāq"},
+       {ar:"عُنُقٌ",fr:"Cou",tr:"ʿunuq"},{ar:"صَدْرٌ",fr:"Poitrine",tr:"ṣadr"},
+       {ar:"كَبِدٌ",fr:"Foie",tr:"kabid"},{ar:"مَعِدَةٌ",fr:"Estomac",tr:"maʿida"},
+       {ar:"دِمَاغٌ",fr:"Cerveau",tr:"dimāgh"},{ar:"عَظْمٌ",fr:"Os",tr:"ʿaẓm"},
+       {ar:"جِلْدٌ",fr:"Peau",tr:"jild"},{ar:"دَمٌ",fr:"Sang",tr:"dam"},
+       {ar:"عَرَقٌ",fr:"Sueur",tr:"ʿaraq"},{ar:"دَمْعٌ",fr:"Larme",tr:"damʿ"},
+       {ar:"أَخٌ",fr:"Frère",tr:"akh"},{ar:"أُخْتٌ",fr:"Sœur",tr:"ukht"},
+       {ar:"مُسْلِمٌ",fr:"Musulman",tr:"muslim"},{ar:"مُسْلِمَةٌ",fr:"Musulmane",tr:"muslima"},
+       {ar:"إِخْوَةٌ",fr:"Frères",tr:"ikhwa"},{ar:"أَخَوَاتٌ",fr:"Sœurs",tr:"akhawāt"},
+       {ar:"رَجُلٌ",fr:"Homme",tr:"rajul"},{ar:"رِجَالٌ",fr:"Hommes",tr:"rijāl"},
+       {ar:"اِمْرَأَةٌ",fr:"Femme",tr:"imraʾa"},{ar:"نِسَاءٌ",fr:"Femmes",tr:"nisāʾ"},
+       {ar:"طِفْلٌ",fr:"Enfant (masc.)",tr:"ṭifl"},{ar:"طِفْلَةٌ",fr:"Enfant (fém.)",tr:"ṭifla"},
+       {ar:"شَايٌ",fr:"Thé",tr:"shāy"},{ar:"قَهْوَةٌ",fr:"Café",tr:"qahwa"},
+       {ar:"أَيْضًا",fr:"Aussi",tr:"ayḍan"},{ar:"جِدًّا",fr:"Très",tr:"jiddan"},
+       {ar:"أَعْيُنٌ",fr:"Yeux",tr:"aʿyun"},{ar:"أَيْدِي",fr:"Mains",tr:"aydī"}
      ],
      grammar:{title:"Le pluriel régulier et les membres du corps",
-       rule:"Le pluriel masculin sain se forme en ajoutant ونَ (nominatif) ou ينَ (accusatif). Le pluriel féminin sain ajoute اتٌ. Les membres du corps vont souvent par paires (يَدَانِ = les deux mains).",
-       examples:["مُسْلِمٌ → مُسْلِمُونَ","مُسْلِمَةٌ → مُسْلِمَاتٌ","يَدٌ → يَدَانِ (duel) → أَيْدٍ (pluriel)","الْمُسْلِمُونَ إِخْوَةٌ = Les musulmans sont frères"]},
+       rule:"Le pluriel masculin sain se forme en ajoutant ونَ (nominatif) ou ينَ (accusatif). Le pluriel féminin sain ajoute اتٌ. Le pluriel brisé change la structure interne du mot (كِتَابٌ → كُتُبٌ). Les membres du corps vont souvent par paires (يَدَانِ = les deux mains). Les membres du corps par paires sont généralement féminins.",
+       examples:["مُسْلِمٌ → مُسْلِمُونَ","مُسْلِمَةٌ → مُسْلِمَاتٌ","كِتَابٌ → كُتُبٌ","يَدٌ → يَدَانِ (duel) → أَيْدٍ (pluriel)","الْمُسْلِمُونَ إِخْوَةٌ = Les musulmans sont frères"]},
      dialogue:[
        {sp:"A",ar:"مَنْ هَذَا؟",fr:"Qui est-ce ?"},
        {sp:"B",ar:"هَذَا أَخِي.",fr:"C'est mon frère."},
@@ -604,2337 +690,3248 @@ var TOMES = [
        {sp:"A",ar:"أَيْنَ أَخُوكَ؟",fr:"Où est ton frère ?"},
        {sp:"B",ar:"هُوَ فِي الْمَدْرَسَةِ.",fr:"Il est à l'école."},
        {sp:"A",ar:"هَلْ أُخْتُكَ فِي الْبَيْتِ؟",fr:"Ta sœur est-elle à la maison ?"},
-       {sp:"B",ar:"نَعَمْ، هِيَ فِي الْبَيْتِ.",fr:"Oui, elle est à la maison."}
+       {sp:"B",ar:"نَعَمْ، هِيَ فِي الْبَيْتِ.",fr:"Oui, elle est à la maison."},
+       {sp:"A",ar:"أَيْنَ الْكُتُبُ؟",fr:"Où sont les livres ?"},
+       {sp:"B",ar:"هِيَ عَلَى الْمَكْتَبِ.",fr:"Ils sont sur le bureau."},
+       {sp:"A",ar:"أَيْنَ الطُّلَّابُ؟",fr:"Où sont les étudiants ?"},
+       {sp:"B",ar:"هُمْ فِي الْفَصْلِ.",fr:"Ils sont dans la classe."}
      ],
      exercises:[
        {type:"qcm",q:"Que veut dire رَأْسٌ ?",options:["Tête","Visage","Main","Pied"],correct:0},
-       {type:"qcm",q:"Comment dit-on « main » ?",options:["يَدٌ","رِجْلٌ","رَأْسٌ","أَنْفٌ"],correct:0},
+       {type:"qcm",q:"Que veut dire يَدٌ ?",options:["Main","Pied","Tête","Nez"],correct:0},
+       {type:"qcm",q:"Que veut dire رِجْلٌ ?",options:["Pied","Main","Tête","Nez"],correct:0},
        {type:"qcm",q:"Que veut dire أَنْفٌ ?",options:["Nez","Bouche","Oreille","Œil"],correct:0},
        {type:"qcm",q:"Que veut dire عَيْنٌ ?",options:["Œil","Oreille","Nez","Bouche"],correct:0},
-       {type:"qcm",q:"Comment dit-on « cœur » ?",options:["قَلْبٌ","رَأْسٌ","يَدٌ","عَيْنٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « sœur » ?",options:["أُخْتٌ","أَخٌ","أُمٌّ","بِنْتٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire مُسْلِمٌ ?",options:["Musulman","Chrétien","Juif","Athée"],correct:0},
-       {type:"qcm",q:"Comment dit-on « très » ?",options:["جِدًّا","أَيْضًا","كَثِيرًا","قَلِيلًا"],correct:0},
-       {type:"qcm",q:"Pluriel de رَجُلٌ ?",options:["رِجَالٌ","رَجُلُونَ","رَجُلَاتٌ","أَرْجَالٌ"],correct:0},
+       {type:"qcm",q:"Que veut dire أُذُنٌ ?",options:["Oreille","Œil","Nez","Bouche"],correct:0},
+       {type:"qcm",q:"Que veut dire قَلْبٌ ?",options:["Cœur","Foie","Estomac","Cerveau"],correct:0},
+       {type:"qcm",q:"Que veut dire فَمٌ ?",options:["Bouche","Nez","Oreille","Œil"],correct:0},
+       {type:"qcm",q:"Que veut dire وَجْهٌ ?",options:["Visage","Tête","Cou","Dos"],correct:0},
+       {type:"qcm",q:"Les membres du corps par paires sont :",options:["Féminins","Masculins","Neutres","Pluriels"],correct:0},
+       {type:"qcm",q:"Comment forme-t-on le pluriel masculin sain ?",options:["En ajoutant ـُونَ","En ajoutant ـَاتٌ","En ajoutant ـَانِ","En ajoutant ـِينَ"],correct:0},
+       {type:"qcm",q:"Comment forme-t-on le pluriel féminin sain ?",options:["En ajoutant ـَاتٌ","En ajoutant ـُونَ","En ajoutant ـَانِ","En ajoutant ـِينَ"],correct:0},
+       {type:"type",q:"Pluriel de مُسْلِمٌ ?",answers:["مُسْلِمُونَ"],hint:"جمع مذكر سالم"},
+       {type:"type",q:"Pluriel de مُسْلِمَةٌ ?",answers:["مُسْلِمَاتٌ"],hint:"جمع مؤنث سالم"},
+       {type:"type",q:"Pluriel de مُدَرِّسٌ ?",answers:["مُدَرِّسُونَ"],hint:"جمع مذكر سالم"},
+       {type:"type",q:"Pluriel de طَالِبٌ ?",answers:["طُلَّابٌ"],hint:"جمع تكسير"},
+       {type:"type",q:"Pluriel de كِتَابٌ ?",answers:["كُتُبٌ"],hint:"جمع تكسير"},
+       {type:"type",q:"Pluriel de قَلَمٌ ?",answers:["أَقْلَامٌ"],hint:"جمع تكسير"},
+       {type:"type",q:"Pluriel de بَيْتٌ ?",answers:["بُيُوتٌ"],hint:"جمع تكسير"},
+       {type:"type",q:"Pluriel de رَجُلٌ ?",answers:["رِجَالٌ"],hint:"جمع تكسير"},
+       {type:"qcm",q:"Que veut dire إِخْوَةٌ ?",options:["Frères","Sœurs","Pères","Mères"],correct:0},
+       {type:"qcm",q:"Que veut dire أَخَوَاتٌ ?",options:["Sœurs","Frères","Pères","Mères"],correct:0},
+       {type:"type",q:"Pluriel de أَخٌ ?",answers:["إِخْوَةٌ"],hint:"جمع تكسير"},
+       {type:"type",q:"Pluriel de أُخْتٌ ?",answers:["أَخَوَاتٌ"],hint:"جمع مؤنث سالم"},
+       {type:"type",q:"Traduire : الْمُسْلِمُونَ إِخْوَةٌ",answers:["Les musulmans sont frères"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْأَخَوَاتُ فِي الْمَدْرَسَةِ",answers:["Les sœurs sont dans l'école"],hint:"Phrase nominale"},
+       {type:"fill",sentence:"الْمُسْلِمَاتُ ___",options:["أَخَوَاتٌ","إِخْوَةٌ","أَخٌ","أُخْتٌ"],correct:0},
+       {type:"fill",sentence:"الْإِخْوَةُ فِي ___",options:["الْمَسْجِدِ","الْمَسْجِدُ","الْمَسْجِدَ","الْمَسْجِدْ"],correct:0},
+       {type:"type",q:"Traduire : هَذَا أَخِي",answers:["Ceci est mon frère","C'est mon frère"],hint:"Suffixe ـِي"},
+       {type:"type",q:"Traduire : هَذِهِ أُخْتِي",answers:["Ceci est ma sœur","C'est ma sœur"],hint:"Suffixe ـِي"},
+       {type:"type",q:"Traduire : هَذَا رَأْسِي",answers:["Ceci est ma tête","C'est ma tête"],hint:"Suffixe ـِي"},
+       {type:"type",q:"Traduire : هَذِهِ يَدِي",answers:["Ceci est ma main","C'est ma main"],hint:"Suffixe ـِي"},
+       {type:"type",q:"Traduire : الْكُتُبُ عَلَى الْمَكْتَبِ",answers:["Les livres sont sur le bureau"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الطُّلَّابُ مُجْتَهِدُونَ",answers:["Les étudiants sont travailleurs"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْبُيُوتُ كَبِيرَةٌ",answers:["Les maisons sont grandes"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الرِّجَالُ فِي السُّوقِ",answers:["Les hommes sont au marché"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : النِّسَاءُ فِي الْبَيْتِ",answers:["Les femmes sont dans la maison"],hint:"Phrase nominale"},
        {type:"qcm",q:"Que veut dire لِسَانٌ ?",options:["Langue","Dent","Bouche","Lèvre"],correct:0},
-       {type:"qcm",q:"Comment dit-on « doigt » ?",options:["أَصْبَعٌ","يَدٌ","ذِرَاعٌ","كَفٌّ"],correct:0},
+       {type:"qcm",q:"Que veut dire سِنٌّ ?",options:["Dent","Langue","Bouche","Nez"],correct:0},
+       {type:"qcm",q:"Que veut dire بَطْنٌ ?",options:["Ventre","Dos","Poitrine","Épaule"],correct:0},
+       {type:"qcm",q:"Que veut dire ظَهْرٌ ?",options:["Dos","Ventre","Poitrine","Cou"],correct:0},
+       {type:"qcm",q:"Que veut dire كَتِفٌ ?",options:["Épaule","Bras","Main","Doigt"],correct:0},
+       {type:"qcm",q:"Que veut dire أَصْبَعٌ ?",options:["Doigt","Main","Bras","Épaule"],correct:0},
+       {type:"qcm",q:"Que veut dire ذِرَاعٌ ?",options:["Bras","Main","Épaule","Doigt"],correct:0},
+       {type:"qcm",q:"Que veut dire سَاقٌ ?",options:["Jambe","Pied","Genou","Cuisse"],correct:0},
+       {type:"qcm",q:"Que veut dire عُنُقٌ ?",options:["Cou","Tête","Épaule","Dos"],correct:0},
+       {type:"qcm",q:"Que veut dire صَدْرٌ ?",options:["Poitrine","Ventre","Dos","Cou"],correct:0},
        {type:"qcm",q:"Que veut dire قَهْوَةٌ ?",options:["Café","Thé","Eau","Lait"],correct:0},
-       {type:"tf",ar:"هَذَا أَخِي",q:"Signifie « C'est mon frère »",correct:true},
-       {type:"tf",ar:"هَذِهِ أُخْتِي",q:"Signifie « C'est mon frère »",correct:false,explain:"أُخْتٌ = sœur."},
-       {type:"tf",q:"Le pluriel de مُسْلِمٌ est مُسْلِمُونَ",correct:true},
-       {type:"tf",ar:"الْمُسْلِمُونَ إِخْوَةٌ",q:"Signifie « Les musulmans sont frères »",correct:true},
-       {type:"fill",sentence:"___ أَخِي",options:["هَذَا","هَذِهِ","ذَلِكَ","تِلْكَ"],correct:0},
-       {type:"fill",sentence:"___ أُخْتِي",options:["هَذِهِ","هَذَا","ذَلِكَ","أُولَئِكَ"],correct:0},
-       {type:"fill",sentence:"___ رَأْسِي",options:["هَذَا","هَذِهِ","ذَلِكَ","أُولَئِكَ"],correct:0},
-       {type:"type",q:"Écris « tête » :",answer:"رَأْسٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « main » :",answer:"يَدٌ",hint:"2 lettres"},
-       {type:"type",q:"Écris « pied » :",answer:"رِجْلٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « nez » :",answer:"أَنْفٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « cœur » :",answer:"قَلْبٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « frère » :",answer:"أَخٌ",hint:"2 lettres"},
+       {type:"qcm",q:"Que veut dire شَايٌ ?",options:["Thé","Café","Eau","Jus"],correct:0},
+       {type:"type",q:"Écris « tête » :",answers:["رَأْسٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « main » :",answers:["يَدٌ"],hint:"2 lettres"},
+       {type:"type",q:"Écris « pied » :",answers:["رِجْلٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « nez » :",answers:["أَنْفٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « cœur » :",answers:["قَلْبٌ"],hint:"3 lettres"},
        {type:"order",q:"Reconstitue :",words:["أَخِي","هَذَا"],answer:"هَذَا أَخِي"},
        {type:"order",q:"Reconstitue :",words:["إِخْوَةٌ","الْمُسْلِمُونَ"],answer:"الْمُسْلِمُونَ إِخْوَةٌ"},
        {type:"order",q:"Reconstitue :",words:["أُخْتِي","هَذِهِ"],answer:"هَذِهِ أُخْتِي"},
        {type:"order",q:"Reconstitue :",words:["رَأْسِي","هَذَا"],answer:"هَذَا رَأْسِي"},
-       {type:"order",q:"Reconstitue :",words:["يَدِي","هَذِهِ"],answer:"هَذِهِ يَدِي"},
-       {type:"audio",audioText:"هَذَا أَخِي",options:["هَذَا أَخِي","هَذِهِ أُخْتِي","هَذَا أَبِي","هَذَا رَأْسِي"],correct:0},
-       {type:"audio",audioText:"هَذِهِ أُخْتِي",options:["هَذَا أَخِي","هَذِهِ أُخْتِي","هَذِهِ أُمِّي","هَذِهِ بِنْتِي"],correct:1},
-       {type:"audio",audioText:"هَذَا رَأْسِي",options:["هَذَا رَأْسِي","هَذَا أَنْفِي","هَذَا وَجْهِي","هَذَا قَلْبِي"],correct:0},
-       {type:"audio",audioText:"هَذِهِ يَدِي",options:["هَذِهِ رِجْلِي","هَذِهِ يَدِي","هَذِهِ عَيْنِي","هَذِهِ أُذُنِي"],correct:1}
-     ]},
-
-    /* ===== LEÇON 7 ===== */
-    {id:"t1l7", num:7, title:"Leçon 7", desc:"Le féminin · هَذِهِ",
-     active:true, audio:"assets/audio/madinah/tome1/L07.mp3",
-     text:["هَذِهِ أُمِّي","هَذِهِ بِنْتِي","هَذِهِ مُدَرِّسَةٌ","هَذِهِ طَالِبَةٌ","هَذِهِ مُـمَرِّضَةٌ",
-           "هَذِهِ دَجَاجَةٌ","هَذِهِ بَطَّةٌ","هَذِهِ بَيْضَةٌ","هَذِهِ حَدِيقَةٌ"],
+       {type:"order",q:"Reconstitue :",words:["يَدِي","هَذِهِ"],answer:"هَذِهِ يَدِي"}
+     ]},    /* ===== RÉVISION 1 (Semaine de révision 1 - 1) ===== */
+    {id:"t1l10", num:10, title:"Révision 1", desc:"Semaine 1 · Démonstratifs, interrogatifs, jours de la semaine",
+     active:true, audio:null, pdf:"",
+     text:[
+       "هَذَا بَيْتٌ وَهَذِهِ مَدْرَسَةٌ",
+       "ذَلِكَ حِمَارٌ وَتِلْكَ بَقَرَةٌ",
+       "أَذَلِكَ مَسْجِدٌ؟ لَا، تِلْكَ مَدْرَسَةٌ",
+       "هَذَا جَمَلٌ وَتِلْكَ نَاقَةٌ",
+       "هَذِهِ مَدْرَسَةٌ وَتِلْكَ طَالِبَةٌ",
+       "هَذَا كَلْبٌ وَذَلِكَ قِطٌّ",
+       "هَذَا بَيْتُ الْمُؤَذِّنِ وَتِلْكَ حَدِيقَةُ التَّاجِرِ",
+       "الْبَيْتُ هُنَا",
+       "الْمَسْجِدُ هُنَاكَ",
+       "أَيْنَ الْكِتَابُ؟",
+       "أَيْنَ مُحَمَّدٌ؟",
+       "أَيْنَ السَّاعَةُ؟",
+       "أَيْنَ يَاسِرٌ؟",
+       "أَيْنَ آمِنَةُ؟",
+       "مَاذَا هُنَاكَ؟",
+       "مَاذَا عَلَى الْمَكْتَبِ؟",
+       "مَاذَا فِي الْفَصْلِ؟",
+       "مَا هَذَا؟",
+       "مَنْ هَذَا؟",
+       "أَيْنَ الْقِطُّ؟",
+       "الْيَوْمُ الْأَحَدُ",
+       "الْيَوْمُ الْجُمُعَةُ"
+     ],
      vocab:[
-       {ar:"مُـمَرِّضَةٌ",fr:"Infirmière",tr:"mumarriḍa"},
-       {ar:"مُدَرِّسَةٌ",fr:"Professeure",tr:"mudarrisa"},
-       {ar:"طَالِبَةٌ",fr:"Étudiante",tr:"ṭāliba"},
-       {ar:"طَبِيبَةٌ",fr:"Médecin (fém.)",tr:"ṭabība"},
-       {ar:"طَبَّاخَةٌ",fr:"Cuisinière",tr:"ṭabbākha"},
-       {ar:"بَائِعَةٌ",fr:"Vendeuse",tr:"bāʾiʿa"},
-       {ar:"مُهَنْدِسَةٌ",fr:"Ingénieure",tr:"muhandisa"},
-       {ar:"مُدِيرَةٌ",fr:"Directrice",tr:"mudīra"},
-       {ar:"كَاتِبَةٌ",fr:"Écrivaine",tr:"kātiba"},
-       {ar:"قَارِئَةٌ",fr:"Lectrice",tr:"qāriʾa"},
-       {ar:"دَجَاجَةٌ",fr:"Poule",tr:"dajāja"},
-       {ar:"دِيكٌ",fr:"Coq",tr:"dīk"},
-       {ar:"بَطَّةٌ",fr:"Canard",tr:"baṭṭa"},
-       {ar:"بَيْضَةٌ",fr:"Œuf",tr:"bayḍa"},
+       {ar:"هُنَا",fr:"Ici (proche)",tr:"hunā"},
+       {ar:"هُنَاكَ",fr:"Là-bas (loin)",tr:"hunāka"},
+       {ar:"مَاذَا",fr:"Qu'est-ce que (contraction)",tr:"mādhā"},
+       {ar:"أَيْنَ",fr:"Où ?",tr:"ayna"},
+       {ar:"مَنْ",fr:"Qui ?",tr:"man"},
+       {ar:"مَا",fr:"Quoi ?",tr:"mā"},
+       {ar:"أَ",fr:"Est-ce que ?",tr:"a"},
+       {ar:"الْيَوْمَ",fr:"Le jour",tr:"al-yawma"},
+       {ar:"الْأَحَدُ",fr:"Dimanche",tr:"al-aḥad"},
+       {ar:"الِاثْنَيْنِ",fr:"Lundi",tr:"al-ithnayn"},
+       {ar:"الثُّلَاثَاءُ",fr:"Mardi",tr:"al-thulāthāʾ"},
+       {ar:"الْأَرْبِعَاءُ",fr:"Mercredi",tr:"al-arbiʿāʾ"},
+       {ar:"الْخَمِيسُ",fr:"Jeudi",tr:"al-khamīs"},
+       {ar:"الْجُمُعَةُ",fr:"Vendredi",tr:"al-jumuʿa"},
+       {ar:"السَّبْتُ",fr:"Samedi",tr:"al-sabt"},
        {ar:"بَقَرَةٌ",fr:"Vache",tr:"baqara"},
-       {ar:"خَرُوفٌ",fr:"Mouton",tr:"kharūf"},
-       {ar:"جَمَلٌ",fr:"Chameau",tr:"jamal"},
        {ar:"نَاقَةٌ",fr:"Chamelle",tr:"nāqa"},
-       {ar:"قِطٌّ",fr:"Chat",tr:"qiṭṭ"},
-       {ar:"قِطَّةٌ",fr:"Chatte",tr:"qiṭṭa"},
-       {ar:"حَدِيقَةٌ",fr:"Jardin",tr:"ḥadīqa"},
-       {ar:"زَهْرَةٌ",fr:"Fleur",tr:"zahra"},
-       {ar:"وَرْدَةٌ",fr:"Rose",tr:"warda"},
-       {ar:"شَجَرَةٌ",fr:"Arbre",tr:"shajara"},
-       {ar:"فَاكِهَةٌ",fr:"Fruit",tr:"fākiha"},
-       {ar:"خُضْرَةٌ",fr:"Légume",tr:"khuḍra"},
-       {ar:"سَيَّارَةٌ",fr:"Voiture",tr:"sayyāra"},
-       {ar:"طَائِرَةٌ",fr:"Avion",tr:"ṭāʾira"},
-       {ar:"سَفِينَةٌ",fr:"Bateau",tr:"safīna"},
-       {ar:"دَرَّاجَةٌ",fr:"Vélo",tr:"darrāja"},
-       {ar:"حَافِلَةٌ",fr:"Bus",tr:"ḥāfila"},
-       {ar:"قِطَارٌ",fr:"Train",tr:"qiṭār"},
-       {ar:"بِنْتٌ",fr:"Fille",tr:"bint"},
-       {ar:"أُخْتٌ",fr:"Sœur",tr:"ukht"},
-       {ar:"أُمٌّ",fr:"Mère",tr:"umm"},
-       {ar:"جَدَّةٌ",fr:"Grand-mère",tr:"jadda"},
-       {ar:"عَمَّةٌ",fr:"Tante paternelle",tr:"ʿamma"},
-       {ar:"خَالَةٌ",fr:"Tante maternelle",tr:"khāla"},
-       {ar:"صَدِيقَةٌ",fr:"Amie",tr:"ṣadīqa"},
-       {ar:"جَارَةٌ",fr:"Voisine",tr:"jāra"},
-       {ar:"زَوْجَةٌ",fr:"Épouse",tr:"zawja"},
-       {ar:"بِنْتٌ صَغِيرَةٌ",fr:"Petite fille",tr:"bint ṣaghīra"},
-       {ar:"طِفْلَةٌ",fr:"Petite fille / Enfant",tr:"ṭifla"},
-       {ar:"مَلِكَةٌ",fr:"Reine",tr:"malika"}
-     ],
-     grammar:{title:"La formation du féminin",
-       rule:"La plupart des noms féminins se forment en ajoutant ة (ta marbouta). Certains féminins sont irréguliers : أَخٌ → أُخْتٌ (frère → sœur), جَمَلٌ → نَاقَةٌ (chameau → chamelle).",
-       examples:["مُدَرِّسٌ → مُدَرِّسَةٌ","طَالِبٌ → طَالِبَةٌ","طَبِيبٌ → طَبِيبَةٌ","مُسْلِمٌ → مُسْلِمَةٌ"]},
-     dialogue:[
-       {sp:"A",ar:"مَنْ هَذِهِ؟",fr:"Qui est-ce (elle) ?"},
-       {sp:"B",ar:"هَذِهِ أُمِّي.",fr:"C'est ma mère."},
-       {sp:"A",ar:"وَمَنْ هَذَا؟",fr:"Et qui est-ce (lui) ?"},
-       {sp:"B",ar:"هَذَا أَبِي.",fr:"C'est mon père."},
-       {sp:"A",ar:"مَا هَذِهِ؟",fr:"Qu'est-ce que c'est (elle) ?"},
-       {sp:"B",ar:"هَذِهِ حَدِيقَةٌ جَمِيلَةٌ.",fr:"C'est un beau jardin."},
-       {sp:"A",ar:"وَمَا هَذِهِ؟",fr:"Et qu'est-ce que c'est ?"},
-       {sp:"B",ar:"هَذِهِ زَهْرَةٌ وَرْدَةٌ.",fr:"C'est une fleur, une rose."},
-       {sp:"A",ar:"مَنْ هَذِهِ الْمَرْأَةُ؟",fr:"Qui est cette femme ?"},
-       {sp:"B",ar:"هَذِهِ مُدَرِّسَةٌ.",fr:"C'est une professeure."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire مُـمَرِّضَةٌ ?",options:["Infirmière","Médecin","Professeure","Étudiante"],correct:0},
-       {type:"qcm",q:"Comment dit-on « œuf » ?",options:["بَيْضَةٌ","دَجَاجَةٌ","بَطَّةٌ","حَدِيقَةٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire دَجَاجَةٌ ?",options:["Poule","Coq","Canard","Vache"],correct:0},
-       {type:"qcm",q:"Comment dit-on « jardin » ?",options:["حَدِيقَةٌ","بَيْضَةٌ","بَطَّةٌ","زَهْرَةٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire زَهْرَةٌ ?",options:["Fleur","Arbre","Fruit","Rose"],correct:0},
-       {type:"qcm",q:"Comment dit-on « voiture » ?",options:["سَيَّارَةٌ","طَائِرَةٌ","سَفِينَةٌ","حَدِيقَةٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire سَفِينَةٌ ?",options:["Bateau","Avion","Voiture","Train"],correct:0},
-       {type:"qcm",q:"Quelle lettre ajoute-t-on pour le féminin ?",options:["ة","ه","ا","ي"],correct:0},
-       {type:"qcm",q:"Féminin de مُدَرِّسٌ ?",options:["مُدَرِّسَةٌ","مُدَرِّسَاتٌ","مُدَرِّسُونَ","مُدَرِّسَانِ"],correct:0},
-       {type:"qcm",q:"Que veut dire مُهَنْدِسَةٌ ?",options:["Ingénieure","Médecin","Avocate","Architecte"],correct:0},
-       {type:"qcm",q:"Comment dit-on « grand-mère » ?",options:["جَدَّةٌ","جَدٌّ","أُمٌّ","عَمَّةٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire قِطَّةٌ ?",options:["Chatte","Chat","Chien","Lion"],correct:0},
-       {type:"tf",ar:"هَذِهِ أُمِّي",q:"Signifie « C'est ma mère »",correct:true},
-       {type:"tf",q:"Le féminin de مُدَرِّسٌ est مُدَرِّسَةٌ",correct:true},
-       {type:"tf",ar:"هَذِهِ حَدِيقَةٌ",q:"Signifie « C'est une maison »",correct:false,explain:"حَدِيقَةٌ = jardin."},
-       {type:"tf",ar:"هَذِهِ مُدَرِّسَةٌ",q:"Signifie « C'est une professeure »",correct:true},
-       {type:"fill",sentence:"___ أُمِّي",options:["هَذِهِ","هَذَا","ذَلِكَ","أُولَئِكَ"],correct:0},
-       {type:"fill",sentence:"هَذِهِ ___",options:["مُدَرِّسَةٌ","مُدَرِّسٌ","مُدَرِّسَانِ","مُدَرِّسُونَ"],correct:0},
-       {type:"fill",sentence:"هَذِهِ ___",options:["طَالِبَةٌ","طَالِبٌ","طُلَّابٌ","طَالِبَانِ"],correct:0},
-       {type:"type",q:"Écris « une professeure » :",answer:"مُدَرِّسَةٌ",hint:"م د ر س + ة"},
-       {type:"type",q:"Écris « une étudiante » :",answer:"طَالِبَةٌ",hint:"ط ا ل ب + ة"},
-       {type:"type",q:"Écris « une fleur » :",answer:"زَهْرَةٌ",hint:"ز ه ر + ة"},
-       {type:"type",q:"Écris « une voiture » :",answer:"سَيَّارَةٌ",hint:"س ي ا ر + ة"},
-       {type:"type",q:"Écris « un jardin » :",answer:"حَدِيقَةٌ",hint:"ح د ي ق + ة"},
-       {type:"type",q:"Écris « une infirmière » :",answer:"مُـمَرِّضَةٌ",hint:"م م ر ض + ة"},
-       {type:"order",q:"Reconstitue :",words:["أُمِّي","هَذِهِ"],answer:"هَذِهِ أُمِّي"},
-       {type:"order",q:"Reconstitue :",words:["طَالِبَةٌ","هَذِهِ"],answer:"هَذِهِ طَالِبَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["مُدَرِّسَةٌ","هَذِهِ"],answer:"هَذِهِ مُدَرِّسَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["حَدِيقَةٌ","هَذِهِ"],answer:"هَذِهِ حَدِيقَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["زَهْرَةٌ","هَذِهِ"],answer:"هَذِهِ زَهْرَةٌ"},
-       {type:"audio",audioText:"هَذِهِ أُمِّي",options:["هَذِهِ أُمِّي","هَذِهِ بِنْتِي","هَذِهِ أُخْتِي","هَذِهِ مُدَرِّسَةٌ"],correct:0},
-       {type:"audio",audioText:"هَذِهِ مُدَرِّسَةٌ",options:["هَذِهِ طَالِبَةٌ","هَذِهِ مُدَرِّسَةٌ","هَذِهِ مُـمَرِّضَةٌ","هَذِهِ بِنْتٌ"],correct:1},
-       {type:"audio",audioText:"هَذِهِ حَدِيقَةٌ",options:["هَذِهِ حَدِيقَةٌ","هَذِهِ مَدْرَسَةٌ","هَذِهِ سَيَّارَةٌ","هَذِهِ شَجَرَةٌ"],correct:0},
-       {type:"audio",audioText:"هَذِهِ زَهْرَةٌ",options:["هَذِهِ وَرْدَةٌ","هَذِهِ زَهْرَةٌ","هَذِهِ شَجَرَةٌ","هَذِهِ حَدِيقَةٌ"],correct:1}
-     ]},
-
-    /* ===== LEÇON 8 ===== */
-    {id:"t1l8", num:8, title:"Leçon 8", desc:"L'appartenance · لِ / لِمَنْ",
-     active:true, audio:"assets/audio/madinah/tome1/L08.mp3",
-     text:["لِمَنْ هَذَا الْكِتَابُ؟","هَذَا الْكِتَابُ لِمُحَمَّدٍ","هَذَا الْقَلَمُ لِعَلِيٍّ",
-           "هَذِهِ الْحَقِيبَةُ لِفَاطِمَةَ","الْمِلْعَقَةُ لِلطَّالِبِ","السِّكِّينُ لِلْمُدَرِّسِ",
-           "الْقَلَمُ لِي، وَالْكِتَابُ لَكَ"],
-     vocab:[
-       {ar:"سِكِّينٌ",fr:"Couteau",tr:"sikkīn"},
-       {ar:"مِلْعَقَةٌ",fr:"Cuillère",tr:"milʿaqa"},
-       {ar:"شَوْكَةٌ",fr:"Fourchette",tr:"shawka"},
-       {ar:"طَبَقٌ",fr:"Assiette / Plat",tr:"ṭabaq"},
-       {ar:"كُوبٌ",fr:"Verre",tr:"kūb"},
-       {ar:"فِنْجَانٌ",fr:"Tasse",tr:"finjān"},
-       {ar:"قِدْرٌ",fr:"Marmite",tr:"qidr"},
-       {ar:"صَحْنٌ",fr:"Assiette plate",tr:"ṣaḥn"},
-       {ar:"مِنْدِيلٌ",fr:"Serviette",tr:"mindīl"},
-       {ar:"قَمِيصٌ",fr:"Chemise",tr:"qamīṣ"},
-       {ar:"بَنْطَالٌ",fr:"Pantalon",tr:"banṭāl"},
-       {ar:"حِذَاءٌ",fr:"Chaussure",tr:"ḥidhāʾ"},
-       {ar:"جَاكِيتٌ",fr:"Veste",tr:"jākīt"},
-       {ar:"قُبَّعَةٌ",fr:"Chapeau",tr:"qubbʿa"},
-       {ar:"خَاتَمٌ",fr:"Bague",tr:"khātam"},
-       {ar:"نَظَّارَةٌ",fr:"Lunettes",tr:"naẓẓāra"},
-       {ar:"مِحْفَظَةٌ",fr:"Portefeuille",tr:"miḥfaẓa"},
-       {ar:"دَفْتَرٌ",fr:"Cahier",tr:"daftar"},
-       {ar:"مِمْحَاةٌ",fr:"Gomme",tr:"mimḥā"},
-       {ar:"مِسْطَرَةٌ",fr:"Règle",tr:"misṭara"},
-       {ar:"حَاسُوبٌ",fr:"Ordinateur",tr:"ḥāsūb"},
+       {ar:"جَمَلٌ",fr:"Chameau",tr:"jamal"},
+       {ar:"مُؤَذِّنٌ",fr:"Muezzin",tr:"muʾadhdhin"},
+       {ar:"تَاجِرٌ",fr:"Commerçant",tr:"tājir"},
+       {ar:"طَالِبَةٌ",fr:"Étudiante",tr:"ṭāliba"},
        {ar:"سَاعَةٌ",fr:"Montre",tr:"sāʿa"},
-       {ar:"مِظَلَّةٌ",fr:"Parapluie",tr:"miẓalla"},
-       {ar:"حِزَامٌ",fr:"Ceinture",tr:"ḥizām"},
-       {ar:"جَوْرَبٌ",fr:"Chaussette",tr:"jawrab"},
-       {ar:"وِشَاحٌ",fr:"Écharpe",tr:"wishāḥ"},
-       {ar:"قُفَّازٌ",fr:"Gant",tr:"quffāz"},
-       {ar:"نَقْدٌ",fr:"Argent liquide",tr:"naqd"},
-       {ar:"لِمَنْ",fr:"À qui ?",tr:"liman"},
-       {ar:"لِي",fr:"Pour moi",tr:"lī"},
-       {ar:"لَكَ",fr:"Pour toi (masc.)",tr:"laka"},
-       {ar:"لَكِ",fr:"Pour toi (fém.)",tr:"laki"},
-       {ar:"لَهُ",fr:"Pour lui",tr:"lahu"},
-       {ar:"لَهَا",fr:"Pour elle",tr:"lahā"},
-       {ar:"لَنَا",fr:"Pour nous",tr:"lanā"},
-       {ar:"لَكُمْ",fr:"Pour vous",tr:"lakum"},
-       {ar:"لَهُنَّ",fr:"Pour elles",tr:"lahunna"},
-       {ar:"لَهُمْ",fr:"Pour eux",tr:"lahum"},
-       {ar:"صَاحِبٌ",fr:"Propriétaire",tr:"ṣāḥib"},
-       {ar:"مَالِكٌ",fr:"Possesseur",tr:"mālik"},
-       {ar:"مِلْكٌ",fr:"Propriété",tr:"milk"},
-       {ar:"هَدِيَّةٌ",fr:"Cadeau",tr:"hadiyya"},
-       {ar:"مِلْكِي",fr:"Ma propriété",tr:"milkī"},
-       {ar:"كِتَابُهُ",fr:"Son livre (lui)",tr:"kitābuhu"},
-       {ar:"كِتَابُهَا",fr:"Son livre (elle)",tr:"kitābuhā"}
+       {ar:"يَاسِرٌ",fr:"Yasir",tr:"Yāsir"},
+       {ar:"آمِنَةُ",fr:"Amina",tr:"Āmina"},
+       {ar:"الْفَصْلُ",fr:"La classe",tr:"al-faṣl"},
+       {ar:"الْمَكْتَبُ",fr:"Le bureau",tr:"al-maktab"},
+       {ar:"الْحَدِيقَةُ",fr:"Le jardin",tr:"al-ḥadīqa"},
+       {ar:"الْمَسْجِدُ",fr:"La mosquée",tr:"al-masjid"},
+       {ar:"الْبَيْتُ",fr:"La maison",tr:"al-bayt"}
      ],
-     grammar:{title:"La particule d'appartenance لِ",
-       rule:"لِ signifie « pour » ou « à ». Elle est suivie d'un nom au génitif (majrūr). Avec les pronoms : لِي (pour moi), لَكَ (pour toi), لَهُ (pour lui), لَهَا (pour elle).",
-       examples:["لِمَنْ هَذَا الْكِتَابُ؟ = À qui est ce livre ?","هَذَا الْكِتَابُ لِمُحَمَّدٍ = Ce livre est à Muhammad","هَذَا الْقَلَمُ لِي = Ce stylo est à moi"]},
-     dialogue:[
-       {sp:"A",ar:"لِمَنْ هَذَا الْكِتَابُ؟",fr:"À qui est ce livre ?"},
-       {sp:"B",ar:"هَذَا الْكِتَابُ لِمُحَمَّدٍ.",fr:"Ce livre est à Muhammad."},
-       {sp:"A",ar:"وَلِمَنْ هَذَا الْقَلَمُ؟",fr:"Et à qui est ce stylo ?"},
-       {sp:"B",ar:"هَذَا الْقَلَمُ لِعَلِيٍّ.",fr:"Ce stylo est à Ali."},
-       {sp:"A",ar:"وَلِمَنْ هَذِهِ الْحَقِيبَةُ؟",fr:"Et à qui est ce sac ?"},
-       {sp:"B",ar:"هَذِهِ الْحَقِيبَةُ لِفَاطِمَةَ.",fr:"Ce sac est à Fatima."},
-       {sp:"A",ar:"وَهَذَا الْقَمِيصُ؟",fr:"Et cette chemise ?"},
-       {sp:"B",ar:"هَذَا الْقَمِيصُ لِي.",fr:"Cette chemise est à moi."},
-       {sp:"A",ar:"وَهَذِهِ السَّاعَةُ؟",fr:"Et cette montre ?"},
-       {sp:"B",ar:"هَذِهِ السَّاعَةُ لَكَ.",fr:"Cette montre est à toi."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire لِمَنْ ؟",options:["À qui ?","Où ?","Quand ?","Quoi ?"],correct:0},
-       {type:"qcm",q:"Comment dit-on « couteau » ?",options:["سِكِّينٌ","مِلْعَقَةٌ","شَوْكَةٌ","طَبَقٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « cuillère » ?",options:["مِلْعَقَةٌ","سِكِّينٌ","شَوْكَةٌ","كُوبٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire قَمِيصٌ ?",options:["Chemise","Pantalon","Veste","Chaussure"],correct:0},
-       {type:"qcm",q:"Comment dit-on « chaussure » ?",options:["حِذَاءٌ","جَاكِيتٌ","قَمِيصٌ","بَنْطَالٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire نَظَّارَةٌ ?",options:["Lunettes","Bague","Chapeau","Montre"],correct:0},
-       {type:"qcm",q:"Comment dit-on « cahier » ?",options:["دَفْتَرٌ","مِمْحَاةٌ","مِسْطَرَةٌ","حَاسُوبٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « pour moi » ?",options:["لِي","لَكَ","لَهُ","لَهَا"],correct:0},
-       {type:"qcm",q:"Que veut dire لَهُ ?",options:["Pour lui","Pour moi","Pour toi","Pour elle"],correct:0},
-       {type:"qcm",q:"Comment dit-on « chapeau » ?",options:["قُبَّعَةٌ","خَاتَمٌ","نَظَّارَةٌ","حِذَاءٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire حَاسُوبٌ ?",options:["Ordinateur","Téléphone","Tablette","Télévision"],correct:0},
-       {type:"qcm",q:"Comment dit-on « écharpe » ?",options:["وِشَاحٌ","حِزَامٌ","جَوْرَبٌ","قُفَّازٌ"],correct:0},
-       {type:"tf",ar:"هَذَا الْكِتَابُ لِمُحَمَّدٍ",q:"Signifie « Ce livre est à Muhammad »",correct:true},
-       {type:"tf",q:"La particule لِ signifie « dans »",correct:false,explain:"Non, لِ = pour/à."},
-       {type:"tf",ar:"هَذَا الْقَلَمُ لِي",q:"Signifie « Ce stylo est à moi »",correct:true},
-       {type:"tf",ar:"لِمَنْ هَذَا الْكِتَابُ؟",q:"Signifie « Où est ce livre ? »",correct:false,explain:"لِمَنْ = à qui."},
-       {type:"fill",sentence:"___ هَذَا الْكِتَابُ؟",options:["لِمَنْ","أَيْنَ","مَا","مَنْ"],correct:0},
-       {type:"fill",sentence:"هَذَا الْكِتَابُ ___",options:["لِي","فِي","عَلَى","مِنْ"],correct:0},
-       {type:"fill",sentence:"هَذَا الْقَلَمُ ___",options:["لِمُحَمَّدٍ","فِي","عَلَى","مِنْ"],correct:0},
-       {type:"type",q:"Écris « pour moi » :",answer:"لِي",hint:"ل + ي"},
-       {type:"type",q:"Écris « pour lui » :",answer:"لَهُ",hint:"ل + ه"},
-       {type:"type",q:"Écris « couteau » :",answer:"سِكِّينٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « cuillère » :",answer:"مِلْعَقَةٌ",hint:"م ل ع ق + ة"},
-       {type:"type",q:"Écris « chemise » :",answer:"قَمِيصٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « lunettes » :",answer:"نَظَّارَةٌ",hint:"ن ظ ا ر + ة"},
-       {type:"order",q:"Reconstitue :",words:["لِمُحَمَّدٍ","الْكِتَابُ","هَذَا"],answer:"هَذَا الْكِتَابُ لِمُحَمَّدٍ"},
-       {type:"order",q:"Reconstitue :",words:["الْكِتَابُ","لِمَنْ","هَذَا","؟"],answer:"لِمَنْ هَذَا الْكِتَابُ ؟"},
-       {type:"order",q:"Reconstitue :",words:["لِي","الْقَلَمُ","هَذَا"],answer:"هَذَا الْقَلَمُ لِي"},
-       {type:"order",q:"Reconstitue :",words:["لِعَلِيٍّ","الْقَلَمُ","هَذَا"],answer:"هَذَا الْقَلَمُ لِعَلِيٍّ"},
-       {type:"order",q:"Reconstitue :",words:["لِفَاطِمَةَ","الْحَقِيبَةُ","هَذِهِ"],answer:"هَذِهِ الْحَقِيبَةُ لِفَاطِمَةَ"},
-       {type:"audio",audioText:"هَذَا الْكِتَابُ لِمُحَمَّدٍ",options:["هَذَا الْكِتَابُ لِمُحَمَّدٍ","هَذَا الْقَلَمُ لِمُحَمَّدٍ","هَذَا الْكِتَابُ لِعَلِيٍّ","هَذَا الْكِتَابُ لِي"],correct:0},
-       {type:"audio",audioText:"لِمَنْ هَذَا الْقَلَمُ؟",options:["لِمَنْ هَذَا الْكِتَابُ؟","لِمَنْ هَذَا الْقَلَمُ؟","لِمَنْ هَذَا الْمِفْتَاحُ؟","لِمَنْ هَذَا السِّكِّينُ؟"],correct:1},
-       {type:"audio",audioText:"هَذِهِ الْحَقِيبَةُ لِفَاطِمَةَ",options:["هَذِهِ الْحَقِيبَةُ لِفَاطِمَةَ","هَذِهِ الْحَقِيبَةُ لِي","هَذِهِ الْحَقِيبَةُ لِمُحَمَّدٍ","هَذَا الْكِتَابُ لِفَاطِمَةَ"],correct:0},
-       {type:"audio",audioText:"هَذَا الْقَمِيصُ لِي",options:["هَذَا الْقَمِيصُ لَكَ","هَذَا الْقَمِيصُ لِي","هَذَا الْقَمِيصُ لَهُ","هَذَا الْقَمِيصُ لَهَا"],correct:1}
-     ]},
-
-    /* ===== LEÇON 9 ===== */
-    {id:"t1l9", num:9, title:"Leçon 9", desc:"Les adjectifs (نعت)",
-     active:true, audio:"assets/audio/madinah/tome1/L09.mp3",
-     text:["هَذَا كِتَابٌ جَدِيدٌ","هَذَا رَجُلٌ غَنِيٌّ","هَذِهِ بِنْتٌ صَغِيرَةٌ",
-           "اللُّغَةُ الْعَرَبِيَّةُ سَهْلَةٌ","الْعُصْفُورُ طَائِرٌ صَغِيرٌ","الْفَاكِهَةُ لَذِيذَةٌ"],
-     vocab:[
-       {ar:"شَهِيرٌ",fr:"Célèbre",tr:"shahīr"},
-       {ar:"صَعْبٌ",fr:"Difficile",tr:"ṣaʿb"},
-       {ar:"سَهْلٌ",fr:"Facile",tr:"sahl"},
-       {ar:"جَمِيلٌ",fr:"Beau",tr:"jamīl"},
-       {ar:"قَبِيحٌ",fr:"Laid",tr:"qabīḥ"},
-       {ar:"كَبِيرٌ",fr:"Grand",tr:"kabīr"},
-       {ar:"صَغِيرٌ",fr:"Petit",tr:"ṣaghīr"},
-       {ar:"جَدِيدٌ",fr:"Nouveau",tr:"jadīd"},
-       {ar:"قَدِيمٌ",fr:"Vieux",tr:"qadīm"},
-       {ar:"طَوِيلٌ",fr:"Long",tr:"ṭawīl"},
-       {ar:"قَصِيرٌ",fr:"Court",tr:"qaṣīr"},
-       {ar:"سَرِيعٌ",fr:"Rapide",tr:"sarīʿ"},
-       {ar:"بَطِيءٌ",fr:"Lent",tr:"baṭīʾ"},
-       {ar:"قَوِيٌّ",fr:"Fort",tr:"qawiyy"},
-       {ar:"ضَعِيفٌ",fr:"Faible",tr:"ḍaʿīf"},
-       {ar:"غَنِيٌّ",fr:"Riche",tr:"ghaniyy"},
-       {ar:"فَقِيرٌ",fr:"Pauvre",tr:"faqīr"},
-       {ar:"لَذِيذٌ",fr:"Délicieux",tr:"ladhīdh"},
-       {ar:"مُرٌّ",fr:"Amer",tr:"murr"},
-       {ar:"حُلْوٌ",fr:"Doux",tr:"ḥulw"},
-       {ar:"حَامِضٌ",fr:"Acide",tr:"ḥāmiḍ"},
-       {ar:"مَالِحٌ",fr:"Salé",tr:"māliḥ"},
-       {ar:"حَارٌّ",fr:"Chaud",tr:"ḥārr"},
-       {ar:"بَارِدٌ",fr:"Froid",tr:"bārid"},
-       {ar:"نَظِيفٌ",fr:"Propre",tr:"naẓīf"},
-       {ar:"وَسِخٌ",fr:"Sale",tr:"wasikh"},
-       {ar:"مُجْتَهِدٌ",fr:"Travailleur",tr:"mujtahid"},
-       {ar:"كَسُولٌ",fr:"Paresseux",tr:"kasūl"},
-       {ar:"ذَكِيٌّ",fr:"Intelligent",tr:"dhakiyy"},
-       {ar:"أَحْمَقٌ",fr:"Idiot",tr:"aḥmaq"},
-       {ar:"كَرِيمٌ",fr:"Généreux",tr:"karīm"},
-       {ar:"بَخِيلٌ",fr:"Avare",tr:"bakhīl"},
-       {ar:"صَادِقٌ",fr:"Véridique",tr:"ṣādiq"},
-       {ar:"كَاذِبٌ",fr:"Menteur",tr:"kādhib"},
-       {ar:"شُجَاعٌ",fr:"Courageux",tr:"shujāʿ"},
-       {ar:"جَبَانٌ",fr:"Peureux",tr:"jabān"},
-       {ar:"فَاكِهَةٌ",fr:"Fruit",tr:"fākiha"},
-       {ar:"عُصْفُورٌ",fr:"Moineau",tr:"ʿuṣfūr"},
-       {ar:"لُغَةٌ",fr:"Langue",tr:"lugha"},
-       {ar:"طَائِرٌ",fr:"Oiseau",tr:"ṭāʾir"},
-       {ar:"لِمَاذَا",fr:"Pourquoi ?",tr:"limādhā"},
-       {ar:"اللُّغَةُ الْعَرَبِيَّةُ",fr:"La langue arabe",tr:"al-lugha al-ʿarabiyya"},
-       {ar:"اللُّغَةُ الْإِنْجِلِيزِيَّةُ",fr:"La langue anglaise",tr:"al-lugha al-injlīziyya"},
-       {ar:"اللُّغَةُ الْفَرَنْسِيَّةُ",fr:"La langue française",tr:"al-lugha al-faransiyya"},
-       {ar:"كَلِمَةٌ",fr:"Mot",tr:"kalima"}
-     ],
-     grammar:{title:"L'adjectif (نعت) et le nom décrit (منعوت)",
-       rule:"En arabe, l'adjectif (نعت) suit le nom (منعوت) et s'accorde avec lui en genre, en nombre, en cas et en définitude.",
-       examples:["هَذَا كِتَابٌ جَدِيدٌ = C'est un nouveau livre","الْبِنْتُ صَغِيرَةٌ = La fille est petite","اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ = La langue arabe est belle"]},
+     grammar:{title:"Révision : démonstratifs, démonstratifs de lieu, interrogatifs, jours",
+       rule:"1) Les 4 démonstratifs du singulier : هَذَا (masc. proche), هَذِهِ (fém. proche), ذَلِكَ (masc. lointain), تِلْكَ (fém. lointain). 2) هُنَا (ici, proche) et هُنَاكَ (là-bas, loin) sont des démonstratifs de lieu. 3) L'interrogation : أ (particule, question fermée), أَيْنَ (lieu), مَنْ (êtres doués de raison), مَا (êtres non doués de raison). 4) مَاذَا = contraction de مَا + ذَا. 5) Les 7 jours de la semaine.",
+       examples:["هَذَا بَيْتٌ وَهَذِهِ مَدْرَسَةٌ = Ceci est une maison et ceci est une école","الْبَيْتُ هُنَا = La maison est ici","مَاذَا هُنَاكَ؟ = Qu'y a-t-il là-bas ?","الْيَوْمُ الْأَحَدُ = Dimanche"]},
      dialogue:[
        {sp:"A",ar:"مَا هَذَا؟",fr:"Qu'est-ce que c'est ?"},
-       {sp:"B",ar:"هَذَا عُصْفُورٌ صَغِيرٌ.",fr:"C'est un petit moineau."},
-       {sp:"A",ar:"أَهُوَ جَمِيلٌ؟",fr:"Est-il beau ?"},
-       {sp:"B",ar:"نَعَمْ، هُوَ جَمِيلٌ جِدًّا.",fr:"Oui, il est très beau."},
-       {sp:"A",ar:"وَمَا هَذِهِ؟",fr:"Et qu'est-ce que c'est (elle) ?"},
-       {sp:"B",ar:"هَذِهِ لُغَةٌ صَعْبَةٌ.",fr:"C'est une langue difficile."},
-       {sp:"A",ar:"هَلِ اللُّغَةُ الْعَرَبِيَّةُ صَعْبَةٌ؟",fr:"La langue arabe est-elle difficile ?"},
-       {sp:"B",ar:"لَا، هِيَ سَهْلَةٌ وَجَمِيلَةٌ.",fr:"Non, elle est facile et belle."}
+       {sp:"B",ar:"هَذَا بَيْتٌ.",fr:"C'est une maison."},
+       {sp:"A",ar:"وَمَا ذَلِكَ؟",fr:"Et qu'est-ce que cela ?"},
+       {sp:"B",ar:"ذَلِكَ مَسْجِدٌ.",fr:"C'est une mosquée."},
+       {sp:"A",ar:"أَيْنَ الْكِتَابُ؟",fr:"Où est le livre ?"},
+       {sp:"B",ar:"الْكِتَابُ هُنَا.",fr:"Le livre est ici."},
+       {sp:"A",ar:"وَأَيْنَ الْقِطُّ؟",fr:"Et où est le chat ?"},
+       {sp:"B",ar:"الْقِطُّ هُنَاكَ.",fr:"Le chat est là-bas."},
+       {sp:"A",ar:"مَاذَا هُنَاكَ؟",fr:"Qu'y a-t-il là-bas ?"},
+       {sp:"B",ar:"هُنَاكَ مَسْجِدٌ.",fr:"Là-bas, il y a une mosquée."},
+       {sp:"A",ar:"مَنْ هَذَا؟",fr:"Qui est-ce ?"},
+       {sp:"B",ar:"هَذَا يَاسِرٌ.",fr:"C'est Yasir."},
+       {sp:"A",ar:"مَا هَذَا؟",fr:"Qu'est-ce que c'est ?"},
+       {sp:"B",ar:"هَذَا قَلَمٌ.",fr:"C'est un stylo."}
      ],
      exercises:[
-       {type:"qcm",q:"Que veut dire شَهِيرٌ ؟",options:["Célèbre","Inconnu","Grand","Petit"],correct:0},
-       {type:"qcm",q:"Comment dit-on « difficile » ?",options:["صَعْبٌ","سَهْلٌ","جَمِيلٌ","قَبِيحٌ"],correct:0},
-       {type:"qcm",q:"Où se place l'adjectif en arabe ?",options:["Après le nom","Avant le nom","N'importe où","Au début"],correct:0},
-       {type:"qcm",q:"Que veut dire كَبِيرٌ ؟",options:["Grand","Petit","Long","Court"],correct:0},
-       {type:"qcm",q:"Comment dit-on « rapide » ?",options:["سَرِيعٌ","بَطِيءٌ","طَوِيلٌ","قَصِيرٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire نَظِيفٌ ؟",options:["Propre","Sale","Chaud","Froid"],correct:0},
-       {type:"qcm",q:"Comment dit-on « chaud » ?",options:["حَارٌّ","بَارِدٌ","سَخِينٌ","فَاتِرٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire ذَكِيٌّ ؟",options:["Intelligent","Idiot","Paresseux","Travailleur"],correct:0},
-       {type:"qcm",q:"Comment dit-on « généreux » ?",options:["كَرِيمٌ","بَخِيلٌ","شُجَاعٌ","جَبَانٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire صَادِقٌ ؟",options:["Véridique","Menteur","Courageux","Peureux"],correct:0},
-       {type:"qcm",q:"Comment dit-on « fruit » ?",options:["فَاكِهَةٌ","لُغَةٌ","عُصْفُورٌ","طَائِرٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire لَذِيذٌ ؟",options:["Délicieux","Amer","Salé","Acide"],correct:0},
-       {type:"tf",ar:"هَذَا كِتَابٌ جَدِيدٌ",q:"Signifie « C'est un nouveau livre »",correct:true},
-       {type:"tf",q:"En arabe, l'adjectif vient AVANT le nom",correct:false,explain:"L'adjectif suit le nom."},
-       {type:"tf",ar:"اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ",q:"Signifie « La langue arabe est belle »",correct:true},
-       {type:"tf",ar:"هَذَا رَجُلٌ غَنِيٌّ",q:"Signifie « C'est un homme pauvre »",correct:false,explain:"غَنِيٌّ = riche."},
-       {type:"fill",sentence:"هَذَا كِتَابٌ ___",options:["جَدِيدٌ","الْجَدِيدُ","جَدِيدَةٌ","جَدِيدَانِ"],correct:0},
-       {type:"fill",sentence:"هَذِهِ بِنْتٌ ___",options:["صَغِيرَةٌ","صَغِيرٌ","صِغَارٌ","صَغِيرَانِ"],correct:0},
-       {type:"fill",sentence:"اللُّغَةُ الْعَرَبِيَّةُ ___",options:["سَهْلَةٌ","سَهْلٌ","سُهُولَةٌ","سَهْلَانِ"],correct:0},
-       {type:"type",q:"Écris « célèbre » :",answer:"شَهِيرٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « facile » :",answer:"سَهْلٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « difficile » :",answer:"صَعْبٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « beau » :",answer:"جَمِيلٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « grand » :",answer:"كَبِيرٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « langue » :",answer:"لُغَةٌ",hint:"3 lettres + ة"},
-       {type:"order",q:"Reconstitue :",words:["جَدِيدٌ","كِتَابٌ","هَذَا"],answer:"هَذَا كِتَابٌ جَدِيدٌ"},
-       {type:"order",q:"Reconstitue :",words:["صَغِيرَةٌ","بِنْتٌ","هَذِهِ"],answer:"هَذِهِ بِنْتٌ صَغِيرَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["غَنِيٌّ","رَجُلٌ","هَذَا"],answer:"هَذَا رَجُلٌ غَنِيٌّ"},
-       {type:"order",q:"Reconstitue :",words:["جَمِيلٌ","عُصْفُورٌ","هَذَا"],answer:"هَذَا عُصْفُورٌ جَمِيلٌ"},
-       {type:"order",q:"Reconstitue :",words:["لَذِيذَةٌ","فَاكِهَةٌ","هَذِهِ"],answer:"هَذِهِ فَاكِهَةٌ لَذِيذَةٌ"},
-       {type:"audio",audioText:"هَذَا كِتَابٌ جَدِيدٌ",options:["هَذَا كِتَابٌ جَدِيدٌ","هَذَا كِتَابٌ قَدِيمٌ","هَذَا قَلَمٌ جَدِيدٌ","هَذَا كِتَابٌ صَغِيرٌ"],correct:0},
-       {type:"audio",audioText:"هَذَا رَجُلٌ غَنِيٌّ",options:["هَذَا رَجُلٌ فَقِيرٌ","هَذَا رَجُلٌ غَنِيٌّ","هَذَا رَجُلٌ كَبِيرٌ","هَذَا رَجُلٌ جَدِيدٌ"],correct:1},
-       {type:"audio",audioText:"اللُّغَةُ الْعَرَبِيَّةُ سَهْلَةٌ",options:["اللُّغَةُ الْعَرَبِيَّةُ صَعْبَةٌ","اللُّغَةُ الْعَرَبِيَّةُ سَهْلَةٌ","اللُّغَةُ الْإِنْجِلِيزِيَّةُ سَهْلَةٌ","اللُّغَةُ الْعَرَبِيَّةُ جَمِيلَةٌ"],correct:1},
-       {type:"audio",audioText:"هَذِهِ بِنْتٌ صَغِيرَةٌ",options:["هَذِهِ بِنْتٌ صَغِيرَةٌ","هَذَا وَلَدٌ صَغِيرٌ","هَذِهِ بِنْتٌ كَبِيرَةٌ","هَذِهِ فَتَاةٌ جَمِيلَةٌ"],correct:0}
+       /* Bloc 1 — Les 4 démonstratifs (10 questions) */
+       {type:"qcm",q:"Que veut dire هَذَا ?",options:["Ceci (masc. proche)","Cela (masc. lointain)","Ceci (fém. proche)","Celle-là (fém. lointain)"],correct:0},
+       {type:"qcm",q:"Que veut dire هَذِهِ ?",options:["Ceci (fém. proche)","Ceci (masc. proche)","Cela (masc. lointain)","Celle-là (fém. lointain)"],correct:0},
+       {type:"qcm",q:"Que veut dire ذَلِكَ ?",options:["Cela (masc. lointain)","Ceci (masc. proche)","Ceci (fém. proche)","Celle-là (fém. lointain)"],correct:0},
+       {type:"qcm",q:"Que veut dire تِلْكَ ?",options:["Celle-là (fém. lointain)","Ceci (masc. proche)","Ceci (fém. proche)","Cela (masc. lointain)"],correct:0},
+       {type:"fill",sentence:"___ بَيْتٌ (proche, masc.)",options:["هَذَا","هَذِهِ","ذَلِكَ","تِلْكَ"],correct:0},
+       {type:"fill",sentence:"___ مَدْرَسَةٌ (proche, fém.)",options:["هَذِهِ","هَذَا","ذَلِكَ","تِلْكَ"],correct:0},
+       {type:"fill",sentence:"___ مَسْجِدٌ (lointain, masc.)",options:["ذَلِكَ","هَذَا","هَذِهِ","تِلْكَ"],correct:0},
+       {type:"fill",sentence:"___ نَاقَةٌ (lointain, fém.)",options:["تِلْكَ","هَذَا","هَذِهِ","ذَلِكَ"],correct:0},
+       {type:"tf",q:"هَذَا et هَذِهِ sont pour le proche",correct:true,explain:""},
+       {type:"tf",q:"تِلْكَ est utilisé pour le masculin",correct:false,explain:"Non, تِلْكَ est utilisé pour le féminin lointain. Pour le masculin lointain, on utilise ذَلِكَ."},
+       /* Bloc 2 — هُنَا et هُنَاكَ (8 questions) */
+       {type:"qcm",q:"Que veut dire هُنَا ?",options:["Ici (proche)","Là-bas (loin)","Où ?","Quand ?"],correct:0},
+       {type:"qcm",q:"Que veut dire هُنَاكَ ?",options:["Là-bas (loin)","Ici (proche)","Où ?","Quand ?"],correct:0},
+       {type:"qcm",q:"هُنَا indique :",options:["Un lieu proche","Un lieu lointain","Un temps","Une personne"],correct:0},
+       {type:"qcm",q:"هُنَاكَ indique :",options:["Un lieu lointain","Un lieu proche","Un temps","Une personne"],correct:0},
+       {type:"fill",sentence:"الْبَيْتُ ___ (ici)",options:["هُنَا","هُنَاكَ","أَيْنَ","مَاذَا"],correct:0},
+       {type:"fill",sentence:"الْمَسْجِدُ ___ (là-bas)",options:["هُنَاكَ","هُنَا","أَيْنَ","مَاذَا"],correct:0},
+       {type:"type",q:"Traduire : الْبَيْتُ هُنَا",answers:["La maison est ici"],hint:"هُنَا = ici"},
+       {type:"type",q:"Traduire : الْمَسْجِدُ هُنَاكَ",answers:["La mosquée est là-bas"],hint:"هُنَاكَ = là-bas"},
+       /* Bloc 3 — Les interrogatifs (10 questions) */
+       {type:"qcm",q:"Quel interrogatif utilise-t-on pour le lieu ?",options:["أَيْنَ","مَنْ","مَا","أَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif utilise-t-on pour les êtres doués de raison ?",options:["مَنْ","مَا","أَيْنَ","أَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif utilise-t-on pour les êtres non doués de raison ?",options:["مَا","مَنْ","أَيْنَ","أَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif est une particule ?",options:["أَ","مَا","مَنْ","أَيْنَ"],correct:0},
+       {type:"fill",sentence:"___ الْكِتَابُ ؟",options:["أَيْنَ","مَنْ","مَا","أَ"],correct:0},
+       {type:"fill",sentence:"___ هَذَا ؟ (personne)",options:["مَنْ","مَا","أَيْنَ","أَ"],correct:0},
+       {type:"fill",sentence:"___ هَذَا ؟ (chose)",options:["مَا","مَنْ","أَيْنَ","أَ"],correct:0},
+       {type:"fill",sentence:"___ هَذَا كِتَابٌ ؟",options:["أَ","مَا","مَنْ","أَيْنَ"],correct:0},
+       {type:"type",q:"Traduire : أَيْنَ الْكِتَابُ ؟",answers:["Où est le livre ?"],hint:"Question sur le lieu"},
+       {type:"type",q:"Traduire : مَنْ هَذَا ؟",answers:["Qui est-ce ?"],hint:"Question sur une personne"},
+       /* Bloc 4 — مَاذَا (6 questions) */
+       {type:"qcm",q:"مَاذَا est la contraction de :",options:["مَا + ذَا","مَنْ + ذَا","أَيْنَ + ذَا","أَ + ذَا"],correct:0},
+       {type:"qcm",q:"Que veut dire مَاذَا ?",options:["Qu'est-ce que ?","Qui ?","Où ?","Quand ?"],correct:0},
+       {type:"fill",sentence:"___ هُنَاكَ ؟",options:["مَاذَا","مَنْ","أَيْنَ","أَ"],correct:0},
+       {type:"fill",sentence:"___ عَلَى الْمَكْتَبِ ؟",options:["مَاذَا","مَنْ","أَيْنَ","أَ"],correct:0},
+       {type:"fill",sentence:"___ فِي الْفَصْلِ ؟",options:["مَاذَا","مَنْ","أَيْنَ","أَ"],correct:0},
+       {type:"type",q:"Traduire : مَاذَا هُنَاكَ ؟",answers:["Qu'y a-t-il là-bas ?"],hint:"Question avec مَاذَا"},
+       /* Bloc 5 — Les jours de la semaine (8 questions) */
+       {type:"qcm",q:"Que veut dire الْأَحَدُ ?",options:["Dimanche","Lundi","Mardi","Mercredi"],correct:0},
+       {type:"qcm",q:"Que veut dire الِاثْنَيْنِ ?",options:["Lundi","Dimanche","Mardi","Mercredi"],correct:0},
+       {type:"qcm",q:"Que veut dire الثُّلَاثَاءُ ?",options:["Mardi","Lundi","Mercredi","Jeudi"],correct:0},
+       {type:"qcm",q:"Que veut dire الْأَرْبِعَاءُ ?",options:["Mercredi","Mardi","Jeudi","Vendredi"],correct:0},
+       {type:"qcm",q:"Que veut dire الْخَمِيسُ ?",options:["Jeudi","Mercredi","Vendredi","Samedi"],correct:0},
+       {type:"qcm",q:"Que veut dire الْجُمُعَةُ ?",options:["Vendredi","Jeudi","Samedi","Dimanche"],correct:0},
+       {type:"qcm",q:"Que veut dire السَّبْتُ ?",options:["Samedi","Vendredi","Dimanche","Lundi"],correct:0},
+       {type:"tf",q:"الْجُمُعَةُ est le vendredi",correct:true,explain:""},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « ici » :",answers:["هُنَا"],hint:"3 lettres"},
+       {type:"type",q:"Écris « là-bas » :",answers:["هُنَاكَ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « dimanche » :",answers:["الْأَحَدُ"],hint:"avec ال"},
+       {type:"type",q:"Écris « vendredi » :",answers:["الْجُمُعَةُ"],hint:"avec ال"},
+       {type:"type",q:"Écris « qu'y a-t-il ? » :",answers:["مَاذَا"],hint:"4 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["هُنَا","الْبَيْتُ"],answer:"الْبَيْتُ هُنَا"},
+       {type:"order",q:"Reconstitue :",words:["هُنَاكَ","الْمَسْجِدُ"],answer:"الْمَسْجِدُ هُنَاكَ"},
+       {type:"order",q:"Reconstitue :",words:["الْكِتَابُ","أَيْنَ","؟"],answer:"أَيْنَ الْكِتَابُ ؟"},
+       {type:"order",q:"Reconstitue :",words:["هَذَا","مَنْ","؟"],answer:"مَنْ هَذَا ؟"},
+       {type:"order",q:"Reconstitue :",words:["هُنَاكَ","مَاذَا","؟"],answer:"مَاذَا هُنَاكَ ؟"}
      ]},
 
-    /* ===== LEÇON 10 ===== */
-    {id:"t1l10", num:10, title:"Leçon 10", desc:"Les pronoms personnels",
-     active:true, audio:"assets/audio/madinah/tome1/L10.mp3",
-     text:["أَنَا طَالِبٌ","أَنْتَ مُدَرِّسٌ","أَنْتِ طَالِبَةٌ","هُوَ رَجُلٌ","هِيَ امْرَأَةٌ",
-           "نَحْنُ طُلَّابٌ","أَنْتُمْ مُدَرِّسُونَ","هُمْ رِجَالٌ","هُنَّ نِسَاءٌ"],
+    /* ===== RÉVISION 2 (Semaine de révision 1 - 2) ===== */
+    {id:"t1l11", num:11, title:"Révision 2", desc:"Semaine 1 · Noms définis, prépositions, pourquoi",
+     active:true, audio:null, pdf:"",
+     text:[
+       "الطَّالِبُ فِي الْجَامِعَةِ",
+       "الرَّجُلُ فِي الْمَسْجِدِ",
+       "أَيْنَ زَيْنَبُ؟ هِيَ فِي الْغُرْفَةِ",
+       "الْقَلَمُ عَلَى الْمَكْتَبِ",
+       "أَيْنَ الْوَرَقُ؟ هُوَ عَلَى الْمَكْتَبِ",
+       "أَيْنَ الْمُدَرِّسُ؟ هُوَ فِي الْفَصْلِ",
+       "أَيْنَ يَاسِرٌ؟ هُوَ فِي الْمِرْحَاضِ",
+       "الشَّمْسُ وَالْقَمَرُ فِي السَّمَاءِ",
+       "مَنْ فِي الْفَصْلِ؟",
+       "الْكِتَابُ لِزَيْدٍ",
+       "لِمَاذَا فَشِلَ زَيْدٌ فِي الْاِخْتِبَارِ؟ لِأَنَّهُ كَسْلَانُ",
+       "الْكِتَابُ فِي الْبَيْتِ",
+       "الْقَلَمُ فِي الْمَدْرَسَةِ",
+       "الْحِمَارُ فِي الْمَزْرَعَةِ",
+       "الْقِطُّ عَلَى السَّرِيرِ",
+       "الْكَلْبُ تَحْتَ الْمَكْتَبِ",
+       "الطَّائِرُ فَوْقَ الشَّجَرَةِ",
+       "الْبَيْتُ قَرِيبٌ مِنَ الْمَسْجِدِ",
+       "الْكِتَابُ لِلطَّالِبِ",
+       "الْقَلَمُ لِلْمُدَرِّسِ",
+       "الْبَيْتُ لِلتَّاجِرِ",
+       "الْمَسْجِدُ لِلْمُسْلِمِينَ"
+     ],
      vocab:[
+       {ar:"الْمَعَارِفُ",fr:"Les noms définis",tr:"al-maʿārif"},
+       {ar:"الْمُعَرَّفُ بِال",fr:"Défini par ال",tr:"al-muʿarraf bi-al"},
+       {ar:"أَسْمَاءُ الْإِشَارَةِ",fr:"Les démonstratifs",tr:"asmāʾ al-ishāra"},
+       {ar:"الْعَلَمُ",fr:"Le nom propre",tr:"al-ʿalam"},
+       {ar:"حُرُوفُ الْجَرِّ",fr:"Les prépositions",tr:"ḥurūf al-jarr"},
+       {ar:"لِمَاذَا",fr:"Pourquoi ?",tr:"limādhā"},
+       {ar:"لِأَنَّ",fr:"Parce que",tr:"liʾanna"},
+       {ar:"الْجَامِعَةُ",fr:"L'université",tr:"al-jāmiʿa"},
+       {ar:"الْغُرْفَةُ",fr:"La chambre",tr:"al-ghurfa"},
+       {ar:"الْوَرَقُ",fr:"Le papier",tr:"al-waraq"},
+       {ar:"الْمِرْحَاضُ",fr:"Les toilettes",tr:"al-mirḥāḍ"},
+       {ar:"السَّمَاءُ",fr:"Le ciel",tr:"al-samāʾ"},
+       {ar:"الْاِخْتِبَارُ",fr:"L'examen",tr:"al-ikhtibār"},
+       {ar:"كَسْلَانُ",fr:"Paresseux",tr:"kaslān"},
+       {ar:"الْمَزْرَعَةُ",fr:"La ferme",tr:"al-mazraʿa"},
+       {ar:"السَّرِيرُ",fr:"Le lit",tr:"al-sarīr"},
+       {ar:"الْمَكْتَبُ",fr:"Le bureau",tr:"al-maktab"},
+       {ar:"الشَّجَرَةُ",fr:"L'arbre",tr:"al-shajara"},
+       {ar:"الطَّالِبُ",fr:"L'étudiant",tr:"al-ṭālib"},
+       {ar:"الْمُدَرِّسُ",fr:"Le professeur",tr:"al-mudarris"},
+       {ar:"التَّاجِرُ",fr:"Le commerçant",tr:"al-tājir"},
+       {ar:"الْمُسْلِمُونَ",fr:"Les musulmans",tr:"al-muslimūn"},
+       {ar:"زَيْنَبُ",fr:"Zaynab",tr:"Zaynab"},
+       {ar:"يَاسِرٌ",fr:"Yasir",tr:"Yāsir"},
+       {ar:"زَيْدٌ",fr:"Zayd",tr:"Zayd"},
+       {ar:"مِنْ",fr:"De",tr:"min"},
+       {ar:"إِلَى",fr:"Vers",tr:"ilā"},
+       {ar:"لِـ",fr:"Appartient à",tr:"li"}
+     ],
+     grammar:{title:"Révision : les noms définis, les prépositions, لِمَاذَا",
+       rule:"1) Les 3 types de noms définis (المعرفة) : ال + أسماء الإشارة + العلم. 2) ال rend un nom défini et fait perdre le tanwin. 3) Les prépositions (حروف الجر) : فِي، عَلَى، مِنْ، إِلَى، لِـ. La préposition rend le nom qui suit مجرور (kasra). 4) لِمَاذَا = contraction de لِ + مَا + ذَا (Pourquoi ?).",
+       examples:["الْكِتَابُ لِزَيْدٍ = Le livre appartient à Zayd","لِمَاذَا فَشِلَ زَيْدٌ؟ لِأَنَّهُ كَسْلَانُ = Pourquoi Zayd a-t-il échoué ? Parce qu'il est paresseux","الْكِتَابُ فِي الْبَيْتِ = Le livre est dans la maison"]},
+     dialogue:[
+       {sp:"A",ar:"أَيْنَ الطَّالِبُ؟",fr:"Où est l'étudiant ?"},
+       {sp:"B",ar:"الطَّالِبُ فِي الْجَامِعَةِ.",fr:"L'étudiant est à l'université."},
+       {sp:"A",ar:"أَيْنَ زَيْنَبُ؟",fr:"Où est Zaynab ?"},
+       {sp:"B",ar:"هِيَ فِي الْغُرْفَةِ.",fr:"Elle est dans la chambre."},
+       {sp:"A",ar:"أَيْنَ الْقَلَمُ؟",fr:"Où est le stylo ?"},
+       {sp:"B",ar:"هُوَ عَلَى الْمَكْتَبِ.",fr:"Il est sur le bureau."},
+       {sp:"A",ar:"أَيْنَ الشَّمْسُ وَالْقَمَرُ؟",fr:"Où sont le soleil et la lune ?"},
+       {sp:"B",ar:"هُمَا فِي السَّمَاءِ.",fr:"Ils sont dans le ciel."},
+       {sp:"A",ar:"لِمَنْ هَذَا الْكِتَابُ؟",fr:"À qui appartient ce livre ?"},
+       {sp:"B",ar:"هُوَ لِزَيْدٍ.",fr:"Il appartient à Zayd."},
+       {sp:"A",ar:"لِمَاذَا فَشِلَ زَيْدٌ فِي الْاِخْتِبَارِ؟",fr:"Pourquoi Zayd a-t-il échoué à l'examen ?"},
+       {sp:"B",ar:"لِأَنَّهُ كَسْلَانُ.",fr:"Parce qu'il est paresseux."},
+       {sp:"A",ar:"أَيْنَ الْقِطُّ؟",fr:"Où est le chat ?"},
+       {sp:"B",ar:"هُوَ عَلَى السَّرِيرِ.",fr:"Il est sur le lit."}
+     ],
+     exercises:[
+       /* Bloc 1 — Les noms définis (10 questions) */
+       {type:"qcm",q:"Quels sont les 3 types de noms définis ?",options:["ال + أسماء الإشارة + العلم","ال + الفعل + الحرف","المبتدأ + الخبر + الفاعل","فِي + عَلَى + مِنْ"],correct:0},
+       {type:"qcm",q:"ال rend un nom :",options:["Défini","Indéfini","Pluriel","Féminin"],correct:0},
+       {type:"qcm",q:"ال fait perdre au nom :",options:["Son tanwin","Sa voyelle","Sa hamza","Sa lettre"],correct:0},
+       {type:"qcm",q:"Les أسماء الإشارة sont :",options:["هَذَا، هَذِهِ، ذَلِكَ، تِلْكَ","فِي، عَلَى، مِنْ","مَنْ، مَا، أَيْنَ","مُبْتَدَأ، خَبَر"],correct:0},
+       {type:"qcm",q:"العلم est :",options:["Le nom propre","Le nom commun","Le verbe","La particule"],correct:0},
+       {type:"type",q:"Compléter : بَيْتٌ → ___",answers:["الْبَيْتُ"],hint:"avec ال"},
+       {type:"type",q:"Compléter : كِتَابٌ → ___",answers:["الْكِتَابُ"],hint:"avec ال"},
+       {type:"type",q:"Compléter : قَلَمٌ → ___",answers:["الْقَلَمُ"],hint:"avec ال"},
+       {type:"tf",q:"ال rend un nom défini et fait perdre le tanwin",correct:true,explain:""},
+       {type:"tf",q:"العلم fait partie des noms indéfinis",correct:false,explain:"Non, العلم fait partie des noms définis."},
+       /* Bloc 2 — Les prépositions (10 questions) */
+       {type:"qcm",q:"Que veut dire فِي ?",options:["Dans","Sur","De","Vers"],correct:0},
+       {type:"qcm",q:"Que veut dire عَلَى ?",options:["Sur","Dans","De","Vers"],correct:0},
+       {type:"qcm",q:"Que veut dire مِنْ ?",options:["De","Dans","Sur","Vers"],correct:0},
+       {type:"qcm",q:"Que veut dire إِلَى ?",options:["Vers","Dans","Sur","De"],correct:0},
+       {type:"qcm",q:"Que veut dire لِـ ?",options:["Appartient à","Dans","Sur","De"],correct:0},
+       {type:"qcm",q:"Le nom après une préposition est :",options:["مجرور (kasra)","مرفوع (damma)","منصوب (fatha)","مجزوم (sukūn)"],correct:0},
+       {type:"fill",sentence:"الْكِتَابُ ___ الْبَيْتِ",options:["فِي","عَلَى","مِنْ","إِلَى"],correct:0},
+       {type:"fill",sentence:"الْقَلَمُ ___ الْمَكْتَبِ",options:["عَلَى","فِي","مِنْ","إِلَى"],correct:0},
+       {type:"type",q:"Traduire : فِي الْبَيْتِ",answers:["Dans la maison"],hint:"فِي = dans"},
+       {type:"type",q:"Traduire : مِنَ الْمَسْجِدِ",answers:["De la mosquée"],hint:"مِنْ = de"},
+       /* Bloc 3 — لِمَاذَا (8 questions) */
+       {type:"qcm",q:"لِمَاذَا est la contraction de :",options:["لِ + مَا + ذَا","لِ + مَنْ + ذَا","مَا + ذَا","مِنْ + مَا"],correct:0},
+       {type:"qcm",q:"Que veut dire لِمَاذَا ?",options:["Pourquoi ?","Quand ?","Où ?","Qui ?"],correct:0},
+       {type:"qcm",q:"Que veut dire لِأَنَّ ?",options:["Parce que","Pourquoi","Quand","Où"],correct:0},
+       {type:"fill",sentence:"___ فَشِلَ زَيْدٌ ؟",options:["لِمَاذَا","أَيْنَ","مَنْ","مَاذَا"],correct:0},
+       {type:"fill",sentence:"___ كَسْلَانُ",options:["لِأَنَّهُ","لِمَاذَا","أَيْنَ","مَنْ"],correct:0},
+       {type:"type",q:"Traduire : لِمَاذَا فَشِلَ زَيْدٌ ؟",answers:["Pourquoi Zayd a-t-il échoué ?"],hint:"Question avec لِمَاذَا"},
+       {type:"type",q:"Traduire : لِأَنَّهُ كَسْلَانُ",answers:["Parce qu'il est paresseux"],hint:"Réponse avec لِأَنَّ"},
+       {type:"tf",q:"لِمَاذَا signifie « Pourquoi ? »",correct:true,explain:""},
+       /* Bloc 4 — Vocabulaire QCM (12 questions) */
+       {type:"qcm",q:"Que veut dire الْجَامِعَةُ ?",options:["L'université","L'école","La bibliothèque","Le lycée"],correct:0},
+       {type:"qcm",q:"Que veut dire الْغُرْفَةُ ?",options:["La chambre","La cuisine","Le salon","Les toilettes"],correct:0},
+       {type:"qcm",q:"Que veut dire الْوَرَقُ ?",options:["Le papier","Le livre","Le cahier","La feuille"],correct:0},
+       {type:"qcm",q:"Que veut dire الْمِرْحَاضُ ?",options:["Les toilettes","La salle de bain","La chambre","La cuisine"],correct:0},
+       {type:"qcm",q:"Que veut dire السَّمَاءُ ?",options:["Le ciel","La terre","La mer","La montagne"],correct:0},
+       {type:"qcm",q:"Que veut dire الْاِخْتِبَارُ ?",options:["L'examen","La leçon","Le livre","Le cours"],correct:0},
+       {type:"qcm",q:"Que veut dire كَسْلَانُ ?",options:["Paresseux","Travailleur","Heureux","Triste"],correct:0},
+       {type:"qcm",q:"Que veut dire الْمَزْرَعَةُ ?",options:["La ferme","L'usine","Le jardin","La maison"],correct:0},
+       {type:"qcm",q:"Que veut dire السَّرِيرُ ?",options:["Le lit","La chaise","Le bureau","La table"],correct:0},
+       {type:"qcm",q:"Que veut dire الشَّجَرَةُ ?",options:["L'arbre","La fleur","Le fruit","La feuille"],correct:0},
+       {type:"qcm",q:"Que veut dire الطَّالِبُ ?",options:["L'étudiant","Le professeur","Le directeur","Le médecin"],correct:0},
+       {type:"qcm",q:"Que veut dire الْمُدَرِّسُ ?",options:["Le professeur","L'étudiant","Le directeur","Le médecin"],correct:0},
+       /* Bloc 5 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « dans » :",answers:["فِي"],hint:"2 lettres"},
+       {type:"type",q:"Écris « sur » :",answers:["عَلَى"],hint:"3 lettres"},
+       {type:"type",q:"Écris « de » :",answers:["مِنْ"],hint:"2 lettres"},
+       {type:"type",q:"Écris « pourquoi ? » :",answers:["لِمَاذَا"],hint:"5 lettres"},
+       {type:"type",q:"Écris « parce que » :",answers:["لِأَنَّ"],hint:"4 lettres"},
+       /* Bloc 6 — Traduction (5 questions) */
+       {type:"type",q:"Traduire : الطَّالِبُ فِي الْجَامِعَةِ",answers:["L'étudiant est à l'université"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْقَلَمُ عَلَى الْمَكْتَبِ",answers:["Le stylo est sur le bureau"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الشَّمْسُ وَالْقَمَرُ فِي السَّمَاءِ",answers:["Le soleil et la lune sont dans le ciel"],hint:"Phrase nominale avec وَ"},
+       {type:"type",q:"Traduire : الْكِتَابُ لِزَيْدٍ",answers:["Le livre appartient à Zayd"],hint:"لِ = appartient à"},
+       {type:"type",q:"Traduire : لِأَنَّهُ كَسْلَانُ",answers:["Parce qu'il est paresseux"],hint:"Réponse"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["الْجَامِعَةِ","فِي","الطَّالِبُ"],answer:"الطَّالِبُ فِي الْجَامِعَةِ"},
+       {type:"order",q:"Reconstitue :",words:["الْمَكْتَبِ","عَلَى","الْقَلَمُ"],answer:"الْقَلَمُ عَلَى الْمَكْتَبِ"},
+       {type:"order",q:"Reconstitue :",words:["السَّمَاءِ","فِي","وَالْقَمَرُ","الشَّمْسُ"],answer:"الشَّمْسُ وَالْقَمَرُ فِي السَّمَاءِ"},
+       {type:"order",q:"Reconstitue :",words:["لِزَيْدٍ","الْكِتَابُ"],answer:"الْكِتَابُ لِزَيْدٍ"},
+       {type:"order",q:"Reconstitue :",words:["كَسْلَانُ","لِأَنَّهُ"],answer:"لِأَنَّهُ كَسْلَانُ"}
+     ]},
+
+    /* ===== RÉVISION 3 (Semaine de révision 1 - 3) ===== */
+    {id:"t1l12", num:12, title:"Révision 3", desc:"Semaine 1 · الإعراب, masculin/féminin, phrase complète, verbe, salutations",
+     active:true, audio:null, pdf:"",
+     text:[
+       "هَذَا مُحَمَّدٌ",
+       "مُحَمَّدٌ إِسْمٌ مَرْفُوعٌ",
+       "ضَرَبَ زَيْدًا",
+       "زَيْدًا إِسْمٌ مَنْصُوبٌ",
+       "زَيْدٌ فِي الْبَيْتِ",
+       "الْبَيْتِ إِسْمٌ مَجْرُورٌ",
+       "فَاطِمَةُ طَالِبَةٌ",
+       "عَائِشَةُ طَالِبَةٌ",
+       "الطُّلَّابُ مُجْتَهِدُونَ",
+       "زَيْدٌ جَالِسٌ",
+       "يَكْتُبُ زَيْدٌ",
+       "خَرَجَ زَيْدٌ",
+       "يَذْهَبُ يَاسِرٌ",
+       "اكْتُبْ يَا زَيْدُ",
+       "السَّلَامُ عَلَيْكُمْ يَا زَيْدُ",
+       "كَيْفَ حَالُكَ الْيَوْمَ ؟",
+       "أَنَا بِخَيْرٍ، الْحَمْدُ لِلَّهِ",
+       "نَجَحْتُ فِي الْاِخْتِبَارِ",
+       "الْحَمْدُ لِلَّهِ أَنَا فَرِحٌ",
+       "أَنَجَحَ يَاسِرٌ ؟ لَا، فَشِلَ يَاسِرٌ",
+       "لِمَاذَا فَشِلَ يَا أُسْتَاذُ؟",
+       "لِأَنَّهُ مَا رَاجَعَ الدُّرُوسَ جَيِّدًا"
+     ],
+     vocab:[
+       {ar:"الْإِعْرَابُ",fr:"L'analyse grammaticale",tr:"al-iʿrāb"},
+       {ar:"الرَّفْعُ",fr:"Le nominatif",tr:"al-rafʿ"},
+       {ar:"النَّصْبُ",fr:"L'accusatif",tr:"al-naṣb"},
+       {ar:"الْجَرُّ",fr:"Le génitif",tr:"al-jarr"},
+       {ar:"مَرْفُوعٌ",fr:"Au nominatif (damma)",tr:"marfūʿ"},
+       {ar:"مَنْصُوبٌ",fr:"À l'accusatif (fatha)",tr:"manṣūb"},
+       {ar:"مَجْرُورٌ",fr:"Au génitif (kasra)",tr:"majrūr"},
+       {ar:"الضَّمَّةُ",fr:"La damma",tr:"al-ḍamma"},
+       {ar:"الْفَتْحَةُ",fr:"La fatha",tr:"al-fatḥa"},
+       {ar:"الْكَسْرَةُ",fr:"La kasra",tr:"al-kasra"},
+       {ar:"الْمُذَكَّرُ",fr:"Le masculin",tr:"al-mudhakkar"},
+       {ar:"الْمُؤَنَّثُ",fr:"Le féminin",tr:"al-muʾannath"},
+       {ar:"الْجُمْلَةُ الْمُفِيدَةُ",fr:"La phrase complète",tr:"al-jumla al-mufīda"},
+       {ar:"الْجُمْلَةُ الِاسْمِيَّةُ",fr:"La phrase nominale",tr:"al-jumla al-ismiyya"},
+       {ar:"الْجُمْلَةُ الْفِعْلِيَّةُ",fr:"La phrase verbale",tr:"al-jumla al-fiʿliyya"},
+       {ar:"مُبْتَدَأٌ",fr:"Sujet nominal",tr:"mubtadaʾ"},
+       {ar:"خَبَرٌ",fr:"Attribut",tr:"khabar"},
+       {ar:"فِعْلٌ",fr:"Verbe",tr:"fiʿl"},
+       {ar:"فَاعِلٌ",fr:"Sujet verbal",tr:"fāʿil"},
+       {ar:"الْمَاضِي",fr:"Le passé",tr:"al-māḍī"},
+       {ar:"الْمُضَارِعُ",fr:"Le présent",tr:"al-muḍāriʿ"},
+       {ar:"الْأَمْرُ",fr:"L'impératif",tr:"al-amr"},
+       {ar:"الْحَمْدُ لِلَّهِ",fr:"Louange à Allah",tr:"al-ḥamdu lillāh"},
+       {ar:"بِخَيْرٍ",fr:"Bien",tr:"bikhayr"},
+       {ar:"كَيْفَ حَالُكَ",fr:"Comment vas-tu ?",tr:"kayfa ḥāluka"},
+       {ar:"نَجَحَ",fr:"Réussir",tr:"najaḥa"},
+       {ar:"فَشِلَ",fr:"Échouer",tr:"fashila"},
+       {ar:"رَاجَعَ",fr:"Réviser",tr:"rājaʿa"},
+       {ar:"الدُّرُوسَ",fr:"Les leçons",tr:"al-durūs"},
+       {ar:"جَيِّدًا",fr:"Bien",tr:"jayyidan"},
+       {ar:"الْاِخْتِبَارُ",fr:"L'examen",tr:"al-ikhtibār"},
+       {ar:"فَرِحٌ",fr:"Heureux",tr:"fariḥ"},
+       {ar:"السَّبُّورَةُ",fr:"Le tableau",tr:"al-sabbūra"},
+       {ar:"الْعُنْوَانُ",fr:"Le titre",tr:"al-ʿunwān"},
+       {ar:"الْيَدُ",fr:"La main",tr:"al-yad"},
+       {ar:"أُسْتَاذٌ",fr:"Professeur",tr:"ustādh"}
+     ],
+     grammar:{title:"Révision : الإعراب, masculin/féminin, phrase complète, verbe, salutations",
+       rule:"1) الإعراب a 3 cas : الرفع (damma), النصب (fatha), الجر (kasra). 2) Le masculin (المذكر) et le féminin (المؤنث). 3) Les 3 signes du féminin : ة، ى، اء. 4) La phrase complète (الجملة المفيدة) = الجملة الاسمية (مبتدأ + خبر) + الجملة الفعلية (فعل + فاعل). 5) Le verbe a 3 temps : ماضي، مضارع، أمر. 6) Les formules de salutation : السَّلَامُ عَلَيْكُمْ، كَيْفَ حَالُكَ، الْحَمْدُ لِلَّهِ.",
+       examples:["مُحَمَّدٌ إِسْمٌ مَرْفُوعٌ = Muhammad est un nom au nominatif","زَيْدًا إِسْمٌ مَنْصُوبٌ = Zaydan est un nom à l'accusatif","الْبَيْتِ إِسْمٌ مَجْرُورٌ = Al-bayti est un nom au génitif","السَّلَامُ عَلَيْكُمْ = Que la paix soit sur vous"]},
+     dialogue:[
+       {sp:"A",ar:"السَّلَامُ عَلَيْكُمْ يَا زَيْدُ.",fr:"Que la paix soit sur toi, Zayd."},
+       {sp:"B",ar:"وَعَلَيْكُمُ السَّلَامُ وَرَحْمَةُ اللَّهِ يَا أُسْتَاذُ.",fr:"Et sur vous la paix et la miséricorde d'Allah, ô professeur."},
+       {sp:"A",ar:"كَيْفَ حَالُكَ الْيَوْمَ؟",fr:"Comment vas-tu aujourd'hui ?"},
+       {sp:"B",ar:"أَنَا بِخَيْرٍ، الْحَمْدُ لِلَّهِ.",fr:"Je vais bien, louange à Allah."},
+       {sp:"A",ar:"نَجَحْتَ فِي الْاِخْتِبَارِ يَا زَيْدُ.",fr:"Tu as réussi à l'examen, Zayd."},
+       {sp:"B",ar:"الْحَمْدُ لِلَّهِ أَنَا فَرِحٌ.",fr:"Louange à Allah, je suis heureux."},
+       {sp:"A",ar:"أَنَجَحَ يَاسِرٌ؟",fr:"Yasir a-t-il réussi ?"},
+       {sp:"B",ar:"لَا، فَشِلَ يَاسِرٌ.",fr:"Non, Yasir a échoué."},
+       {sp:"A",ar:"لِمَاذَا فَشِلَ يَا أُسْتَاذُ؟",fr:"Pourquoi a-t-il échoué, ô professeur ?"},
+       {sp:"B",ar:"لِأَنَّهُ مَا رَاجَعَ الدُّرُوسَ جَيِّدًا.",fr:"Parce qu'il n'a pas bien révisé les leçons."},
+       {sp:"A",ar:"أَلِهَذَا هُوَ حَزِينٌ؟",fr:"Est-ce pour cela qu'il est triste ?"},
+       {sp:"B",ar:"نَعَمْ، اِجْلِسْ مَعَ الطُّلَّابِ يَا زَيْدُ.",fr:"Oui, assieds-toi avec les étudiants, Zayd."},
+       {sp:"A",ar:"قُمْ يَا مُحَمَّدُ إِلَى السَّبُّورَةِ.",fr:"Lève-toi, Muhammad, va au tableau."},
+       {sp:"B",ar:"اُكْتُبْ عُنْوَانَ الدَّرْسِ حَسَنًا يَا أُسْتَاذُ.",fr:"Écris bien le titre de la leçon, ô professeur."}
+     ],
+     exercises:[
+       /* Bloc 1 — الإعراب (10 questions) */
+       {type:"qcm",q:"Quels sont les 3 cas de l'الإعراب ?",options:["الرفع، النصب، الجر","المذكر، المؤنث، المحايد","الماضي، المضارع، الأمر","المفرد، المثنى، الجمع"],correct:0},
+       {type:"qcm",q:"Le signe du الرفع est :",options:["الضمة","الفتحة","الكسرة","السكون"],correct:0},
+       {type:"qcm",q:"Le signe du النصب est :",options:["الفتحة","الضمة","الكسرة","السكون"],correct:0},
+       {type:"qcm",q:"Le signe du الجر est :",options:["الكسرة","الضمة","الفتحة","السكون"],correct:0},
+       {type:"qcm",q:"Un nom au الرفع s'appelle :",options:["مرفوع","منصوب","مجرور","مجزوم"],correct:0},
+       {type:"qcm",q:"Un nom au النصب s'appelle :",options:["منصوب","مرفوع","مجرور","مجزوم"],correct:0},
+       {type:"qcm",q:"Un nom au الجر s'appelle :",options:["مجرور","مرفوع","منصوب","مجزوم"],correct:0},
+       {type:"qcm",q:"Dans : مُحَمَّدٌ إِسْمٌ مَرْفُوعٌ — pourquoi مرفوع ?",options:["Parce qu'il a une damma","Parce qu'il a une fatha","Parce qu'il a une kasra","Parce qu'il n'a pas de voyelle"],correct:0},
+       {type:"type",q:"Traduire : مُحَمَّدٌ إِسْمٌ مَرْفُوعٌ",answers:["Muhammad est un nom au nominatif"],hint:"مرفوع = damma"},
+       {type:"type",q:"Traduire : الْبَيْتِ إِسْمٌ مَجْرُورٌ",answers:["Al-bayti est un nom au génitif"],hint:"مجرور = kasra"},
+       /* Bloc 2 — Le masculin et le féminin (10 questions) */
+       {type:"qcm",q:"Quels sont les 3 signes du féminin ?",options:["ة، ى، اء","ة، ي، و","ا، ب، ت","ة، ه، ي"],correct:0},
+       {type:"qcm",q:"Quel est le signe du féminin dans فَاطِمَةُ ?",options:["ة","ى","اء","ي"],correct:0},
+       {type:"qcm",q:"Quel est le signe du féminin dans ذِكْرَى ?",options:["ى","ة","اء","ي"],correct:0},
+       {type:"qcm",q:"Quel est le signe du féminin dans حَسْنَاءُ ?",options:["اء","ة","ى","ي"],correct:0},
+       {type:"qcm",q:"Le nom sans signe du féminin est :",options:["مذكر","مؤنث","محايد","جمع"],correct:0},
+       {type:"qcm",q:"فَاطِمَةُ est :",options:["مؤنث","مذكر","محايد","جمع"],correct:0},
+       {type:"qcm",q:"زَيْدٌ est :",options:["مذكر","مؤنث","محايد","جمع"],correct:0},
+       {type:"fill",sentence:"عَائِشَةُ ___",options:["مؤنث","مذكر","محايد","جمع"],correct:0},
+       {type:"tf",q:"Les 3 signes du féminin sont ة، ى، اء",correct:true,explain:""},
+       {type:"tf",q:"Un nom sans signe du féminin est toujours féminin",correct:false,explain:"Non, un nom sans signe du féminin est généralement masculin."},
+       /* Bloc 3 — La phrase complète (10 questions) */
+       {type:"qcm",q:"Qu'est-ce que la الجملة المفيدة ?",options:["La phrase complète","La phrase nominale","La phrase verbale","Le verbe"],correct:0},
+       {type:"qcm",q:"La الجملة المفيدة se divise en :",options:["الجملة الاسمية + الجملة الفعلية","الماضي + المضارع","المذكر + المؤنث","المرفوع + المنصوب"],correct:0},
+       {type:"qcm",q:"La الجملة الاسمية est composée de :",options:["مبتدأ + خبر","فعل + فاعل","حرف + اسم","اسم + فعل"],correct:0},
+       {type:"qcm",q:"La الجملة الفعلية est composée de :",options:["فعل + فاعل","مبتدأ + خبر","حرف + اسم","اسم + فعل"],correct:0},
+       {type:"qcm",q:"Dans : زَيْدٌ جَالِسٌ — la phrase est :",options:["اسمية","فعلية","حرفية","شرطية"],correct:0},
+       {type:"qcm",q:"Dans : يَكْتُبُ زَيْدٌ — la phrase est :",options:["فعلية","اسمية","حرفية","شرطية"],correct:0},
+       {type:"qcm",q:"Dans : خَرَجَ زَيْدٌ — le فاعل est :",options:["زَيْدٌ","خَرَجَ","خَرَجَ زَيْدٌ","زَيْدٌ خَرَجَ"],correct:0},
+       {type:"qcm",q:"Dans : زَيْدٌ جَالِسٌ — le مبتدأ est :",options:["زَيْدٌ","جَالِسٌ","زَيْدٌ جَالِسٌ","جَالِسٌ زَيْدٌ"],correct:0},
+       {type:"type",q:"Traduire : زَيْدٌ جَالِسٌ",answers:["Zayd est assis"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : يَكْتُبُ زَيْدٌ",answers:["Zayd écrit"],hint:"Phrase verbale"},
+       /* Bloc 4 — Le verbe (8 questions) */
+       {type:"qcm",q:"Quels sont les 3 temps du verbe ?",options:["ماضي، مضارع، أمر","مرفوع، منصوب، مجرور","مذكر، مؤنث، محايد","مفرد، مثنى، جمع"],correct:0},
+       {type:"qcm",q:"كَتَبَ est un verbe :",options:["ماضي","مضارع","أمر","اسم"],correct:0},
+       {type:"qcm",q:"يَكْتُبُ est un verbe :",options:["مضارع","ماضي","أمر","اسم"],correct:0},
+       {type:"qcm",q:"اُكْتُبْ est un verbe :",options:["أمر","ماضي","مضارع","اسم"],correct:0},
+       {type:"qcm",q:"Dans : يَذْهَبُ يَاسِرٌ — le verbe est :",options:["يَذْهَبُ","يَاسِرٌ","يَذْهَبُ يَاسِرٌ","يَاسِرُ يَذْهَبُ"],correct:0},
+       {type:"qcm",q:"Dans : يَذْهَبُ يَاسِرٌ — le فاعل est :",options:["يَاسِرٌ","يَذْهَبُ","يَذْهَبُ يَاسِرٌ","يَاسِرُ يَذْهَبُ"],correct:0},
+       {type:"type",q:"Traduire : يَذْهَبُ يَاسِرٌ",answers:["Yasir va"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : اُكْتُبْ يَا زَيْدُ",answers:["Écris, ô Zayd"],hint:"Impératif + vocatif"},
+       /* Bloc 5 — Les salutations (6 questions) */
+       {type:"qcm",q:"Que veut dire السَّلَامُ عَلَيْكُمْ ?",options:["Que la paix soit sur vous","Bonjour","Bonsoir","Au revoir"],correct:0},
+       {type:"qcm",q:"Que veut dire كَيْفَ حَالُكَ ؟",options:["Comment vas-tu ?","Comment t'appelles-tu ?","Où vas-tu ?","Qui es-tu ?"],correct:0},
+       {type:"qcm",q:"Que veut dire الْحَمْدُ لِلَّهِ ?",options:["Louange à Allah","Dieu est grand","Au nom d'Allah","Allah est miséricordieux"],correct:0},
+       {type:"qcm",q:"Que veut dire أَنَا بِخَيْرٍ ?",options:["Je vais bien","Je vais mal","Je suis heureux","Je suis triste"],correct:0},
+       {type:"fill",sentence:"___ عَلَيْكُمْ",options:["السَّلَامُ","الْحَمْدُ","بِخَيْرٍ","كَيْفَ"],correct:0},
+       {type:"fill",sentence:"كَيْفَ ___ ؟",options:["حَالُكَ","اسْمُكَ","بَيْتُكَ","كِتَابُكَ"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « le nominatif » :",answers:["الرَّفْعُ"],hint:"avec ال"},
+       {type:"type",q:"Écris « l'accusatif » :",answers:["النَّصْبُ"],hint:"avec ال"},
+       {type:"type",q:"Écris « le génitif » :",answers:["الْجَرُّ"],hint:"avec ال"},
+       {type:"type",q:"Écris « le féminin » :",answers:["الْمُؤَنَّثُ"],hint:"avec ال"},
+       {type:"type",q:"Écris « la phrase verbale » :",answers:["الْجُمْلَةُ الْفِعْلِيَّةُ"],hint:"avec ال"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["جَالِسٌ","زَيْدٌ"],answer:"زَيْدٌ جَالِسٌ"},
+       {type:"order",q:"Reconstitue :",words:["زَيْدٌ","يَكْتُبُ"],answer:"يَكْتُبُ زَيْدٌ"},
+       {type:"order",q:"Reconstitue :",words:["يَاسِرٌ","يَذْهَبُ"],answer:"يَذْهَبُ يَاسِرٌ"},
+       {type:"order",q:"Reconstitue :",words:["زَيْدُ","يَا","اُكْتُبْ"],answer:"اُكْتُبْ يَا زَيْدُ"},
+       {type:"order",q:"Reconstitue :",words:["عَلَيْكُمْ","السَّلَامُ"],answer:"السَّلَامُ عَلَيْكُمْ"}
+     ]},    /* ===== LEÇON 13 ===== */
+    {id:"t1l13", num:13, title:"Leçon 13", desc:"Les pronoms · الضمائر المنفصلة والمتصلة",
+     active:true, audio:null, pdf:"",
+     text:[
+       "أَنَا طَالِبٌ","أَنْتَ طَالِبٌ","أَنْتِ طَالِبَةٌ","هُوَ طَالِبٌ","هِيَ طَالِبَةٌ",
+       "نَحْنُ طُلَّابٌ","أَنْتُمْ طُلَّابٌ","هُمْ طُلَّابٌ","هُنَّ طَالِبَاتٌ",
+       "كِتَابِي جَدِيدٌ","كِتَابُكَ جَدِيدٌ","كِتَابُهُ جَدِيدٌ","كِتَابُهَا جَدِيدَةٌ",
+       "كِتَابُنَا جَدِيدٌ","كِتَابُكُمْ جَدِيدٌ","كِتَابُهُمْ جَدِيدٌ",
+       "فِي الْبَيْتِ","فِيهِ","فِيهَا","عَلَيْهِ","عَلَيْهَا","إِلَيْهِ"
+     ],
+     vocab:[
+       {ar:"الضَّمَائِرُ",fr:"Les pronoms",tr:"al-ḍamāʾir"},
+       {ar:"مُنْفَصِلَةٌ",fr:"Isolés",tr:"munfaṣila"},
+       {ar:"مُتَّصِلَةٌ",fr:"Affixes",tr:"muttaṣila"},
+       {ar:"الْمُتَكَلِّمُ",fr:"Le locuteur (1ère pers.)",tr:"al-mutakallim"},
+       {ar:"الْمُخَاطَبُ",fr:"L'interlocuteur (2ème pers.)",tr:"al-mukhāṭab"},
+       {ar:"الْغَائِبُ",fr:"L'absent (3ème pers.)",tr:"al-ghāʾib"},
        {ar:"أَنَا",fr:"Je",tr:"anā"},
-       {ar:"أَنْتَ",fr:"Tu (masc.)",tr:"anta"},
-       {ar:"أَنْتِ",fr:"Tu (fém.)",tr:"anti"},
-       {ar:"هُوَ",fr:"Il",tr:"huwa"},
-       {ar:"هِيَ",fr:"Elle",tr:"hiya"},
        {ar:"نَحْنُ",fr:"Nous",tr:"naḥnu"},
+       {ar:"أَنْتَ",fr:"Toi (masc.)",tr:"anta"},
+       {ar:"أَنْتِ",fr:"Toi (fém.)",tr:"anti"},
        {ar:"أَنْتُمْ",fr:"Vous (masc.)",tr:"antum"},
        {ar:"أَنْتُنَّ",fr:"Vous (fém.)",tr:"antunna"},
-       {ar:"هُمْ",fr:"Ils",tr:"hum"},
+       {ar:"هُوَ",fr:"Lui",tr:"huwa"},
+       {ar:"هِيَ",fr:"Elle",tr:"hiya"},
+       {ar:"هُمْ",fr:"Eux",tr:"hum"},
        {ar:"هُنَّ",fr:"Elles",tr:"hunna"},
-       {ar:"الزَّمِيلُ",fr:"Collègue",tr:"az-zamīl"},
-       {ar:"الزَّمِيلَةُ",fr:"Collègue (fém.)",tr:"az-zamīla"},
-       {ar:"الزَّوْجُ",fr:"Mari",tr:"az-zawj"},
-       {ar:"الزَّوْجَةُ",fr:"Épouse",tr:"az-zawja"},
-       {ar:"الْفَتَى",fr:"Le jeune homme",tr:"al-fatā"},
-       {ar:"الْفَتَاةُ",fr:"La jeune fille",tr:"al-fatā"},
-       {ar:"الطِّفْلُ",fr:"L'enfant (masc.)",tr:"aṭ-ṭifl"},
-       {ar:"الطِّفْلَةُ",fr:"L'enfant (fém.)",tr:"aṭ-ṭifla"},
-       {ar:"الرَّجُلُ",fr:"L'homme",tr:"ar-rajul"},
-       {ar:"الْمَرْأَةُ",fr:"La femme",tr:"al-marʾa"},
-       {ar:"الْوَلَدُ",fr:"Le garçon",tr:"al-walad"},
-       {ar:"الْبِنْتُ",fr:"La fille",tr:"al-bint"},
-       {ar:"الصَّبِيُّ",fr:"Le petit garçon",tr:"aṣ-ṣabiyy"},
-       {ar:"الصَّبِيَّةُ",fr:"La petite fille",tr:"aṣ-ṣabiyya"},
-       {ar:"الطَّالِبُ",fr:"L'étudiant",tr:"aṭ-ṭālib"},
-       {ar:"الطَّالِبَةُ",fr:"L'étudiante",tr:"aṭ-ṭāliba"},
-       {ar:"الْمُدَرِّسُ",fr:"Le professeur",tr:"al-mudarris"},
-       {ar:"الْمُدَرِّسَةُ",fr:"La professeure",tr:"al-mudarrisa"},
-       {ar:"الطَّبِيبُ",fr:"Le médecin",tr:"aṭ-ṭabīb"},
-       {ar:"الطَّبِيبَةُ",fr:"La médecin",tr:"aṭ-ṭabība"},
-       {ar:"الْمُهَنْدِسُ",fr:"L'ingénieur",tr:"al-muhandis"},
-       {ar:"الْمُهَنْدِسَةُ",fr:"L'ingénieure",tr:"al-muhandisa"},
-       {ar:"التَّاجِرُ",fr:"Le commerçant",tr:"at-tājir"},
-       {ar:"التَّاجِرَةُ",fr:"La commerçante",tr:"at-tājira"},
-       {ar:"الْفَلَّاحُ",fr:"L'agriculteur",tr:"al-fallāḥ"},
-       {ar:"الْفَلَّاحَةُ",fr:"L'agricultrice",tr:"al-fallāḥa"},
-       {ar:"الْمُوَظَّفُ",fr:"L'employé",tr:"al-muwaẓẓaf"},
-       {ar:"الْمُوَظَّفَةُ",fr:"L'employée",tr:"al-muwaẓẓafa"},
-       {ar:"الْإِمَامُ",fr:"L'imam",tr:"al-imām"},
-       {ar:"الْمُؤَذِّنُ",fr:"Le muezzin",tr:"al-muʾadhdhin"},
-       {ar:"صَدِيقِي",fr:"Mon ami",tr:"ṣadīqī"},
-       {ar:"صَدِيقَتِي",fr:"Mon amie",tr:"ṣadīqatī"},
-       {ar:"أُسْتَاذٌ",fr:"Professeur (titre)",tr:"ustādh"},
-       {ar:"أُسْتَاذَةٌ",fr:"Professeure (titre)",tr:"ustādha"}
+       {ar:"إِيَّاكَ",fr:"Toi (accusatif)",tr:"iyyāka"},
+       {ar:"إِيَّاهُ",fr:"Lui (accusatif)",tr:"iyyāhu"},
+       {ar:"كِتَابِي",fr:"Mon livre",tr:"kitābī"},
+       {ar:"كِتَابُكَ",fr:"Ton livre",tr:"kitābuka"},
+       {ar:"كِتَابُهُ",fr:"Son livre (lui)",tr:"kitābuhu"},
+       {ar:"كِتَابُهَا",fr:"Son livre (elle)",tr:"kitābuhā"},
+       {ar:"فِيهِ",fr:"En lui / y",tr:"fīhi"},
+       {ar:"فِيهَا",fr:"En elle / y",tr:"fīhā"},
+       {ar:"عَلَيْهِ",fr:"Sur lui",tr:"ʿalayhi"},
+       {ar:"عَلَيْهَا",fr:"Sur elle",tr:"ʿalayhā"},
+       {ar:"إِلَيْهِ",fr:"Vers lui",tr:"ilayhi"},
+       {ar:"مَعَ",fr:"Avec",tr:"maʿa"},
+       {ar:"زَمِيلٌ",fr:"Camarade",tr:"zamīl"},
+       {ar:"زَوْجٌ",fr:"Époux",tr:"zawj"}
      ],
-     grammar:{title:"Les pronoms personnels isolés (الضمائر المنفصلة)",
-       rule:"Les pronoms isolés : أَنَا (je), أَنْتَ (tu masc.), أَنْتِ (tu fém.), هُوَ (il), هِيَ (elle), نَحْنُ (nous), أَنْتُمْ (vous masc.), أَنْتُنَّ (vous fém.), هُمْ (ils), هُنَّ (elles).",
-       examples:["أَنَا طَالِبٌ = Je suis étudiant","أَنْتَ مُدَرِّسٌ = Tu es professeur","هِيَ طَالِبَةٌ = Elle est étudiante","نَحْنُ طُلَّابٌ = Nous sommes étudiants"]},
+     grammar:{title:"Les pronoms isolés et affixes (الضمائر)",
+       rule:"Les pronoms (الضمائر) sont des noms. On distingue : 1) Les pronoms isolés (الضمائر المنفصلة) : jamais rattachés à un autre mot, invariables, de 2 types (رفع et نصب). Les pronoms de رفع : أَنَا، نَحْنُ، أَنْتَ، أَنْتِ، أَنْتُمْ، أَنْتُنَّ، هُوَ، هِيَ، هُمْ، هُنَّ. Les pronoms de نصب : إِيَّايَ، إِيَّاكَ، إِيَّاهُ... 2) Les pronoms affixes (الضمائر المتصلة) : rattachés à un autre mot, de 3 types (رفع، نصب، جر). Règles spéciales : le ي prend une شدة avec فِي، عَلَى، إِلَى (فِيَّ، عَلَيَّ، إِلَيَّ). Le ه perd sa ضمة après une كسرة ou un ي et prend une كسرة (sauf le ه du féminin singulier qui garde sa فتحة).",
+       examples:["أَنَا طَالِبٌ = Je suis étudiant","كِتَابِي جَدِيدٌ = Mon livre est nouveau","فِي الْبَيْتِ → فِيهِ = Dans la maison → en lui","إِلَيْهِ = Vers lui"]},
      dialogue:[
        {sp:"A",ar:"مَنْ أَنْتَ؟",fr:"Qui es-tu ?"},
        {sp:"B",ar:"أَنَا طَالِبٌ.",fr:"Je suis étudiant."},
-       {sp:"A",ar:"وَمَنْ هَذَا؟",fr:"Et qui est-ce ?"},
-       {sp:"B",ar:"هَذَا زَمِيلِي.",fr:"C'est mon collègue."},
-       {sp:"A",ar:"وَمَنْ هَذِهِ؟",fr:"Et qui est-ce (elle) ?"},
-       {sp:"B",ar:"هَذِهِ زَمِيلَتِي.",fr:"C'est ma collègue."},
-       {sp:"A",ar:"أَيْنَ أَنْتُمْ؟",fr:"Où êtes-vous ?"},
-       {sp:"B",ar:"نَحْنُ فِي الْمَدْرَسَةِ.",fr:"Nous sommes à l'école."},
-       {sp:"A",ar:"هَلْ هُمْ مُدَرِّسُونَ؟",fr:"Sont-ils professeurs ?"},
-       {sp:"B",ar:"نَعَمْ، هُمْ مُدَرِّسُونَ.",fr:"Oui, ils sont professeurs."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire أَنَا ؟",options:["Je","Tu","Il","Elle"],correct:0},
-       {type:"qcm",q:"Comment dit-on « elle » ?",options:["هِيَ","هُوَ","أَنْتِ","أَنَا"],correct:0},
-       {type:"qcm",q:"Comment dit-on « nous » ?",options:["نَحْنُ","أَنْتُمْ","هُمْ","أَنَا"],correct:0},
-       {type:"qcm",q:"Comment dit-on « ils » ?",options:["هُمْ","أَنْتُمْ","نَحْنُ","هِيَ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « tu » (masc.) ?",options:["أَنْتَ","أَنْتِ","هُوَ","هِيَ"],correct:0},
-       {type:"qcm",q:"Que veut dire هُنَّ ؟",options:["Elles","Ils","Vous (fém.)","Nous"],correct:0},
-       {type:"qcm",q:"Comment dit-on « étudiant » ?",options:["طَالِبٌ","مُدَرِّسٌ","طَبِيبٌ","مُهَنْدِسٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire الزَّمِيلُ ؟",options:["Collègue","Mari","Enfant","Jeune homme"],correct:0},
-       {type:"qcm",q:"Comment dit-on « médecin » ?",options:["طَبِيبٌ","مُدَرِّسٌ","مُهَنْدِسٌ","تَاجِرٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire الزَّوْجَةُ ؟",options:["Épouse","Mari","Mère","Sœur"],correct:0},
-       {type:"qcm",q:"Comment dit-on « commerçant » ?",options:["تَاجِرٌ","فَلَّاحٌ","مُوَظَّفٌ","إِمَامٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire الطِّفْلَةُ ؟",options:["L'enfant (fém.)","L'enfant (masc.)","La fille","Le garçon"],correct:0},
-       {type:"tf",ar:"أَنَا طَالِبٌ",q:"Signifie « Je suis étudiant »",correct:true},
-       {type:"tf",ar:"أَنْتَ مُدَرِّسٌ",q:"Signifie « Il est professeur »",correct:false,explain:"أَنْتَ = tu (masc.)."},
-       {type:"tf",q:"أَنْتُمْ est utilisé pour un groupe de femmes",correct:false,explain:"Non, c'est أَنْتُنَّ."},
-       {type:"tf",ar:"هُمْ رِجَالٌ",q:"Signifie « Ils sont des hommes »",correct:true},
-       {type:"fill",sentence:"___ طَالِبٌ",options:["أَنَا","أَنْتَ","هُوَ","هِيَ"],correct:0},
-       {type:"fill",sentence:"___ طَالِبَةٌ",options:["هِيَ","هُوَ","أَنْتَ","نَحْنُ"],correct:0},
-       {type:"fill",sentence:"___ طُلَّابٌ",options:["نَحْنُ","أَنَا","هُوَ","هِيَ"],correct:0},
-       {type:"type",q:"Écris « je » :",answer:"أَنَا",hint:"3 lettres"},
-       {type:"type",q:"Écris « elle » :",answer:"هِيَ",hint:"3 lettres"},
-       {type:"type",q:"Écris « il » :",answer:"هُوَ",hint:"2 lettres"},
-       {type:"type",q:"Écris « nous » :",answer:"نَحْنُ",hint:"3 lettres"},
-       {type:"type",q:"Écris « étudiant » :",answer:"طَالِبٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « professeur » :",answer:"مُدَرِّسٌ",hint:"م د ر س"},
-       {type:"order",q:"Reconstitue :",words:["طَالِبٌ","أَنَا"],answer:"أَنَا طَالِبٌ"},
-       {type:"order",q:"Reconstitue :",words:["مُدَرِّسٌ","أَنْتَ"],answer:"أَنْتَ مُدَرِّسٌ"},
-       {type:"order",q:"Reconstitue :",words:["طَالِبَةٌ","هِيَ"],answer:"هِيَ طَالِبَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["طُلَّابٌ","نَحْنُ"],answer:"نَحْنُ طُلَّابٌ"},
-       {type:"order",q:"Reconstitue :",words:["رِجَالٌ","هُمْ"],answer:"هُمْ رِجَالٌ"},
-       {type:"audio",audioText:"أَنَا طَالِبٌ",options:["أَنَا طَالِبٌ","أَنْتَ طَالِبٌ","هُوَ طَالِبٌ","نَحْنُ طُلَّابٌ"],correct:0},
-       {type:"audio",audioText:"هِيَ طَالِبَةٌ",options:["هُوَ طَالِبٌ","هِيَ طَالِبَةٌ","أَنْتِ طَالِبَةٌ","أَنَا طَالِبَةٌ"],correct:1},
-       {type:"audio",audioText:"نَحْنُ طُلَّابٌ",options:["هُمْ طُلَّابٌ","أَنْتُمْ طُلَّابٌ","نَحْنُ طُلَّابٌ","هُمْ مُدَرِّسُونَ"],correct:2},
-       {type:"audio",audioText:"هُمْ مُدَرِّسُونَ",options:["هُمْ مُدَرِّسُونَ","نَحْنُ مُدَرِّسُونَ","هُمْ طُلَّابٌ","أَنْتُمْ مُدَرِّسُونَ"],correct:0}
-     ]},    /* ===== LEÇON 11 ===== */
-    {id:"t1l11", num:11, title:"Leçon 11", desc:"Positions · أَمَامَ / وَرَاءَ / بِجَانِبِ",
-     active:true, audio:"assets/audio/madinah/tome1/L11.mp3",
-     text:["الْكِتَابُ فِي الْحَقِيبَةِ","الْقِطُّ فَوْقَ السَّرِيرِ","الْبَيْتُ أَمَامَ الْمَسْجِدِ",
-           "الْمَسْجِدُ وَرَاءَ الْبَيْتِ","الْمِفْتَاحُ تَحْتَ الْكِتَابِ","الْقَلَمُ بِجَانِبِ الدَّفْتَرِ",
-           "الْحَدِيقَةُ بِجَانِبِ الْمَدْرَسَةِ","السَّيَّارَةُ أَمَامَ الْبَيْتِ"],
-     vocab:[
-       {ar:"أَمَامَ",fr:"Devant",tr:"amāma"},
-       {ar:"وَرَاءَ",fr:"Derrière",tr:"warāʾa"},
-       {ar:"تَحْتَ",fr:"Sous",tr:"taḥta"},
-       {ar:"فَوْقَ",fr:"Au-dessus",tr:"fawqa"},
-       {ar:"بِجَانِبِ",fr:"À côté de",tr:"bijānibi"},
-       {ar:"بَيْنَ",fr:"Entre",tr:"bayna"},
-       {ar:"حَوْلَ",fr:"Autour de",tr:"ḥawla"},
-       {ar:"قُرْبَ",fr:"Près de",tr:"qurba"},
-       {ar:"بَعِيدٌ",fr:"Loin",tr:"baʿīd"},
-       {ar:"قَرِيبٌ",fr:"Proche",tr:"qarīb"},
-       {ar:"عِنْدَ",fr:"Chez",tr:"ʿinda"},
-       {ar:"مَعَ",fr:"Avec",tr:"maʿa"},
-       {ar:"بِدُونِ",fr:"Sans",tr:"bidūni"},
-       {ar:"دَاخِلَ",fr:"À l'intérieur",tr:"dākhila"},
-       {ar:"خَارِجَ",fr:"À l'extérieur",tr:"khārija"},
-       {ar:"يَمِين",fr:"Droite",tr:"yamīn"},
-       {ar:"شِمَال",fr:"Gauche",tr:"shimāl"},
-       {ar:"فَوْقَ الشَّجَرَةِ",fr:"Au-dessus de l'arbre",tr:"fawqa sh-shajara"},
-       {ar:"تَحْتَ الشَّجَرَةِ",fr:"Sous l'arbre",tr:"taḥta sh-shajara"},
-       {ar:"بِجَانِبِ الْبَابِ",fr:"À côté de la porte",tr:"bijānibi l-bāb"},
-       {ar:"أَمَامَ الْمَدْرَسَةِ",fr:"Devant l'école",tr:"amāma l-madrasa"},
-       {ar:"وَرَاءَ الْمَسْجِدِ",fr:"Derrière la mosquée",tr:"warāʾa l-masjid"},
-       {ar:"بَيْنَ الْبَيْتِ وَالْمَسْجِدِ",fr:"Entre la maison et la mosquée",tr:"bayna l-bayt wa l-masjid"},
-       {ar:"حَوْلَ الْحَدِيقَةِ",fr:"Autour du jardin",tr:"ḥawla l-ḥadīqa"},
-       {ar:"قُرْبَ الْبَابِ",fr:"Près de la porte",tr:"qurba l-bāb"},
-       {ar:"عِنْدَ الْبَابِ",fr:"Chez la porte",tr:"ʿinda l-bāb"},
-       {ar:"مَعَ صَدِيقِي",fr:"Avec mon ami",tr:"maʿa ṣadīqī"},
-       {ar:"دَاخِلَ الْبَيْتِ",fr:"À l'intérieur de la maison",tr:"dākhila l-bayt"},
-       {ar:"خَارِجَ الْمَدْرَسَةِ",fr:"À l'extérieur de l'école",tr:"khārija l-madrasa"},
-       {ar:"عَلَى الْيَمِينِ",fr:"À droite",tr:"ʿalā l-yamīn"},
-       {ar:"عَلَى الشِّمَالِ",fr:"À gauche",tr:"ʿalā sh-shimāl"},
-       {ar:"الْجِهَة",fr:"Le côté",tr:"al-jiha"},
-       {ar:"الْمَكَان",fr:"Le lieu",tr:"al-makān"},
-       {ar:"الْمَوْقِع",fr:"L'emplacement",tr:"al-mawqiʿ"},
-       {ar:"الْحُدُود",fr:"Les limites",tr:"al-ḥudūd"},
-       {ar:"الْمَرْكَز",fr:"Le centre",tr:"al-markaz"},
-       {ar:"الطَّرَف",fr:"Le bord",tr:"aṭ-ṭaraf"},
-       {ar:"الزَّاوِيَة",fr:"Le coin",tr:"az-zāwiya"},
-       {ar:"الْوَسَط",fr:"Le milieu",tr:"al-wasaṭ"},
-       {ar:"الْقِمَّة",fr:"Le sommet",tr:"al-qimma"},
-       {ar:"الْقَاع",fr:"Le fond",tr:"al-qāʿ"},
-       {ar:"السَّطْح",fr:"La surface",tr:"as-saṭḥ"},
-       {ar:"الْجَانِب",fr:"Le côté",tr:"al-jānib"},
-       {ar:"الْقُطْب",fr:"Le pôle",tr:"al-quṭb"},
-       {ar:"الِاتِّجَاه",fr:"La direction",tr:"al-ittijāh"}
-     ],
-     grammar:{title:"Les prépositions de lieu (suite)",
-       rule:"Les prépositions أَمَامَ (devant), وَرَاءَ (derrière), تَحْتَ (sous), فَوْقَ (au-dessus), بِجَانِبِ (à côté de), بَيْنَ (entre), حَوْلَ (autour de) sont suivies d'un nom au génitif (majrūr, kasra finale).",
-       examples:["فِي الْحَقِيبَةِ = dans le sac","فَوْقَ السَّرِيرِ = au-dessus du lit","أَمَامَ الْمَسْجِدِ = devant la mosquée","بَيْنَ الْبَيْتِ وَالْمَسْجِدِ = entre la maison et la mosquée"]},
-     dialogue:[
-       {sp:"A",ar:"أَيْنَ الْكِتَابُ؟",fr:"Où est le livre ?"},
-       {sp:"B",ar:"هُوَ فِي الْحَقِيبَةِ.",fr:"Il est dans le sac."},
-       {sp:"A",ar:"أَيْنَ الْقِطُّ؟",fr:"Où est le chat ?"},
-       {sp:"B",ar:"هُوَ فَوْقَ السَّرِيرِ.",fr:"Il est sur le lit."},
-       {sp:"A",ar:"أَيْنَ الْمَسْجِدُ؟",fr:"Où est la mosquée ?"},
-       {sp:"B",ar:"هُوَ وَرَاءَ الْبَيْتِ.",fr:"Elle est derrière la maison."},
-       {sp:"A",ar:"أَيْنَ الْقَلَمُ؟",fr:"Où est le stylo ?"},
-       {sp:"B",ar:"هُوَ بِجَانِبِ الدَّفْتَرِ.",fr:"Il est à côté du cahier."},
-       {sp:"A",ar:"أَيْنَ الْحَدِيقَةُ؟",fr:"Où est le jardin ?"},
-       {sp:"B",ar:"هِيَ بِجَانِبِ الْمَدْرَسَةِ.",fr:"Il est à côté de l'école."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire أَمَامَ ؟",options:["Devant","Derrière","Sous","Au-dessus"],correct:0},
-       {type:"qcm",q:"Que veut dire وَرَاءَ ؟",options:["Derrière","Devant","Sous","Au-dessus"],correct:0},
-       {type:"qcm",q:"Que veut dire تَحْتَ ؟",options:["Sous","Sur","Devant","Derrière"],correct:0},
-       {type:"qcm",q:"Que veut dire فَوْقَ ؟",options:["Au-dessus","En dessous","Devant","Derrière"],correct:0},
-       {type:"qcm",q:"Comment dit-on « à côté de » ?",options:["بِجَانِبِ","بَيْنَ","حَوْلَ","قُرْبَ"],correct:0},
-       {type:"qcm",q:"Que veut dire بَيْنَ ؟",options:["Entre","Devant","Derrière","Sous"],correct:0},
-       {type:"qcm",q:"Comment dit-on « autour de » ?",options:["حَوْلَ","بَيْنَ","بِجَانِبِ","عِنْدَ"],correct:0},
-       {type:"qcm",q:"Que veut dire قَرِيبٌ ؟",options:["Proche","Loin","Grand","Petit"],correct:0},
-       {type:"qcm",q:"Comment dit-on « droite » ?",options:["يَمِين","شِمَال","وَسَط","طَرَف"],correct:0},
-       {type:"qcm",q:"Que veut dire دَاخِلَ ؟",options:["À l'intérieur","À l'extérieur","Devant","Derrière"],correct:0},
-       {type:"qcm",q:"Que veut dire خَارِجَ ؟",options:["À l'extérieur","À l'intérieur","Devant","Derrière"],correct:0},
-       {type:"tf",ar:"الْكِتَابُ فِي الْحَقِيبَةِ",q:"Signifie « Le livre est dans le sac »",correct:true},
-       {type:"tf",ar:"الْقِطُّ فَوْقَ السَّرِيرِ",q:"Signifie « Le chat est sous le lit »",correct:false,explain:"فَوْقَ = au-dessus."},
-       {type:"tf",ar:"الْبَيْتُ أَمَامَ الْمَسْجِدِ",q:"Signifie « La maison est devant la mosquée »",correct:true},
-       {type:"tf",ar:"الْمَسْجِدُ وَرَاءَ الْبَيْتِ",q:"Signifie « La mosquée est derrière la maison »",correct:true},
-       {type:"fill",sentence:"الْكِتَابُ ___ الْحَقِيبَةِ",options:["فِي","عَلَى","مِنْ","إِلَى"],correct:0},
-       {type:"fill",sentence:"الْقَلَمُ ___ الدَّفْتَرِ",options:["بِجَانِبِ","بَيْنَ","حَوْلَ","قُرْبَ"],correct:0},
-       {type:"fill",sentence:"الْقِطُّ ___ السَّرِيرِ",options:["فَوْقَ","تَحْتَ","أَمَامَ","وَرَاءَ"],correct:0},
-       {type:"type",q:"Écris « devant » :",answer:"أَمَامَ",hint:"4 lettres"},
-       {type:"type",q:"Écris « derrière » :",answer:"وَرَاءَ",hint:"4 lettres"},
-       {type:"type",q:"Écris « sous » :",answer:"تَحْتَ",hint:"3 lettres"},
-       {type:"type",q:"Écris « entre » :",answer:"بَيْنَ",hint:"3 lettres"},
-       {type:"type",q:"Écris « droite » :",answer:"يَمِين",hint:"4 lettres"},
-       {type:"type",q:"Écris « gauche » :",answer:"شِمَال",hint:"4 lettres"},
-       {type:"order",q:"Reconstitue :",words:["الْحَقِيبَةِ","فِي","الْكِتَابُ"],answer:"الْكِتَابُ فِي الْحَقِيبَةِ"},
-       {type:"order",q:"Reconstitue :",words:["السَّرِيرِ","فَوْقَ","الْقِطُّ"],answer:"الْقِطُّ فَوْقَ السَّرِيرِ"},
-       {type:"order",q:"Reconstitue :",words:["الْمَسْجِدِ","أَمَامَ","الْبَيْتُ"],answer:"الْبَيْتُ أَمَامَ الْمَسْجِدِ"},
-       {type:"order",q:"Reconstitue :",words:["الْبَيْتِ","وَرَاءَ","الْمَسْجِدُ"],answer:"الْمَسْجِدُ وَرَاءَ الْبَيْتِ"},
-       {type:"order",q:"Reconstitue :",words:["الدَّفْتَرِ","بِجَانِبِ","الْقَلَمُ"],answer:"الْقَلَمُ بِجَانِبِ الدَّفْتَرِ"},
-       {type:"audio",audioText:"الْكِتَابُ فِي الْحَقِيبَةِ",options:["الْكِتَابُ فِي الْحَقِيبَةِ","الْكِتَابُ عَلَى الْحَقِيبَةِ","الْقَلَمُ فِي الْحَقِيبَةِ","الْكِتَابُ فِي الْغُرْفَةِ"],correct:0},
-       {type:"audio",audioText:"الْقِطُّ فَوْقَ السَّرِيرِ",options:["الْقِطُّ تَحْتَ السَّرِيرِ","الْقِطُّ فَوْقَ السَّرِيرِ","الْقِطُّ فِي السَّرِيرِ","الْكَلْبُ فَوْقَ السَّرِيرِ"],correct:1},
-       {type:"audio",audioText:"الْبَيْتُ أَمَامَ الْمَسْجِدِ",options:["الْبَيْتُ وَرَاءَ الْمَسْجِدِ","الْبَيْتُ بِجَانِبِ الْمَسْجِدِ","الْبَيْتُ أَمَامَ الْمَسْجِدِ","الْبَيْتُ فِي الْمَسْجِدِ"],correct:2},
-       {type:"audio",audioText:"الْقَلَمُ بِجَانِبِ الدَّفْتَرِ",options:["الْقَلَمُ بِجَانِبِ الدَّفْتَرِ","الْقَلَمُ فِي الدَّفْتَرِ","الْكِتَابُ بِجَانِبِ الدَّفْتَرِ","الْقَلَمُ فَوْقَ الدَّفْتَرِ"],correct:0}
-     ]},
-
-    /* ===== LEÇON 12 ===== */
-    {id:"t1l12", num:12, title:"Leçon 12", desc:"Noms diptotes · Pays et villes",
-     active:true, audio:"assets/audio/madinah/tome1/L12.mp3",
-     text:["أَنَا مِنْ سُورِيَا","هُوَ مِنْ مِصْرَ","هِيَ مِنْ لُبْنَانَ","نَحْنُ مِنْ فَرَنْسَا",
-           "أَنْتَ مِنْ مَكَّةَ","هُمْ مِنَ الْمَدِينَةِ","أَنَا مِنْ بَغْدَادَ"],
-     vocab:[
-       {ar:"سُورِيَا",fr:"Syrie",tr:"sūriyā"},
-       {ar:"مِصْرُ",fr:"Égypte",tr:"miṣr"},
-       {ar:"لُبْنَانُ",fr:"Liban",tr:"lubnān"},
-       {ar:"الْعِرَاقُ",fr:"Irak",tr:"al-ʿirāq"},
-       {ar:"فَرَنْسَا",fr:"France",tr:"faransā"},
-       {ar:"مَكَّةُ",fr:"La Mecque",tr:"makka"},
-       {ar:"الْمَدِينَةُ",fr:"Médine",tr:"al-madīna"},
-       {ar:"الْمَدِينَةُ الْمُنَوَّرَةُ",fr:"Médine (la lumineuse)",tr:"al-madīna al-munawwara"},
-       {ar:"بَغْدَادُ",fr:"Bagdad",tr:"baghdād"},
-       {ar:"دِمَشْقُ",fr:"Damas",tr:"dimashq"},
-       {ar:"الْقَاهِرَةُ",fr:"Le Caire",tr:"al-qāhira"},
-       {ar:"بَيْرُوتُ",fr:"Beyrouth",tr:"bayrūt"},
-       {ar:"عَمَّانُ",fr:"Amman",tr:"ʿammān"},
-       {ar:"الرِّيَاضُ",fr:"Riyad",tr:"ar-riyāḍ"},
-       {ar:"جُدَّةُ",fr:"Djeddah",tr:"judda"},
-       {ar:"الطَّائِفُ",fr:"Taif",tr:"aṭ-ṭāʾif"},
-       {ar:"الْكُوَيْتُ",fr:"Koweït",tr:"al-kuwayt"},
-       {ar:"قَطَرُ",fr:"Qatar",tr:"qaṭar"},
-       {ar:"الْإِمَارَاتُ",fr:"Émirats",tr:"al-imārāt"},
-       {ar:"السُّعُودِيَّةُ",fr:"Arabie saoudite",tr:"as-suʿūdiyya"},
-       {ar:"الْمَغْرِبُ",fr:"Maroc",tr:"al-maghrib"},
-       {ar:"الْجَزَائِرُ",fr:"Algérie",tr:"al-jazāʾir"},
-       {ar:"تُونُسُ",fr:"Tunisie",tr:"tūnus"},
-       {ar:"لِيبْيَا",fr:"Libye",tr:"lībiyā"},
-       {ar:"السُّودَانُ",fr:"Soudan",tr:"as-sūdān"},
-       {ar:"الْيَمَنُ",fr:"Yémen",tr:"al-yaman"},
-       {ar:"عُمَانُ",fr:"Oman",tr:"ʿumān"},
-       {ar:"الْأُرْدُنُّ",fr:"Jordanie",tr:"al-urdunn"},
-       {ar:"فِلَسْطِينُ",fr:"Palestine",tr:"filasṭīn"},
-       {ar:"تُرْكِيَا",fr:"Turquie",tr:"turkiyā"},
-       {ar:"إِسْطَنْبُول",fr:"Istanbul",tr:"isṭanbūl"},
-       {ar:"طَهْرَان",fr:"Téhéran",tr:"ṭahrān"},
-       {ar:"بَاكِسْتَان",fr:"Pakistan",tr:"bākistān"},
-       {ar:"الْهِنْدُ",fr:"Inde",tr:"al-hind"},
-       {ar:"الصِّينُ",fr:"Chine",tr:"aṣ-ṣīn"},
-       {ar:"أَمْرِيكَا",fr:"Amérique",tr:"amrīkā"},
-       {ar:"كَندَا",fr:"Canada",tr:"kanadā"},
-       {ar:"بِرِيطَانْيَا",fr:"Angleterre",tr:"birīṭānyā"},
-       {ar:"أَلْمَانْيَا",fr:"Allemagne",tr:"almānyā"},
-       {ar:"إِيطَالْيَا",fr:"Italie",tr:"īṭālyā"},
-       {ar:"إِسْبَانْيَا",fr:"Espagne",tr:"isbānyā"},
-       {ar:"الْبَلَدُ",fr:"Le pays",tr:"al-balad"},
-       {ar:"الْوَطَنُ",fr:"La patrie",tr:"al-waṭan"}
-     ],
-     grammar:{title:"Les noms diptotes (الممنوع من الصرف)",
-       rule:"Certains noms ne prennent pas de tanwin (double voyelle) et prennent la fatha au lieu de la kasra au génitif. Ce sont souvent des noms propres, des noms de pays, ou des adjectifs de couleur. Exemple : سُورِيَا (Syrie), مِصْرُ (Égypte), أَحْمَرُ (rouge).",
-       examples:["أَنَا مِنْ سُورِيَا = Je viens de Syrie","هُوَ مِنْ مِصْرَ = Il vient d'Égypte","هِيَ مِنْ لُبْنَانَ = Elle vient du Liban"]},
-     dialogue:[
        {sp:"A",ar:"مِنْ أَيْنَ أَنْتَ؟",fr:"D'où viens-tu ?"},
-       {sp:"B",ar:"أَنَا مِنْ سُورِيَا.",fr:"Je viens de Syrie."},
-       {sp:"A",ar:"وَمِنْ أَيْنَ هُوَ؟",fr:"Et d'où vient-il ?"},
-       {sp:"B",ar:"هُوَ مِنْ مِصْرَ.",fr:"Il vient d'Égypte."},
-       {sp:"A",ar:"وَمِنْ أَيْنَ هِيَ؟",fr:"Et d'où vient-elle ?"},
-       {sp:"B",ar:"هِيَ مِنْ لُبْنَانَ.",fr:"Elle vient du Liban."},
-       {sp:"A",ar:"وَمِنْ أَيْنَ أَنْتُمْ؟",fr:"Et d'où venez-vous ?"},
-       {sp:"B",ar:"نَحْنُ مِنْ فَرَنْسَا.",fr:"Nous venons de France."}
+       {sp:"B",ar:"أَنَا مِنَ الْهِنْدِ.",fr:"Je viens d'Inde."},
+       {sp:"A",ar:"مَا اسْمُكَ؟",fr:"Quel est ton nom ?"},
+       {sp:"B",ar:"اسْمِي مُحَمَّدٌ.",fr:"Mon nom est Muhammad."},
+       {sp:"A",ar:"مَا اسْمُهُ؟",fr:"Quel est son nom ?"},
+       {sp:"B",ar:"اسْمُهُ حَمْزَةُ.",fr:"Son nom est Hamza."},
+       {sp:"A",ar:"أَيْنَ أَبُوهُ؟",fr:"Où est son père ?"},
+       {sp:"B",ar:"أَبُوهُ فِي الْيَابَانِ.",fr:"Son père est au Japon."},
+       {sp:"A",ar:"أَلَكَ أَخٌ؟",fr:"As-tu un frère ?"},
+       {sp:"B",ar:"نَعَمْ، لِي أَخٌ وَاحِدٌ.",fr:"Oui, j'ai un frère."},
+       {sp:"A",ar:"مَا اسْمُهُ؟",fr:"Quel est son nom ?"},
+       {sp:"B",ar:"اسْمُهُ أُسَامَةُ.",fr:"Son nom est Oussama."}
      ],
      exercises:[
-       {type:"qcm",q:"Que veut dire سُورِيَا ؟",options:["Syrie","Égypte","Liban","Irak"],correct:0},
-       {type:"qcm",q:"Comment dit-on « Égypte » ?",options:["مِصْرُ","سُورِيَا","لُبْنَانُ","الْعِرَاقُ"],correct:0},
-       {type:"qcm",q:"Que veut dire لُبْنَانُ ؟",options:["Liban","Syrie","Égypte","Irak"],correct:0},
-       {type:"qcm",q:"Comment dit-on « Irak » ?",options:["الْعِرَاقُ","سُورِيَا","مِصْرُ","لُبْنَانُ"],correct:0},
-       {type:"qcm",q:"Que veut dire فَرَنْسَا ؟",options:["France","Italie","Espagne","Allemagne"],correct:0},
-       {type:"qcm",q:"Comment dit-on « La Mecque » ?",options:["مَكَّةُ","الْمَدِينَةُ","بَغْدَادُ","دِمَشْقُ"],correct:0},
-       {type:"qcm",q:"Que veut dire بَغْدَادُ ؟",options:["Bagdad","Damas","Le Caire","Riyad"],correct:0},
-       {type:"qcm",q:"Comment dit-on « Damas » ?",options:["دِمَشْقُ","بَغْدَادُ","مَكَّةُ","الْقَاهِرَةُ"],correct:0},
-       {type:"qcm",q:"Que veut dire الْمَغْرِبُ ؟",options:["Maroc","Algérie","Tunisie","Libye"],correct:0},
-       {type:"qcm",q:"Comment dit-on « Turquie » ?",options:["تُرْكِيَا","تُونُسُ","لِيبْيَا","طَهْرَان"],correct:0},
-       {type:"qcm",q:"Que veut dire الْوَطَنُ ؟",options:["La patrie","Le pays","La ville","Le village"],correct:0},
-       {type:"qcm",q:"Comment dit-on « pays » ?",options:["الْبَلَدُ","الْوَطَنُ","الْمَدِينَةُ","الْقَرْيَةُ"],correct:0},
-       {type:"tf",ar:"أَنَا مِنْ سُورِيَا",q:"Signifie « Je viens de Syrie »",correct:true},
-       {type:"tf",ar:"هُوَ مِنْ مِصْرَ",q:"Signifie « Il va en Égypte »",correct:false,explain:"مِنْ = de/depuis."},
-       {type:"tf",ar:"نَحْنُ مِنْ فَرَنْسَا",q:"Signifie « Nous venons de France »",correct:true},
-       {type:"tf",q:"Les noms de pays sont souvent diptotes",correct:true},
-       {type:"fill",sentence:"أَنَا مِنْ ___",options:["سُورِيَا","الْمَدْرَسَةِ","الْبَيْتِ","الْمَسْجِدِ"],correct:0},
-       {type:"fill",sentence:"هُوَ ___ مِصْرَ",options:["مِنْ","فِي","عَلَى","إِلَى"],correct:0},
-       {type:"fill",sentence:"هِيَ ___ لُبْنَانَ",options:["مِنْ","فِي","عَلَى","إِلَى"],correct:0},
-       {type:"type",q:"Écris « Syrie » :",answer:"سُورِيَا",hint:"5 lettres"},
-       {type:"type",q:"Écris « Égypte » :",answer:"مِصْرُ",hint:"3 lettres"},
-       {type:"type",q:"Écris « Liban » :",answer:"لُبْنَانُ",hint:"5 lettres"},
-       {type:"type",q:"Écris « Irak » :",answer:"الْعِرَاقُ",hint:"avec ال"},
-       {type:"type",q:"Écris « Maroc » :",answer:"الْمَغْرِبُ",hint:"avec ال"},
-       {type:"type",q:"Écris « France » :",answer:"فَرَنْسَا",hint:"6 lettres"},
-       {type:"order",q:"Reconstitue :",words:["سُورِيَا","مِنْ","أَنَا"],answer:"أَنَا مِنْ سُورِيَا"},
-       {type:"order",q:"Reconstitue :",words:["مِصْرَ","مِنْ","هُوَ"],answer:"هُوَ مِنْ مِصْرَ"},
-       {type:"order",q:"Reconstitue :",words:["لُبْنَانَ","مِنْ","هِيَ"],answer:"هِيَ مِنْ لُبْنَانَ"},
-       {type:"order",q:"Reconstitue :",words:["فَرَنْسَا","مِنْ","نَحْنُ"],answer:"نَحْنُ مِنْ فَرَنْسَا"},
-       {type:"order",q:"Reconstitue :",words:["مَكَّةَ","مِنْ","أَنْتَ"],answer:"أَنْتَ مِنْ مَكَّةَ"},
-       {type:"audio",audioText:"أَنَا مِنْ سُورِيَا",options:["أَنَا مِنْ سُورِيَا","أَنَا مِنْ مِصْرَ","أَنَا مِنْ لُبْنَانَ","أَنَا مِنْ فَرَنْسَا"],correct:0},
-       {type:"audio",audioText:"هُوَ مِنْ مِصْرَ",options:["هُوَ مِنْ فَرَنْسَا","هُوَ مِنْ مِصْرَ","هُوَ مِنْ سُورِيَا","هُوَ مِنْ لُبْنَانَ"],correct:1},
-       {type:"audio",audioText:"هِيَ مِنْ لُبْنَانَ",options:["هِيَ مِنْ سُورِيَا","هِيَ مِنْ مِصْرَ","هِيَ مِنْ لُبْنَانَ","هِيَ مِنْ مَكَّةَ"],correct:2},
-       {type:"audio",audioText:"نَحْنُ مِنْ فَرَنْسَا",options:["نَحْنُ مِنْ فَرَنْسَا","أَنْتُمْ مِنْ فَرَنْسَا","هُمْ مِنْ فَرَنْسَا","نَحْنُ مِنْ مِصْرَ"],correct:0}
-     ]},
-
-    /* ===== LEÇON 13 ===== */
-    {id:"t1l13", num:13, title:"Leçon 13", desc:"Pluriels brisés",
-     active:true, audio:"assets/audio/madinah/tome1/L13.mp3",
-     text:["هَؤُلَاءِ مُدَرِّسُونَ","هَؤُلَاءِ طُلَّابٌ","هَؤُلَاءِ رِجَالٌ",
-           "هَذِهِ مُدَرِّسَاتٌ","هَذِهِ نِسَاءٌ","الْكُتُبُ جَدِيدَةٌ","الرِّجَالُ كَثِيرُونَ"],
+       /* Bloc 1 — Les pronoms isolés (10 questions) */
+       {type:"qcm",q:"Que veut dire أَنَا ?",options:["Je","Tu","Il","Nous"],correct:0},
+       {type:"qcm",q:"Que veut dire نَحْنُ ?",options:["Nous","Vous","Ils","Je"],correct:0},
+       {type:"qcm",q:"Que veut dire أَنْتَ ?",options:["Toi (masc.)","Toi (fém.)","Lui","Elle"],correct:0},
+       {type:"qcm",q:"Que veut dire هُوَ ?",options:["Lui","Elle","Toi","Nous"],correct:0},
+       {type:"qcm",q:"Que veut dire هِيَ ?",options:["Elle","Lui","Toi","Nous"],correct:0},
+       {type:"qcm",q:"Que veut dire هُمْ ?",options:["Eux","Elles","Nous","Vous"],correct:0},
+       {type:"qcm",q:"Que veut dire هُنَّ ?",options:["Elles","Eux","Nous","Vous"],correct:0},
+       {type:"qcm",q:"Quel pronom est pour la 1ère personne ?",options:["أَنَا","أَنْتَ","هُوَ","هِيَ"],correct:0},
+       {type:"qcm",q:"Quel pronom est pour la 2ème personne ?",options:["أَنْتَ","أَنَا","هُوَ","هِيَ"],correct:0},
+       {type:"qcm",q:"Quel pronom est pour la 3ème personne ?",options:["هُوَ","أَنَا","أَنْتَ","نَحْنُ"],correct:0},
+       /* Bloc 2 — Les pronoms affixes (10 questions) */
+       {type:"qcm",q:"Que veut dire كِتَابِي ?",options:["Mon livre","Ton livre","Son livre","Notre livre"],correct:0},
+       {type:"qcm",q:"Que veut dire كِتَابُكَ ?",options:["Ton livre","Mon livre","Son livre","Leur livre"],correct:0},
+       {type:"qcm",q:"Que veut dire كِتَابُهُ ?",options:["Son livre (lui)","Son livre (elle)","Mon livre","Ton livre"],correct:0},
+       {type:"qcm",q:"Que veut dire كِتَابُهَا ?",options:["Son livre (elle)","Son livre (lui)","Mon livre","Ton livre"],correct:0},
+       {type:"qcm",q:"Que veut dire كِتَابُنَا ?",options:["Notre livre","Votre livre","Leur livre","Mon livre"],correct:0},
+       {type:"qcm",q:"Que veut dire كِتَابُكُمْ ?",options:["Votre livre","Notre livre","Leur livre","Mon livre"],correct:0},
+       {type:"qcm",q:"Que veut dire كِتَابُهُمْ ?",options:["Leur livre","Votre livre","Notre livre","Mon livre"],correct:0},
+       {type:"fill",sentence:"كِتَابٌ + ـِي = ___",options:["كِتَابِي","كِتَابُكَ","كِتَابُهُ","كِتَابُهَا"],correct:0},
+       {type:"fill",sentence:"بَيْتٌ + ـهَا = ___",options:["بَيْتُهَا","بَيْتُهُ","بَيْتِي","بَيْتُكَ"],correct:0},
+       {type:"fill",sentence:"قَلَمٌ + ـهُمْ = ___",options:["قَلَمُهُمْ","قَلَمُهُ","قَلَمِي","قَلَمُكَ"],correct:0},
+       /* Bloc 3 — Les règles spéciales (10 questions) */
+       {type:"qcm",q:"Avec فِي، le ي prend :",options:["Une شدة","Une fatha","Une damma","Un sukun"],correct:0},
+       {type:"qcm",q:"فِي + ي = ?",options:["فِيَّ","فِي","فِيهِ","فِيهَا"],correct:0},
+       {type:"qcm",q:"عَلَى + ي = ?",options:["عَلَيَّ","عَلَى","عَلَيْهِ","عَلَيْهَا"],correct:0},
+       {type:"qcm",q:"إِلَى + ي = ?",options:["إِلَيَّ","إِلَى","إِلَيْهِ","إِلَيْهَا"],correct:0},
+       {type:"qcm",q:"Le ه perd sa ضمة après :",options:["Une كسرة ou un ي","Une fatha","Une damma","Un sukun"],correct:0},
+       {type:"qcm",q:"فِي + ه = ?",options:["فِيهِ","فِيهُ","فِيهَ","فِيهْ"],correct:0},
+       {type:"qcm",q:"عَلَى + ه = ?",options:["عَلَيْهِ","عَلَيْهُ","عَلَيْهَ","عَلَيْهْ"],correct:0},
+       {type:"qcm",q:"Quel pronom garde sa فتحة après une كسرة ?",options:["ه du féminin singulier","ه du masculin","ه du pluriel","Aucun"],correct:0},
+       {type:"fill",sentence:"الْبَيْتُ فِيهِ ___",options:["كِتَابٌ","كِتَابًا","كِتَابٍ","كِتَابْ"],correct:0},
+       {type:"tf",q:"Le ه perd sa ضمة après une كسرة ou un ي",correct:true,explain:""},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : أَنَا طَالِبٌ",answers:["Je suis étudiant"],hint:"Pronom isolé"},
+       {type:"type",q:"Traduire : نَحْنُ طُلَّابٌ",answers:["Nous sommes étudiants"],hint:"Pronom isolé"},
+       {type:"type",q:"Traduire : هُوَ طَالِبٌ",answers:["Il est étudiant"],hint:"Pronom isolé"},
+       {type:"type",q:"Traduire : هِيَ طَالِبَةٌ",answers:["Elle est étudiante"],hint:"Pronom isolé"},
+       {type:"type",q:"Traduire : كِتَابِي جَدِيدٌ",answers:["Mon livre est nouveau"],hint:"Pronom affixe"},
+       {type:"type",q:"Traduire : كِتَابُهُ جَدِيدٌ",answers:["Son livre est nouveau"],hint:"Pronom affixe"},
+       {type:"type",q:"Traduire : بَيْتُهَا كَبِيرٌ",answers:["Sa maison est grande"],hint:"Pronom affixe"},
+       {type:"type",q:"Traduire : مَدْرَسَتُنَا جَمِيلَةٌ",answers:["Notre école est belle"],hint:"Pronom affixe"},
+       {type:"type",q:"Traduire : أَيْنَ أَبُوهُ؟",answers:["Où est son père ?"],hint:"Question + pronom"},
+       {type:"type",q:"Traduire : اسْمُهُ حَمْزَةُ",answers:["Son nom est Hamza"],hint:"Pronom affixe"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire ضَمِيرٌ ?",options:["Pronom","Nom","Verbe","Adjectif"],correct:0},
+       {type:"qcm",q:"Que veut dire مُنْفَصِلٌ ?",options:["Isolé","Affixe","Séparé","Rattaché"],correct:0},
+       {type:"qcm",q:"Que veut dire مُتَّصِلٌ ?",options:["Affixe","Isolé","Séparé","Détaché"],correct:0},
+       {type:"qcm",q:"Que veut dire الْمُتَكَلِّمُ ?",options:["Le locuteur","L'interlocuteur","L'absent","Le narrateur"],correct:0},
+       {type:"qcm",q:"Que veut dire الْمُخَاطَبُ ?",options:["L'interlocuteur","Le locuteur","L'absent","Le narrateur"],correct:0},
+       {type:"qcm",q:"Que veut dire الْغَائِبُ ?",options:["L'absent","Le locuteur","L'interlocuteur","Le narrateur"],correct:0},
+       {type:"qcm",q:"Que veut dire زَمِيلٌ ?",options:["Camarade","Ami","Frère","Voisin"],correct:0},
+       {type:"qcm",q:"Que veut dire زَوْجٌ ?",options:["Époux","Frère","Père","Fils"],correct:0},
+       {type:"qcm",q:"Que veut dire مَعَ ?",options:["Avec","Sans","Dans","Sur"],correct:0},
+       {type:"qcm",q:"Que veut dire إِيَّاكَ ?",options:["Toi (accusatif)","Moi (accusatif)","Lui (accusatif)","Elle (accusatif)"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « je » :",answers:["أَنَا"],hint:"3 lettres"},
+       {type:"type",q:"Écris « nous » :",answers:["نَحْنُ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « lui » :",answers:["هُوَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « elle » :",answers:["هِيَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « mon livre » :",answers:["كِتَابِي"],hint:"ك ت ا ب + ي"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["طَالِبٌ","أَنَا"],answer:"أَنَا طَالِبٌ"},
+       {type:"order",q:"Reconstitue :",words:["كِتَابِي","هَذَا"],answer:"هَذَا كِتَابِي"},
+       {type:"order",q:"Reconstitue :",words:["أَبُوهُ","أَيْنَ","؟"],answer:"أَيْنَ أَبُوهُ ؟"},
+       {type:"order",q:"Reconstitue :",words:["فِي","الْبَيْتِ","هُوَ"],answer:"هُوَ فِي الْبَيْتِ"},
+       {type:"order",q:"Reconstitue :",words:["هُوَ","فِي","الْبَيْتِ","فِيهِ"],answer:"هُوَ فِي الْبَيْتِ"}
+     ]},    /* ===== LEÇON 14 ===== */
+    {id:"t1l14", num:14, title:"Leçon 14", desc:"Les démonstratifs du pluriel · هؤلاء / أولئك",
+     active:true, audio:null, pdf:"",
+     text:[
+       "هَؤُلَاءِ طُلَّابٌ","هَؤُلَاءِ طَالِبَاتٌ","أُولَئِكَ طُلَّابٌ","أُولَئِكَ طَالِبَاتٌ",
+       "هَؤُلَاءِ إِخْوَتِي وَأُولَئِكَ أَصْدِقَائِي",
+       "مَنْ هَؤُلَاءِ الْفِتْيَةُ الطِّوَالُ؟","هُمْ طُلَّابٌ جُدُدٌ",
+       "مِنْ أَيْنَ هُمْ؟","هُمْ مِنْ أَمْرِيكَا",
+       "أَهُمْ زُمَلَاؤُكَ؟","نَعَمْ، هُمْ زُمَلَائِي",
+       "هَؤُلَاءِ الرِّجَالُ فُقَرَاءُ وَأُولَئِكَ أَغْنِيَاءُ",
+       "أُولَئِكَ الطُّلَّابُ ضِعَافٌ",
+       "مَنْ أُولَئِكَ الرِّجَالُ؟","هُمْ وُزَرَاءُ",
+       "هَؤُلَاءِ أَطِبَّاءُ وَأُولَئِكَ مُهَنْدِسُونَ",
+       "هَؤُلَاءِ أُمَّهَاتُ الطَّالِبَاتِ","أُولَئِكَ النِّسَاءُ خَالَاتِي"
+     ],
      vocab:[
+       {ar:"هَؤُلَاءِ",fr:"Ceux-ci / Celles-ci (proche)",tr:"hāʾulāʾi"},
+       {ar:"أُولَئِكَ",fr:"Ceux-là / Celles-là (loin)",tr:"ulāʾika"},
+       {ar:"نَاسٌ",fr:"Gens / Hommes",tr:"nās"},
+       {ar:"فَتَاةٌ",fr:"Jeune fille",tr:"fatāh"},
+       {ar:"فِتْيَةٌ",fr:"Jeunes gens",tr:"fitya"},
+       {ar:"اِمْرَأَةٌ",fr:"Femme",tr:"imraʾa"},
+       {ar:"نِسَاءٌ",fr:"Femmes",tr:"nisāʾ"},
+       {ar:"ضَعِيفٌ",fr:"Faible",tr:"ḍaʿīf"},
+       {ar:"ضِعَافٌ",fr:"Faibles",tr:"ḍiʿāf"},
+       {ar:"عَالِمٌ",fr:"Savant",tr:"ʿālim"},
+       {ar:"عُلَمَاءُ",fr:"Savants",tr:"ʿulamāʾ"},
+       {ar:"قَوِيٌّ",fr:"Fort",tr:"qawiyy"},
+       {ar:"أَقْوِيَاءُ",fr:"Forts",tr:"aqwiyāʾ"},
+       {ar:"حَقْلٌ",fr:"Champ",tr:"ḥaql"},
+       {ar:"حُقُولٌ",fr:"Champs",tr:"ḥuqūl"},
+       {ar:"مَلْعَبٌ",fr:"Terrain de jeu",tr:"malʿab"},
+       {ar:"مَلَاعِبُ",fr:"Terrains de jeu",tr:"malāʿib"},
+       {ar:"حَاجٌّ",fr:"Pèlerin",tr:"ḥājj"},
+       {ar:"حُجَّاجٌ",fr:"Pèlerins",tr:"ḥujjāj"},
        {ar:"مَطْعَمٌ",fr:"Restaurant",tr:"maṭʿam"},
-       {ar:"مُجْتَهِدٌ",fr:"Travailleur",tr:"mujtahid"},
+       {ar:"مَطَاعِمُ",fr:"Restaurants",tr:"maṭāʿim"},
+       {ar:"قَرْيَةٌ",fr:"Village",tr:"qarya"},
+       {ar:"قُرَى",fr:"Villages",tr:"qurā"},
+       {ar:"ابْتِدَائِيَّةٌ",fr:"École primaire",tr:"ibtidāʾiyya"},
+       {ar:"مُتَوَسِّطَةٌ",fr:"École moyenne",tr:"mutawassiṭa"},
+       {ar:"ثَانَوِيَّةٌ",fr:"Lycée",tr:"thānawiyya"},
+       {ar:"زَمِيلٌ",fr:"Camarade",tr:"zamīl"},
+       {ar:"زُمَلَاءُ",fr:"Camarades",tr:"zumalāʾ"},
+       {ar:"وُزَرَاءُ",fr:"Ministres",tr:"wuzarāʾ"},
+       {ar:"أُمٌّ",fr:"Mère",tr:"umm"}
+     ],
+     grammar:{title:"Les démonstratifs du pluriel (هَؤُلَاءِ / أُولَئِكَ)",
+       rule:"Pour le pluriel : 1) هَؤُلَاءِ = démonstratif du pluriel proche (masc ou fém). 2) أُولَئِكَ = démonstratif du pluriel lointain (masc ou fém). Les démonstratifs du pluriel sont invariables en genre (masc/fém) : ils s'utilisent pour les deux. Attention à la prononciation : هَؤُلَاءِ et أُولَئِكَ.",
+       examples:["هَؤُلَاءِ طُلَّابٌ = Ceux-ci sont des étudiants","أُولَئِكَ طَالِبَاتٌ = Celles-là sont des étudiantes","هَؤُلَاءِ إِخْوَتِي وَأُولَئِكَ أَصْدِقَائِي = Ceux-ci sont mes frères et ceux-là sont mes amis"]},
+     dialogue:[
+       {sp:"A",ar:"مَنْ هَؤُلَاءِ الْفِتْيَةُ الطِّوَالُ يَا عَلِيُّ؟",fr:"Qui sont ces grands jeunes gens, ô Ali ?"},
+       {sp:"B",ar:"هُمْ طُلَّابٌ جُدُدٌ.",fr:"Ce sont de nouveaux étudiants."},
+       {sp:"A",ar:"مِنْ أَيْنَ هُمْ؟",fr:"D'où viennent-ils ?"},
+       {sp:"B",ar:"هُمْ مِنْ أَمْرِيكَا.",fr:"Ils viennent d'Amérique."},
+       {sp:"A",ar:"أَهُمْ زُمَلَاؤُكَ؟",fr:"Sont-ils tes camarades ?"},
+       {sp:"B",ar:"نَعَمْ، هُمْ زُمَلَائِي.",fr:"Oui, ce sont mes camarades."},
+       {sp:"A",ar:"أَهُمْ مُجْتَهِدُونَ؟",fr:"Sont-ils travailleurs ?"},
+       {sp:"B",ar:"نَعَمْ، هُمْ مُجْتَهِدُونَ.",fr:"Oui, ils sont travailleurs."},
+       {sp:"A",ar:"مَنْ أُولَئِكَ الرِّجَالُ؟",fr:"Qui sont ces hommes-là ?"},
+       {sp:"B",ar:"هُمْ وُزَرَاءُ.",fr:"Ce sont des ministres."},
+       {sp:"A",ar:"هَؤُلَاءِ إِخْوَتِي وَأُولَئِكَ أَصْدِقَائِي.",fr:"Ceux-ci sont mes frères et ceux-là sont mes amis."},
+       {sp:"A",ar:"هَؤُلَاءِ الرِّجَالُ فُقَرَاءُ وَأُولَئِكَ أَغْنِيَاءُ.",fr:"Ces hommes sont pauvres et ceux-là sont riches."},
+       {sp:"A",ar:"أُولَئِكَ الطُّلَّابُ ضِعَافٌ.",fr:"Ces étudiants-là sont faibles."},
+       {sp:"A",ar:"مَنْ أُولَئِكَ الرِّجَالُ؟",fr:"Qui sont ces hommes-là ?"}
+     ],
+     exercises:[
+       /* Bloc 1 — هؤلاء / أولئك (10 questions) */
+       {type:"qcm",q:"Que veut dire هَؤُلَاءِ ?",options:["Ceux-ci (proche)","Ceux-là (loin)","Celui-ci","Celui-là"],correct:0},
+       {type:"qcm",q:"Que veut dire أُولَئِكَ ?",options:["Ceux-là (loin)","Ceux-ci (proche)","Celle-ci","Celle-là"],correct:0},
+       {type:"qcm",q:"هَؤُلَاءِ désigne :",options:["Le pluriel proche","Le singulier proche","Le duel","Le pluriel lointain"],correct:0},
+       {type:"qcm",q:"أُولَئِكَ désigne :",options:["Le pluriel lointain","Le singulier lointain","Le duel","Le pluriel proche"],correct:0},
+       {type:"qcm",q:"هَؤُلَاءِ s'utilise pour :",options:["Masculin et féminin","Masculin seulement","Féminin seulement","Neutre"],correct:0},
+       {type:"qcm",q:"أُولَئِكَ s'utilise pour :",options:["Masculin et féminin","Masculin seulement","Féminin seulement","Neutre"],correct:0},
+       {type:"fill",sentence:"___ طُلَّابٌ (proche)",options:["هَؤُلَاءِ","أُولَئِكَ","هَذَا","ذَلِكَ"],correct:0},
+       {type:"fill",sentence:"___ طَالِبَاتٌ (loin)",options:["أُولَئِكَ","هَؤُلَاءِ","هَذِهِ","تِلْكَ"],correct:0},
+       {type:"tf",q:"هَؤُلَاءِ est pour le pluriel proche",correct:true,explain:""},
+       {type:"tf",q:"أُولَئِكَ est pour le pluriel proche",correct:false,explain:"Non, أُولَئِكَ est pour le pluriel lointain. Pour le proche, on utilise هَؤُلَاءِ."},
+       /* Bloc 2 — Les phrases (10 questions) */
+       {type:"type",q:"Traduire : هَؤُلَاءِ طُلَّابٌ",answers:["Ceux-ci sont des étudiants"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُولَئِكَ طَالِبَاتٌ",answers:["Celles-là sont des étudiantes"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَؤُلَاءِ إِخْوَتِي",answers:["Ceux-ci sont mes frères"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُولَئِكَ أَصْدِقَائِي",answers:["Ceux-là sont mes amis"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَؤُلَاءِ الرِّجَالُ فُقَرَاءُ",answers:["Ces hommes-ci sont pauvres"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُولَئِكَ أَغْنِيَاءُ",answers:["Ceux-là sont riches"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : مَنْ هَؤُلَاءِ؟",answers:["Qui sont ceux-ci ?"],hint:"Question"},
+       {type:"type",q:"Traduire : مَنْ أُولَئِكَ؟",answers:["Qui sont ceux-là ?"],hint:"Question"},
+       {type:"fill",sentence:"___ إِخْوَتِي (proche)",options:["هَؤُلَاءِ","أُولَئِكَ","هَذَا","ذَلِكَ"],correct:0},
+       {type:"fill",sentence:"___ أَصْدِقَائِي (loin)",options:["أُولَئِكَ","هَؤُلَاءِ","هَذَا","ذَلِكَ"],correct:0},
+       /* Bloc 3 — Vocabulaire (10 questions) */
+       {type:"qcm",q:"Que veut dire نَاسٌ ?",options:["Gens","Personne","Homme","Femme"],correct:0},
+       {type:"qcm",q:"Que veut dire فَتَاةٌ ?",options:["Jeune fille","Jeune homme","Femme","Enfant"],correct:0},
+       {type:"qcm",q:"Que veut dire اِمْرَأَةٌ ?",options:["Femme","Homme","Fille","Mère"],correct:0},
+       {type:"qcm",q:"Que veut dire ضَعِيفٌ ?",options:["Faible","Fort","Grand","Petit"],correct:0},
+       {type:"qcm",q:"Que veut dire عَالِمٌ ?",options:["Savant","Ignorant","Étudiant","Professeur"],correct:0},
+       {type:"qcm",q:"Que veut dire قَوِيٌّ ?",options:["Fort","Faible","Grand","Petit"],correct:0},
+       {type:"qcm",q:"Que veut dire حَقْلٌ ?",options:["Champ","Jardin","Ferme","Village"],correct:0},
+       {type:"qcm",q:"Que veut dire مَلْعَبٌ ?",options:["Terrain de jeu","Stade","École","Maison"],correct:0},
+       {type:"qcm",q:"Que veut dire حَاجٌّ ?",options:["Pèlerin","Voyageur","Touriste","Étudiant"],correct:0},
+       {type:"qcm",q:"Que veut dire قَرْيَةٌ ?",options:["Village","Ville","Pays","Rue"],correct:0},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : هَؤُلَاءِ أَطِبَّاءُ",answers:["Ceux-ci sont des médecins"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُولَئِكَ مُهَنْدِسُونَ",answers:["Ceux-là sont des ingénieurs"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُولَئِكَ الطُّلَّابُ ضِعَافٌ",answers:["Ces étudiants-là sont faibles"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : مَنْ أُولَئِكَ الرِّجَالُ؟",answers:["Qui sont ces hommes-là ?"],hint:"Question"},
+       {type:"type",q:"Traduire : هُمْ وُزَرَاءُ",answers:["Ce sont des ministres"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَؤُلَاءِ أُمَّهَاتُ الطَّالِبَاتِ",answers:["Celles-ci sont les mères des étudiantes"],hint:"Annexion"},
+       {type:"type",q:"Traduire : أُولَئِكَ النِّسَاءُ خَالَاتِي",answers:["Ces femmes-là sont mes tantes maternelles"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَؤُلَاءِ الرِّجَالُ فُقَرَاءُ",answers:["Ces hommes-ci sont pauvres"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُولَئِكَ أَغْنِيَاءُ",answers:["Ceux-là sont riches"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَؤُلَاءِ إِخْوَتِي وَأُولَئِكَ أَصْدِقَائِي",answers:["Ceux-ci sont mes frères et ceux-là sont mes amis"],hint:"Avec وَ"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire فِتْيَةٌ ?",options:["Jeunes gens","Filles","Femmes","Enfants"],correct:0},
+       {type:"qcm",q:"Que veut dire ضِعَافٌ ?",options:["Faibles","Forts","Grands","Petits"],correct:0},
+       {type:"qcm",q:"Que veut dire عُلَمَاءُ ?",options:["Savants","Ignorants","Étudiants","Professeurs"],correct:0},
+       {type:"qcm",q:"Que veut dire أَقْوِيَاءُ ?",options:["Forts","Faibles","Grands","Petits"],correct:0},
+       {type:"qcm",q:"Que veut dire حُقُولٌ ?",options:["Champs","Jardins","Fermes","Villages"],correct:0},
+       {type:"qcm",q:"Que veut dire مَلَاعِبُ ?",options:["Terrains de jeu","Stades","Écoles","Maisons"],correct:0},
+       {type:"qcm",q:"Que veut dire حُجَّاجٌ ?",options:["Pèlerins","Voyageurs","Touristes","Étudiants"],correct:0},
+       {type:"qcm",q:"Que veut dire مَطَاعِمُ ?",options:["Restaurants","Cuisines","Marchés","Magasins"],correct:0},
+       {type:"qcm",q:"Que veut dire قُرَى ?",options:["Villages","Villes","Pays","Rues"],correct:0},
+       {type:"qcm",q:"Que veut dire زُمَلَاءُ ?",options:["Camarades","Amis","Frères","Voisins"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « ceux-ci » :",answers:["هَؤُلَاءِ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « ceux-là » :",answers:["أُولَئِكَ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « gens » :",answers:["نَاسٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « femme » :",answers:["اِمْرَأَةٌ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « village » :",answers:["قَرْيَةٌ"],hint:"ق ر ي + ة"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["طُلَّابٌ","هَؤُلَاءِ"],answer:"هَؤُلَاءِ طُلَّابٌ"},
+       {type:"order",q:"Reconstitue :",words:["طَالِبَاتٌ","أُولَئِكَ"],answer:"أُولَئِكَ طَالِبَاتٌ"},
+       {type:"order",q:"Reconstitue :",words:["إِخْوَتِي","هَؤُلَاءِ"],answer:"هَؤُلَاءِ إِخْوَتِي"},
+       {type:"order",q:"Reconstitue :",words:["أَصْدِقَائِي","أُولَئِكَ"],answer:"أُولَئِكَ أَصْدِقَائِي"},
+       {type:"order",q:"Reconstitue :",words:["الرِّجَالُ","مَنْ","هَؤُلَاءِ","؟"],answer:"مَنْ هَؤُلَاءِ الرِّجَالُ ؟"}
+     ]},    /* ===== LEÇON 15 ===== */
+    {id:"t1l15", num:15, title:"Leçon 15", desc:"L'interrogatif كَيْفَ · L'état",
+     active:true, audio:null, pdf:"",
+     text:[
+       "كَيْفَ حَالُكَ؟","أَنَا بِخَيْرٍ","كَيْفَ أَنْتَ؟","أَنَا بِخَيْرٍ",
+       "كَيْفَ الْاِخْتِبَارُ؟","الْاِخْتِبَارُ صَعْبٌ","كَيْفَ دَرْسُ الْيَوْمِ؟","دَرْسُ الْيَوْمِ سَهْلٌ جِدًّا",
+       "كَيْفَ حَالُكِ يَا أُمِّي؟","أَنَا بِخَيْرٍ يَا بُنَيَّ",
+       "أَيْنَ ابْنُكِ يَا زَيْنَبُ؟","ذَهَبَ إِلَى الْمَسْجِدِ",
+       "أَيْنَ بِنْتُكِ يَا آمِنَةُ؟","ذَهَبَتْ إِلَى الْمَدْرَسَةِ",
+       "لِمَنْ هَذِهِ السَّاعَةُ الْجَمِيلَةُ؟","هِيَ لِي",
+       "أَهَذَا قَلَمُكَ يَا مُحَمَّدُ؟","لَا، هَذَا قَلَمُكَ أَنْتَ",
+       "تِلْكَ السَّيَّارَةُ الْجَمِيلَةُ لِلْمُدِيرِ","أَأَنْتَ مُهَنْدِسٌ يَا أَخِي؟","لَا، أَنَا طَبِيبٌ"
+     ],
+     vocab:[
+       {ar:"كَيْفَ",fr:"Comment ?",tr:"kayfa"},
+       {ar:"حَالٌ",fr:"État",tr:"ḥāl"},
+       {ar:"بِخَيْرٍ",fr:"Bien",tr:"bikhayr"},
+       {ar:"سَهْلٌ",fr:"Facile",tr:"sahl"},
+       {ar:"صَعْبٌ",fr:"Difficile",tr:"ṣaʿb"},
+       {ar:"جِدًّا",fr:"Très",tr:"jiddan"},
+       {ar:"اِخْتِبَارٌ",fr:"Examen",tr:"ikhtibār"},
+       {ar:"دَرْسٌ",fr:"Leçon",tr:"dars"},
+       {ar:"اِبْنٌ",fr:"Fils",tr:"ibn"},
+       {ar:"بِنْتٌ",fr:"Fille",tr:"bint"},
+       {ar:"سَاعَةٌ",fr:"Montre",tr:"sāʿa"},
+       {ar:"قَلَمٌ",fr:"Stylo",tr:"qalam"},
+       {ar:"سَيَّارَةٌ",fr:"Voiture",tr:"sayyāra"},
+       {ar:"مُدِيرٌ",fr:"Directeur",tr:"mudīr"},
+       {ar:"مُهَنْدِسٌ",fr:"Ingénieur",tr:"muhandis"},
+       {ar:"طَبِيبٌ",fr:"Médecin",tr:"ṭabīb"},
+       {ar:"مُدَرِّسٌ",fr:"Professeur",tr:"mudarris"},
+       {ar:"زَيْنَبُ",fr:"Zaynab",tr:"Zaynab"},
+       {ar:"آمِنَةُ",fr:"Amina",tr:"Āmina"},
+       {ar:"مُحَمَّدٌ",fr:"Muhammad",tr:"Muḥammad"},
+       {ar:"أُمٌّ",fr:"Mère",tr:"umm"},
+       {ar:"بُنَيٌّ",fr:"Mon petit fils",tr:"bunayy"},
+       {ar:"تَاءُ التَّأْنِيثِ السَّاكِنَةُ",fr:"Le tāʾ du féminin",tr:"tāʾ al-taʾnīth al-sākina"},
+       {ar:"ذَهَبَ",fr:"Il est allé (masc.)",tr:"dhahaba"},
+       {ar:"ذَهَبَتْ",fr:"Elle est allée (fém.)",tr:"dhahabat"},
+       {ar:"خَرَجَ",fr:"Il est sorti (masc.)",tr:"kharaja"},
+       {ar:"خَرَجَتْ",fr:"Elle est sortie (fém.)",tr:"kharajat"}
+     ],
+     grammar:{title:"L'interrogatif كَيْفَ et تَاءُ التَّأْنِيثِ السَّاكِنَةُ",
+       rule:"1) Le nom interrogatif كَيْفَ (comment ?) s'emploie pour questionner sur le comment d'une chose ou son état. Il débute toujours la phrase et est invariable. Les 5 noms interrogatifs : كَيْفَ (état), أَيْنَ (lieu), مَنْ (êtres doués de raison), مَا (êtres non doués de raison), مَتَى (temps). 2) تَاءُ التَّأْنِيثِ السَّاكِنَةُ : quand le sujet du verbe au passé est féminin, le verbe prend un تَاء ساكنة à la fin (ex : ذَهَبَ → ذَهَبَتْ). Ce تَاء n'est pas un pronom, c'est une particule qui indique que le sujet est féminin.",
+       examples:["كَيْفَ حَالُكَ؟ = Comment vas-tu ?","كَيْفَ الْاِخْتِبَارُ؟ = Comment est l'examen ?","ذَهَبَ زَيْدٌ (masc.) → ذَهَبَتْ فَاطِمَةُ (fém.)"]},
+     dialogue:[
+       {sp:"A",ar:"كَيْفَ حَالُكَ يَا مُحَمَّدُ؟",fr:"Comment vas-tu, Muhammad ?"},
+       {sp:"B",ar:"أَنَا بِخَيْرٍ، الْحَمْدُ لِلَّهِ.",fr:"Je vais bien, louange à Allah."},
+       {sp:"A",ar:"كَيْفَ الْاِخْتِبَارُ؟",fr:"Comment est l'examen ?"},
+       {sp:"B",ar:"الْاِخْتِبَارُ صَعْبٌ.",fr:"L'examen est difficile."},
+       {sp:"A",ar:"كَيْفَ دَرْسُ الْيَوْمِ؟",fr:"Comment est la leçon d'aujourd'hui ?"},
+       {sp:"B",ar:"دَرْسُ الْيَوْمِ سَهْلٌ جِدًّا.",fr:"La leçon d'aujourd'hui est très facile."},
+       {sp:"A",ar:"أَيْنَ ابْنُكِ يَا زَيْنَبُ؟",fr:"Où est ton fils, ô Zaynab ?"},
+       {sp:"B",ar:"ذَهَبَ إِلَى الْمَسْجِدِ.",fr:"Il est allé à la mosquée."},
+       {sp:"A",ar:"أَيْنَ بِنْتُكِ يَا آمِنَةُ؟",fr:"Où est ta fille, ô Amina ?"},
+       {sp:"B",ar:"ذَهَبَتْ إِلَى الْمَدْرَسَةِ.",fr:"Elle est allée à l'école."},
+       {sp:"A",ar:"لِمَنْ هَذِهِ السَّاعَةُ الْجَمِيلَةُ؟",fr:"À qui est cette belle montre ?"},
+       {sp:"B",ar:"هِيَ لِي.",fr:"Elle est à moi."},
+       {sp:"A",ar:"أَهَذَا قَلَمُكَ يَا مُحَمَّدُ؟",fr:"Est-ce ton stylo, ô Muhammad ?"},
+       {sp:"B",ar:"لَا، هَذَا قَلَمُكَ أَنْتَ.",fr:"Non, c'est ton stylo à toi."}
+     ],
+     exercises:[
+       /* Bloc 1 — كَيْفَ (10 questions) */
+       {type:"qcm",q:"Que veut dire كَيْفَ ؟",options:["Comment ?","Où ?","Qui ?","Quand ?"],correct:0},
+       {type:"qcm",q:"كَيْفَ s'emploie pour questionner sur :",options:["L'état","Le lieu","La personne","Le temps"],correct:0},
+       {type:"qcm",q:"كَيْفَ est :",options:["Invariable","Variable","Parfois variable","Avec tanwin"],correct:0},
+       {type:"qcm",q:"كَيْفَ débute :",options:["Toujours la phrase","Parfois la phrase","Jamais la phrase","Au milieu"],correct:0},
+       {type:"qcm",q:"Que veut dire حَالٌ ؟",options:["État","Lieu","Temps","Personne"],correct:0},
+       {type:"fill",sentence:"___ حَالُكَ ؟",options:["كَيْفَ","أَيْنَ","مَنْ","مَا"],correct:0},
+       {type:"fill",sentence:"___ الْاِخْتِبَارُ ؟",options:["كَيْفَ","أَيْنَ","مَنْ","مَا"],correct:0},
+       {type:"fill",sentence:"___ دَرْسُ الْيَوْمِ ؟",options:["كَيْفَ","أَيْنَ","مَنْ","مَا"],correct:0},
+       {type:"type",q:"Traduire : كَيْفَ حَالُكَ ؟",answers:["Comment vas-tu ?"],hint:"Question sur l'état"},
+       {type:"type",q:"Traduire : كَيْفَ الْاِخْتِبَارُ ؟",answers:["Comment est l'examen ?"],hint:"Question sur l'état"},
+       /* Bloc 2 — Les 5 noms interrogatifs (10 questions) */
+       {type:"qcm",q:"Quel interrogatif pour le lieu ?",options:["أَيْنَ","كَيْفَ","مَنْ","مَا"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour l'état ?",options:["كَيْفَ","أَيْنَ","مَنْ","مَا"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour les êtres doués de raison ?",options:["مَنْ","مَا","أَيْنَ","كَيْفَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour les êtres non doués de raison ?",options:["مَا","مَنْ","أَيْنَ","كَيْفَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour le temps ?",options:["مَتَى","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ حَالُكَ ؟",options:["كَيْفَ","أَيْنَ","مَنْ","مَا"],correct:0},
+       {type:"fill",sentence:"___ ابْنُكِ ؟",options:["أَيْنَ","كَيْفَ","مَنْ","مَا"],correct:0},
+       {type:"fill",sentence:"___ هَذَا ؟",options:["مَنْ","كَيْفَ","أَيْنَ","مَتَى"],correct:0},
+       {type:"fill",sentence:"___ هَذَا ؟",options:["مَا","كَيْفَ","أَيْنَ","مَتَى"],correct:0},
+       {type:"tf",q:"Les 5 noms interrogatifs sont : كَيْفَ، أَيْنَ، مَنْ، مَا، مَتَى",correct:true,explain:""},
+       /* Bloc 3 — تَاءُ التَّأْنِيثِ (10 questions) */
+       {type:"qcm",q:"Quand le sujet du verbe au passé est féminin, le verbe prend :",options:["Un تَاء ساكنة","Un تَاء متحركة","Un نون","Un ياء"],correct:0},
+       {type:"qcm",q:"ذَهَبَ + فَاطِمَةُ = ?",options:["ذَهَبَتْ فَاطِمَةُ","ذَهَبَ فَاطِمَةُ","ذَهَبَتَا فَاطِمَةُ","ذَهَبُوا فَاطِمَةُ"],correct:0},
+       {type:"qcm",q:"خَرَجَ + فَاطِمَةُ = ?",options:["خَرَجَتْ فَاطِمَةُ","خَرَجَ فَاطِمَةُ","خَرَجَتَا فَاطِمَةُ","خَرَجُوا فَاطِمَةُ"],correct:0},
+       {type:"qcm",q:"Le تَاء de la féminisation est :",options:["Une particule","Un pronom","Un nom","Un verbe"],correct:0},
+       {type:"qcm",q:"Le تَاء de la féminisation indique :",options:["Que le sujet est féminin","Que le sujet est masculin","Que le sujet est pluriel","Que le sujet est duel"],correct:0},
+       {type:"fill",sentence:"___ فَاطِمَةُ (passé)",options:["ذَهَبَتْ","ذَهَبَ","ذَهَبُوا","ذَهَبَتَا"],correct:0},
+       {type:"fill",sentence:"___ زَيْنَبُ (passé)",options:["خَرَجَتْ","خَرَجَ","خَرَجُوا","خَرَجَتَا"],correct:0},
+       {type:"type",q:"Traduire : ذَهَبَتْ فَاطِمَةُ",answers:["Fatima est allée"],hint:"Verbe + sujet féminin"},
+       {type:"type",q:"Traduire : خَرَجَتْ زَيْنَبُ",answers:["Zaynab est sortie"],hint:"Verbe + sujet féminin"},
+       {type:"tf",q:"Le تَاء de la féminisation indique que le sujet est féminin",correct:true,explain:""},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : أَنَا بِخَيْرٍ",answers:["Je vais bien"],hint:"Réponse"},
+       {type:"type",q:"Traduire : الْاِخْتِبَارُ صَعْبٌ",answers:["L'examen est difficile"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : دَرْسُ الْيَوْمِ سَهْلٌ جِدًّا",answers:["La leçon d'aujourd'hui est très facile"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أَيْنَ ابْنُكِ يَا زَيْنَبُ ؟",answers:["Où est ton fils, ô Zaynab ?"],hint:"Question"},
+       {type:"type",q:"Traduire : ذَهَبَ إِلَى الْمَسْجِدِ",answers:["Il est allé à la mosquée"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : أَيْنَ بِنْتُكِ يَا آمِنَةُ ؟",answers:["Où est ta fille, ô Amina ?"],hint:"Question"},
+       {type:"type",q:"Traduire : ذَهَبَتْ إِلَى الْمَدْرَسَةِ",answers:["Elle est allée à l'école"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : لِمَنْ هَذِهِ السَّاعَةُ ؟",answers:["À qui est cette montre ?"],hint:"Question"},
+       {type:"type",q:"Traduire : هِيَ لِي",answers:["Elle est à moi"],hint:"Réponse avec لِ"},
+       {type:"type",q:"Traduire : أَهَذَا قَلَمُكَ ؟",answers:["Est-ce ton stylo ?"],hint:"Question fermée"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire حَالٌ ؟",options:["État","Lieu","Temps","Personne"],correct:0},
+       {type:"qcm",q:"Que veut dire بِخَيْرٍ ؟",options:["Bien","Mal","Moyen","Excellent"],correct:0},
+       {type:"qcm",q:"Que veut dire سَهْلٌ ؟",options:["Facile","Difficile","Grand","Petit"],correct:0},
+       {type:"qcm",q:"Que veut dire صَعْبٌ ؟",options:["Difficile","Facile","Beau","Laid"],correct:0},
+       {type:"qcm",q:"Que veut dire جِدًّا ؟",options:["Très","Peu","Assez","Trop"],correct:0},
+       {type:"qcm",q:"Que veut dire اِخْتِبَارٌ ؟",options:["Examen","Leçon","Cours","Devoir"],correct:0},
+       {type:"qcm",q:"Que veut dire اِبْنٌ ؟",options:["Fils","Fille","Père","Frère"],correct:0},
+       {type:"qcm",q:"Que veut dire بِنْتٌ ؟",options:["Fille","Fils","Sœur","Mère"],correct:0},
+       {type:"qcm",q:"Que veut dire سَاعَةٌ ؟",options:["Montre","Heure","Minute","Seconde"],correct:0},
+       {type:"qcm",q:"Que veut dire مُهَنْدِسٌ ؟",options:["Ingénieur","Médecin","Professeur","Directeur"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « comment ? » :",answers:["كَيْفَ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « état » :",answers:["حَالٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « bien » :",answers:["بِخَيْرٍ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « très » :",answers:["جِدًّا"],hint:"3 lettres"},
+       {type:"type",q:"Écris « fils » :",answers:["اِبْنٌ"],hint:"3 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["حَالُكَ","كَيْفَ","؟"],answer:"كَيْفَ حَالُكَ ؟"},
+       {type:"order",q:"Reconstitue :",words:["الْاِخْتِبَارُ","كَيْفَ","؟"],answer:"كَيْفَ الْاِخْتِبَارُ ؟"},
+       {type:"order",q:"Reconstitue :",words:["ابْنُكِ","أَيْنَ","؟"],answer:"أَيْنَ ابْنُكِ ؟"},
+       {type:"order",q:"Reconstitue :",words:["بِنْتُكِ","أَيْنَ","؟"],answer:"أَيْنَ بِنْتُكِ ؟"},
+       {type:"order",q:"Reconstitue :",words:["السَّاعَةُ","لِمَنْ","هَذِهِ","؟"],answer:"لِمَنْ هَذِهِ السَّاعَةُ ؟"}
+     ]},    /* ===== LEÇON 16 ===== */
+    {id:"t1l16", num:16, title:"Leçon 16", desc:"L'interrogatif أَيّ · Les noms propres non-arabes",
+     active:true, audio:null, pdf:"",
+     text:[
+       "أَيُّ يَوْمٍ هَذَا؟","هَذَا يَوْمُ السَّبْتِ",
+       "أَيُّ شَهْرٍ هَذَا؟","هَذَا شَهْرُ رَجَبٍ",
+       "أَيُّ كُلِّيَّةٍ هَذِهِ؟","هَذِهِ كُلِّيَّةُ التِّجَارَةِ",
+       "فِي أَيِّ مَدْرَسَةٍ أَنْتَ؟","أَنَا فِي الْمَدْرَسَةِ الْمُتَوَسِّطَةِ",
+       "مِنْ أَيِّ بَلَدٍ أَنْتِ يَا أُخْتِي؟","أَنَا مِنَ الْيُونَانِ",
+       "إِبْرَاهِيمُ فِي كُلِّيَّةِ الشَّرِيعَةِ","يُوسُفُ فِي كُلِّيَّةِ التِّجَارَةِ",
+       "إِسْحَاقُ وَدَاوُدُ أَنْبِيَاءُ","نُوحٌ وَلُوطٌ أَنْبِيَاءُ",
+       "أَيُّ رَجُلٍ خَرَجَ؟","أَيُّ بَيْتٍ بَيْتُكَ؟",
+       "إِبْرَاهِيمُ وَيُوسُفُ وَإِسْحَاقُ وَدَاوُدُ أَسْمَاءُ أَنْبِيَاءَ",
+       "أَيُّ كِتَابٍ قَرَأْتَ؟","قَرَأْتُ كِتَابَ التَّوْحِيدِ"
+     ],
+     vocab:[
+       {ar:"أَيُّ",fr:"Quel ?",tr:"ayyu"},
+       {ar:"يَوْمٌ",fr:"Jour",tr:"yawm"},
+       {ar:"شَهْرٌ",fr:"Mois",tr:"shahr"},
+       {ar:"كُلِّيَّةٌ",fr:"Faculté",tr:"kulliyya"},
+       {ar:"جَامِعَةٌ",fr:"Université",tr:"jāmiʿa"},
+       {ar:"تِجَارَةٌ",fr:"Commerce",tr:"tijāra"},
+       {ar:"هَنْدَسَةٌ",fr:"Ingénierie",tr:"handasa"},
+       {ar:"طِبٌّ",fr:"Médecine",tr:"ṭibb"},
+       {ar:"شَرِيعَةٌ",fr:"Loi islamique",tr:"sharīʿa"},
+       {ar:"مُتَوَسِّطَةٌ",fr:"Moyenne (école)",tr:"mutawassiṭa"},
+       {ar:"ثَانَوِيَّةٌ",fr:"Lycée",tr:"thānawiyya"},
+       {ar:"بَلَدٌ",fr:"Pays",tr:"balad"},
+       {ar:"يُونَانُ",fr:"Grèce",tr:"Yūnān"},
+       {ar:"إِبْرَاهِيمُ",fr:"Abraham",tr:"Ibrāhīm"},
+       {ar:"إِسْحَاقُ",fr:"Isaac",tr:"Isḥāq"},
+       {ar:"يُوسُفُ",fr:"Joseph",tr:"Yūsuf"},
+       {ar:"دَاوُدُ",fr:"David",tr:"Dāwūd"},
+       {ar:"نُوحٌ",fr:"Noé",tr:"Nūḥ"},
+       {ar:"لُوطٌ",fr:"Lot",tr:"Lūṭ"},
+       {ar:"رَجُلٌ",fr:"Homme",tr:"rajul"},
+       {ar:"بَيْتٌ",fr:"Maison",tr:"bayt"},
+       {ar:"كِتَابٌ",fr:"Livre",tr:"kitāb"},
+       {ar:"قَرَأَ",fr:"Lire",tr:"qaraʾa"},
+       {ar:"الْعَلَمُ الْأَعْجَمِيُّ",fr:"Le nom propre non-arabe",tr:"al-ʿalam al-aʿjamiyy"},
+       {ar:"مَمْنُوعٌ مِنَ الصَّرْفِ",fr:"Interdit de tanwin",tr:"mamnūʿ min al-ṣarf"},
+       {ar:"مُعَرَّبٌ",fr:"Variable",tr:"muʿrab"},
+       {ar:"مَبْنِيٌّ",fr:"Invariable",tr:"mabniyy"},
+       {ar:"مُضَافٌ",fr:"Annexé",tr:"muḍāf"},
+       {ar:"مُضَافٌ إِلَيْهِ",fr:"Complément d'annexion",tr:"muḍāf ilayhi"}
+     ],
+     grammar:{title:"L'interrogatif أَيُّ et les noms propres non-arabes",
+       rule:"1) Le nom interrogatif أَيُّ (quel ?) a un sens général : il peut interroger sur un lieu, un temps, une personne ou un être. Il est TOUJOURS annexé (مُضَاف) et il est le SEUL nom interrogatif variable (مُعَرَّب). 2) Les noms propres non-arabes (الْعَلَمُ الْأَعْجَمِيُّ) composés de plus de trois lettres sont interdits de tanwin (مَمْنُوعٌ مِنَ الصَّرْفِ). Exemples : إِبْرَاهِيمُ، إِسْحَاقُ، يُوسُفُ، دَاوُدُ. Ceux de trois lettres ou moins peuvent prendre le tanwin : نُوحٌ، لُوطٌ.",
+       examples:["أَيُّ يَوْمٍ هَذَا؟ = Quel jour est-ce ?","أَيُّ بَلَدٍ هَذَا؟ = Quel pays est-ce ?","أَيُّ رَجُلٍ خَرَجَ؟ = Quel homme est sorti ?","إِبْرَاهِيمُ، إِسْحَاقُ، يُوسُفُ = noms non-arabes interdits de tanwin"]},
+     dialogue:[
+       {sp:"A",ar:"أَيُّ يَوْمٍ هَذَا؟",fr:"Quel jour est-ce ?"},
+       {sp:"B",ar:"هَذَا يَوْمُ السَّبْتِ.",fr:"C'est samedi."},
+       {sp:"A",ar:"أَيُّ شَهْرٍ هَذَا؟",fr:"Quel mois est-ce ?"},
+       {sp:"B",ar:"هَذَا شَهْرُ رَجَبٍ.",fr:"C'est le mois de Rajab."},
+       {sp:"A",ar:"أَيُّ كُلِّيَّةٍ هَذِهِ؟",fr:"Quelle faculté est-ce ?"},
+       {sp:"B",ar:"هَذِهِ كُلِّيَّةُ التِّجَارَةِ.",fr:"C'est la faculté de commerce."},
+       {sp:"A",ar:"فِي أَيِّ مَدْرَسَةٍ أَنْتَ؟",fr:"Dans quelle école es-tu ?"},
+       {sp:"B",ar:"أَنَا فِي الْمَدْرَسَةِ الْمُتَوَسِّطَةِ.",fr:"Je suis à l'école moyenne."},
+       {sp:"A",ar:"مِنْ أَيِّ بَلَدٍ أَنْتِ يَا أُخْتِي؟",fr:"De quel pays es-tu, ô ma sœur ?"},
+       {sp:"B",ar:"أَنَا مِنَ الْيُونَانِ.",fr:"Je suis de Grèce."},
+       {sp:"A",ar:"إِبْرَاهِيمُ فِي كُلِّيَّةِ الشَّرِيعَةِ وَيُوسُفُ فِي كُلِّيَّةِ التِّجَارَةِ.",fr:"Ibrahim est à la faculté de charia et Youssef à la faculté de commerce."},
+       {sp:"A",ar:"إِسْحَاقُ وَدَاوُدُ أَنْبِيَاءُ.",fr:"Isaac et David sont des prophètes."},
+       {sp:"A",ar:"نُوحٌ وَلُوطٌ أَنْبِيَاءُ.",fr:"Noé et Lot sont des prophètes."},
+       {sp:"A",ar:"أَيُّ كِتَابٍ قَرَأْتَ؟",fr:"Quel livre as-tu lu ?"}
+     ],
+     exercises:[
+       /* Bloc 1 — أَيُّ (10 questions) */
+       {type:"qcm",q:"Que veut dire أَيُّ ؟",options:["Quel ?","Comment ?","Où ?","Quand ?"],correct:0},
+       {type:"qcm",q:"أَيُّ est :",options:["Toujours annexé (مُضَاف)","Toujours isolé","Toujours défini","Toujours indéfini"],correct:0},
+       {type:"qcm",q:"أَيُّ est le seul nom interrogatif :",options:["Variable (مُعَرَّب)","Invariable (مَبْنِي)","Avec tanwin","Sans sens"],correct:0},
+       {type:"qcm",q:"أَيُّ peut interroger sur :",options:["Lieu, temps, personne, être","Seulement le lieu","Seulement le temps","Seulement la personne"],correct:0},
+       {type:"fill",sentence:"___ يَوْمٍ هَذَا ؟",options:["أَيُّ","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ شَهْرٍ هَذَا ؟",options:["أَيُّ","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ كُلِّيَّةٍ هَذِهِ ؟",options:["أَيُّ","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ بَلَدٍ هَذَا ؟",options:["أَيُّ","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"فِي ___ مَدْرَسَةٍ أَنْتَ ؟",options:["أَيِّ","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"tf",q:"أَيُّ est toujours annexé (مُضَاف)",correct:true,explain:""},
+       /* Bloc 2 — Les noms propres non-arabes (10 questions) */
+       {type:"qcm",q:"Qu'est-ce que الْعَلَمُ الْأَعْجَمِيُّ ؟",options:["Le nom propre non-arabe","Le nom propre arabe","Le nom commun","Le verbe"],correct:0},
+       {type:"qcm",q:"Le nom propre non-arabe de +3 lettres est :",options:["مَمْنُوعٌ مِنَ الصَّرْفِ (interdit de tanwin)","Toujours avec tanwin","Toujours défini","Toujours pluriel"],correct:0},
+       {type:"qcm",q:"إِبْرَاهِيمُ est :",options:["مَمْنُوعٌ مِنَ الصَّرْفِ","Avec tanwin","Avec ال","Indéfini"],correct:0},
+       {type:"qcm",q:"نُوحٌ est :",options:["Avec tanwin (3 lettres)","مَمْنُوعٌ مِنَ الصَّرْفِ","Sans tanwin","Avec ال"],correct:0},
+       {type:"qcm",q:"لُوطٌ est :",options:["Avec tanwin (3 lettres)","مَمْنُوعٌ مِنَ الصَّرْفِ","Sans tanwin","Avec ال"],correct:0},
+       {type:"qcm",q:"يُوسُفُ est :",options:["مَمْنُوعٌ مِنَ الصَّرْفِ","Avec tanwin","Avec ال","Indéfini"],correct:0},
+       {type:"qcm",q:"إِسْحَاقُ est :",options:["مَمْنُوعٌ مِنَ الصَّرْفِ","Avec tanwin","Avec ال","Indéfini"],correct:0},
+       {type:"qcm",q:"دَاوُدُ est :",options:["مَمْنُوعٌ مِنَ الصَّرْفِ","Avec tanwin","Avec ال","Indéfini"],correct:0},
+       {type:"tf",q:"إِبْرَاهِيمُ est مَمْنُوعٌ مِنَ الصَّرْفِ",correct:true,explain:""},
+       {type:"tf",q:"نُوحٌ est مَمْنُوعٌ مِنَ الصَّرْفِ",correct:false,explain:"Non, نُوحٌ est composé de 3 lettres, il prend le tanwin."},
+       /* Bloc 3 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : أَيُّ يَوْمٍ هَذَا ؟",answers:["Quel jour est-ce ?"],hint:"Question avec أَيُّ"},
+       {type:"type",q:"Traduire : هَذَا يَوْمُ السَّبْتِ",answers:["C'est samedi"],hint:"Réponse"},
+       {type:"type",q:"Traduire : أَيُّ شَهْرٍ هَذَا ؟",answers:["Quel mois est-ce ?"],hint:"Question avec أَيُّ"},
+       {type:"type",q:"Traduire : هَذَا شَهْرُ رَجَبٍ",answers:["C'est le mois de Rajab"],hint:"Réponse"},
+       {type:"type",q:"Traduire : فِي أَيِّ مَدْرَسَةٍ أَنْتَ ؟",answers:["Dans quelle école es-tu ?"],hint:"Question avec أَيُّ"},
+       {type:"type",q:"Traduire : أَنَا فِي الْمَدْرَسَةِ الْمُتَوَسِّطَةِ",answers:["Je suis à l'école moyenne"],hint:"Réponse"},
+       {type:"type",q:"Traduire : مِنْ أَيِّ بَلَدٍ أَنْتِ ؟",answers:["De quel pays es-tu ?"],hint:"Question avec أَيُّ"},
+       {type:"type",q:"Traduire : أَنَا مِنَ الْيُونَانِ",answers:["Je suis de Grèce"],hint:"Réponse"},
+       {type:"type",q:"Traduire : إِبْرَاهِيمُ فِي كُلِّيَّةِ الشَّرِيعَةِ",answers:["Ibrahim est à la faculté de charia"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : يُوسُفُ فِي كُلِّيَّةِ التِّجَارَةِ",answers:["Youssef est à la faculté de commerce"],hint:"Phrase nominale"},
+       /* Bloc 4 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire يَوْمٌ ؟",options:["Jour","Nuit","Matin","Soir"],correct:0},
+       {type:"qcm",q:"Que veut dire شَهْرٌ ؟",options:["Mois","Année","Semaine","Jour"],correct:0},
+       {type:"qcm",q:"Que veut dire كُلِّيَّةٌ ؟",options:["Faculté","Université","École","Lycée"],correct:0},
+       {type:"qcm",q:"Que veut dire تِجَارَةٌ ؟",options:["Commerce","Ingénierie","Médecine","Loi"],correct:0},
+       {type:"qcm",q:"Que veut dire هَنْدَسَةٌ ؟",options:["Ingénierie","Commerce","Médecine","Loi"],correct:0},
+       {type:"qcm",q:"Que veut dire طِبٌّ ؟",options:["Médecine","Ingénierie","Commerce","Loi"],correct:0},
+       {type:"qcm",q:"Que veut dire شَرِيعَةٌ ؟",options:["Loi islamique","Médecine","Commerce","Ingénierie"],correct:0},
+       {type:"qcm",q:"Que veut dire بَلَدٌ ؟",options:["Pays","Ville","Village","Rue"],correct:0},
+       {type:"qcm",q:"Que veut dire رَجُلٌ ؟",options:["Homme","Femme","Enfant","Vieux"],correct:0},
+       {type:"qcm",q:"Que veut dire قَرَأَ ؟",options:["Lire","Écrire","Parler","Écouter"],correct:0},
+       /* Bloc 5 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « quel ? » :",answers:["أَيُّ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « jour » :",answers:["يَوْمٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « mois » :",answers:["شَهْرٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « faculté » :",answers:["كُلِّيَّةٌ"],hint:"ك ل ي + ة"},
+       {type:"type",q:"Écris « commerce » :",answers:["تِجَارَةٌ"],hint:"ت ج ا ر + ة"},
+       /* Bloc 6 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["يَوْمٍ","أَيُّ","هَذَا","؟"],answer:"أَيُّ يَوْمٍ هَذَا ؟"},
+       {type:"order",q:"Reconstitue :",words:["شَهْرٍ","أَيُّ","هَذَا","؟"],answer:"أَيُّ شَهْرٍ هَذَا ؟"},
+       {type:"order",q:"Reconstitue :",words:["كُلِّيَّةٍ","أَيُّ","هَذِهِ","؟"],answer:"أَيُّ كُلِّيَّةٍ هَذِهِ ؟"},
+       {type:"order",q:"Reconstitue :",words:["مَدْرَسَةٍ","أَيِّ","فِي","أَنْتَ","؟"],answer:"فِي أَيِّ مَدْرَسَةٍ أَنْتَ ؟"},
+       {type:"order",q:"Reconstitue :",words:["بَلَدٍ","أَيِّ","مِنْ","أَنْتِ","؟"],answer:"مِنْ أَيِّ بَلَدٍ أَنْتِ ؟"}
+     ]},    /* ===== LEÇON 17 ===== */
+    {id:"t1l17", num:17, title:"Leçon 17", desc:"L'interrogatif مَتَى · قَبْلَ / بَعْدَ",
+     active:true, audio:null, pdf:"",
+     text:[
+       "مَتَى الدَّرْسُ؟","الدَّرْسُ الْآنَ","مَتَى يَرْجِعُ الْحُجَّاجُ؟","يَرْجِعُونَ بَعْدَ شَهْرٍ",
+       "مَتَى صَلَاةُ الْعِشَاءِ؟","صَلَاةُ الْعِشَاءِ بَعْدَ الْمَغْرِبِ",
+       "الدَّرْسُ قَبْلَ الصَّلَاةِ","الرَّاحَةُ بَعْدَ الْعِشَاءِ",
+       "الِاخْتِبَارُ بَعْدَ أُسْبُوعٍ","السَّفَرُ قَبْلَ شَهْرٍ",
+       "الصَّلَاةُ بَعْدَ الدَّرْسِ","الْأَكْلُ قَبْلَ الصَّلَاةِ",
+       "مَتَى ذَهَبَتْ أُمُّكِ؟","ذَهَبَتْ قَبْلَ أُسْبُوعٍ",
+       "مَتَى رَجَعَ أَبُوكَ؟","رَجَعَ بَعْدَ أُسْبُوعَيْنِ",
+       "زَيْدٌ عِنْدَ مُحَمَّدٍ","الْكِتَابُ عَلَى الْمَكْتَبِ","الْقَلَمُ تَحْتَ الْكُرْسِيِّ",
+       "الْبَيْتُ قَبْلَ الْمَسْجِدِ","الْمَسْجِدُ بَعْدَ الْبَيْتِ"
+     ],
+     vocab:[
+       {ar:"مَتَى",fr:"Quand ?",tr:"matā"},
+       {ar:"قَبْلَ",fr:"Avant",tr:"qabla"},
+       {ar:"بَعْدَ",fr:"Après",tr:"baʿda"},
+       {ar:"أُسْبُوعٌ",fr:"Semaine",tr:"usbūʿ"},
+       {ar:"شَهْرٌ",fr:"Mois",tr:"shahr"},
+       {ar:"سَنَةٌ",fr:"Année",tr:"sana"},
+       {ar:"الْآنَ",fr:"Maintenant",tr:"al-ān"},
+       {ar:"صَلَاةٌ",fr:"Prière",tr:"ṣalāh"},
+       {ar:"عِشَاءٌ",fr:"Prière du soir",tr:"ʿishāʾ"},
+       {ar:"مَغْرِبٌ",fr:"Coucher du soleil",tr:"maghrib"},
+       {ar:"رَاحَةٌ",fr:"Repos",tr:"rāḥa"},
+       {ar:"اِخْتِبَارٌ",fr:"Examen",tr:"ikhtibār"},
+       {ar:"سَفَرٌ",fr:"Voyage",tr:"safar"},
+       {ar:"دَرْسٌ",fr:"Leçon",tr:"dars"},
+       {ar:"أَكْلٌ",fr:"Repas",tr:"akl"},
+       {ar:"عَمَّةٌ",fr:"Tante paternelle",tr:"ʿamma"},
+       {ar:"خَالَةٌ",fr:"Tante maternelle",tr:"khāla"},
+       {ar:"مَعَ",fr:"Avec",tr:"maʿa"},
+       {ar:"حُجَّاجٌ",fr:"Pèlerins",tr:"ḥujjāj"},
+       {ar:"يَرْجِعُ",fr:"Retourner",tr:"yarjiʿu"},
+       {ar:"ذَهَبَ",fr:"Aller",tr:"dhahaba"},
+       {ar:"تَاجِرٌ",fr:"Commerçant",tr:"tājir"}
+     ],
+     grammar:{title:"L'interrogatif مَتَى et les adverbes قَبْلَ / بَعْدَ",
+       rule:"1) Le nom interrogatif مَتَى (quand ?) s'emploie pour questionner sur le moment. Il est invariable et débute toujours la phrase. 2) قَبْلَ (avant) et بَعْدَ (après) sont des adverbes (ظُرُوف). Ils sont dans la plupart des cas مَنْصُوب et annexés à un autre nom (مُضَاف). Exemples : قَبْلَ الصَّلَاةِ (avant la prière), بَعْدَ الدَّرْسِ (après la leçon). Les 6 noms interrogatifs : مَا (êtres non doués de raison), مَنْ (êtres doués de raison), أَيْنَ (lieu), كَيْفَ (état), أَيُّ (général), مَتَى (temps).",
+       examples:["مَتَى الدَّرْسُ؟ = Quand est la leçon ?","الدَّرْسُ قَبْلَ الصَّلَاةِ = La leçon est avant la prière","الرَّاحَةُ بَعْدَ الْعِشَاءِ = Le repos est après la prière du soir","الِاخْتِبَارُ بَعْدَ أُسْبُوعٍ = L'examen est après une semaine"]},
+     dialogue:[
+       {sp:"A",ar:"مَتَى الدَّرْسُ؟",fr:"Quand est la leçon ?"},
+       {sp:"B",ar:"الدَّرْسُ الْآنَ.",fr:"La leçon est maintenant."},
+       {sp:"A",ar:"مَتَى يَرْجِعُ الْحُجَّاجُ؟",fr:"Quand les pèlerins reviennent-ils ?"},
+       {sp:"B",ar:"يَرْجِعُونَ بَعْدَ شَهْرٍ.",fr:"Ils reviennent après un mois."},
+       {sp:"A",ar:"مَتَى صَلَاةُ الْعِشَاءِ؟",fr:"Quand est la prière du soir ?"},
+       {sp:"B",ar:"صَلَاةُ الْعِشَاءِ بَعْدَ الْمَغْرِبِ.",fr:"La prière du soir est après le coucher du soleil."},
+       {sp:"A",ar:"الدَّرْسُ قَبْلَ الصَّلَاةِ.",fr:"La leçon est avant la prière."},
+       {sp:"A",ar:"الرَّاحَةُ بَعْدَ الْعِشَاءِ.",fr:"Le repos est après la prière du soir."},
+       {sp:"A",ar:"الِاخْتِبَارُ بَعْدَ أُسْبُوعٍ.",fr:"L'examen est après une semaine."},
+       {sp:"A",ar:"مَتَى ذَهَبَتْ أُمُّكِ؟",fr:"Quand ta mère est-elle partie ?"},
+       {sp:"B",ar:"ذَهَبَتْ قَبْلَ أُسْبُوعٍ.",fr:"Elle est partie il y a une semaine."},
+       {sp:"A",ar:"مَتَى رَجَعَ أَبُوكَ؟",fr:"Quand ton père est-il revenu ?"},
+       {sp:"B",ar:"رَجَعَ بَعْدَ أُسْبُوعَيْنِ.",fr:"Il est revenu après deux semaines."},
+       {sp:"A",ar:"مَتَى الِاخْتِبَارُ؟",fr:"Quand est l'examen ?"}
+     ],
+     exercises:[
+       /* Bloc 1 — مَتَى (10 questions) */
+       {type:"qcm",q:"Que veut dire مَتَى ؟",options:["Quand ?","Où ?","Comment ?","Qui ?"],correct:0},
+       {type:"qcm",q:"مَتَى s'emploie pour questionner sur :",options:["Le temps","Le lieu","La personne","L'état"],correct:0},
+       {type:"qcm",q:"مَتَى est :",options:["Invariable","Variable","Avec tanwin","Annexé"],correct:0},
+       {type:"qcm",q:"مَتَى débute :",options:["Toujours la phrase","Parfois la phrase","Jamais la phrase","Au milieu"],correct:0},
+       {type:"fill",sentence:"___ الدَّرْسُ ؟",options:["مَتَى","أَيْنَ","كَيْفَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ يَرْجِعُ الْحُجَّاجُ ؟",options:["مَتَى","أَيْنَ","كَيْفَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ صَلَاةُ الْعِشَاءِ ؟",options:["مَتَى","أَيْنَ","كَيْفَ","مَنْ"],correct:0},
+       {type:"type",q:"Traduire : مَتَى الدَّرْسُ ؟",answers:["Quand est la leçon ?"],hint:"Question sur le temps"},
+       {type:"type",q:"Traduire : مَتَى يَرْجِعُ الْحُجَّاجُ ؟",answers:["Quand les pèlerins reviennent-ils ?"],hint:"Question sur le temps"},
+       {type:"tf",q:"مَتَى est invariable et débute la phrase",correct:true,explain:""},
+       /* Bloc 2 — قَبْلَ / بَعْدَ (10 questions) */
+       {type:"qcm",q:"Que veut dire قَبْلَ ؟",options:["Avant","Après","Pendant","Depuis"],correct:0},
+       {type:"qcm",q:"Que veut dire بَعْدَ ؟",options:["Après","Avant","Pendant","Depuis"],correct:0},
+       {type:"qcm",q:"قَبْلَ et بَعْدَ sont :",options:["Des adverbes (ظُرُوف)","Des noms","Des verbes","Des particules"],correct:0},
+       {type:"qcm",q:"قَبْلَ et بَعْدَ sont généralement :",options:["مَنْصُوب","مَرْفُوع","مَجْرُور","مَجْزُوم"],correct:0},
+       {type:"qcm",q:"قَبْلَ et بَعْدَ sont généralement :",options:["Annexés (مُضَاف)","Isolés","Définis","Indéfinis"],correct:0},
+       {type:"fill",sentence:"الدَّرْسُ ___ الصَّلَاةِ",options:["قَبْلَ","بَعْدَ","فِي","عَلَى"],correct:0},
+       {type:"fill",sentence:"الرَّاحَةُ ___ الْعِشَاءِ",options:["بَعْدَ","قَبْلَ","فِي","عَلَى"],correct:0},
+       {type:"fill",sentence:"الِاخْتِبَارُ ___ أُسْبُوعٍ",options:["بَعْدَ","قَبْلَ","فِي","عَلَى"],correct:0},
+       {type:"type",q:"Traduire : الدَّرْسُ قَبْلَ الصَّلَاةِ",answers:["La leçon est avant la prière"],hint:"Phrase nominale avec قَبْلَ"},
+       {type:"type",q:"Traduire : الرَّاحَةُ بَعْدَ الْعِشَاءِ",answers:["Le repos est après la prière du soir"],hint:"Phrase nominale avec بَعْدَ"},
+       /* Bloc 3 — Les 6 noms interrogatifs (10 questions) */
+       {type:"qcm",q:"Quels sont les 6 noms interrogatifs ?",options:["مَا، مَنْ، أَيْنَ، كَيْفَ، أَيُّ، مَتَى","مَا، مَنْ، أَيْنَ، كَيْفَ، أَيُّ","مَا، مَنْ، أَيْنَ، كَيْفَ","مَا، مَنْ، أَيْنَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour le temps ?",options:["مَتَى","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour le lieu ?",options:["أَيْنَ","كَيْفَ","مَنْ","مَا"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour l'état ?",options:["كَيْفَ","أَيْنَ","مَنْ","مَا"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour les êtres doués de raison ?",options:["مَنْ","مَا","أَيْنَ","كَيْفَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour les êtres non doués de raison ?",options:["مَا","مَنْ","أَيْنَ","كَيْفَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif est général et toujours annexé ?",options:["أَيُّ","كَيْفَ","أَيْنَ","مَتَى"],correct:0},
+       {type:"fill",sentence:"___ الدَّرْسُ ؟",options:["مَتَى","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ حَالُكَ ؟",options:["كَيْفَ","مَتَى","أَيْنَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ هَذَا ؟",options:["مَا","مَتَى","كَيْفَ","أَيْنَ"],correct:0},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : مَتَى صَلَاةُ الْعِشَاءِ ؟",answers:["Quand est la prière du soir ?"],hint:"Question avec مَتَى"},
+       {type:"type",q:"Traduire : صَلَاةُ الْعِشَاءِ بَعْدَ الْمَغْرِبِ",answers:["La prière du soir est après le coucher du soleil"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الِاخْتِبَارُ بَعْدَ أُسْبُوعٍ",answers:["L'examen est après une semaine"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : السَّفَرُ قَبْلَ شَهْرٍ",answers:["Le voyage est avant un mois"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الصَّلَاةُ بَعْدَ الدَّرْسِ",answers:["La prière est après la leçon"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْأَكْلُ قَبْلَ الصَّلَاةِ",answers:["Le repas est avant la prière"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : مَتَى ذَهَبَتْ أُمُّكِ ؟",answers:["Quand ta mère est-elle partie ?"],hint:"Question avec مَتَى"},
+       {type:"type",q:"Traduire : ذَهَبَتْ قَبْلَ أُسْبُوعٍ",answers:["Elle est partie il y a une semaine"],hint:"Réponse avec قَبْلَ"},
+       {type:"type",q:"Traduire : مَتَى رَجَعَ أَبُوكَ ؟",answers:["Quand ton père est-il revenu ?"],hint:"Question avec مَتَى"},
+       {type:"type",q:"Traduire : رَجَعَ بَعْدَ أُسْبُوعَيْنِ",answers:["Il est revenu après deux semaines"],hint:"Réponse avec بَعْدَ"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire أُسْبُوعٌ ؟",options:["Semaine","Mois","Année","Jour"],correct:0},
+       {type:"qcm",q:"Que veut dire شَهْرٌ ؟",options:["Mois","Semaine","Année","Jour"],correct:0},
+       {type:"qcm",q:"Que veut dire سَنَةٌ ؟",options:["Année","Mois","Semaine","Jour"],correct:0},
+       {type:"qcm",q:"Que veut dire صَلَاةٌ ؟",options:["Prière","Jeûne","Aumône","Pèlerinage"],correct:0},
+       {type:"qcm",q:"Que veut dire عِشَاءٌ ؟",options:["Prière du soir","Prière de l'aube","Prière du midi","Prière de l'après-midi"],correct:0},
+       {type:"qcm",q:"Que veut dire مَغْرِبٌ ؟",options:["Coucher du soleil","Lever du soleil","Midi","Minuit"],correct:0},
+       {type:"qcm",q:"Que veut dire رَاحَةٌ ؟",options:["Repos","Travail","Effort","Fatigue"],correct:0},
+       {type:"qcm",q:"Que veut dire اِخْتِبَارٌ ؟",options:["Examen","Leçon","Cours","Devoir"],correct:0},
+       {type:"qcm",q:"Que veut dire سَفَرٌ ؟",options:["Voyage","Maison","Travail","Repos"],correct:0},
+       {type:"qcm",q:"Que veut dire أَكْلٌ ؟",options:["Repas","Boisson","Sommeil","Marche"],correct:0},
+       {type:"qcm",q:"Que veut dire حُجَّاجٌ ؟",options:["Pèlerins","Voyageurs","Touristes","Étudiants"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « quand ? » :",answers:["مَتَى"],hint:"3 lettres"},
+       {type:"type",q:"Écris « avant » :",answers:["قَبْلَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « après » :",answers:["بَعْدَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « semaine » :",answers:["أُسْبُوعٌ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « mois » :",answers:["شَهْرٌ"],hint:"3 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["الدَّرْسُ","مَتَى","؟"],answer:"مَتَى الدَّرْسُ ؟"},
+       {type:"order",q:"Reconstitue :",words:["الصَّلَاةِ","قَبْلَ","الدَّرْسُ"],answer:"الدَّرْسُ قَبْلَ الصَّلَاةِ"},
+       {type:"order",q:"Reconstitue :",words:["الْعِشَاءِ","بَعْدَ","الرَّاحَةُ"],answer:"الرَّاحَةُ بَعْدَ الْعِشَاءِ"},
+       {type:"order",q:"Reconstitue :",words:["أُسْبُوعٍ","بَعْدَ","الِاخْتِبَارُ"],answer:"الِاخْتِبَارُ بَعْدَ أُسْبُوعٍ"},
+       {type:"order",q:"Reconstitue :",words:["شَهْرٍ","قَبْلَ","السَّفَرُ"],answer:"السَّفَرُ قَبْلَ شَهْرٍ"}
+     ]},    /* ===== RÉVISION 4 (Semaine de révision 2) ===== */
+    {id:"t1l18", num:18, title:"Révision 4", desc:"Semaine 2 · Les pronoms, les interrogatifs, les démonstratifs du pluriel",
+     active:true, audio:null, pdf:"",
+     text:[
+       "أَنَا طَالِبٌ وَأَنْتَ طَالِبٌ","هُوَ طَالِبٌ وَهِيَ طَالِبَةٌ",
+       "نَحْنُ طُلَّابٌ وَأَنْتُمْ طُلَّابٌ","هُمْ طُلَّابٌ وَهُنَّ طَالِبَاتٌ",
+       "كِتَابِي جَدِيدٌ وَكِتَابُكَ جَدِيدٌ","بَيْتُهُ كَبِيرٌ وَبَيْتُهَا صَغِيرٌ",
+       "كَيْفَ حَالُكَ يَا مُحَمَّدُ؟","أَنَا بِخَيْرٍ، الْحَمْدُ لِلَّهِ",
+       "أَيْنَ أَبُوكَ؟","هُوَ فِي الْمَسْجِدِ",
+       "مَتَى الدَّرْسُ؟","الدَّرْسُ الْآنَ",
+       "مَنْ هَؤُلَاءِ؟","هَؤُلَاءِ طُلَّابٌ",
+       "مَنْ أُولَئِكَ؟","أُولَئِكَ طَالِبَاتٌ",
+       "أَيُّ يَوْمٍ هَذَا؟","هَذَا يَوْمُ السَّبْتِ",
+       "الدَّرْسُ قَبْلَ الصَّلَاةِ","الرَّاحَةُ بَعْدَ الْعِشَاءِ",
+       "فِي أَيِّ مَدْرَسَةٍ أَنْتَ؟"
+     ],
+     vocab:[
+       {ar:"الضَّمَائِرُ",fr:"Les pronoms",tr:"al-ḍamāʾir"},
+       {ar:"أَسْمَاءُ الْإِشَارَةِ",fr:"Les démonstratifs",tr:"asmāʾ al-ishāra"},
+       {ar:"أَسْمَاءُ الِاسْتِفْهَامِ",fr:"Les interrogatifs",tr:"asmāʾ al-istifhām"},
+       {ar:"هَؤُلَاءِ",fr:"Ceux-ci",tr:"hāʾulāʾi"},
+       {ar:"أُولَئِكَ",fr:"Ceux-là",tr:"ulāʾika"},
+       {ar:"كَيْفَ",fr:"Comment ?",tr:"kayfa"},
+       {ar:"مَتَى",fr:"Quand ?",tr:"matā"},
+       {ar:"أَيُّ",fr:"Quel ?",tr:"ayyu"},
+       {ar:"أَيْنَ",fr:"Où ?",tr:"ayna"},
+       {ar:"مَنْ",fr:"Qui ?",tr:"man"},
+       {ar:"مَا",fr:"Quoi ?",tr:"mā"},
+       {ar:"قَبْلَ",fr:"Avant",tr:"qabla"},
+       {ar:"بَعْدَ",fr:"Après",tr:"baʿda"},
+       {ar:"أَنَا",fr:"Je",tr:"anā"},
+       {ar:"نَحْنُ",fr:"Nous",tr:"naḥnu"},
+       {ar:"أَنْتَ",fr:"Toi (masc.)",tr:"anta"},
+       {ar:"أَنْتِ",fr:"Toi (fém.)",tr:"anti"},
+       {ar:"هُوَ",fr:"Lui",tr:"huwa"},
+       {ar:"هِيَ",fr:"Elle",tr:"hiya"},
+       {ar:"هُمْ",fr:"Eux",tr:"hum"},
+       {ar:"هُنَّ",fr:"Elles",tr:"hunna"},
+       {ar:"كِتَابِي",fr:"Mon livre",tr:"kitābī"},
+       {ar:"كِتَابُكَ",fr:"Ton livre",tr:"kitābuka"},
+       {ar:"كِتَابُهُ",fr:"Son livre",tr:"kitābuhu"},
+       {ar:"كِتَابُهَا",fr:"Son livre (elle)",tr:"kitābuhā"},
+       {ar:"بِخَيْرٍ",fr:"Bien",tr:"bikhayr"},
+       {ar:"حَالٌ",fr:"État",tr:"ḥāl"},
+       {ar:"يَوْمٌ",fr:"Jour",tr:"yawm"},
+       {ar:"أُسْبُوعٌ",fr:"Semaine",tr:"usbūʿ"},
+       {ar:"شَهْرٌ",fr:"Mois",tr:"shahr"},
+       {ar:"صَلَاةٌ",fr:"Prière",tr:"ṣalāh"},
+       {ar:"عِشَاءٌ",fr:"Prière du soir",tr:"ʿishāʾ"},
+       {ar:"مَسْجِدٌ",fr:"Mosquée",tr:"masjid"},
+       {ar:"مَدْرَسَةٌ",fr:"École",tr:"madrasa"}
+     ],
+     grammar:{title:"Révision : pronoms, interrogatifs, démonstratifs du pluriel",
+       rule:"1) Les pronoms isolés : أَنَا، نَحْنُ، أَنْتَ، أَنْتِ، أَنْتُمْ، أَنْتُنَّ، هُوَ، هِيَ، هُمْ، هُنَّ. Les pronoms affixes : ي، كَ، هُ، هَا، نَا، كُمْ، هُمْ. 2) Les 6 noms interrogatifs : مَا (êtres non doués de raison), مَنْ (êtres doués de raison), أَيْنَ (lieu), كَيْفَ (état), أَيُّ (général, toujours annexé), مَتَى (temps). 3) Les démonstratifs du pluriel : هَؤُلَاءِ (proche), أُولَئِكَ (loin). 4) قَبْلَ (avant) et بَعْدَ (après) sont des adverbes généralement منصوب et annexés.",
+       examples:["أَنَا طَالِبٌ وَأَنْتَ طَالِبٌ = Je suis étudiant et tu es étudiant","كَيْفَ حَالُكَ؟ أَنَا بِخَيْرٍ = Comment vas-tu ? Je vais bien","مَنْ هَؤُلَاءِ؟ هَؤُلَاءِ طُلَّابٌ = Qui sont ceux-ci ? Ceux-ci sont des étudiants","الدَّرْسُ قَبْلَ الصَّلَاةِ = La leçon est avant la prière"]},
+     dialogue:[
+       {sp:"A",ar:"السَّلَامُ عَلَيْكُمْ يَا مُحَمَّدُ.",fr:"Bonjour Muhammad."},
+       {sp:"B",ar:"وَعَلَيْكُمُ السَّلَامُ.",fr:"Bonjour."},
+       {sp:"A",ar:"كَيْفَ حَالُكَ؟",fr:"Comment vas-tu ?"},
+       {sp:"B",ar:"أَنَا بِخَيْرٍ، الْحَمْدُ لِلَّهِ.",fr:"Je vais bien, louange à Allah."},
+       {sp:"A",ar:"مَنْ هَؤُلَاءِ؟",fr:"Qui sont ceux-ci ?"},
+       {sp:"B",ar:"هَؤُلَاءِ إِخْوَتِي.",fr:"Ceux-ci sont mes frères."},
+       {sp:"A",ar:"وَمَنْ أُولَئِكَ؟",fr:"Et qui sont ceux-là ?"},
+       {sp:"B",ar:"أُولَئِكَ أَصْدِقَائِي.",fr:"Ceux-là sont mes amis."},
+       {sp:"A",ar:"أَيْنَ أَبُوكَ؟",fr:"Où est ton père ?"},
+       {sp:"B",ar:"هُوَ فِي الْمَسْجِدِ.",fr:"Il est à la mosquée."},
+       {sp:"A",ar:"مَتَى الدَّرْسُ؟",fr:"Quand est la leçon ?"},
+       {sp:"B",ar:"الدَّرْسُ قَبْلَ الصَّلَاةِ.",fr:"La leçon est avant la prière."},
+       {sp:"A",ar:"فِي أَيِّ مَدْرَسَةٍ أَنْتَ؟",fr:"Dans quelle école es-tu ?"},
+       {sp:"B",ar:"أَنَا فِي الْمَدْرَسَةِ الْمُتَوَسِّطَةِ.",fr:"Je suis à l'école moyenne."}
+     ],
+     exercises:[
+       /* Bloc 1 — Les pronoms (10 questions) */
+       {type:"qcm",q:"Que veut dire أَنَا ؟",options:["Je","Tu","Il","Nous"],correct:0},
+       {type:"qcm",q:"Que veut dire هُوَ ؟",options:["Lui","Elle","Toi","Nous"],correct:0},
+       {type:"qcm",q:"Que veut dire كِتَابِي ؟",options:["Mon livre","Ton livre","Son livre","Notre livre"],correct:0},
+       {type:"qcm",q:"Que veut dire كِتَابُهَا ؟",options:["Son livre (elle)","Son livre (lui)","Mon livre","Ton livre"],correct:0},
+       {type:"fill",sentence:"___ طَالِبٌ (je)",options:["أَنَا","أَنْتَ","هُوَ","هِيَ"],correct:0},
+       {type:"fill",sentence:"___ طَالِبَةٌ (elle)",options:["هِيَ","هُوَ","أَنْتَ","أَنَا"],correct:0},
+       {type:"fill",sentence:"كِتَابٌ + ـِي = ___",options:["كِتَابِي","كِتَابُكَ","كِتَابُهُ","كِتَابُهَا"],correct:0},
+       {type:"type",q:"Écris « je » :",answers:["أَنَا"],hint:"3 lettres"},
+       {type:"type",q:"Écris « lui » :",answers:["هُوَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « mon livre » :",answers:["كِتَابِي"],hint:"ك ت ا ب + ي"},
+       /* Bloc 2 — Les interrogatifs (10 questions) */
+       {type:"qcm",q:"Quel interrogatif pour l'état ?",options:["كَيْفَ","أَيْنَ","مَنْ","مَا"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour le temps ?",options:["مَتَى","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour le lieu ?",options:["أَيْنَ","كَيْفَ","مَنْ","مَا"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour les êtres doués de raison ?",options:["مَنْ","مَا","أَيْنَ","كَيْفَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour les êtres non doués de raison ?",options:["مَا","مَنْ","أَيْنَ","كَيْفَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif est général et toujours annexé ?",options:["أَيُّ","كَيْفَ","أَيْنَ","مَتَى"],correct:0},
+       {type:"fill",sentence:"___ حَالُكَ ؟",options:["كَيْفَ","مَتَى","أَيْنَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ الدَّرْسُ ؟",options:["مَتَى","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ أَبُوكَ ؟",options:["أَيْنَ","كَيْفَ","مَتَى","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ هَذَا ؟",options:["مَنْ","كَيْفَ","أَيْنَ","مَتَى"],correct:0},
+       /* Bloc 3 — Les démonstratifs du pluriel (10 questions) */
+       {type:"qcm",q:"Que veut dire هَؤُلَاءِ ؟",options:["Ceux-ci (proche)","Ceux-là (loin)","Celui-ci","Celui-là"],correct:0},
+       {type:"qcm",q:"Que veut dire أُولَئِكَ ؟",options:["Ceux-là (loin)","Ceux-ci (proche)","Celle-ci","Celle-là"],correct:0},
+       {type:"qcm",q:"هَؤُلَاءِ s'utilise pour :",options:["Le pluriel proche","Le singulier proche","Le duel","Le pluriel lointain"],correct:0},
+       {type:"qcm",q:"أُولَئِكَ s'utilise pour :",options:["Le pluriel lointain","Le singulier lointain","Le duel","Le pluriel proche"],correct:0},
+       {type:"fill",sentence:"___ طُلَّابٌ (proche)",options:["هَؤُلَاءِ","أُولَئِكَ","هَذَا","ذَلِكَ"],correct:0},
+       {type:"fill",sentence:"___ طَالِبَاتٌ (loin)",options:["أُولَئِكَ","هَؤُلَاءِ","هَذِهِ","تِلْكَ"],correct:0},
+       {type:"type",q:"Traduire : هَؤُلَاءِ طُلَّابٌ",answers:["Ceux-ci sont des étudiants"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُولَئِكَ طَالِبَاتٌ",answers:["Celles-là sont des étudiantes"],hint:"Phrase nominale"},
+       {type:"type",q:"Écris « ceux-ci » :",answers:["هَؤُلَاءِ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « ceux-là » :",answers:["أُولَئِكَ"],hint:"5 lettres"},
+       /* Bloc 4 — قَبْلَ / بَعْدَ (6 questions) */
+       {type:"qcm",q:"Que veut dire قَبْلَ ؟",options:["Avant","Après","Pendant","Depuis"],correct:0},
+       {type:"qcm",q:"Que veut dire بَعْدَ ؟",options:["Après","Avant","Pendant","Depuis"],correct:0},
+       {type:"fill",sentence:"الدَّرْسُ ___ الصَّلَاةِ",options:["قَبْلَ","بَعْدَ","فِي","عَلَى"],correct:0},
+       {type:"fill",sentence:"الرَّاحَةُ ___ الْعِشَاءِ",options:["بَعْدَ","قَبْلَ","فِي","عَلَى"],correct:0},
+       {type:"type",q:"Traduire : الدَّرْسُ قَبْلَ الصَّلَاةِ",answers:["La leçon est avant la prière"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الرَّاحَةُ بَعْدَ الْعِشَاءِ",answers:["Le repos est après la prière du soir"],hint:"Phrase nominale"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire حَالٌ ؟",options:["État","Lieu","Temps","Personne"],correct:0},
+       {type:"qcm",q:"Que veut dire بِخَيْرٍ ؟",options:["Bien","Mal","Moyen","Excellent"],correct:0},
+       {type:"qcm",q:"Que veut dire يَوْمٌ ؟",options:["Jour","Nuit","Matin","Soir"],correct:0},
+       {type:"qcm",q:"Que veut dire أُسْبُوعٌ ؟",options:["Semaine","Mois","Année","Jour"],correct:0},
+       {type:"qcm",q:"Que veut dire شَهْرٌ ؟",options:["Mois","Semaine","Année","Jour"],correct:0},
+       {type:"qcm",q:"Que veut dire صَلَاةٌ ؟",options:["Prière","Jeûne","Aumône","Pèlerinage"],correct:0},
+       {type:"qcm",q:"Que veut dire عِشَاءٌ ؟",options:["Prière du soir","Prière de l'aube","Prière du midi","Prière de l'après-midi"],correct:0},
+       {type:"qcm",q:"Que veut dire مَسْجِدٌ ؟",options:["Mosquée","École","Maison","Marché"],correct:0},
+       {type:"qcm",q:"Que veut dire مَدْرَسَةٌ ؟",options:["École","Mosquée","Maison","Université"],correct:0},
+       {type:"qcm",q:"Que veut dire هَؤُلَاءِ ؟",options:["Ceux-ci","Ceux-là","Celui-ci","Celui-là"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « comment ? » :",answers:["كَيْفَ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « quand ? » :",answers:["مَتَى"],hint:"3 lettres"},
+       {type:"type",q:"Écris « avant » :",answers:["قَبْلَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « après » :",answers:["بَعْدَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « je » :",answers:["أَنَا"],hint:"3 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["طَالِبٌ","أَنَا"],answer:"أَنَا طَالِبٌ"},
+       {type:"order",q:"Reconstitue :",words:["حَالُكَ","كَيْفَ","؟"],answer:"كَيْفَ حَالُكَ ؟"},
+       {type:"order",q:"Reconstitue :",words:["هَؤُلَاءِ","مَنْ","؟"],answer:"مَنْ هَؤُلَاءِ ؟"},
+       {type:"order",q:"Reconstitue :",words:["الصَّلَاةِ","قَبْلَ","الدَّرْسُ"],answer:"الدَّرْسُ قَبْلَ الصَّلَاةِ"},
+       {type:"order",q:"Reconstitue :",words:["الْعِشَاءِ","بَعْدَ","الرَّاحَةُ"],answer:"الرَّاحَةُ بَعْدَ الْعِشَاءِ"}
+     ]},    /* ===== LEÇON 19 ===== */
+    {id:"t1l19", num:19, title:"Leçon 19", desc:"هَذِهِ / تِلْكَ pour non-doués de raison · هَؤُلَاءِ / أُولَئِكَ",
+     active:true, audio:null, pdf:"",
+     text:[
+       "هَذِهِ بِنْتٌ","تِلْكَ بِنْتٌ","هَذِهِ سَيَّارَةٌ","تِلْكَ سَيَّارَةٌ",
+       "هَذِهِ كُتُبٌ","تِلْكَ كُتُبٌ","هَذِهِ بُيُوتٌ","تِلْكَ بُيُوتٌ",
+       "هَذِهِ أَقْلَامٌ","تِلْكَ أَقْلَامٌ","هَذِهِ دُرُوسٌ","تِلْكَ دُرُوسٌ",
+       "هَؤُلَاءِ طُلَّابٌ","أُولَئِكَ طُلَّابٌ","هَؤُلَاءِ رِجَالٌ","أُولَئِكَ رِجَالٌ",
+       "هَؤُلَاءِ إِخْوَتِي وَأُولَئِكَ أَصْدِقَائِي",
+       "هَذِهِ الْكُتُبُ جَدِيدَةٌ","تِلْكَ الْبُيُوتُ كَبِيرَةٌ",
+       "هَؤُلَاءِ الطُّلَّابُ مُجْتَهِدُونَ","أُولَئِكَ الرِّجَالُ وُزَرَاءُ",
+       "هَذِهِ الْأَيَّامُ جَمِيلَةٌ","تِلْكَ الْجِبَالُ عَالِيَةٌ"
+     ],
+     vocab:[
+       {ar:"هَذِهِ",fr:"Ceci (fém. proche)",tr:"hādhihi"},
+       {ar:"تِلْكَ",fr:"Celle-là (fém. loin)",tr:"tilka"},
+       {ar:"هَؤُلَاءِ",fr:"Ceux-ci (proche, doués de raison)",tr:"hāʾulāʾi"},
+       {ar:"أُولَئِكَ",fr:"Ceux-là (loin, doués de raison)",tr:"ulāʾika"},
+       {ar:"جَمْعٌ",fr:"Pluriel",tr:"jamʿ"},
+       {ar:"عَاقِلٌ",fr:"Doué de raison",tr:"ʿāqil"},
+       {ar:"غَيْرُ عَاقِلٍ",fr:"Non doué de raison",tr:"ghayr ʿāqil"},
+       {ar:"طَائِرَةٌ",fr:"Avion",tr:"ṭāʾira"},
+       {ar:"فُنْدُقٌ",fr:"Hôtel",tr:"funduq"},
+       {ar:"جَبَلٌ",fr:"Montagne",tr:"jabal"},
+       {ar:"بَحْرٌ",fr:"Mer",tr:"baḥr"},
+       {ar:"نَهْرٌ",fr:"Rivière",tr:"nahr"},
+       {ar:"كُتُبٌ",fr:"Livres",tr:"kutub"},
+       {ar:"بُيُوتٌ",fr:"Maisons",tr:"buyūt"},
+       {ar:"أَقْلَامٌ",fr:"Stylos",tr:"aqlām"},
+       {ar:"دُرُوسٌ",fr:"Leçons",tr:"durūs"},
+       {ar:"أَيَّامٌ",fr:"Jours",tr:"ayyām"},
+       {ar:"جِبَالٌ",fr:"Montagnes",tr:"jibāl"},
        {ar:"طُلَّابٌ",fr:"Étudiants",tr:"ṭullāb"},
        {ar:"رِجَالٌ",fr:"Hommes",tr:"rijāl"},
-       {ar:"نِسَاءٌ",fr:"Femmes",tr:"nisāʾ"},
-       {ar:"مُدَرِّسُونَ",fr:"Professeurs",tr:"mudarrisūn"},
-       {ar:"مُدَرِّسَاتٌ",fr:"Professeures",tr:"mudarrisāt"},
-       {ar:"كُتُبٌ",fr:"Livres",tr:"kutub"},
-       {ar:"أَقْلَامٌ",fr:"Stylos",tr:"aqlām"},
-       {ar:"أَبْوَابٌ",fr:"Portes",tr:"abwāb"},
-       {ar:"بُيُوتٌ",fr:"Maisons",tr:"buyūt"},
-       {ar:"مَسَاجِدُ",fr:"Mosquées",tr:"masājid"},
-       {ar:"مَدَارِسُ",fr:"Écoles",tr:"madāris"},
-       {ar:"أَوْلَادٌ",fr:"Enfants / Garçons",tr:"awlād"},
-       {ar:"بَنَاتٌ",fr:"Filles",tr:"banāt"},
-       {ar:"إِخْوَةٌ",fr:"Frères",tr:"ikhwa"},
-       {ar:"أَخَوَاتٌ",fr:"Sœurs",tr:"akhawāt"},
        {ar:"أَصْدِقَاءُ",fr:"Amis",tr:"aṣdiqāʾ"},
-       {ar:"أَقَارِبُ",fr:"Proches / Parents",tr:"aqārib"},
-       {ar:"جِيرَانٌ",fr:"Voisins",tr:"jīrān"},
-       {ar:"مُسْلِمُونَ",fr:"Musulmans",tr:"muslimūn"},
-       {ar:"مُسْلِمَاتٌ",fr:"Musulmanes",tr:"muslimāt"},
-       {ar:"عُلَمَاءُ",fr:"Savants",tr:"ʿulamāʾ"},
-       {ar:"أَطِبَّاءُ",fr:"Médecins",tr:"aṭibbāʾ"},
-       {ar:"مُهَنْدِسُونَ",fr:"Ingénieurs",tr:"muhandisūn"},
-       {ar:"تُجَّارٌ",fr:"Commerçants",tr:"tujjār"},
-       {ar:"فَلَّاحُونَ",fr:"Agriculteurs",tr:"fallāḥūn"},
-       {ar:"عُمَّالٌ",fr:"Ouvriers",tr:"ʿummāl"},
-       {ar:"مُوَظَّفُونَ",fr:"Employés",tr:"muwaẓẓafūn"},
-       {ar:"جُنُودٌ",fr:"Soldats",tr:"junūd"},
-       {ar:"شُعُوبٌ",fr:"Peuples",tr:"shuʿūb"},
-       {ar:"دُوَلٌ",fr:"Pays (pluriel)",tr:"duwal"},
-       {ar:"مُدُنٌ",fr:"Villes",tr:"mudun"},
-       {ar:"قُرَى",fr:"Villages",tr:"qurā"},
-       {ar:"شَوَارِعُ",fr:"Rues",tr:"shawāriʿ"},
-       {ar:"حَوَانِيتُ",fr:"Boutiques",tr:"ḥawānīt"},
-       {ar:"أَسْوَاقٌ",fr:"Marchés",tr:"aswāq"},
-       {ar:"مَطَاعِمُ",fr:"Restaurants",tr:"maṭāʿim"},
-       {ar:"مُسْتَشْفَيَاتٌ",fr:"Hôpitaux",tr:"mustashfayāt"},
-       {ar:"جَامِعَاتٌ",fr:"Universités",tr:"jāmiʿāt"},
-       {ar:"مَكَاتِبُ",fr:"Bureaux",tr:"makātib"},
-       {ar:"دَرَاسَاتٌ",fr:"Études",tr:"darāsāt"},
-       {ar:"أَخْبَارٌ",fr:"Nouvelles",tr:"akhbār"},
-       {ar:"كَلِمَاتٌ",fr:"Mots",tr:"kalimāt"}
+       {ar:"وُزَرَاءُ",fr:"Ministres",tr:"wuzarāʾ"},
+       {ar:"جَدِيدَةٌ",fr:"Nouvelle",tr:"jadīda"},
+       {ar:"كَبِيرَةٌ",fr:"Grande",tr:"kabīra"},
+       {ar:"عَالِيَةٌ",fr:"Haute",tr:"ʿāliya"},
+       {ar:"جَمِيلَةٌ",fr:"Belle",tr:"jamīla"},
+       {ar:"مُجْتَهِدُونَ",fr:"Travailleurs",tr:"mujtahidūn"}
      ],
-     grammar:{title:"Les pluriels brisés (جمع التكسير)",
-       rule:"Le pluriel brisé modifie la structure interne du mot (contrairement au pluriel sain qui ajoute un suffixe). Il n'y a pas de règle fixe : il faut l'apprendre par cœur.",
-       examples:["رَجُلٌ → رِجَالٌ (homme → hommes)","كِتَابٌ → كُتُبٌ (livre → livres)","طَالِبٌ → طُلَّابٌ (étudiant → étudiants)","مَسْجِدٌ → مَسَاجِدُ (mosquée → mosquées)"]},
+     grammar:{title:"Les démonstratifs pour non-doués de raison et doués de raison",
+       rule:"1) هَذِهِ / تِلْكَ s'emploient pour : le féminin singulier (proche/loin) ET le pluriel des êtres dépourvus de raison (جَمْعٌ غَيْر الْعَاقِل) proche/loin. 2) هَؤُلَاءِ / أُولَئِكَ s'emploient EXCLUSIVEMENT pour le pluriel des êtres doués de raison (جَمْعٌ عَاقِل) proche/loin. 3) Distinction : جَمْعٌ عَاقِل (êtres doués de raison : humains) utilise هَؤُلَاءِ / أُولَئِكَ. جَمْعٌ غَيْر الْعَاقِل (êtres non doués de raison : animaux, choses) utilise هَذِهِ / تِلْكَ. 4) Les pronoms et démonstratifs accordés à ces pluriels non-doués de raison seront également féminins.",
+       examples:["هَذِهِ بِنْتٌ = Ceci est une fille","تِلْكَ سَيَّارَةٌ = Celle-là est une voiture","هَذِهِ كُتُبٌ = Ceci sont des livres","هَؤُلَاءِ طُلَّابٌ = Ceux-ci sont des étudiants","أُولَئِكَ رِجَالٌ = Ceux-là sont des hommes"]},
      dialogue:[
-       {sp:"A",ar:"مَنْ هَؤُلَاءِ؟",fr:"Qui sont ceux-là ?"},
-       {sp:"B",ar:"هَؤُلَاءِ مُدَرِّسُونَ.",fr:"Ce sont des professeurs."},
-       {sp:"A",ar:"وَمَنْ هَؤُلَاءِ؟",fr:"Et qui sont celles-là ?"},
-       {sp:"B",ar:"هَؤُلَاءِ طَالِبَاتٌ.",fr:"Ce sont des étudiantes."},
-       {sp:"A",ar:"مَا هَذِهِ؟",fr:"Qu'est-ce que c'est (elle) ?"},
-       {sp:"B",ar:"هَذِهِ كُتُبٌ جَدِيدَةٌ.",fr:"Ce sont des livres nouveaux."},
-       {sp:"A",ar:"وَمَا هَؤُلَاءِ؟",fr:"Et qui sont ceux-ci ?"},
-       {sp:"B",ar:"هَؤُلَاءِ رِجَالٌ.",fr:"Ce sont des hommes."}
+       {sp:"A",ar:"مَا هَذِهِ؟",fr:"Qu'est-ce que c'est (fém.) ?"},
+       {sp:"B",ar:"هَذِهِ سَيَّارَةٌ.",fr:"C'est une voiture."},
+       {sp:"A",ar:"وَمَا تِلْكَ؟",fr:"Et qu'est-ce que celle-là ?"},
+       {sp:"B",ar:"تِلْكَ طَائِرَةٌ.",fr:"C'est un avion."},
+       {sp:"A",ar:"مَا هَذِهِ؟",fr:"Qu'est-ce que ceci ?"},
+       {sp:"B",ar:"هَذِهِ كُتُبٌ جَدِيدَةٌ.",fr:"Ce sont de nouveaux livres."},
+       {sp:"A",ar:"وَمَا تِلْكَ؟",fr:"Et qu'est-ce que cela ?"},
+       {sp:"B",ar:"تِلْكَ بُيُوتٌ كَبِيرَةٌ.",fr:"Ce sont de grandes maisons."},
+       {sp:"A",ar:"مَنْ هَؤُلَاءِ؟",fr:"Qui sont ceux-ci ?"},
+       {sp:"B",ar:"هَؤُلَاءِ طُلَّابٌ.",fr:"Ce sont des étudiants."},
+       {sp:"A",ar:"وَمَنْ أُولَئِكَ؟",fr:"Et qui sont ceux-là ?"},
+       {sp:"B",ar:"أُولَئِكَ رِجَالٌ.",fr:"Ce sont des hommes."},
+       {sp:"A",ar:"هَؤُلَاءِ إِخْوَتِي وَأُولَئِكَ أَصْدِقَائِي.",fr:"Ceux-ci sont mes frères et ceux-là sont mes amis."},
+       {sp:"A",ar:"أُولَئِكَ الرِّجَالُ وُزَرَاءُ.",fr:"Ces hommes-là sont des ministres."}
      ],
      exercises:[
-       {type:"qcm",q:"Que veut dire مُجْتَهِدٌ ؟",options:["Travailleur","Paresseux","Intelligent","Bête"],correct:0},
-       {type:"qcm",q:"Que veut dire رِجَالٌ ؟",options:["Hommes","Femmes","Étudiants","Professeurs"],correct:0},
-       {type:"qcm",q:"Que veut dire نِسَاءٌ ؟",options:["Femmes","Hommes","Étudiantes","Professeures"],correct:0},
-       {type:"qcm",q:"Pluriel de رَجُلٌ ?",options:["رِجَالٌ","رَجُلُونَ","رَجُلَاتٌ","أَرْجَالٌ"],correct:0},
-       {type:"qcm",q:"Pluriel de كِتَابٌ ?",options:["كُتُبٌ","كِتَابُونَ","كِتَابَاتٌ","كَاتِبُونَ"],correct:0},
-       {type:"qcm",q:"Pluriel de طَالِبٌ ?",options:["طُلَّابٌ","طَالِبُونَ","طَالِبَاتٌ","طَوَالِبُ"],correct:0},
-       {type:"qcm",q:"Pluriel de مَسْجِدٌ ?",options:["مَسَاجِدُ","مَسْجِدُونَ","مَسْجِدَاتٌ","مَسَاجِيدُ"],correct:0},
-       {type:"qcm",q:"Que veut dire أَقْلَامٌ ؟",options:["Stylos","Livres","Portes","Maisons"],correct:0},
-       {type:"qcm",q:"Que veut dire بُيُوتٌ ؟",options:["Maisons","Portes","Stylos","Livres"],correct:0},
-       {type:"qcm",q:"Pluriel de وَلَدٌ ?",options:["أَوْلَادٌ","وَلَدُونَ","وَلَدَاتٌ","وُلْدَانٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « amis » ?",options:["أَصْدِقَاءُ","صَدِيقُونَ","صَدَائِقُ","صُدَقَاءُ"],correct:0},
-       {type:"qcm",q:"Que veut dire مُدُنٌ ؟",options:["Villes","Pays","Villages","Quartiers"],correct:0},
-       {type:"tf",q:"Le pluriel de رَجُلٌ est رِجَالٌ",correct:true},
-       {type:"tf",q:"Le pluriel de كِتَابٌ est كِتَابُونَ",correct:false,explain:"C'est كُتُبٌ (pluriel brisé)."},
-       {type:"tf",ar:"هَؤُلَاءِ مُدَرِّسُونَ",q:"Signifie « Ce sont des professeurs »",correct:true},
-       {type:"tf",ar:"هَذِهِ نِسَاءٌ",q:"Signifie « Ce sont des femmes »",correct:true},
-       {type:"fill",sentence:"هَؤُلَاءِ ___",options:["رِجَالٌ","رَجُلٌ","رَجُلَانِ","رَجُلَةٌ"],correct:0},
-       {type:"fill",sentence:"هَذِهِ ___",options:["نِسَاءٌ","اِمْرَأَةٌ","اِمْرَأَتَانِ","نِسْوَةٌ"],correct:0},
-       {type:"fill",sentence:"___ جَدِيدَةٌ",options:["الْكُتُبُ","الْكِتَابُ","كِتَابٌ","كِتَابَانِ"],correct:0},
-       {type:"type",q:"Écris « étudiants » :",answer:"طُلَّابٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « hommes » :",answer:"رِجَالٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « femmes » :",answer:"نِسَاءٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « livres » :",answer:"كُتُبٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « stylos » :",answer:"أَقْلَامٌ",hint:"5 lettres"},
-       {type:"type",q:"Écris « maisons » :",answer:"بُيُوتٌ",hint:"4 lettres"},
-       {type:"order",q:"Reconstitue :",words:["مُدَرِّسُونَ","هَؤُلَاءِ"],answer:"هَؤُلَاءِ مُدَرِّسُونَ"},
+       /* Bloc 1 — هَذِهِ / تِلْكَ pour le féminin singulier (10 questions) */
+       {type:"qcm",q:"Que veut dire هَذِهِ ؟",options:["Ceci (fém. proche)","Cela (fém. loin)","Ceci (masc. proche)","Cela (masc. loin)"],correct:0},
+       {type:"qcm",q:"Que veut dire تِلْكَ ؟",options:["Celle-là (fém. loin)","Celle-ci (fém. proche)","Celui-là (masc. loin)","Celui-ci (masc. proche)"],correct:0},
+       {type:"qcm",q:"هَذِهِ s'emploie pour :",options:["Le féminin singulier proche","Le masculin singulier proche","Le pluriel des doués de raison","Le duel"],correct:0},
+       {type:"fill",sentence:"___ بِنْتٌ (proche)",options:["هَذِهِ","هَذَا","تِلْكَ","ذَلِكَ"],correct:0},
+       {type:"fill",sentence:"___ سَيَّارَةٌ (loin)",options:["تِلْكَ","هَذِهِ","ذَلِكَ","هَذَا"],correct:0},
+       {type:"fill",sentence:"___ طَائِرَةٌ (proche)",options:["هَذِهِ","هَذَا","تِلْكَ","ذَلِكَ"],correct:0},
+       {type:"type",q:"Traduire : هَذِهِ بِنْتٌ",answers:["Ceci est une fille"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : تِلْكَ سَيَّارَةٌ",answers:["Celle-là est une voiture"],hint:"Phrase nominale"},
+       {type:"tf",q:"هَذِهِ s'emploie pour le féminin singulier proche",correct:true,explain:""},
+       {type:"tf",q:"تِلْكَ s'emploie pour le masculin",correct:false,explain:"Non, تِلْكَ s'emploie pour le féminin lointain. Pour le masculin lointain, on utilise ذَلِكَ."},
+       /* Bloc 2 — هَذِهِ / تِلْكَ pour le pluriel non-doué de raison (10 questions) */
+       {type:"qcm",q:"Pour le pluriel des êtres non doués de raison, on utilise :",options:["هَذِهِ / تِلْكَ","هَؤُلَاءِ / أُولَئِكَ","هَذَا / ذَلِكَ","هُوَ / هِيَ"],correct:0},
+       {type:"qcm",q:"هَذِهِ كُتُبٌ = ?",options:["Ceci sont des livres","Ceux-ci sont des livres","Ceci est un livre","Cela est un livre"],correct:0},
+       {type:"fill",sentence:"___ كُتُبٌ (proche, non-doués de raison)",options:["هَذِهِ","هَؤُلَاءِ","هَذَا","أُولَئِكَ"],correct:0},
+       {type:"fill",sentence:"___ بُيُوتٌ (loin, non-doués de raison)",options:["تِلْكَ","أُولَئِكَ","ذَلِكَ","هَذِهِ"],correct:0},
+       {type:"fill",sentence:"___ أَقْلَامٌ (proche)",options:["هَذِهِ","هَؤُلَاءِ","هَذَا","أُولَئِكَ"],correct:0},
+       {type:"fill",sentence:"___ دُرُوسٌ (loin)",options:["تِلْكَ","أُولَئِكَ","ذَلِكَ","هَذِهِ"],correct:0},
+       {type:"type",q:"Traduire : هَذِهِ كُتُبٌ جَدِيدَةٌ",answers:["Ceci sont de nouveaux livres"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : تِلْكَ بُيُوتٌ كَبِيرَةٌ",answers:["Ce sont de grandes maisons"],hint:"Phrase nominale"},
+       {type:"tf",q:"هَذِهِ s'emploie pour le pluriel des non-doués de raison",correct:true,explain:""},
+       {type:"tf",q:"Pour le pluriel des non-doués de raison, on utilise هَؤُلَاءِ",correct:false,explain:"Non, pour le pluriel des non-doués de raison, on utilise هَذِهِ / تِلْكَ. Pour les doués de raison, on utilise هَؤُلَاءِ / أُولَئِكَ."},
+       /* Bloc 3 — هَؤُلَاءِ / أُولَئِكَ (10 questions) */
+       {type:"qcm",q:"Que veut dire هَؤُلَاءِ ؟",options:["Ceux-ci (proche, doués de raison)","Ceux-là (loin)","Ceci (fém.)","Cela (masc.)"],correct:0},
+       {type:"qcm",q:"Que veut dire أُولَئِكَ ؟",options:["Ceux-là (loin, doués de raison)","Ceux-ci (proche)","Celle-là (fém.)","Celui-là (masc.)"],correct:0},
+       {type:"qcm",q:"هَؤُلَاءِ s'emploie pour :",options:["Le pluriel des doués de raison","Le pluriel des non-doués de raison","Le singulier","Le duel"],correct:0},
+       {type:"qcm",q:"أُولَئِكَ s'emploie pour :",options:["Le pluriel des doués de raison (loin)","Le pluriel des non-doués de raison","Le singulier","Le duel"],correct:0},
+       {type:"fill",sentence:"___ طُلَّابٌ (proche, doués de raison)",options:["هَؤُلَاءِ","هَذِهِ","هَذَا","أُولَئِكَ"],correct:0},
+       {type:"fill",sentence:"___ رِجَالٌ (loin, doués de raison)",options:["أُولَئِكَ","تِلْكَ","ذَلِكَ","هَؤُلَاءِ"],correct:0},
+       {type:"fill",sentence:"___ إِخْوَتِي (proche)",options:["هَؤُلَاءِ","هَذِهِ","هَذَا","أُولَئِكَ"],correct:0},
+       {type:"fill",sentence:"___ أَصْدِقَائِي (loin)",options:["أُولَئِكَ","هَؤُلَاءِ","تِلْكَ","ذَلِكَ"],correct:0},
+       {type:"type",q:"Traduire : هَؤُلَاءِ طُلَّابٌ",answers:["Ceux-ci sont des étudiants"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُولَئِكَ رِجَالٌ",answers:["Ceux-là sont des hommes"],hint:"Phrase nominale"},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : هَذِهِ الْكُتُبُ جَدِيدَةٌ",answers:["Ces livres-ci sont nouveaux"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : تِلْكَ الْبُيُوتُ كَبِيرَةٌ",answers:["Ces maisons-là sont grandes"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَذِهِ الْأَيَّامُ جَمِيلَةٌ",answers:["Ces jours-ci sont beaux"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : تِلْكَ الْجِبَالُ عَالِيَةٌ",answers:["Ces montagnes-là sont hautes"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَؤُلَاءِ الطُّلَّابُ مُجْتَهِدُونَ",answers:["Ces étudiants-ci sont travailleurs"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُولَئِكَ الرِّجَالُ وُزَرَاءُ",answers:["Ces hommes-là sont des ministres"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَؤُلَاءِ إِخْوَتِي وَأُولَئِكَ أَصْدِقَائِي",answers:["Ceux-ci sont mes frères et ceux-là sont mes amis"],hint:"Avec وَ"},
+       {type:"type",q:"Traduire : تِلْكَ طَائِرَةٌ",answers:["Celle-là est un avion"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَذِهِ فُنْدُقٌ كَبِيرٌ",answers:["Ceci est un grand hôtel"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : تِلْكَ بَحْرٌ",answers:["Celle-là est une mer"],hint:"Phrase nominale"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire طَائِرَةٌ ؟",options:["Avion","Voiture","Bateau","Train"],correct:0},
+       {type:"qcm",q:"Que veut dire فُنْدُقٌ ؟",options:["Hôtel","Maison","École","Marché"],correct:0},
+       {type:"qcm",q:"Que veut dire جَبَلٌ ؟",options:["Montagne","Rivière","Mer","Forêt"],correct:0},
+       {type:"qcm",q:"Que veut dire بَحْرٌ ؟",options:["Mer","Montagne","Rivière","Lac"],correct:0},
+       {type:"qcm",q:"Que veut dire نَهْرٌ ؟",options:["Rivière","Mer","Montagne","Lac"],correct:0},
+       {type:"qcm",q:"Que veut dire كُتُبٌ ؟",options:["Livres","Cahiers","Stylos","Feuilles"],correct:0},
+       {type:"qcm",q:"Que veut dire بُيُوتٌ ؟",options:["Maisons","Portes","Fenêtres","Chambres"],correct:0},
+       {type:"qcm",q:"Que veut dire أَقْلَامٌ ؟",options:["Stylos","Livres","Cahiers","Règles"],correct:0},
+       {type:"qcm",q:"Que veut dire دُرُوسٌ ؟",options:["Leçons","Livres","Classes","Examens"],correct:0},
+       {type:"qcm",q:"Que veut dire جِبَالٌ ؟",options:["Montagnes","Mers","Rivières","Forêts"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « ceci (fém.) » :",answers:["هَذِهِ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « celle-là (fém.) » :",answers:["تِلْكَ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « ceux-ci (doués de raison) » :",answers:["هَؤُلَاءِ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « ceux-là (doués de raison) » :",answers:["أُولَئِكَ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « livres » :",answers:["كُتُبٌ"],hint:"3 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["بِنْتٌ","هَذِهِ"],answer:"هَذِهِ بِنْتٌ"},
+       {type:"order",q:"Reconstitue :",words:["سَيَّارَةٌ","تِلْكَ"],answer:"تِلْكَ سَيَّارَةٌ"},
+       {type:"order",q:"Reconstitue :",words:["كُتُبٌ","هَذِهِ"],answer:"هَذِهِ كُتُبٌ"},
        {type:"order",q:"Reconstitue :",words:["طُلَّابٌ","هَؤُلَاءِ"],answer:"هَؤُلَاءِ طُلَّابٌ"},
-       {type:"order",q:"Reconstitue :",words:["رِجَالٌ","هَؤُلَاءِ"],answer:"هَؤُلَاءِ رِجَالٌ"},
-       {type:"order",q:"Reconstitue :",words:["نِسَاءٌ","هَذِهِ"],answer:"هَذِهِ نِسَاءٌ"},
-       {type:"order",q:"Reconstitue :",words:["جَدِيدَةٌ","الْكُتُبُ"],answer:"الْكُتُبُ جَدِيدَةٌ"},
-       {type:"audio",audioText:"هَؤُلَاءِ مُدَرِّسُونَ",options:["هَؤُلَاءِ مُدَرِّسُونَ","هَؤُلَاءِ طُلَّابٌ","هَؤُلَاءِ رِجَالٌ","هَؤُلَاءِ نِسَاءٌ"],correct:0},
-       {type:"audio",audioText:"هَؤُلَاءِ طُلَّابٌ",options:["هَؤُلَاءِ مُدَرِّسُونَ","هَؤُلَاءِ طُلَّابٌ","هَؤُلَاءِ رِجَالٌ","هَؤُلَاءِ نِسَاءٌ"],correct:1},
-       {type:"audio",audioText:"هَذِهِ نِسَاءٌ",options:["هَذِهِ نِسَاءٌ","هَذِهِ رِجَالٌ","هَذِهِ طَالِبَاتٌ","هَذِهِ مُدَرِّسَاتٌ"],correct:0},
-       {type:"audio",audioText:"الْكُتُبُ جَدِيدَةٌ",options:["الْكُتُبُ جَدِيدَةٌ","الْكِتَابُ جَدِيدٌ","الْكُتُبُ قَدِيمَةٌ","الْكِتَابُ قَدِيمٌ"],correct:0}
-     ]},
-
-    /* ===== LEÇON 14 ===== */
-    {id:"t1l14", num:14, title:"Leçon 14", desc:"La préposition مِنْ · Origine",
-     active:true, audio:"assets/audio/madinah/tome1/L14.mp3",
-     text:["هَذَا الْكِتَابُ مِنَ الْمَكْتَبَةِ","أَنَا مِنْ فَرَنْسَا","هُوَ مِنْ مِصْرَ",
-           "الْقَلَمُ مِنَ الصِّينِ","السَّاعَةُ مِنَ الْيَابَانِ","الْعَسَلُ مِنَ الْجَبَلِ"],
-     vocab:[
-       {ar:"الدُّسْتُورُ",fr:"Constitution",tr:"ad-dustūr"},
-       {ar:"مَسْجِدٌ",fr:"Mosquée",tr:"masjid"},
-       {ar:"كَنِيسَةٌ",fr:"Église",tr:"kanīsa"},
-       {ar:"الْمَكْتَبَةُ",fr:"Bibliothèque",tr:"al-maktaba"},
-       {ar:"الْجَامِعَةُ",fr:"Université",tr:"al-jāmiʿa"},
-       {ar:"الْمُسْتَشْفَى",fr:"Hôpital",tr:"al-mustashfā"},
-       {ar:"الْمَطَارُ",fr:"Aéroport",tr:"al-maṭār"},
-       {ar:"الْمَحَطَّةُ",fr:"Gare",tr:"al-maḥaṭṭa"},
-       {ar:"الْمَرْكَزُ",fr:"Centre",tr:"al-markaz"},
-       {ar:"الْمَتْحَفُ",fr:"Musée",tr:"al-matḥaf"},
-       {ar:"الْمَسْرَحُ",fr:"Théâtre",tr:"al-masraḥ"},
-       {ar:"الْفُنْدُقُ",fr:"Hôtel",tr:"al-funduq"},
-       {ar:"الْحَانُوتُ",fr:"Épicerie",tr:"al-ḥānūt"},
-       {ar:"الْمَخْبَزُ",fr:"Boulangerie",tr:"al-makhbaz"},
-       {ar:"الصَّيْدَلِيَّةُ",fr:"Pharmacie",tr:"aṣ-ṣaydaliyya"},
-       {ar:"الصِّينُ",fr:"Chine",tr:"aṣ-ṣīn"},
-       {ar:"الْيَابَانُ",fr:"Japon",tr:"al-yābān"},
-       {ar:"كُورِيَا",fr:"Corée",tr:"kūriyā"},
-       {ar:"الْهِنْدُ",fr:"Inde",tr:"al-hind"},
-       {ar:"بَاكِسْتَان",fr:"Pakistan",tr:"bākistān"},
-       {ar:"أَفْغَانِسْتَان",fr:"Afghanistan",tr:"afghānistān"},
-       {ar:"إِيرَان",fr:"Iran",tr:"īrān"},
-       {ar:"الْجَبَلُ",fr:"La montagne",tr:"al-jabal"},
-       {ar:"الْبَحْرُ",fr:"La mer",tr:"al-baḥr"},
-       {ar:"النَّهْرُ",fr:"La rivière",tr:"an-nahr"},
-       {ar:"الْغَابَةُ",fr:"La forêt",tr:"al-ghāba"},
-       {ar:"الصَّحْرَاءُ",fr:"Le désert",tr:"aṣ-ṣaḥrāʾ"},
-       {ar:"الْحَقْلُ",fr:"Le champ",tr:"al-ḥaql"},
-       {ar:"الْمَزْرَعَةُ",fr:"La ferme",tr:"al-mazraʿa"},
-       {ar:"الْمَصْنَعُ",fr:"L'usine",tr:"al-maṣnaʿ"},
-       {ar:"الْمَكْتَبُ",fr:"Le bureau",tr:"al-maktab"},
-       {ar:"الْبَيْتُ",fr:"La maison",tr:"al-bayt"},
-       {ar:"الْمَدْرَسَةُ",fr:"L'école",tr:"al-madrasa"},
-       {ar:"مِنْ أَيْنَ",fr:"D'où ?",tr:"min ayna"},
-       {ar:"مِنَ الْقَاهِرَةِ",fr:"Du Caire",tr:"mina l-qāhira"},
-       {ar:"مِنْ دِمَشْقَ",fr:"De Damas",tr:"min dimashq"},
-       {ar:"مِنَ الْمَغْرِبِ",fr:"Du Maroc",tr:"mina l-maghrib"},
-       {ar:"مِنْ تُونُسَ",fr:"De Tunis",tr:"min tūnus"},
-       {ar:"مِنَ الْمُسْتَشْفَى",fr:"De l'hôpital",tr:"mina l-mustashfā"},
-       {ar:"مِنَ الْمَكْتَبَةِ",fr:"De la bibliothèque",tr:"mina l-maktaba"},
-       {ar:"مِنَ الْمَطَارِ",fr:"De l'aéroport",tr:"mina l-maṭār"},
-       {ar:"مِنَ السُّوقِ",fr:"Du marché",tr:"mina s-sūq"},
-       {ar:"مِنَ الْبَحْرِ",fr:"De la mer",tr:"mina l-baḥr"},
-       {ar:"مِنَ الْجَبَلِ",fr:"De la montagne",tr:"mina l-jabal"}
+       {type:"order",q:"Reconstitue :",words:["رِجَالٌ","أُولَئِكَ"],answer:"أُولَئِكَ رِجَالٌ"}
+     ]},    /* ===== LEÇON 20 ===== */
+    {id:"t1l20", num:20, title:"Leçon 20", desc:"Le pluriel · جَمْعُ الْمُذَكَّرِ السَّالِم",
+     active:true, audio:null, pdf:"",
+     text:[
+       "الْمُسْلِمُونَ فِي الْمَسْجِدِ","الْمُؤْمِنُونَ فِي الْمَسْجِدِ",
+       "صَلَّى الْمُسْلِمُونَ","أَحَبَّ الْمُسْلِمِينَ","السَّلَامُ عَلَى الْمُسْلِمِينَ",
+       "الطُّلَّابُ مُجْتَهِدُونَ","الْمُدَرِّسُونَ فِي الْفَصْلِ",
+       "الْمُسْلِمَاتُ فِي الْمَسْجِدِ","الْمُؤْمِنَاتُ فِي الْمَسْجِدِ",
+       "صَلَّتِ الْمُسْلِمَاتُ","السَّلَامُ عَلَى الْمُسْلِمَاتِ",
+       "الطَّالِبَاتُ مُجْتَهِدَاتٌ","الْمُدَرِّسَاتُ فِي الْفَصْلِ",
+       "الْمُسْلِمُونَ فِي الْمَسْجِدِ وَالْمُسْلِمَاتُ فِي الْبَيْتِ",
+       "الطُّلَّابُ فِي الْفَصْلِ وَالطَّالِبَاتُ فِي الْمَكْتَبَةِ",
+       "الْمُؤْمِنُونَ فِي الْمَسْجِدِ وَالْمُؤْمِنَاتُ فِي الْبَيْتِ",
+       "الرِّجَالُ فِي السُّوقِ وَالنِّسَاءُ فِي الْبَيْتِ",
+       "الطَّالِبُونَ مُجْتَهِدُونَ وَالطَّالِبَاتُ مُجْتَهِدَاتٌ",
+       "الْمُسْلِمُونَ إِخْوَةٌ","الْمُسْلِمَاتُ أَخَوَاتٌ",
+       "جَاءَ الْمُسْلِمُونَ","جَاءَتِ الْمُسْلِمَاتُ",
+       "رَأَيْتُ الْمُسْلِمِينَ","رَأَيْتُ الْمُسْلِمَاتِ"
      ],
-     grammar:{title:"La préposition مِنْ (de / depuis)",
-       rule:"مِنْ signifie « de » ou « depuis ». Elle est suivie d'un nom au génitif (majrūr). Devant l'article ال, مِنْ devient مِنَ (avec fatha).",
-       examples:["أَنَا مِنْ فَرَنْسَا = Je viens de France","هَذَا الْكِتَابُ مِنَ الْمَكْتَبَةِ = Ce livre vient de la bibliothèque","هُوَ مِنْ مِصْرَ = Il vient d'Égypte"]},
+     vocab:[
+       {ar:"جَمْعٌ",fr:"Pluriel",tr:"jamʿ"},
+       {ar:"مُفْرَدٌ",fr:"Singulier",tr:"mufrad"},
+       {ar:"مُثَنَّى",fr:"Duel",tr:"muthannā"},
+       {ar:"جَمْعُ الْمُذَكَّرِ السَّالِمُ",fr:"Pluriel masculin régulier",tr:"jamʿ al-mudhakkar al-sālim"},
+       {ar:"جَمْعُ الْمُؤَنَّثِ السَّالِمُ",fr:"Pluriel féminin régulier",tr:"jamʿ al-muʾannath al-sālim"},
+       {ar:"جَمْعُ التَّكْسِيرِ",fr:"Pluriel irrégulier",tr:"jamʿ al-taksīr"},
+       {ar:"مُسْلِمٌ",fr:"Musulman",tr:"muslim"},
+       {ar:"مُسْلِمُونَ",fr:"Musulmans",tr:"muslimūn"},
+       {ar:"مُسْلِمَةٌ",fr:"Musulmane",tr:"muslima"},
+       {ar:"مُسْلِمَاتٌ",fr:"Musulmanes",tr:"muslimāt"},
+       {ar:"مُؤْمِنٌ",fr:"Croyant",tr:"muʾmin"},
+       {ar:"مُؤْمِنُونَ",fr:"Croyants",tr:"muʾminūn"},
+       {ar:"مُؤْمِنَةٌ",fr:"Croyante",tr:"muʾmina"},
+       {ar:"مُؤْمِنَاتٌ",fr:"Croyantes",tr:"muʾmināt"},
+       {ar:"طَالِبٌ",fr:"Étudiant",tr:"ṭālib"},
+       {ar:"طُلَّابٌ",fr:"Étudiants",tr:"ṭullāb"},
+       {ar:"طَالِبَةٌ",fr:"Étudiante",tr:"ṭāliba"},
+       {ar:"طَالِبَاتٌ",fr:"Étudiantes",tr:"ṭālibāt"},
+       {ar:"مُدَرِّسٌ",fr:"Professeur",tr:"mudarris"},
+       {ar:"مُدَرِّسُونَ",fr:"Professeurs",tr:"mudarrisūn"},
+       {ar:"مُدَرِّسَةٌ",fr:"Professeure",tr:"mudarrisa"},
+       {ar:"مُدَرِّسَاتٌ",fr:"Professeures",tr:"mudarrisāt"},
+       {ar:"رَجُلٌ",fr:"Homme",tr:"rajul"},
+       {ar:"رِجَالٌ",fr:"Hommes",tr:"rijāl"},
+       {ar:"اِمْرَأَةٌ",fr:"Femme",tr:"imraʾa"},
+       {ar:"نِسَاءٌ",fr:"Femmes",tr:"nisāʾ"},
+       {ar:"صَلَّى",fr:"Prier",tr:"ṣallā"},
+       {ar:"صَلَّتْ",fr:"Prier (fém.)",tr:"ṣallat"},
+       {ar:"جَاءَ",fr:"Venir (masc.)",tr:"jāʾa"},
+       {ar:"جَاءَتْ",fr:"Venir (fém.)",tr:"jāʾat"},
+       {ar:"رَأَى",fr:"Voir",tr:"raʾā"}
+     ],
+     grammar:{title:"Le pluriel et le pluriel masculin régulier",
+       rule:"1) Le pluriel arabe indique au minimum 3 unités. Il se divise en 2 catégories : جَمْع سَالِم (régulier) et جَمْع تَكْسِير (irrégulier). 2) Le pluriel régulier (سَالِم) ne déforme pas la forme du singulier : seulement un ajout à la fin. Il est de 2 types : masculin et féminin. 3) Le pluriel masculin régulier (جَمْعُ الْمُذَكَّرِ السَّالِم) : ajout de ونَ (nominatif) ou ينَ (accusatif/génitif). Il s'emploie pour les noms propres masculins et les attributs des êtres masculins doués de raison. 4) L'إعراب du جَمْع المُذَكَّر السَّالِم : الواو (رفع) et الياء (نصب/جر). 5) Le ن final ne change jamais de حَرَكَة (toujours فتحة), n'est pas un signe d'إعراب, remplace le tanwin.",
+       examples:["مُسْلِمٌ → مُسْلِمُونَ","صَلَّى الْمُسْلِمُونَ = Les musulmans ont prié","أَحَبَّ الْمُسْلِمِينَ = Il aime les musulmans","السَّلَامُ عَلَى الْمُسْلِمِينَ = Que la paix soit sur les musulmans"]},
      dialogue:[
-       {sp:"A",ar:"مِنْ أَيْنَ أَنْتَ؟",fr:"D'où viens-tu ?"},
-       {sp:"B",ar:"أَنَا مِنْ فَرَنْسَا.",fr:"Je viens de France."},
-       {sp:"A",ar:"وَمِنْ أَيْنَ هُوَ؟",fr:"Et d'où vient-il ?"},
-       {sp:"B",ar:"هُوَ مِنْ مِصْرَ.",fr:"Il vient d'Égypte."},
-       {sp:"A",ar:"وَمِنْ أَيْنَ هَذَا الْكِتَابُ؟",fr:"Et d'où vient ce livre ?"},
-       {sp:"B",ar:"هُوَ مِنَ الْمَكْتَبَةِ.",fr:"Il vient de la bibliothèque."},
-       {sp:"A",ar:"وَمِنْ أَيْنَ هَذَا الْقَلَمُ؟",fr:"Et d'où vient ce stylo ?"},
+       {sp:"A",ar:"مَنْ هَؤُلَاءِ؟",fr:"Qui sont ceux-ci ?"},
+       {sp:"B",ar:"هَؤُلَاءِ مُسْلِمُونَ.",fr:"Ce sont des musulmans."},
+       {sp:"A",ar:"وَمَنْ أُولَئِكَ؟",fr:"Et qui sont ceux-là ?"},
+       {sp:"B",ar:"أُولَئِكَ مُؤْمِنُونَ.",fr:"Ce sont des croyants."},
+       {sp:"A",ar:"أَيْنَ الْمُسْلِمُونَ؟",fr:"Où sont les musulmans ?"},
+       {sp:"B",ar:"هُمْ فِي الْمَسْجِدِ.",fr:"Ils sont à la mosquée."},
+       {sp:"A",ar:"أَيْنَ الْمُسْلِمَاتُ؟",fr:"Où sont les musulmanes ?"},
+       {sp:"B",ar:"هُنَّ فِي الْبَيْتِ.",fr:"Elles sont à la maison."},
+       {sp:"A",ar:"أَيْنَ الطُّلَّابُ؟",fr:"Où sont les étudiants ?"},
+       {sp:"B",ar:"هُمْ فِي الْفَصْلِ.",fr:"Ils sont dans la classe."},
+       {sp:"A",ar:"أَيْنَ الطَّالِبَاتُ؟",fr:"Où sont les étudiantes ?"},
+       {sp:"B",ar:"هُنَّ فِي الْمَكْتَبَةِ.",fr:"Elles sont dans la bibliothèque."},
+       {sp:"A",ar:"الْمُسْلِمُونَ إِخْوَةٌ.",fr:"Les musulmans sont frères."},
+       {sp:"B",ar:"الْمُسْلِمَاتُ أَخَوَاتٌ.",fr:"Les musulmanes sont sœurs."}
+     ],
+     exercises:[
+       /* Bloc 1 — Le pluriel en général (10 questions) */
+       {type:"qcm",q:"Combien d'unités le pluriel indique-t-il au minimum ?",options:["3","2","4","5"],correct:0},
+       {type:"qcm",q:"Quelles sont les 2 catégories de pluriel ?",options:["جَمْع سَالِم et جَمْع تَكْسِير","جَمْع مُذَكَّر et جَمْع مُؤَنَّث","جَمْع مُفْرَد et جَمْع مُثَنَّى","جَمْع عَاقِل et جَمْع غَيْر عَاقِل"],correct:0},
+       {type:"qcm",q:"Le جَمْع سَالِم :",options:["Ne déforme pas le singulier","Déforme le singulier","Change la racine","Retire des lettres"],correct:0},
+       {type:"qcm",q:"Le جَمْع سَالِم est de 2 types :",options:["Masculin et féminin","Proche et loin","Singulier et duel","Défini et indéfini"],correct:0},
+       {type:"fill",sentence:"مُسْلِمٌ → ___",options:["مُسْلِمُونَ","مُسْلِمِينَ","مُسْلِمَاتٌ","مُسْلِمَةٌ"],correct:0},
+       {type:"fill",sentence:"مُسْلِمَةٌ → ___",options:["مُسْلِمَاتٌ","مُسْلِمُونَ","مُسْلِمَةٌ","مُسْلِمَتَانِ"],correct:0},
+       {type:"type",q:"Quel est le pluriel de طَالِبٌ ?",answers:["طُلَّابٌ"],hint:"جمع تكسير"},
+       {type:"type",q:"Quel est le pluriel de طَالِبَةٌ ?",answers:["طَالِبَاتٌ"],hint:"جمع مؤنث سالم"},
+       {type:"tf",q:"Le pluriel arabe indique au minimum 3 unités",correct:true,explain:""},
+       {type:"tf",q:"Le جَمْع سَالِم déforme la forme du singulier",correct:false,explain:"Non, le جَمْع سَالِم ne déforme pas la forme du singulier. C'est le جَمْع تَكْسِير qui déforme la forme."},
+       /* Bloc 2 — Le pluriel masculin régulier (10 questions) */
+       {type:"qcm",q:"Le جَمْعُ الْمُذَكَّرِ السَّالِم est formé par l'ajout de :",options:["ونَ / ينَ","ات","ان / ين","ة"],correct:0},
+       {type:"qcm",q:"Le جَمْعُ الْمُذَكَّرِ السَّالِم s'emploie pour :",options:["Les êtres masculins doués de raison","Les êtres féminins doués de raison","Les non-doués de raison","Les lieux"],correct:0},
+       {type:"fill",sentence:"مُسْلِمٌ → ___",options:["مُسْلِمُونَ","مُسْلِمَاتٌ","مُسْلِمِينَ","مُسْلِمَانِ"],correct:0},
+       {type:"fill",sentence:"مُؤْمِنٌ → ___",options:["مُؤْمِنُونَ","مُؤْمِنَاتٌ","مُؤْمِنِينَ","مُؤْمِنَانِ"],correct:0},
+       {type:"fill",sentence:"مُدَرِّسٌ → ___",options:["مُدَرِّسُونَ","مُدَرِّسَاتٌ","مُدَرِّسِينَ","مُدَرِّسَانِ"],correct:0},
+       {type:"type",q:"Traduire : صَلَّى الْمُسْلِمُونَ",answers:["Les musulmans ont prié"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : أَحَبَّ الْمُسْلِمِينَ",answers:["Il aime les musulmans"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : السَّلَامُ عَلَى الْمُسْلِمِينَ",answers:["Que la paix soit sur les musulmans"],hint:"Phrase nominale"},
+       {type:"tf",q:"Le جَمْعُ الْمُذَكَّرِ السَّالِم s'emploie pour les êtres masculins doués de raison",correct:true,explain:""},
+       {type:"tf",q:"Le جَمْعُ الْمُذَكَّرِ السَّالِم s'emploie pour les non-doués de raison",correct:false,explain:"Non, le جَمْعُ الْمُذَكَّرِ السَّالِم s'emploie pour les êtres masculins doués de raison."},
+       /* Bloc 3 — L'إعراب du pluriel masculin régulier (10 questions) */
+       {type:"qcm",q:"Le signe du رفع du جَمْعُ الْمُذَكَّرِ السَّالِم est :",options:["الواو","الألف","الياء","الضمة"],correct:0},
+       {type:"qcm",q:"Le signe du نصب du جَمْعُ الْمُذَكَّرِ السَّالِم est :",options:["الياء","الواو","الألف","الفتحة"],correct:0},
+       {type:"qcm",q:"Le signe du جر du جَمْعُ الْمُذَكَّرِ السَّالِم est :",options:["الياء","الواو","الألف","الكسرة"],correct:0},
+       {type:"qcm",q:"Le ن final du جَمْعُ الْمُذَكَّرِ السَّالِم prend toujours :",options:["Une فتحة","Une ضمة","Une كسرة","Un sukun"],correct:0},
+       {type:"qcm",q:"Le ن final du جَمْعُ الْمُذَكَّرِ السَّالِم :",options:["N'est pas un signe d'إعراب","Est un signe d'إعراب","Change de حَرَكَة","Prend une ضمة"],correct:0},
+       {type:"fill",sentence:"الْمُسْلِمُونَ — le signe du رفع ?",options:["الواو","الياء","الألف","الضمة"],correct:0},
+       {type:"fill",sentence:"الْمُسْلِمِينَ — le signe du نصب ?",options:["الياء","الواو","الألف","الفتحة"],correct:0},
+       {type:"fill",sentence:"الْمُسْلِمِينَ — le signe du جر ?",options:["الياء","الواو","الألف","الكسرة"],correct:0},
+       {type:"tf",q:"Le ن final du جَمْعُ الْمُذَكَّرِ السَّالِم n'est pas un signe d'إعراب",correct:true,explain:""},
+       {type:"tf",q:"Le signe du رفع du جَمْعُ الْمُذَكَّرِ السَّالِم est la ضمة",correct:false,explain:"Non, le signe du رفع du جَمْعُ الْمُذَكَّرِ السَّالِم est الواو (car c'est un pluriel régulier)."},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : الْمُسْلِمُونَ فِي الْمَسْجِدِ",answers:["Les musulmans sont dans la mosquée"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْمُؤْمِنُونَ فِي الْمَسْجِدِ",answers:["Les croyants sont dans la mosquée"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الطُّلَّابُ مُجْتَهِدُونَ",answers:["Les étudiants sont travailleurs"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْمُدَرِّسُونَ فِي الْفَصْلِ",answers:["Les professeurs sont dans la classe"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْمُسْلِمَاتُ فِي الْمَسْجِدِ",answers:["Les musulmanes sont dans la mosquée"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الطَّالِبَاتُ مُجْتَهِدَاتٌ",answers:["Les étudiantes sont travailleuses"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْمُسْلِمُونَ إِخْوَةٌ",answers:["Les musulmans sont frères"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْمُسْلِمَاتُ أَخَوَاتٌ",answers:["Les musulmanes sont sœurs"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : جَاءَ الْمُسْلِمُونَ",answers:["Les musulmans sont venus"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : رَأَيْتُ الْمُسْلِمِينَ",answers:["J'ai vu les musulmans"],hint:"Phrase verbale"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire مُسْلِمٌ ؟",options:["Musulman","Croyant","Étudiant","Professeur"],correct:0},
+       {type:"qcm",q:"Que veut dire مُسْلِمَةٌ ؟",options:["Musulmane","Croyante","Étudiante","Professeure"],correct:0},
+       {type:"qcm",q:"Que veut dire مُؤْمِنٌ ؟",options:["Croyant","Musulman","Étudiant","Professeur"],correct:0},
+       {type:"qcm",q:"Que veut dire مُؤْمِنَةٌ ؟",options:["Croyante","Musulmane","Étudiante","Professeure"],correct:0},
+       {type:"qcm",q:"Que veut dire طَالِبٌ ؟",options:["Étudiant","Musulman","Professeur","Croyant"],correct:0},
+       {type:"qcm",q:"Que veut dire طَالِبَةٌ ؟",options:["Étudiante","Musulmane","Professeure","Croyante"],correct:0},
+       {type:"qcm",q:"Que veut dire مُدَرِّسٌ ؟",options:["Professeur","Étudiant","Musulman","Croyant"],correct:0},
+       {type:"qcm",q:"Que veut dire مُدَرِّسَةٌ ؟",options:["Professeure","Étudiante","Musulmane","Croyante"],correct:0},
+       {type:"qcm",q:"Que veut dire رَجُلٌ ؟",options:["Homme","Femme","Garçon","Fille"],correct:0},
+       {type:"qcm",q:"Que veut dire اِمْرَأَةٌ ؟",options:["Femme","Homme","Fille","Garçon"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « musulmans » :",answers:["مُسْلِمُونَ"],hint:"م س ل م + ون"},
+       {type:"type",q:"Écris « musulmanes » :",answers:["مُسْلِمَاتٌ"],hint:"م س ل م + ات"},
+       {type:"type",q:"Écris « étudiants » :",answers:["طُلَّابٌ"],hint:"جمع تكسير"},
+       {type:"type",q:"Écris « étudiantes » :",answers:["طَالِبَاتٌ"],hint:"ط ا ل ب + ات"},
+       {type:"type",q:"Écris « professeurs » :",answers:["مُدَرِّسُونَ"],hint:"م د ر س + ون"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["الْمَسْجِدِ","فِي","الْمُسْلِمُونَ"],answer:"الْمُسْلِمُونَ فِي الْمَسْجِدِ"},
+       {type:"order",q:"Reconstitue :",words:["مُجْتَهِدُونَ","الطُّلَّابُ"],answer:"الطُّلَّابُ مُجْتَهِدُونَ"},
+       {type:"order",q:"Reconstitue :",words:["إِخْوَةٌ","الْمُسْلِمُونَ"],answer:"الْمُسْلِمُونَ إِخْوَةٌ"},
+       {type:"order",q:"Reconstitue :",words:["الْمُسْلِمَاتُ","أَخَوَاتٌ"],answer:"الْمُسْلِمَاتُ أَخَوَاتٌ"},
+       {type:"order",q:"Reconstitue :",words:["الْمُسْلِمِينَ","رَأَيْتُ"],answer:"رَأَيْتُ الْمُسْلِمِينَ"}
+     ]},    /* ===== LEÇON 21 ===== */
+    {id:"t1l21", num:21, title:"Leçon 21", desc:"Le pluriel · جَمْعُ الْمُؤَنَّثِ السَّالِم et جَمْعُ التَّكْسِير",
+     active:true, audio:null, pdf:"",
+     text:[
+       "الْمُسْلِمَاتُ فِي الْمَسْجِدِ","الْمُؤْمِنَاتُ فِي الْمَسْجِدِ",
+       "صَلَّتِ الْمُسْلِمَاتُ","السَّلَامُ عَلَى الْمُسْلِمَاتِ",
+       "الطَّالِبَاتُ مُجْتَهِدَاتٌ","الْمُدَرِّسَاتُ فِي الْفَصْلِ",
+       "الْكُتُبُ فِي الْفَصْلِ","اشْتَرَيْتُ كُتُبًا","جَاءَ زَيْدٌ بِكُتُبٍ",
+       "الرِّجَالُ فِي الْمَسَاجِدِ","الْأَطْفَالُ فِي الْحَدَائِقِ",
+       "الْأَيَّامُ مَعْدُودَةٌ","الْأَيَّامُ مَعْدُودَاتٌ","هَذِهِ الْأَيَّامُ",
+       "الْمُسْلِمَاتُ عَفِيفَاتٌ","الطَّالِبَاتُ مُجْتَهِدَاتٌ",
+       "الْمُسْلِمُونَ فِي الْمَسْجِدِ وَالْمُسْلِمَاتُ فِي الْبَيْتِ",
+       "الْكُتُبُ جَدِيدَةٌ","الْبُيُوتُ كَبِيرَةٌ","الْأَقْلَامُ فِي الْحَقِيبَةِ",
+       "الْجِبَالُ عَالِيَةٌ","الْأَنْهَارُ كَبِيرَةٌ"
+     ],
+     vocab:[
+       {ar:"جَمْعُ الْمُؤَنَّثِ السَّالِمُ",fr:"Pluriel féminin régulier",tr:"jamʿ al-muʾannath al-sālim"},
+       {ar:"جَمْعُ التَّكْسِيرِ",fr:"Pluriel irrégulier",tr:"jamʿ al-taksīr"},
+       {ar:"مُسْلِمَةٌ",fr:"Musulmane",tr:"muslima"},
+       {ar:"مُسْلِمَاتٌ",fr:"Musulmanes",tr:"muslimāt"},
+       {ar:"طَالِبَةٌ",fr:"Étudiante",tr:"ṭāliba"},
+       {ar:"طَالِبَاتٌ",fr:"Étudiantes",tr:"ṭālibāt"},
+       {ar:"مُدَرِّسَةٌ",fr:"Professeure",tr:"mudarrisa"},
+       {ar:"مُدَرِّسَاتٌ",fr:"Professeures",tr:"mudarrisāt"},
+       {ar:"كِتَابٌ",fr:"Livre",tr:"kitāb"},
+       {ar:"كُتُبٌ",fr:"Livres",tr:"kutub"},
+       {ar:"بَيْتٌ",fr:"Maison",tr:"bayt"},
+       {ar:"بُيُوتٌ",fr:"Maisons",tr:"buyūt"},
+       {ar:"قَلَمٌ",fr:"Stylo",tr:"qalam"},
+       {ar:"أَقْلَامٌ",fr:"Stylos",tr:"aqlām"},
+       {ar:"رَجُلٌ",fr:"Homme",tr:"rajul"},
+       {ar:"رِجَالٌ",fr:"Hommes",tr:"rijāl"},
+       {ar:"طِفْلٌ",fr:"Enfant",tr:"ṭifl"},
+       {ar:"أَطْفَالٌ",fr:"Enfants",tr:"aṭfāl"},
+       {ar:"حَدِيقَةٌ",fr:"Jardin",tr:"ḥadīqa"},
+       {ar:"حَدَائِقُ",fr:"Jardins",tr:"ḥadāʾiq"},
+       {ar:"مَسْجِدٌ",fr:"Mosquée",tr:"masjid"},
+       {ar:"مَسَاجِدُ",fr:"Mosquées",tr:"masājid"},
+       {ar:"يَوْمٌ",fr:"Jour",tr:"yawm"},
+       {ar:"أَيَّامٌ",fr:"Jours",tr:"ayyām"},
+       {ar:"شَجَرَةٌ",fr:"Arbre",tr:"shajara"},
+       {ar:"شَجَرَاتٌ",fr:"Arbres",tr:"shajarāt"},
+       {ar:"جَبَلٌ",fr:"Montagne",tr:"jabal"},
+       {ar:"جِبَالٌ",fr:"Montagnes",tr:"jibāl"},
+       {ar:"نَهْرٌ",fr:"Rivière",tr:"nahr"},
+       {ar:"أَنْهَارٌ",fr:"Rivières",tr:"anhār"},
+       {ar:"عَفِيفَةٌ",fr:"Chaste",tr:"ʿafīfa"},
+       {ar:"عَفِيفَاتٌ",fr:"Chastes",tr:"ʿafīfāt"},
+       {ar:"مَعْدُودَةٌ",fr:"Comptée",tr:"maʿdūda"},
+       {ar:"مَعْدُودَاتٌ",fr:"Comptées",tr:"maʿdūdāt"}
+     ],
+     grammar:{title:"Le pluriel féminin régulier et le pluriel irrégulier",
+       rule:"1) Le pluriel féminin régulier (جَمْعُ الْمُؤَنَّثِ السَّالِم) : ajout de ات à la fin du singulier. Il s'emploie pour : les noms propres féminins, les noms se terminant par ة, les attributs des êtres féminins doués de raison, les attributs des noms masculins des choses dépourvues de raison. 2) L'إعراب du جَمْع المؤنث السالم : toujours une حَرَكَة (ضمة، فتحة، كسرة) sur la dernière lettre (ت). 3) Le pluriel irrégulier (جَمْعُ التَّكْسِير) : dénature la forme du singulier (ajout de lettre, retrait de lettre, changement de حَرَكَة). Il n'y a pas de règle constante, ces formes sont à mémoriser. 4) L'إعراب du جَمْع التكسير : toujours une حَرَكَة (comme la majorité des noms).",
+       examples:["مُسْلِمَةٌ → مُسْلِمَاتٌ","طَالِبَةٌ → طَالِبَاتٌ","كِتَابٌ → كُتُبٌ","بَيْتٌ → بُيُوتٌ","الْكُتُبُ فِي الْفَصْلِ = Les livres sont dans la classe"]},
+     dialogue:[
+       {sp:"A",ar:"أَيْنَ الْمُسْلِمَاتُ؟",fr:"Où sont les musulmanes ?"},
+       {sp:"B",ar:"هُنَّ فِي الْمَسْجِدِ.",fr:"Elles sont dans la mosquée."},
+       {sp:"A",ar:"أَيْنَ الطَّالِبَاتُ؟",fr:"Où sont les étudiantes ?"},
+       {sp:"B",ar:"هُنَّ فِي الْفَصْلِ.",fr:"Elles sont dans la classe."},
+       {sp:"A",ar:"أَيْنَ الْكُتُبُ؟",fr:"Où sont les livres ?"},
+       {sp:"B",ar:"هِيَ فِي الْفَصْلِ.",fr:"Ils sont dans la classe."},
+       {sp:"A",ar:"أَيْنَ الرِّجَالُ؟",fr:"Où sont les hommes ?"},
+       {sp:"B",ar:"هُمْ فِي الْمَسَاجِدِ.",fr:"Ils sont dans les mosquées."},
+       {sp:"A",ar:"أَيْنَ الْأَطْفَالُ؟",fr:"Où sont les enfants ?"},
+       {sp:"B",ar:"هُمْ فِي الْحَدَائِقِ.",fr:"Ils sont dans les jardins."},
+       {sp:"A",ar:"الْمُسْلِمَاتُ عَفِيفَاتٌ.",fr:"Les musulmanes sont chastes."},
+       {sp:"B",ar:"الطَّالِبَاتُ مُجْتَهِدَاتٌ.",fr:"Les étudiantes sont travailleuses."},
+       {sp:"A",ar:"الْكُتُبُ جَدِيدَةٌ.",fr:"Les livres sont nouveaux."},
+       {sp:"B",ar:"الْبُيُوتُ كَبِيرَةٌ.",fr:"Les maisons sont grandes."}
+     ],
+     exercises:[
+       /* Bloc 1 — Le pluriel féminin régulier (10 questions) */
+       {type:"qcm",q:"Le جَمْعُ الْمُؤَنَّثِ السَّالِم est formé par l'ajout de :",options:["ات","ونَ / ينَ","ان / ين","ة"],correct:0},
+       {type:"qcm",q:"Le جَمْعُ الْمُؤَنَّثِ السَّالِم s'emploie pour :",options:["Les êtres féminins doués de raison","Les êtres masculins doués de raison","Les non-doués de raison","Les lieux"],correct:0},
+       {type:"fill",sentence:"مُسْلِمَةٌ → ___",options:["مُسْلِمَاتٌ","مُسْلِمُونَ","مُسْلِمَةٌ","مُسْلِمَتَانِ"],correct:0},
+       {type:"fill",sentence:"طَالِبَةٌ → ___",options:["طَالِبَاتٌ","طُلَّابٌ","طَالِبَةٌ","طَالِبَتَانِ"],correct:0},
+       {type:"fill",sentence:"مُدَرِّسَةٌ → ___",options:["مُدَرِّسَاتٌ","مُدَرِّسُونَ","مُدَرِّسَةٌ","مُدَرِّسَتَانِ"],correct:0},
+       {type:"fill",sentence:"شَجَرَةٌ → ___",options:["شَجَرَاتٌ","شُجُرٌ","شَجَرَةٌ","شَجَرَتَانِ"],correct:0},
+       {type:"type",q:"Quel est le pluriel de مُسْلِمَةٌ ?",answers:["مُسْلِمَاتٌ"],hint:"جمع مؤنث سالم"},
+       {type:"type",q:"Quel est le pluriel de طَالِبَةٌ ?",answers:["طَالِبَاتٌ"],hint:"جمع مؤنث سالم"},
+       {type:"tf",q:"Le جَمْعُ الْمُؤَنَّثِ السَّالِم est formé par l'ajout de ات",correct:true,explain:""},
+       {type:"tf",q:"Le جَمْعُ الْمُؤَنَّثِ السَّالِم s'emploie pour les êtres masculins",correct:false,explain:"Non, le جَمْعُ الْمُؤَنَّثِ السَّالِم s'emploie pour les êtres féminins doués de raison."},
+       /* Bloc 2 — L'إعراب du pluriel féminin régulier (10 questions) */
+       {type:"qcm",q:"Le signe du رفع du جَمْعُ الْمُؤَنَّثِ السَّالِم est :",options:["الضمة","الواو","الألف","الياء"],correct:0},
+       {type:"qcm",q:"Le signe du نصب du جَمْعُ الْمُؤَنَّثِ السَّالِم est :",options:["الكسرة","الفتحة","الضمة","الياء"],correct:0},
+       {type:"qcm",q:"Le signe du جر du جَمْعُ الْمُؤَنَّثِ السَّالِم est :",options:["الكسرة","الفتحة","الضمة","الياء"],correct:0},
+       {type:"qcm",q:"Le signe du نصب du جَمْعُ الْمُؤَنَّثِ السَّالِم est :",options:["الكسرة","الفتحة","الضمة","الياء"],correct:0},
+       {type:"fill",sentence:"الْمُسْلِمَاتُ — le signe du رفع ?",options:["الضمة","الفتحة","الكسرة","الواو"],correct:0},
+       {type:"fill",sentence:"الْمُسْلِمَاتِ — le signe du جر ?",options:["الكسرة","الفتحة","الضمة","الياء"],correct:0},
+       {type:"tf",q:"Le جَمْعُ الْمُؤَنَّثِ السَّالِم a toujours une حَرَكَة comme signe d'إعراب",correct:true,explain:""},
+       {type:"tf",q:"Le signe du رفع du جَمْعُ الْمُؤَنَّثِ السَّالِم est الواو",correct:false,explain:"Non, le signe du رفع du جَمْعُ الْمُؤَنَّثِ السَّالِم est la ضمة (car c'est un pluriel régulier féminin)."},
+       {type:"type",q:"Traduire : الْمُسْلِمَاتُ فِي الْمَسْجِدِ",answers:["Les musulmanes sont dans la mosquée"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الطَّالِبَاتُ مُجْتَهِدَاتٌ",answers:["Les étudiantes sont travailleuses"],hint:"Phrase nominale"},
+       /* Bloc 3 — Le pluriel irrégulier (10 questions) */
+       {type:"qcm",q:"Le جَمْعُ التَّكْسِير :",options:["Dénature la forme du singulier","Ne déforme pas le singulier","Ajoute seulement une lettre","Retire seulement une lettre"],correct:0},
+       {type:"qcm",q:"Le جَمْعُ التَّكْسِير :",options:["N'a pas de règle constante","A une règle constante","Suit toujours le même modèle","Est toujours régulier"],correct:0},
+       {type:"fill",sentence:"كِتَابٌ → ___",options:["كُتُبٌ","كِتَابَاتٌ","كِتَابُونَ","كِتَابَانِ"],correct:0},
+       {type:"fill",sentence:"بَيْتٌ → ___",options:["بُيُوتٌ","بَيْتٌ","بَيْتَانِ","بُيُوتَاتٌ"],correct:0},
+       {type:"fill",sentence:"قَلَمٌ → ___",options:["أَقْلَامٌ","قَلَمَاتٌ","قَلَمُونَ","قَلَمَانِ"],correct:0},
+       {type:"fill",sentence:"رَجُلٌ → ___",options:["رِجَالٌ","رَجُلُونَ","رَجُلَاتٌ","رَجُلَانِ"],correct:0},
+       {type:"fill",sentence:"مَسْجِدٌ → ___",options:["مَسَاجِدُ","مَسْجِدَاتٌ","مَسْجِدُونَ","مَسْجِدَانِ"],correct:0},
+       {type:"type",q:"Quel est le pluriel de كِتَابٌ ?",answers:["كُتُبٌ"],hint:"جمع تكسير"},
+       {type:"type",q:"Quel est le pluriel de بَيْتٌ ?",answers:["بُيُوتٌ"],hint:"جمع تكسير"},
+       {type:"type",q:"Quel est le pluriel de مَسْجِدٌ ?",answers:["مَسَاجِدُ"],hint:"جمع تكسير"},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : الْكُتُبُ فِي الْفَصْلِ",answers:["Les livres sont dans la classe"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الرِّجَالُ فِي الْمَسَاجِدِ",answers:["Les hommes sont dans les mosquées"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْأَطْفَالُ فِي الْحَدَائِقِ",answers:["Les enfants sont dans les jardins"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْأَيَّامُ مَعْدُودَةٌ",answers:["Les jours sont comptés"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْأَيَّامُ مَعْدُودَاتٌ",answers:["Les jours sont comptés"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْمُسْلِمَاتُ عَفِيفَاتٌ",answers:["Les musulmanes sont chastes"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْكُتُبُ جَدِيدَةٌ",answers:["Les livres sont nouveaux"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْبُيُوتُ كَبِيرَةٌ",answers:["Les maisons sont grandes"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْأَقْلَامُ فِي الْحَقِيبَةِ",answers:["Les stylos sont dans le sac"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْجِبَالُ عَالِيَةٌ",answers:["Les montagnes sont hautes"],hint:"Phrase nominale"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire كِتَابٌ ؟",options:["Livre","Stylo","Cahier","Feuille"],correct:0},
+       {type:"qcm",q:"Que veut dire كُتُبٌ ؟",options:["Livres","Cahiers","Stylos","Feuilles"],correct:0},
+       {type:"qcm",q:"Que veut dire بَيْتٌ ؟",options:["Maison","Porte","Fenêtre","Chambre"],correct:0},
+       {type:"qcm",q:"Que veut dire بُيُوتٌ ؟",options:["Maisons","Portes","Fenêtres","Chambres"],correct:0},
+       {type:"qcm",q:"Que veut dire مَسْجِدٌ ؟",options:["Mosquée","École","Maison","Marché"],correct:0},
+       {type:"qcm",q:"Que veut dire مَسَاجِدُ ؟",options:["Mosquées","Écoles","Maisons","Marchés"],correct:0},
+       {type:"qcm",q:"Que veut dire حَدِيقَةٌ ؟",options:["Jardin","Parc","Ferme","Forêt"],correct:0},
+       {type:"qcm",q:"Que veut dire حَدَائِقُ ؟",options:["Jardins","Parcs","Fermes","Forêts"],correct:0},
+       {type:"qcm",q:"Que veut dire يَوْمٌ ؟",options:["Jour","Nuit","Matin","Soir"],correct:0},
+       {type:"qcm",q:"Que veut dire أَيَّامٌ ؟",options:["Jours","Nuits","Matins","Soirs"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « musulmanes » :",answers:["مُسْلِمَاتٌ"],hint:"م س ل م + ات"},
+       {type:"type",q:"Écris « livres » :",answers:["كُتُبٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « maisons » :",answers:["بُيُوتٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « mosquées » :",answers:["مَسَاجِدُ"],hint:"جمع تكسير"},
+       {type:"type",q:"Écris « jardins » :",answers:["حَدَائِقُ"],hint:"جمع تكسير"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["الْمَسْجِدِ","فِي","الْمُسْلِمَاتُ"],answer:"الْمُسْلِمَاتُ فِي الْمَسْجِدِ"},
+       {type:"order",q:"Reconstitue :",words:["مُجْتَهِدَاتٌ","الطَّالِبَاتُ"],answer:"الطَّالِبَاتُ مُجْتَهِدَاتٌ"},
+       {type:"order",q:"Reconstitue :",words:["الْفَصْلِ","فِي","الْكُتُبُ"],answer:"الْكُتُبُ فِي الْفَصْلِ"},
+       {type:"order",q:"Reconstitue :",words:["الْمَسَاجِدِ","فِي","الرِّجَالُ"],answer:"الرِّجَالُ فِي الْمَسَاجِدِ"},
+       {type:"order",q:"Reconstitue :",words:["الْحَدَائِقِ","فِي","الْأَطْفَالُ"],answer:"الْأَطْفَالُ فِي الْحَدَائِقِ"}
+     ]},    /* ===== LEÇON 22 ===== */
+    {id:"t1l22", num:22, title:"Leçon 22", desc:"Le duel · الْمَثْنَى + كَمْ",
+     active:true, audio:null, pdf:"",
+     text:[
+       "هَذَانِ طَالِبَانِ","هَذَانِ رَجُلَانِ","هَذَانِ كِتَابَانِ",
+       "ذَانِكَ طَالِبَانِ","ذَانِكَ رَجُلَانِ","ذَانِكَ كِتَابَانِ",
+       "هَاتَانِ طَالِبَتَانِ","هَاتَانِ اِمْرَأَتَانِ","هَاتَانِ سَاعَتَانِ",
+       "تَانِكَ طَالِبَتَانِ","تَانِكَ اِمْرَأَتَانِ","تَانِكَ سَاعَتَانِ",
+       "أَكَلْتُ هَذَيْنِ الْخُبْزَيْنِ","السَّلَامُ عَلَى ذَيْنِكَ الرَّجُلَيْنِ",
+       "سَلَّمْتُ عَلَى هَاتَيْنِ الطَّالِبَتَيْنِ",
+       "كَمْ عُمْرُكَ؟","كَمْ طَالِبًا فِي الْفَصْلِ؟","كَمْ وَقْتًا بَقِيتَ فِي فَرَنْسَا؟",
+       "كَمْ كِتَابًا عِنْدَكَ؟","كَمْ أَخًا لَكَ؟","كَمْ أُخْتًا لَكِ؟",
+       "فِي السَّنَةِ عِيدَانِ: عِيدُ الْفِطْرِ وَعِيدُ الْأَضْحَى"
+     ],
+     vocab:[
+       {ar:"الْمَثْنَى",fr:"Le duel",tr:"al-mathnā"},
+       {ar:"هَذَانِ",fr:"Ces deux-ci (masc.)",tr:"hādhāni"},
+       {ar:"ذَانِكَ",fr:"Ces deux-là (masc.)",tr:"dhānika"},
+       {ar:"هَاتَانِ",fr:"Ces deux-ci (fém.)",tr:"hātāni"},
+       {ar:"تَانِكَ",fr:"Ces deux-là (fém.)",tr:"tānika"},
+       {ar:"كَمْ",fr:"Combien ?",tr:"kam"},
+       {ar:"تَمْيِيزٌ",fr:"Le dénombré (complément)",tr:"tamyīz"},
+       {ar:"عُمْرٌ",fr:"Âge",tr:"ʿumr"},
+       {ar:"طَالِبَانِ",fr:"Deux étudiants",tr:"ṭālibāni"},
+       {ar:"رَجُلَانِ",fr:"Deux hommes",tr:"rajulāni"},
+       {ar:"كِتَابَانِ",fr:"Deux livres",tr:"kitābāni"},
+       {ar:"طَالِبَتَانِ",fr:"Deux étudiantes",tr:"ṭālibatāni"},
+       {ar:"اِمْرَأَتَانِ",fr:"Deux femmes",tr:"imraʾatāni"},
+       {ar:"سَاعَتَانِ",fr:"Deux montres",tr:"sāʿatāni"},
+       {ar:"خُبْزَانِ",fr:"Deux pains",tr:"khubzāni"},
+       {ar:"رَجُلَيْنِ",fr:"Deux hommes (acc./gén.)",tr:"rajulayni"},
+       {ar:"طَالِبَتَيْنِ",fr:"Deux étudiantes (acc./gén.)",tr:"ṭālibatayni"},
+       {ar:"عِيدٌ",fr:"Fête",tr:"ʿīd"},
+       {ar:"عِيدَانِ",fr:"Deux fêtes",tr:"ʿīdāni"},
+       {ar:"فِطْرٌ",fr:"Rupture du jeûne",tr:"fiṭr"},
+       {ar:"أَضْحَى",fr:"Sacrifice",tr:"aḍḥā"},
+       {ar:"سَنَةٌ",fr:"Année",tr:"sana"},
+       {ar:"عَجَلَةٌ",fr:"Roue",tr:"ʿajala"},
+       {ar:"مِسْطَرَةٌ",fr:"Règle",tr:"misṭara"},
+       {ar:"حَيٌّ",fr:"Quartier",tr:"ḥayy"},
+       {ar:"رَكْعَةٌ",fr:"Unité de prière",tr:"rakʿa"},
+       {ar:"مَتْجَرٌ",fr:"Magasin",tr:"matjar"},
+       {ar:"شَرِكَةٌ",fr:"Société",tr:"sharika"},
+       {ar:"فَلَّاحٌ",fr:"Paysan",tr:"fallāḥ"},
+       {ar:"رَجِيسٌ",fr:"Bon marché",tr:"rajīs"},
+       {ar:"غَالِي",fr:"Cher",tr:"ghālī"},
+       {ar:"قَدِيمٌ",fr:"Ancien",tr:"qadīm"}
+     ],
+     grammar:{title:"Le duel et l'interrogatif كَمْ",
+       rule:"1) Le duel (الْمَثْنَى) indique 2 unités (masc. ou fém.). On ajoute ان ou ين à la fin du singulier, précédé d'une فتحة. 2) L'إعراب du duel : الألف (رفع) et الياء (نصب/جر). 3) Le ن final du duel ne change jamais de حَرَكَة (toujours فتحة), n'est pas un signe d'إعراب, remplace le tanwin. 4) Le duel des démonstratifs : هَذَانِ / ذَانِكَ (masc. proche/loin), هَاتَانِ / تَانِكَ (fém. proche/loin). Contrairement aux autres démonstratifs, le duel est variable (مُعَرَب). 5) L'interrogatif كَمْ (combien ?) s'emploie pour interroger sur la quantité, la durée ou le nombre. Le nom qui suit كَمْ est généralement نَكِرَة، مُفْرَد، مَنْصُوب (تَمْيِيز).",
+       examples:["هَذَانِ طَالِبَانِ = Ces deux-ci sont deux étudiants","هَاتَانِ طَالِبَتَانِ = Ces deux-ci sont deux étudiantes","كَمْ عُمْرُكَ؟ = Quel est ton âge ?","كَمْ طَالِبًا فِي الْفَصْلِ؟ = Combien d'étudiants dans la classe ?"]},
+     dialogue:[
+       {sp:"A",ar:"كَمْ عُمْرُكَ؟",fr:"Quel est ton âge ?"},
+       {sp:"B",ar:"عُمْرِي عِشْرُونَ سَنَةً.",fr:"J'ai vingt ans."},
+       {sp:"A",ar:"كَمْ طَالِبًا فِي الْفَصْلِ؟",fr:"Combien d'étudiants dans la classe ?"},
+       {sp:"B",ar:"فِي الْفَصْلِ عَشَرَةُ طُلَّابٍ.",fr:"Dans la classe, il y a dix étudiants."},
+       {sp:"A",ar:"كَمْ كِتَابًا عِنْدَكَ؟",fr:"Combien de livres as-tu ?"},
+       {sp:"B",ar:"عِنْدِي ثَلَاثَةُ كُتُبٍ.",fr:"J'ai trois livres."},
+       {sp:"A",ar:"كَمْ أَخًا لَكَ؟",fr:"Combien de frères as-tu ?"},
+       {sp:"B",ar:"لِي أَخَوَانِ.",fr:"J'ai deux frères."},
+       {sp:"A",ar:"كَمْ أُخْتًا لَكِ؟",fr:"Combien de sœurs as-tu ?"},
+       {sp:"B",ar:"لِي أُخْتَانِ.",fr:"J'ai deux sœurs."},
+       {sp:"A",ar:"فِي السَّنَةِ عِيدَانِ: عِيدُ الْفِطْرِ وَعِيدُ الْأَضْحَى.",fr:"Dans l'année, il y a deux fêtes : Aïd al-Fitr et Aïd al-Adha."},
+       {sp:"A",ar:"هَذَانِ طَالِبَانِ.",fr:"Ces deux-ci sont deux étudiants."},
+       {sp:"A",ar:"هَاتَانِ طَالِبَتَانِ.",fr:"Ces deux-ci sont deux étudiantes."},
+       {sp:"A",ar:"سَلَّمْتُ عَلَى هَاتَيْنِ الطَّالِبَتَيْنِ.",fr:"J'ai salué ces deux étudiantes."}
+     ],
+     exercises:[
+       /* Bloc 1 — Le duel (10 questions) */
+       {type:"qcm",q:"Le duel (الْمَثْنَى) indique :",options:["2 unités","3 unités","1 unité","Plus de 3"],correct:0},
+       {type:"qcm",q:"Le duel est formé par l'ajout de :",options:["ان / ين","ونَ / ينَ","ات","ة"],correct:0},
+       {type:"qcm",q:"Une فتحة précède :",options:["Les lettres du duel","Les lettres du pluriel","Les lettres du singulier","Le tanwin"],correct:0},
+       {type:"fill",sentence:"طَالِبٌ → ___",options:["طَالِبَانِ","طَالِبُونَ","طَالِبَاتٌ","طَالِبَةٌ"],correct:0},
+       {type:"fill",sentence:"طَالِبَةٌ → ___",options:["طَالِبَتَانِ","طَالِبَاتٌ","طَالِبُونَ","طَالِبَةٌ"],correct:0},
+       {type:"fill",sentence:"رَجُلٌ → ___",options:["رَجُلَانِ","رِجَالٌ","رَجُلُونَ","رَجُلَةٌ"],correct:0},
+       {type:"fill",sentence:"كِتَابٌ → ___",options:["كِتَابَانِ","كُتُبٌ","كِتَابُونَ","كِتَابَاتٌ"],correct:0},
+       {type:"type",q:"Quel est le duel de طَالِبٌ ?",answers:["طَالِبَانِ"],hint:"مثنى"},
+       {type:"type",q:"Quel est le duel de طَالِبَةٌ ?",answers:["طَالِبَتَانِ"],hint:"مثنى"},
+       {type:"type",q:"Quel est le duel de رَجُلٌ ?",answers:["رَجُلَانِ"],hint:"مثنى"},
+       /* Bloc 2 — L'إعراب du duel (10 questions) */
+       {type:"qcm",q:"Le signe du رفع du duel est :",options:["الألف","الواو","الياء","الضمة"],correct:0},
+       {type:"qcm",q:"Le signe du نصب du duel est :",options:["الياء","الألف","الواو","الفتحة"],correct:0},
+       {type:"qcm",q:"Le signe du جر du duel est :",options:["الياء","الألف","الواو","الكسرة"],correct:0},
+       {type:"qcm",q:"Le ن final du duel prend toujours :",options:["Une فتحة","Une ضمة","Une كسرة","Un sukun"],correct:0},
+       {type:"qcm",q:"Le ن final du duel :",options:["N'est pas un signe d'إعراب","Est un signe d'إعراب","Change de حَرَكَة","Prend une ضمة"],correct:0},
+       {type:"fill",sentence:"طَالِبَانِ — le signe du رفع ?",options:["الألف","الياء","الواو","الضمة"],correct:0},
+       {type:"fill",sentence:"طَالِبَيْنِ — le signe du نصب ?",options:["الياء","الألف","الواو","الفتحة"],correct:0},
+       {type:"fill",sentence:"طَالِبَيْنِ — le signe du جر ?",options:["الياء","الألف","الواو","الكسرة"],correct:0},
+       {type:"tf",q:"Le ن final du duel n'est pas un signe d'إعراب",correct:true,explain:""},
+       {type:"tf",q:"Le signe du رفع du duel est la ضمة",correct:false,explain:"Non, le signe du رفع du duel est الألف (car c'est un duel)."},
+       /* Bloc 3 — Le duel des démonstratifs (10 questions) */
+       {type:"qcm",q:"هَذَانِ s'emploie pour :",options:["Le duel masculin proche","Le duel féminin proche","Le duel masculin loin","Le duel féminin loin"],correct:0},
+       {type:"qcm",q:"ذَانِكَ s'emploie pour :",options:["Le duel masculin loin","Le duel masculin proche","Le duel féminin proche","Le duel féminin loin"],correct:0},
+       {type:"qcm",q:"هَاتَانِ s'emploie pour :",options:["Le duel féminin proche","Le duel masculin proche","Le duel masculin loin","Le duel féminin loin"],correct:0},
+       {type:"qcm",q:"تَانِكَ s'emploie pour :",options:["Le duel féminin loin","Le duel masculin loin","Le duel masculin proche","Le duel féminin proche"],correct:0},
+       {type:"qcm",q:"Le duel des démonstratifs est :",options:["Variable (مُعَرَب)","Invariable (مَبْنِي)","Comme les autres démonstratifs","Toujours مرفوع"],correct:0},
+       {type:"fill",sentence:"___ طَالِبَانِ (duel masc. proche)",options:["هَذَانِ","ذَانِكَ","هَاتَانِ","تَانِكَ"],correct:0},
+       {type:"fill",sentence:"___ طَالِبَتَانِ (duel fém. proche)",options:["هَاتَانِ","هَذَانِ","ذَانِكَ","تَانِكَ"],correct:0},
+       {type:"fill",sentence:"___ رَجُلَانِ (duel masc. loin)",options:["ذَانِكَ","هَذَانِ","هَاتَانِ","تَانِكَ"],correct:0},
+       {type:"fill",sentence:"___ اِمْرَأَتَانِ (duel fém. loin)",options:["تَانِكَ","هَاتَانِ","هَذَانِ","ذَانِكَ"],correct:0},
+       {type:"tf",q:"Le duel des démonstratifs est variable (مُعَرَب)",correct:true,explain:""},
+       /* Bloc 4 — كَمْ (10 questions) */
+       {type:"qcm",q:"Que veut dire كَمْ ؟",options:["Combien ?","Comment ?","Où ?","Quand ?"],correct:0},
+       {type:"qcm",q:"كَمْ s'emploie pour interroger sur :",options:["La quantité, la durée, le nombre","Le lieu","Le temps","La personne"],correct:0},
+       {type:"qcm",q:"Le nom qui suit كَمْ est généralement :",options:["نَكِرَة، مُفْرَد، مَنْصُوب","مَعْرِفَة، مُفْرَد، مَرْفُوع","نَكِرَة، جَمْع، مَجْرُور","مَعْرِفَة، جَمْع، مَنْصُوب"],correct:0},
+       {type:"qcm",q:"Le nom qui suit كَمْ s'appelle :",options:["تَمْيِيز","مُبْتَدَأ","خَبَر","فَاعِل"],correct:0},
+       {type:"fill",sentence:"___ عُمْرُكَ ؟",options:["كَمْ","كَيْفَ","أَيْنَ","مَتَى"],correct:0},
+       {type:"fill",sentence:"___ طَالِبًا فِي الْفَصْلِ ؟",options:["كَمْ","كَيْفَ","أَيْنَ","مَتَى"],correct:0},
+       {type:"fill",sentence:"___ كِتَابًا عِنْدَكَ ؟",options:["كَمْ","كَيْفَ","أَيْنَ","مَتَى"],correct:0},
+       {type:"type",q:"Traduire : كَمْ عُمْرُكَ ؟",answers:["Quel est ton âge ?"],hint:"Question avec كَمْ"},
+       {type:"type",q:"Traduire : كَمْ طَالِبًا فِي الْفَصْلِ ؟",answers:["Combien d'étudiants dans la classe ?"],hint:"Question avec كَمْ"},
+       {type:"tf",q:"Le nom qui suit كَمْ est généralement مَنْصُوب",correct:true,explain:""},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire عِيدٌ ؟",options:["Fête","Jour","Semaine","Mois"],correct:0},
+       {type:"qcm",q:"Que veut dire عَجَلَةٌ ؟",options:["Roue","Voiture","Vélo","Moto"],correct:0},
+       {type:"qcm",q:"Que veut dire مِسْطَرَةٌ ؟",options:["Règle","Crayon","Gomme","Cahier"],correct:0},
+       {type:"qcm",q:"Que veut dire حَيٌّ ؟",options:["Quartier","Ville","Village","Rue"],correct:0},
+       {type:"qcm",q:"Que veut dire رَكْعَةٌ ؟",options:["Unité de prière","Prière","Mosquée","Imam"],correct:0},
+       {type:"qcm",q:"Que veut dire مَتْجَرٌ ؟",options:["Magasin","Marché","Boutique","Entrepôt"],correct:0},
+       {type:"qcm",q:"Que veut dire شَرِكَةٌ ؟",options:["Société","Usine","Bureau","Magasin"],correct:0},
+       {type:"qcm",q:"Que veut dire فَلَّاحٌ ؟",options:["Paysan","Ouvrier","Commerçant","Ingénieur"],correct:0},
+       {type:"qcm",q:"Que veut dire رَجِيسٌ ؟",options:["Bon marché","Cher","Gratuit","Coûteux"],correct:0},
+       {type:"qcm",q:"Que veut dire غَالِي ؟",options:["Cher","Bon marché","Gratuit","Économique"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « deux étudiants » :",answers:["طَالِبَانِ"],hint:"مثنى"},
+       {type:"type",q:"Écris « deux étudiantes » :",answers:["طَالِبَتَانِ"],hint:"مثنى"},
+       {type:"type",q:"Écris « ces deux-ci (masc.) » :",answers:["هَذَانِ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « ces deux-ci (fém.) » :",answers:["هَاتَانِ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « combien ? » :",answers:["كَمْ"],hint:"2 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["طَالِبَانِ","هَذَانِ"],answer:"هَذَانِ طَالِبَانِ"},
+       {type:"order",q:"Reconstitue :",words:["طَالِبَتَانِ","هَاتَانِ"],answer:"هَاتَانِ طَالِبَتَانِ"},
+       {type:"order",q:"Reconstitue :",words:["عُمْرُكَ","كَمْ","؟"],answer:"كَمْ عُمْرُكَ ؟"},
+       {type:"order",q:"Reconstitue :",words:["الْفَصْلِ","فِي","طَالِبًا","كَمْ","؟"],answer:"كَمْ طَالِبًا فِي الْفَصْلِ ؟"},
+       {type:"order",q:"Reconstitue :",words:["عِيدَانِ","السَّنَةِ","فِي"],answer:"فِي السَّنَةِ عِيدَانِ"}
+     ]},    /* ===== LEÇON 23 ===== */
+    {id:"t1l23", num:23, title:"Leçon 23", desc:"Les nombres · الْعَدَد مِنْ وَاحِدٍ إِلَى عَشْرَةٍ",
+     active:true, audio:null, pdf:"",
+     text:[
+       "وَاحِدٌ","وَاحِدَةٌ","إِثْنَانِ","إِثْنَتَانِ","ثَلَاثَةٌ","ثَلَاثٌ",
+       "أَرْبَعَةٌ","أَرْبَعٌ","خَمْسَةٌ","خَمْسٌ","سِتَّةٌ","سِتٌّ",
+       "سَبْعَةٌ","سَبْعٌ","ثَمَانِيَةٌ","ثَمَانٍ","تِسْعَةٌ","تِسْعٌ",
+       "عَشَرَةٌ","عَشْرٌ","لِي ثَلَاثَةُ كُتُبٍ","لِي عَشَرَةُ رِيَالَاتٍ",
+       "فِي الْفَصْلِ عَشَرَةُ طُلَّابٍ","فِي الْفَصْلِ خَمْسُ طَالِبَاتٍ",
+       "عِنْدِي سِتَّةُ أَقْلَامٍ","عِنْدِي سَبْعُ سَاعَاتٍ"
+     ],
+     vocab:[
+       {ar:"الْعَدَدُ",fr:"Le nombre",tr:"al-ʿadad"},
+       {ar:"الْمَعْدُودُ",fr:"Le dénombré",tr:"al-maʿdūd"},
+       {ar:"وَاحِدٌ",fr:"Un (masc.)",tr:"wāḥid"},
+       {ar:"وَاحِدَةٌ",fr:"Une (fém.)",tr:"wāḥida"},
+       {ar:"إِثْنَانِ",fr:"Deux (masc.)",tr:"ithnāni"},
+       {ar:"إِثْنَتَانِ",fr:"Deux (fém.)",tr:"ithnatāni"},
+       {ar:"ثَلَاثَةٌ",fr:"Trois (masc.)",tr:"thalātha"},
+       {ar:"ثَلَاثٌ",fr:"Trois (fém.)",tr:"thalāth"},
+       {ar:"أَرْبَعَةٌ",fr:"Quatre (masc.)",tr:"arbaʿa"},
+       {ar:"أَرْبَعٌ",fr:"Quatre (fém.)",tr:"arbaʿ"},
+       {ar:"خَمْسَةٌ",fr:"Cinq (masc.)",tr:"khamsa"},
+       {ar:"خَمْسٌ",fr:"Cinq (fém.)",tr:"khams"},
+       {ar:"سِتَّةٌ",fr:"Six (masc.)",tr:"sitta"},
+       {ar:"سِتٌّ",fr:"Six (fém.)",tr:"sitt"},
+       {ar:"سَبْعَةٌ",fr:"Sept (masc.)",tr:"sabʿa"},
+       {ar:"سَبْعٌ",fr:"Sept (fém.)",tr:"sabʿ"},
+       {ar:"ثَمَانِيَةٌ",fr:"Huit (masc.)",tr:"thamāniya"},
+       {ar:"ثَمَانٍ",fr:"Huit (fém.)",tr:"thamān"},
+       {ar:"تِسْعَةٌ",fr:"Neuf (masc.)",tr:"tisʿa"},
+       {ar:"تِسْعٌ",fr:"Neuf (fém.)",tr:"tisʿ"},
+       {ar:"عَشَرَةٌ",fr:"Dix (masc.)",tr:"ʿashara"},
+       {ar:"عَشْرٌ",fr:"Dix (fém.)",tr:"ʿashr"},
+       {ar:"رِيَالٌ",fr:"Riyal",tr:"riyāl"},
+       {ar:"قِرْشٌ",fr:"Piastre",tr:"qirsh"},
+       {ar:"ثَمَنٌ",fr:"Prix",tr:"thaman"},
+       {ar:"كُلٌّ",fr:"Tout",tr:"kull"},
+       {ar:"مُخْتَلِفٌ",fr:"Différent",tr:"mukhtalif"},
+       {ar:"شُكْرًا",fr:"Merci",tr:"shukran"},
+       {ar:"رَاكِبٌ",fr:"Passager",tr:"rākib"},
+       {ar:"نِصْفٌ",fr:"Moitié",tr:"niṣf"},
+       {ar:"جَيْبٌ",fr:"Poche",tr:"jayb"},
+       {ar:"كِتَابٌ",fr:"Livre",tr:"kitāb"},
+       {ar:"قَلَمٌ",fr:"Stylo",tr:"qalam"},
+       {ar:"طَالِبٌ",fr:"Étudiant",tr:"ṭālib"},
+       {ar:"طَالِبَةٌ",fr:"Étudiante",tr:"ṭāliba"},
+       {ar:"سَاعَةٌ",fr:"Montre",tr:"sāʿa"}
+     ],
+     grammar:{title:"Les nombres de 1 à 10",
+       rule:"1) Les nombres de 1 à 10 ont une forme masculine et une forme féminine. 2) Le nombre (الْعَدَد) est toujours accompagné du dénombré (الْمَعْدُود). 3) De 3 à 10 : le dénombré (الْمَعْدُود) est annexé au nombre (مُضَاف إِلَيْهِ), il est pluriel, et le nombre contredit le dénombré dans son genre (مُذَكَّر وَمُؤَنَّث). Si le dénombré est masculin, le nombre est féminin et vice versa. 4) Pour connaître le genre du dénombré, on regarde son singulier.",
+       examples:["لِي ثَلَاثَةُ كُتُبٍ = J'ai trois livres","فِي الْفَصْلِ عَشَرَةُ طُلَّابٍ = Dans la classe, il y a dix étudiants","فِي الْفَصْلِ خَمْسُ طَالِبَاتٍ = Dans la classe, il y a cinq étudiantes","عِنْدِي سِتَّةُ أَقْلَامٍ = J'ai six stylos"]},
+     dialogue:[
+       {sp:"A",ar:"كَمْ طَالِبًا فِي فَصْلِكَ؟",fr:"Combien d'étudiants dans ta classe ?"},
+       {sp:"B",ar:"فِي فَصْلِي عَشَرَةُ طُلَّابٍ.",fr:"Dans ma classe, il y a dix étudiants."},
+       {sp:"A",ar:"مِنْ أَيْنَ هُمْ؟",fr:"D'où viennent-ils ?"},
+       {sp:"B",ar:"هُمْ مِنْ بِلَادٍ مُخْتَلِفَةٍ.",fr:"Ils viennent de différents pays."},
+       {sp:"A",ar:"مِنْهُمْ ثَلَاثَةٌ مِنَ الْفِلِبِّينَ، وَأَرْبَعَةٌ مِنَ الْيَابَانِ، وَطَالِبَانِ مِنَ الصِّينِ، وَطَالِبٌ وَاحِدٌ مِنْ مَالِيزِيَا.",fr:"Parmi eux, trois des Philippines, quatre du Japon, deux de Chine et un de Malaisie."},
+       {sp:"A",ar:"كَمْ كِتَابًا عِنْدَكَ؟",fr:"Combien de livres as-tu ?"},
+       {sp:"B",ar:"عِنْدِي ثَلَاثَةُ كُتُبٍ.",fr:"J'ai trois livres."},
+       {sp:"A",ar:"كَمْ قَلَمًا عِنْدَكَ؟",fr:"Combien de stylos as-tu ?"},
+       {sp:"B",ar:"عِنْدِي سِتَّةُ أَقْلَامٍ.",fr:"J'ai six stylos."},
+       {sp:"A",ar:"كَمْ سَاعَةً عِنْدَكَ؟",fr:"Combien de montres as-tu ?"},
+       {sp:"B",ar:"عِنْدِي سَبْعُ سَاعَاتٍ.",fr:"J'ai sept montres."},
+       {sp:"A",ar:"كَمْ رِيَالًا عِنْدَكَ؟",fr:"Combien de riyals as-tu ?"},
+       {sp:"B",ar:"عِنْدِي عَشَرَةُ رِيَالَاتٍ.",fr:"J'ai dix riyals."},
+       {sp:"A",ar:"كَمْ ثَمَنُ هَذَا الْكِتَابِ؟",fr:"Quel est le prix de ce livre ?"},
+       {sp:"B",ar:"ثَمَنُهُ ثَلَاثَةُ رِيَالَاتٍ.",fr:"Son prix est de trois riyals."}
+     ],
+     exercises:[
+       /* Bloc 1 — Les nombres de 1 à 10 (10 questions) */
+       {type:"qcm",q:"Que veut dire وَاحِدٌ ؟",options:["Un (masc.)","Deux","Trois","Quatre"],correct:0},
+       {type:"qcm",q:"Que veut dire إِثْنَانِ ؟",options:["Deux (masc.)","Un","Trois","Quatre"],correct:0},
+       {type:"qcm",q:"Que veut dire ثَلَاثَةٌ ؟",options:["Trois (masc.)","Deux","Quatre","Cinq"],correct:0},
+       {type:"qcm",q:"Que veut dire أَرْبَعَةٌ ؟",options:["Quatre (masc.)","Trois","Cinq","Six"],correct:0},
+       {type:"qcm",q:"Que veut dire خَمْسَةٌ ؟",options:["Cinq (masc.)","Quatre","Six","Sept"],correct:0},
+       {type:"qcm",q:"Que veut dire سِتَّةٌ ؟",options:["Six (masc.)","Cinq","Sept","Huit"],correct:0},
+       {type:"qcm",q:"Que veut dire سَبْعَةٌ ؟",options:["Sept (masc.)","Six","Huit","Neuf"],correct:0},
+       {type:"qcm",q:"Que veut dire ثَمَانِيَةٌ ؟",options:["Huit (masc.)","Sept","Neuf","Dix"],correct:0},
+       {type:"qcm",q:"Que veut dire تِسْعَةٌ ؟",options:["Neuf (masc.)","Huit","Dix","Un"],correct:0},
+       {type:"qcm",q:"Que veut dire عَشَرَةٌ ؟",options:["Dix (masc.)","Neuf","Un","Deux"],correct:0},
+       /* Bloc 2 — Le nombre et le dénombré (10 questions) */
+       {type:"qcm",q:"Le nombre (الْعَدَد) est toujours accompagné du :",options:["Dénombré (الْمَعْدُود)","Verbe","Adjectif","Pronom"],correct:0},
+       {type:"qcm",q:"De 3 à 10, le dénombré est :",options:["Annexé au nombre","Isolé","Défini","Indéfini"],correct:0},
+       {type:"qcm",q:"De 3 à 10, le dénombré est :",options:["Pluriel","Singulier","Duel","Invariable"],correct:0},
+       {type:"qcm",q:"De 3 à 10, le nombre contredit le dénombré dans :",options:["Son genre","Son nombre","Son cas","Sa définitude"],correct:0},
+       {type:"qcm",q:"Si le dénombré est masculin, le nombre est :",options:["Féminin","Masculin","Neutre","Les deux"],correct:0},
+       {type:"fill",sentence:"لِي ___ كُتُبٍ",options:["ثَلَاثَةُ","ثَلَاثُ","ثَلَاثَةٌ","ثَلَاثٌ"],correct:0},
+       {type:"fill",sentence:"فِي الْفَصْلِ ___ طُلَّابٍ",options:["عَشَرَةُ","عَشْرُ","عَشَرَةٌ","عَشْرٌ"],correct:0},
+       {type:"fill",sentence:"فِي الْفَصْلِ ___ طَالِبَاتٍ",options:["خَمْسُ","خَمْسَةُ","خَمْسٌ","خَمْسَةٌ"],correct:0},
+       {type:"fill",sentence:"عِنْدِي ___ أَقْلَامٍ",options:["سِتَّةُ","سِتُّ","سِتَّةٌ","سِتٌّ"],correct:0},
+       {type:"tf",q:"De 3 à 10, le dénombré est pluriel",correct:true,explain:""},
+       /* Bloc 3 — Les nombres et les objets (10 questions) */
+       {type:"type",q:"Écris « trois livres » :",answers:["ثَلَاثَةُ كُتُبٍ"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Écris « cinq étudiantes » :",answers:["خَمْسُ طَالِبَاتٍ"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Écris « dix étudiants » :",answers:["عَشَرَةُ طُلَّابٍ"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Écris « six stylos » :",answers:["سِتَّةُ أَقْلَامٍ"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Écris « sept montres » :",answers:["سَبْعُ سَاعَاتٍ"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Traduire : لِي ثَلَاثَةُ كُتُبٍ",answers:["J'ai trois livres"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Traduire : فِي الْفَصْلِ عَشَرَةُ طُلَّابٍ",answers:["Dans la classe, il y a dix étudiants"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Traduire : فِي الْفَصْلِ خَمْسُ طَالِبَاتٍ",answers:["Dans la classe, il y a cinq étudiantes"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Traduire : عِنْدِي سِتَّةُ أَقْلَامٍ",answers:["J'ai six stylos"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Traduire : عِنْدِي سَبْعُ سَاعَاتٍ",answers:["J'ai sept montres"],hint:"Nombre + dénombré"},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : عِنْدِي عَشَرَةُ رِيَالَاتٍ",answers:["J'ai dix riyals"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Traduire : كَمْ ثَمَنُ هَذَا الْكِتَابِ ؟",answers:["Quel est le prix de ce livre ?"],hint:"Question avec كَمْ"},
+       {type:"type",q:"Traduire : ثَمَنُهُ ثَلَاثَةُ رِيَالَاتٍ",answers:["Son prix est de trois riyals"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : كَمْ طَالِبًا فِي فَصْلِكَ ؟",answers:["Combien d'étudiants dans ta classe ?"],hint:"Question avec كَمْ"},
+       {type:"type",q:"Traduire : هُمْ مِنْ بِلَادٍ مُخْتَلِفَةٍ",answers:["Ils viennent de différents pays"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : مِنْهُمْ ثَلَاثَةٌ مِنَ الْفِلِبِّينَ",answers:["Parmi eux, trois des Philippines"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : وَأَرْبَعَةٌ مِنَ الْيَابَانِ",answers:["Et quatre du Japon"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : وَطَالِبَانِ مِنَ الصِّينِ",answers:["Et deux étudiants de Chine"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : وَطَالِبٌ وَاحِدٌ مِنْ مَالِيزِيَا",answers:["Et un étudiant de Malaisie"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : كَمْ قَلَمًا عِنْدَكَ ؟",answers:["Combien de stylos as-tu ?"],hint:"Question avec كَمْ"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire الْعَدَدُ ؟",options:["Le nombre","Le dénombré","Le prix","La quantité"],correct:0},
+       {type:"qcm",q:"Que veut dire الْمَعْدُودُ ؟",options:["Le dénombré","Le nombre","Le prix","La quantité"],correct:0},
+       {type:"qcm",q:"Que veut dire رِيَالٌ ؟",options:["Riyal","Piastre","Dinar","Dirham"],correct:0},
+       {type:"qcm",q:"Que veut dire قِرْشٌ ؟",options:["Piastre","Riyal","Dinar","Dirham"],correct:0},
+       {type:"qcm",q:"Que veut dire ثَمَنٌ ؟",options:["Prix","Quantité","Nombre","Valeur"],correct:0},
+       {type:"qcm",q:"Que veut dire كُلٌّ ؟",options:["Tout","Partie","Moitié","Rien"],correct:0},
+       {type:"qcm",q:"Que veut dire مُخْتَلِفٌ ؟",options:["Différent","Identique","Semblable","Même"],correct:0},
+       {type:"qcm",q:"Que veut dire شُكْرًا ؟",options:["Merci","Bonjour","Au revoir","S'il te plaît"],correct:0},
+       {type:"qcm",q:"Que veut dire رَاكِبٌ ؟",options:["Passager","Conducteur","Piéton","Voyageur"],correct:0},
+       {type:"qcm",q:"Que veut dire نِصْفٌ ؟",options:["Moitié","Quart","Tiers","Total"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « trois (masc.) » :",answers:["ثَلَاثَةٌ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « cinq (fém.) » :",answers:["خَمْسٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « dix (masc.) » :",answers:["عَشَرَةٌ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « six (masc.) » :",answers:["سِتَّةٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « sept (fém.) » :",answers:["سَبْعٌ"],hint:"3 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["كُتُبٍ","ثَلَاثَةُ","لِي"],answer:"لِي ثَلَاثَةُ كُتُبٍ"},
+       {type:"order",q:"Reconstitue :",words:["طُلَّابٍ","عَشَرَةُ","الْفَصْلِ","فِي"],answer:"فِي الْفَصْلِ عَشَرَةُ طُلَّابٍ"},
+       {type:"order",q:"Reconstitue :",words:["طَالِبَاتٍ","خَمْسُ","الْفَصْلِ","فِي"],answer:"فِي الْفَصْلِ خَمْسُ طَالِبَاتٍ"},
+       {type:"order",q:"Reconstitue :",words:["أَقْلَامٍ","سِتَّةُ","عِنْدِي"],answer:"عِنْدِي سِتَّةُ أَقْلَامٍ"},
+       {type:"order",q:"Reconstitue :",words:["سَاعَاتٍ","سَبْعُ","عِنْدِي"],answer:"عِنْدِي سَبْعُ سَاعَاتٍ"}
+     ]},    /* ===== LEÇON 24 ===== */
+    {id:"t1l24", num:24, title:"Leçon 24", desc:"Les nombres · 2ème partie · Nombre annexant",
+     active:true, audio:null, pdf:"",
+     text:[
+       "لِي ثَمَانِي طَالِبَاتٍ","لِي ثَمَانِي سَيَّارَاتٍ","ثَمَانِي طَالِبَاتٍ",
+       "فِي فَصْلِنَا ثَلَاثُ طَالِبَاتٍ مِنَ الصِّينِ","وَأَرْبَعُ طَالِبَاتٍ مِنَ الْيَابَانِ",
+       "وَثَمَانِي طَالِبَاتٍ مِنْ إِنْدُونِيسِيَا",
+       "وَفِي فَصْلِنَا ثَلَاثُ طَالِبَاتٍ مِنَ الْهِنْدِ","وَسِتُّ طَالِبَاتٍ مِنَ الْفِلِبِّينِ",
+       "وَسَبْعُ طَالِبَاتٍ مِنْ تُرْكِيَا",
+       "كَمْ أُخْتًا لَكِ يَا لَيْلَى؟","لِي ثَلَاثُ أَخَوَاتٍ",
+       "وَكَمْ أَخًا لَكِ؟","لِي خَمْسَةُ إِخْوَةٍ",
+       "لَكِ ثَلَاثُ أَخَوَاتٍ وَخَمْسَةُ إِخْوَةٍ",
+       "لِي أَرْبَعَةُ إِخْوَةٍ وَأَرْبَعُ أَخَوَاتٍ",
+       "لِي زَمِيلَةٌ اسْمُهَا خَدِيجَةُ","لَهَا ثَمَانِيَةُ إِخْوَةٍ وَثَمَانِي أَخَوَاتٍ",
+       "فِي بَيْتِنَا ثَلَاثُ غُرَفٍ","فِي الْجَامِعَةِ عَشْرُ حَافِلَاتٍ",
+       "فِي هَذِهِ الْمَدْرَسَةِ ثَمَانِي مُدَرِّسَاتٍ","عَبَّاسٌ لَهُ سَبْعُ بَنَاتٍ",
+       "فِي بَيْتِنَا تِسْعُ دَجَاجَاتٍ","فِي الْجَامِعَةِ خَمْسُ كُلِّيَّاتٍ"
+     ],
+     vocab:[
+       {ar:"ثَمَانِي",fr:"Huit (annexé)",tr:"thamānī"},
+       {ar:"ثَمَانِيَةُ",fr:"Huit (masc.)",tr:"thamāniya"},
+       {ar:"ثَمَانٍ",fr:"Huit (fém.)",tr:"thamān"},
+       {ar:"عَشْرُ",fr:"Dix (fém. annexé)",tr:"ʿashr"},
+       {ar:"عَشَرَةُ",fr:"Dix (masc.)",tr:"ʿashara"},
+       {ar:"سِتُّ",fr:"Six (fém.)",tr:"sitt"},
+       {ar:"سِتَّةُ",fr:"Six (masc.)",tr:"sitta"},
+       {ar:"سَبْعُ",fr:"Sept (fém.)",tr:"sabʿ"},
+       {ar:"سَبْعَةُ",fr:"Sept (masc.)",tr:"sabʿa"},
+       {ar:"تِسْعُ",fr:"Neuf (fém.)",tr:"tisʿ"},
+       {ar:"تِسْعَةُ",fr:"Neuf (masc.)",tr:"tisʿa"},
+       {ar:"أَرْبَعُ",fr:"Quatre (fém.)",tr:"arbaʿ"},
+       {ar:"أَرْبَعَةُ",fr:"Quatre (masc.)",tr:"arbaʿa"},
+       {ar:"ثَلَاثُ",fr:"Trois (fém.)",tr:"thalāth"},
+       {ar:"ثَلَاثَةُ",fr:"Trois (masc.)",tr:"thalātha"},
+       {ar:"خَمْسُ",fr:"Cinq (fém.)",tr:"khams"},
+       {ar:"خَمْسَةُ",fr:"Cinq (masc.)",tr:"khamsa"},
+       {ar:"أُخْتٌ",fr:"Sœur",tr:"ukht"},
+       {ar:"أَخَوَاتٌ",fr:"Sœurs",tr:"akhawāt"},
+       {ar:"أَخٌ",fr:"Frère",tr:"akh"},
+       {ar:"إِخْوَةٌ",fr:"Frères",tr:"ikhwa"},
+       {ar:"زَمِيلَةٌ",fr:"Camarade (fém.)",tr:"zamīla"},
+       {ar:"غُرْفَةٌ",fr:"Chambre",tr:"ghurfa"},
+       {ar:"حَافِلَةٌ",fr:"Bus",tr:"ḥāfila"},
+       {ar:"مُدَرِّسَةٌ",fr:"Professeure",tr:"mudarrisa"},
+       {ar:"بِنْتٌ",fr:"Fille",tr:"bint"},
+       {ar:"دَجَاجَةٌ",fr:"Poule",tr:"dajāja"},
+       {ar:"كُلِّيَّةٌ",fr:"Faculté",tr:"kulliyya"},
+       {ar:"إِنْدُونِيسِيَا",fr:"Indonésie",tr:"Indūnīsiyā"},
+       {ar:"الْفِلِبِّينُ",fr:"Philippines",tr:"al-Filibbīn"},
+       {ar:"تُرْكِيَا",fr:"Turquie",tr:"Turkiyā"},
+       {ar:"خَدِيجَةُ",fr:"Khadija",tr:"Khadīja"},
+       {ar:"لَيْلَى",fr:"Layla",tr:"Laylā"},
+       {ar:"عَبَّاسٌ",fr:"Abbas",tr:"ʿAbbās"}
+     ],
+     grammar:{title:"Le nombre annexant (الْعَدَد الْمُضَاف) et la suite des nombres",
+       rule:"Rappel des règles des nombres de 3 à 10 : 1) Le dénombré (الْمَعْدُود) est annexé au nombre (مُضَاف إِلَيْهِ), il est pluriel, et le nombre contredit le dénombré dans son genre. 2) NOUVELLE RÈGLE : Quand le nombre est annexant (مُضَاف), il prend un ي et perd sa كسرة. Exemple : ثَمَانِيَة → ثَمَانِي (devant un nom), عَشَرَة → عَشْر (devant un nom). 3) Cette transformation concerne principalement les nombres féminins (ثَمَانِي، عَشْر) et certains nombres masculins selon le contexte.",
+       examples:["لِي ثَمَانِي طَالِبَاتٍ = J'ai huit étudiantes","ثَمَانِي سَيَّارَاتٍ = Huit voitures","فِي الْجَامِعَةِ عَشْرُ حَافِلَاتٍ = Dans l'université, il y a dix bus"]},
+     dialogue:[
+       {sp:"A",ar:"كَمْ أُخْتًا لَكِ يَا لَيْلَى؟",fr:"Combien de sœurs as-tu, ô Layla ?"},
+       {sp:"B",ar:"لِي ثَلَاثُ أَخَوَاتٍ.",fr:"J'ai trois sœurs."},
+       {sp:"A",ar:"وَكَمْ أَخًا لَكِ؟",fr:"Et combien de frères as-tu ?"},
+       {sp:"B",ar:"لِي خَمْسَةُ إِخْوَةٍ.",fr:"J'ai cinq frères."},
+       {sp:"A",ar:"لَكِ ثَلَاثُ أَخَوَاتٍ وَخَمْسَةُ إِخْوَةٍ.",fr:"Tu as trois sœurs et cinq frères."},
+       {sp:"B",ar:"نَعَمْ، وَلِي أَيْضًا أَرْبَعَةُ إِخْوَةٍ وَأَرْبَعُ أَخَوَاتٍ.",fr:"Oui, et j'ai aussi quatre frères et quatre sœurs."},
+       {sp:"A",ar:"لِي زَمِيلَةٌ اسْمُهَا خَدِيجَةُ.",fr:"J'ai une camarade qui s'appelle Khadija."},
+       {sp:"B",ar:"كَمْ أَخًا وَأُخْتًا لَهَا؟",fr:"Combien de frères et sœurs a-t-elle ?"},
+       {sp:"A",ar:"لَهَا ثَمَانِيَةُ إِخْوَةٍ وَثَمَانِي أَخَوَاتٍ.",fr:"Elle a huit frères et huit sœurs."},
+       {sp:"A",ar:"فِي بَيْتِنَا ثَلَاثُ غُرَفٍ.",fr:"Dans notre maison, il y a trois chambres."},
+       {sp:"B",ar:"وَفِي بَيْتِنَا أَرْبَعُ غُرَفٍ.",fr:"Et dans notre maison, il y a quatre chambres."},
+       {sp:"A",ar:"فِي الْجَامِعَةِ عَشْرُ حَافِلَاتٍ.",fr:"Dans l'université, il y a dix bus."},
+       {sp:"B",ar:"وَفِي هَذِهِ الْمَدْرَسَةِ ثَمَانِي مُدَرِّسَاتٍ.",fr:"Et dans cette école, il y a huit professeures."},
+       {sp:"A",ar:"عَبَّاسٌ لَهُ سَبْعُ بَنَاتٍ.",fr:"Abbas a sept filles."},
+       {sp:"B",ar:"وَفِي بَيْتِنَا تِسْعُ دَجَاجَاتٍ.",fr:"Et dans notre maison, il y a neuf poules."}
+     ],
+     exercises:[
+       /* Bloc 1 — Le nombre annexant (10 questions) */
+       {type:"qcm",q:"Quand le nombre est annexant (مُضَاف), il :",options:["Prend un ي et perd sa كسرة","Prend une ضمة","Prend une فتحة","Reste inchangé"],correct:0},
+       {type:"qcm",q:"ثَمَانِيَة devient annexé :",options:["ثَمَانِي","ثَمَانِيَةُ","ثَمَانٍ","ثَمَانِيًا"],correct:0},
+       {type:"qcm",q:"عَشَرَة devient annexé :",options:["عَشْرُ","عَشَرَةُ","عَشْرًا","عَشْرٍ"],correct:0},
+       {type:"fill",sentence:"لِي ___ طَالِبَاتٍ",options:["ثَمَانِي","ثَمَانِيَةُ","ثَمَانٍ","ثَمَانِيًا"],correct:0},
+       {type:"fill",sentence:"فِي الْجَامِعَةِ ___ حَافِلَاتٍ",options:["عَشْرُ","عَشَرَةُ","عَشْرًا","عَشْرٍ"],correct:0},
+       {type:"fill",sentence:"فِي الْمَدْرَسَةِ ___ مُدَرِّسَاتٍ",options:["ثَمَانِي","ثَمَانِيَةُ","ثَمَانٍ","ثَمَانِيًا"],correct:0},
+       {type:"fill",sentence:"عَبَّاسٌ لَهُ ___ بَنَاتٍ",options:["سَبْعُ","سَبْعَةُ","سَبْعًا","سَبْعٍ"],correct:0},
+       {type:"type",q:"Traduire : ثَمَانِي سَيَّارَاتٍ",answers:["Huit voitures"],hint:"Nombre annexé"},
+       {type:"type",q:"Traduire : عَشْرُ حَافِلَاتٍ",answers:["Dix bus"],hint:"Nombre annexé"},
+       {type:"tf",q:"Le nombre annexant prend un ي et perd sa كسرة",correct:true,explain:""},
+       /* Bloc 2 — Les nombres avec les sœurs et frères (10 questions) */
+       {type:"qcm",q:"Que veut dire ثَلَاثُ أَخَوَاتٍ ؟",options:["Trois sœurs","Trois frères","Trois filles","Trois femmes"],correct:0},
+       {type:"qcm",q:"Que veut dire خَمْسَةُ إِخْوَةٍ ؟",options:["Cinq frères","Cinq sœurs","Cinq enfants","Cinq hommes"],correct:0},
+       {type:"fill",sentence:"لِي ___ أَخَوَاتٍ",options:["ثَلَاثُ","ثَلَاثَةُ","ثَلَاثًا","ثَلَاثٍ"],correct:0},
+       {type:"fill",sentence:"لِي ___ إِخْوَةٍ",options:["خَمْسَةُ","خَمْسُ","خَمْسًا","خَمْسٍ"],correct:0},
+       {type:"fill",sentence:"لَهَا ___ إِخْوَةٍ",options:["ثَمَانِيَةُ","ثَمَانِي","ثَمَانٍ","ثَمَانِيًا"],correct:0},
+       {type:"fill",sentence:"لَهَا ___ أَخَوَاتٍ",options:["ثَمَانِي","ثَمَانِيَةُ","ثَمَانٍ","ثَمَانِيًا"],correct:0},
+       {type:"type",q:"Traduire : لِي ثَلَاثُ أَخَوَاتٍ",answers:["J'ai trois sœurs"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Traduire : لِي خَمْسَةُ إِخْوَةٍ",answers:["J'ai cinq frères"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Traduire : لَهَا ثَمَانِيَةُ إِخْوَةٍ وَثَمَانِي أَخَوَاتٍ",answers:["Elle a huit frères et huit sœurs"],hint:"Nombres + dénombrés"},
+       {type:"tf",q:"Le nombre s'accorde en genre avec le dénombré",correct:true,explain:""},
+       /* Bloc 3 — Les nombres et les objets (10 questions) */
+       {type:"fill",sentence:"فِي بَيْتِنَا ___ غُرَفٍ",options:["ثَلَاثُ","ثَلَاثَةُ","ثَلَاثًا","ثَلَاثٍ"],correct:0},
+       {type:"fill",sentence:"فِي هَذِهِ الْمَدْرَسَةِ ___ مُدَرِّسَاتٍ",options:["ثَمَانِي","ثَمَانِيَةُ","ثَمَانٍ","ثَمَانِيًا"],correct:0},
+       {type:"fill",sentence:"عَبَّاسٌ لَهُ ___ بَنَاتٍ",options:["سَبْعُ","سَبْعَةُ","سَبْعًا","سَبْعٍ"],correct:0},
+       {type:"fill",sentence:"فِي بَيْتِنَا ___ دَجَاجَاتٍ",options:["تِسْعُ","تِسْعَةُ","تِسْعًا","تِسْعٍ"],correct:0},
+       {type:"fill",sentence:"فِي الْجَامِعَةِ ___ كُلِّيَّاتٍ",options:["خَمْسُ","خَمْسَةُ","خَمْسًا","خَمْسٍ"],correct:0},
+       {type:"type",q:"Traduire : فِي بَيْتِنَا ثَلَاثُ غُرَفٍ",answers:["Dans notre maison, il y a trois chambres"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : فِي الْجَامِعَةِ عَشْرُ حَافِلَاتٍ",answers:["Dans l'université, il y a dix bus"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : عَبَّاسٌ لَهُ سَبْعُ بَنَاتٍ",answers:["Abbas a sept filles"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : فِي بَيْتِنَا تِسْعُ دَجَاجَاتٍ",answers:["Dans notre maison, il y a neuf poules"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : فِي الْجَامِعَةِ خَمْسُ كُلِّيَّاتٍ",answers:["Dans l'université, il y a cinq facultés"],hint:"Phrase nominale"},
+       /* Bloc 4 — Les pays (10 questions) */
+       {type:"qcm",q:"Que veut dire إِنْدُونِيسِيَا ؟",options:["Indonésie","Inde","Chine","Malaisie"],correct:0},
+       {type:"qcm",q:"Que veut dire الْفِلِبِّينُ ؟",options:["Philippines","Indonésie","Thaïlande","Malaisie"],correct:0},
+       {type:"qcm",q:"Que veut dire تُرْكِيَا ؟",options:["Turquie","Syrie","Égypte","Libye"],correct:0},
+       {type:"qcm",q:"Que veut dire الصِّينُ ؟",options:["Chine","Japon","Corée","Inde"],correct:0},
+       {type:"qcm",q:"Que veut dire الْيَابَانُ ؟",options:["Japon","Chine","Corée","Viêt Nam"],correct:0},
+       {type:"qcm",q:"Que veut dire الْهِنْدُ ؟",options:["Inde","Indonésie","Pakistan","Bangladesh"],correct:0},
+       {type:"fill",sentence:"فِي فَصْلِنَا ثَلَاثُ طَالِبَاتٍ مِنَ ___",options:["الصِّينِ","الْيَابَانِ","الْهِنْدِ","تُرْكِيَا"],correct:0},
+       {type:"fill",sentence:"وَأَرْبَعُ طَالِبَاتٍ مِنَ ___",options:["الْيَابَانِ","الصِّينِ","الْهِنْدِ","إِنْدُونِيسِيَا"],correct:0},
+       {type:"fill",sentence:"وَثَمَانِي طَالِبَاتٍ مِنْ ___",options:["إِنْدُونِيسِيَا","الصِّينِ","الْيَابَانِ","تُرْكِيَا"],correct:0},
+       {type:"tf",q:"إِنْدُونِيسِيَا signifie Indonésie",correct:true,explain:""},
+       /* Bloc 5 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : كَمْ أُخْتًا لَكِ يَا لَيْلَى ؟",answers:["Combien de sœurs as-tu, ô Layla ?"],hint:"Question avec كَمْ"},
+       {type:"type",q:"Traduire : لِي ثَلَاثُ أَخَوَاتٍ",answers:["J'ai trois sœurs"],hint:"Réponse"},
+       {type:"type",q:"Traduire : وَكَمْ أَخًا لَكِ ؟",answers:["Et combien de frères as-tu ?"],hint:"Question avec كَمْ"},
+       {type:"type",q:"Traduire : لِي خَمْسَةُ إِخْوَةٍ",answers:["J'ai cinq frères"],hint:"Réponse"},
+       {type:"type",q:"Traduire : لَهَا ثَمَانِيَةُ إِخْوَةٍ وَثَمَانِي أَخَوَاتٍ",answers:["Elle a huit frères et huit sœurs"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : فِي بَيْتِنَا ثَلَاثُ غُرَفٍ",answers:["Dans notre maison, il y a trois chambres"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : فِي هَذِهِ الْمَدْرَسَةِ ثَمَانِي مُدَرِّسَاتٍ",answers:["Dans cette école, il y a huit professeures"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : عَبَّاسٌ لَهُ سَبْعُ بَنَاتٍ",answers:["Abbas a sept filles"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : فِي بَيْتِنَا تِسْعُ دَجَاجَاتٍ",answers:["Dans notre maison, il y a neuf poules"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : فِي الْجَامِعَةِ خَمْسُ كُلِّيَّاتٍ",answers:["Dans l'université, il y a cinq facultés"],hint:"Phrase nominale"},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « huit (annexé) » :",answers:["ثَمَانِي"],hint:"5 lettres"},
+       {type:"type",q:"Écris « dix (annexé) » :",answers:["عَشْرُ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « trois sœurs » :",answers:["ثَلَاثُ أَخَوَاتٍ"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Écris « cinq frères » :",answers:["خَمْسَةُ إِخْوَةٍ"],hint:"Nombre + dénombré"},
+       {type:"type",q:"Écris « Indonésie » :",answers:["إِنْدُونِيسِيَا"],hint:"7 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["طَالِبَاتٍ","ثَمَانِي","لِي"],answer:"لِي ثَمَانِي طَالِبَاتٍ"},
+       {type:"order",q:"Reconstitue :",words:["حَافِلَاتٍ","عَشْرُ","الْجَامِعَةِ","فِي"],answer:"فِي الْجَامِعَةِ عَشْرُ حَافِلَاتٍ"},
+       {type:"order",q:"Reconstitue :",words:["أَخَوَاتٍ","ثَلَاثُ","لِي"],answer:"لِي ثَلَاثُ أَخَوَاتٍ"},
+       {type:"order",q:"Reconstitue :",words:["إِخْوَةٍ","خَمْسَةُ","لِي"],answer:"لِي خَمْسَةُ إِخْوَةٍ"},
+       {type:"order",q:"Reconstitue :",words:["بَنَاتٍ","سَبْعُ","لَهُ","عَبَّاسٌ"],answer:"عَبَّاسٌ لَهُ سَبْعُ بَنَاتٍ"}
+     ]},    /* ===== LEÇON 25 ===== */
+    {id:"t1l25", num:25, title:"Leçon 25", desc:"Mon école · ذَاكَ · Les pays",
+     active:true, audio:null, pdf:"",
+     text:[
+       "هَذِهِ مَدْرَسَتِي","هِيَ قَرِيبَةٌ مِنَ الْمَسْجِدِ",
+       "هِيَ مَدْرَسَةٌ كَبِيرَةٌ لَهَا ثَلَاثَةُ أَبْوَابٍ","أَبْوَابُهَا مَفْتُوحَةٌ الْآنَ",
+       "فِي الْمَدْرَسَةِ فُصُولٌ كَثِيرَةٌ","هَذَا فَصْلُنَا",
+       "وَهُوَ فَصْلٌ وَاسِعٌ","فِيهِ نَافِذَتَانِ كَبِيرَتَانِ",
+       "وَفِيهِ مَكَاتِبُ وَكَرَاسِيٌّ","وَفِيهِ سَبُّورَةٌ كَبِيرَةٌ",
+       "هَذَا مَكْتَبُ الْمُدَرِّسِ وَذَاكَ كُرْسِيُّهُ",
+       "وَتِلْكَ مَكَاتِبُ الطُّلَّابِ وَكَرَاسِيُّهُمْ",
+       "مَكْتَبُ الْمُدَرِّسِ كَبِيرٌ وَمَكَاتِبُ الطُّلَّابِ صَغِيرَةٌ",
+       "هَذَا مُحَمَّدٌ وَهُوَ مِنَ الْيَابَانِ","وَهَذَا خَالِدٌ وَهُوَ مِنَ الصِّينِ",
+       "وَهَذَا أَحْمَدُ وَهُوَ مِنَ الْهِنْدِ","وَهَذَا إِبْرَاهِيمُ وَهُوَ مِنْ غَانَا",
+       "وَهَذَا إِسْمَاعِيلُ وَهُوَ مِنْ نِيجِيرِيَا","وَهَذَا يُوسُفُ وَهُوَ مِنْ إِنْكِلْتِرَا",
+       "وَهَذَا بَيْرَمُ وَهُوَ مِنْ تُرْكِيَا","وَهَذَا عَمَّارٌ وَهُوَ مِنْ مَالِيزِيَا",
+       "هُمْ مِنْ بِلَادٍ مُخْتَلِفَةٍ وَلُغَاتُهُمْ مُخْتَلِفَةٌ"
+     ],
+     vocab:[
+       {ar:"ذَاكَ",fr:"Cela (variante de ذَلِكَ)",tr:"dhāka"},
+       {ar:"مَدْرَسَةٌ",fr:"École",tr:"madrasa"},
+       {ar:"وَاسِعٌ",fr:"Large / Spacieux",tr:"wāsiʿ"},
+       {ar:"نَافِذَةٌ",fr:"Fenêtre",tr:"nāfidha"},
+       {ar:"نَافِذَتَانِ",fr:"Deux fenêtres",tr:"nāfidhatāni"},
+       {ar:"مَكْتَبٌ",fr:"Bureau",tr:"maktab"},
+       {ar:"مَكَاتِبُ",fr:"Bureaux",tr:"makātib"},
+       {ar:"كُرْسِيٌّ",fr:"Chaise",tr:"kursī"},
+       {ar:"كَرَاسِيٌّ",fr:"Chaises",tr:"karāsī"},
+       {ar:"سَبُّورَةٌ",fr:"Tableau",tr:"sabbūra"},
+       {ar:"طُلَّابٌ",fr:"Étudiants",tr:"ṭullāb"},
+       {ar:"غَانَا",fr:"Ghana",tr:"Ghānā"},
+       {ar:"نِيجِيرِيَا",fr:"Nigeria",tr:"Nījīriyā"},
+       {ar:"إِنْكِلْتِرَا",fr:"Angleterre",tr:"Inkiltirā"},
+       {ar:"تُرْكِيَا",fr:"Turquie",tr:"Turkiyā"},
+       {ar:"مَالِيزِيَا",fr:"Malaisie",tr:"Mālīziyā"},
+       {ar:"بِلَادٌ",fr:"Pays (pluriel)",tr:"bilād"},
+       {ar:"لُغَةٌ",fr:"Langue",tr:"lugha"},
+       {ar:"لُغَاتٌ",fr:"Langues",tr:"lughāt"},
+       {ar:"مُخْتَلِفٌ",fr:"Différent",tr:"mukhtalif"},
+       {ar:"مُخْتَلِفَةٌ",fr:"Différente",tr:"mukhtalifa"},
+       {ar:"لَوْنٌ",fr:"Couleur",tr:"lawn"},
+       {ar:"صَالِحٌ",fr:"Pieux / Vertueux",tr:"ṣāliḥ"},
+       {ar:"لَكِنْ",fr:"Mais",tr:"lākin"},
+       {ar:"نَبِيٌّ",fr:"Prophète",tr:"nabiyy"},
+       {ar:"وَلَدٌ",fr:"Garçon",tr:"walad"},
+       {ar:"شَيْخٌ",fr:"Cheikh / Vieil homme",tr:"shaykh"},
+       {ar:"مُحَمَّدٌ",fr:"Muhammad",tr:"Muḥammad"},
+       {ar:"خَالِدٌ",fr:"Khalid",tr:"Khālid"},
+       {ar:"أَحْمَدُ",fr:"Ahmad",tr:"Aḥmad"},
+       {ar:"إِبْرَاهِيمُ",fr:"Ibrahim",tr:"Ibrāhīm"},
+       {ar:"إِسْمَاعِيلُ",fr:"Ismail",tr:"Ismāʿīl"},
+       {ar:"يُوسُفُ",fr:"Youssef",tr:"Yūsuf"},
+       {ar:"بَيْرَمُ",fr:"Bayram",tr:"Bayram"},
+       {ar:"عَمَّارٌ",fr:"Ammar",tr:"ʿAmmār"}
+     ],
+     grammar:{title:"Le démonstratif ذَاكَ et la description de l'école",
+       rule:"1) ذَاكَ est une variante de ذَلِكَ. C'est un nom démonstratif (اسم إشارة) qui s'emploie pour un nom : singulier + masculin + lointain. 2) Comme les autres démonstratifs, il est invariable (مَبْنِي). 3) Dans ce texte, on découvre aussi le vocabulaire des pays : غَانَا (Ghana), نِيجِيرِيَا (Nigeria), إِنْكِلْتِرَا (Angleterre), تُرْكِيَا (Turquie), مَالِيزِيَا (Malaisie).",
+       examples:["ذَاكَ زَيْدٌ = Cela est Zayd","هَذَا مَكْتَبُ الْمُدَرِّسِ وَذَاكَ كُرْسِيُّهُ = Ceci est le bureau du professeur et cela est sa chaise","هُمْ مِنْ بِلَادٍ مُخْتَلِفَةٍ = Ils viennent de différents pays"]},
+     dialogue:[
+       {sp:"A",ar:"أَيْنَ مَدْرَسَتُكَ؟",fr:"Où est ton école ?"},
+       {sp:"B",ar:"هِيَ قَرِيبَةٌ مِنَ الْمَسْجِدِ.",fr:"Elle est proche de la mosquée."},
+       {sp:"A",ar:"كَمْ بَابًا لَهَا؟",fr:"Combien de portes a-t-elle ?"},
+       {sp:"B",ar:"لَهَا ثَلَاثَةُ أَبْوَابٍ.",fr:"Elle a trois portes."},
+       {sp:"A",ar:"أَمُغْلَقَةٌ أَبْوَابُهَا الْآنَ أَمْ مَفْتُوحَةٌ؟",fr:"Ses portes sont-elles fermées maintenant ou ouvertes ?"},
+       {sp:"B",ar:"هِيَ مَفْتُوحَةٌ الْآنَ.",fr:"Elles sont ouvertes maintenant."},
+       {sp:"A",ar:"كَمْ نَافِذَةً فِي فَصْلِكَ؟",fr:"Combien de fenêtres dans ta classe ?"},
+       {sp:"B",ar:"فِيهِ نَافِذَتَانِ كَبِيرَتَانِ.",fr:"Il y a deux grandes fenêtres."},
+       {sp:"A",ar:"كَمْ طَالِبًا فِي فَصْلِكَ؟",fr:"Combien d'étudiants dans ta classe ?"},
+       {sp:"B",ar:"فِي فَصْلِنَا عَشَرَةُ طُلَّابٍ.",fr:"Dans notre classe, il y a dix étudiants."},
+       {sp:"A",ar:"أَكُلُّهُمْ مِنْ بَلَدٍ وَاحِدٍ؟",fr:"Viennent-ils tous d'un seul pays ?"},
+       {sp:"B",ar:"لَا، هُمْ مِنْ بِلَادٍ مُخْتَلِفَةٍ.",fr:"Non, ils viennent de différents pays."},
+       {sp:"A",ar:"مِنْ أَيْنَ مُحَمَّدٌ؟",fr:"D'où vient Muhammad ?"},
+       {sp:"B",ar:"هُوَ مِنَ الْيَابَانِ.",fr:"Il vient du Japon."},
+       {sp:"A",ar:"وَمِنْ أَيْنَ خَالِدٌ؟",fr:"Et d'où vient Khalid ?"},
        {sp:"B",ar:"هُوَ مِنَ الصِّينِ.",fr:"Il vient de Chine."}
      ],
      exercises:[
-       {type:"qcm",q:"Que veut dire مِنْ ؟",options:["De / Depuis","À / Vers","Dans","Sur"],correct:0},
-       {type:"qcm",q:"Comment dit-on « mosquée » ?",options:["مَسْجِدٌ","كَنِيسَةٌ","مَكْتَبَةٌ","جَامِعَةٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « église » ?",options:["كَنِيسَةٌ","مَسْجِدٌ","مَكْتَبَةٌ","جَامِعَةٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire الْمُسْتَشْفَى ؟",options:["Hôpital","École","Mosquée","Université"],correct:0},
-       {type:"qcm",q:"Comment dit-on « aéroport » ?",options:["الْمَطَارُ","الْمَحَطَّةُ","الْمَرْكَزُ","الْفُنْدُقُ"],correct:0},
-       {type:"qcm",q:"Que veut dire الْمَتْحَفُ ؟",options:["Musée","Théâtre","Hôtel","Centre"],correct:0},
-       {type:"qcm",q:"Comment dit-on « gare » ?",options:["الْمَحَطَّةُ","الْمَطَارُ","الْمَرْكَزُ","الْمَكْتَبُ"],correct:0},
-       {type:"qcm",q:"Que veut dire الصَّيْدَلِيَّةُ ؟",options:["Pharmacie","Boulangerie","Épicerie","Musée"],correct:0},
-       {type:"qcm",q:"Comment dit-on « Chine » ?",options:["الصِّينُ","الْيَابَانُ","كُورِيَا","الْهِنْدُ"],correct:0},
-       {type:"qcm",q:"Que veut dire الْغَابَةُ ؟",options:["La forêt","Le désert","Le champ","La ferme"],correct:0},
-       {type:"qcm",q:"Comment dit-on « désert » ?",options:["الصَّحْرَاءُ","الْغَابَةُ","الْحَقْلُ","الْجَبَلُ"],correct:0},
-       {type:"tf",ar:"أَنَا مِنْ فَرَنْسَا",q:"Signifie « Je viens de France »",correct:true},
-       {type:"tf",ar:"هُوَ مِنْ مِصْرَ",q:"Signifie « Il va en Égypte »",correct:false,explain:"مِنْ = de/depuis."},
-       {type:"tf",q:"Devant ال, مِنْ devient مِنَ",correct:true},
-       {type:"tf",ar:"هَذَا الْكِتَابُ مِنَ الْمَكْتَبَةِ",q:"Signifie « Ce livre vient de la bibliothèque »",correct:true},
-       {type:"fill",sentence:"أَنَا ___ فَرَنْسَا",options:["مِنْ","فِي","عَلَى","إِلَى"],correct:0},
-       {type:"fill",sentence:"هَذَا الْكِتَابُ ___ الْمَكْتَبَةِ",options:["مِنَ","فِي","عَلَى","إِلَى"],correct:0},
-       {type:"fill",sentence:"___ أَيْنَ أَنْتَ؟",options:["مِنْ","فِي","عَلَى","إِلَى"],correct:0},
-       {type:"type",q:"Écris « de » :",answer:"مِنْ",hint:"2 lettres"},
-       {type:"type",q:"Écris « église » :",answer:"كَنِيسَةٌ",hint:"5 lettres + ة"},
-       {type:"type",q:"Écris « hôpital » :",answer:"الْمُسْتَشْفَى",hint:"avec ال"},
-       {type:"type",q:"Écris « aéroport » :",answer:"الْمَطَارُ",hint:"avec ال"},
-       {type:"type",q:"Écris « musée » :",answer:"الْمَتْحَفُ",hint:"avec ال"},
-       {type:"type",q:"Écris « Chine » :",answer:"الصِّينُ",hint:"avec ال"},
-       {type:"order",q:"Reconstitue :",words:["فَرَنْسَا","مِنْ","أَنَا"],answer:"أَنَا مِنْ فَرَنْسَا"},
-       {type:"order",q:"Reconstitue :",words:["مِصْرَ","مِنْ","هُوَ"],answer:"هُوَ مِنْ مِصْرَ"},
-       {type:"order",q:"Reconstitue :",words:["الْمَكْتَبَةِ","مِنَ","الْكِتَابُ","هَذَا"],answer:"هَذَا الْكِتَابُ مِنَ الْمَكْتَبَةِ"},
-       {type:"order",q:"Reconstitue :",words:["الصِّينِ","مِنَ","الْقَلَمُ","هَذَا"],answer:"هَذَا الْقَلَمُ مِنَ الصِّينِ"},
-       {type:"order",q:"Reconstitue :",words:["أَيْنَ","مِنْ","أَنْتَ","؟"],answer:"مِنْ أَيْنَ أَنْتَ ؟"},
-       {type:"audio",audioText:"أَنَا مِنْ فَرَنْسَا",options:["أَنَا مِنْ فَرَنْسَا","أَنَا مِنْ مِصْرَ","أَنَا مِنْ سُورِيَا","أَنَا مِنْ لُبْنَانَ"],correct:0},
-       {type:"audio",audioText:"هُوَ مِنْ مِصْرَ",options:["هُوَ مِنْ فَرَنْسَا","هُوَ مِنْ مِصْرَ","هُوَ مِنْ سُورِيَا","هُوَ مِنْ لُبْنَانَ"],correct:1},
-       {type:"audio",audioText:"هَذَا الْكِتَابُ مِنَ الْمَكْتَبَةِ",options:["هَذَا الْكِتَابُ مِنَ الْمَكْتَبَةِ","هَذَا الْكِتَابُ فِي الْمَكْتَبَةِ","هَذَا الْقَلَمُ مِنَ الْمَكْتَبَةِ","هَذَا الْكِتَابُ مِنَ الْمَدْرَسَةِ"],correct:0},
-       {type:"audio",audioText:"هَذَا الْقَلَمُ مِنَ الصِّينِ",options:["هَذَا الْقَلَمُ مِنَ الْيَابَانِ","هَذَا الْقَلَمُ مِنَ الصِّينِ","هَذَا الْكِتَابُ مِنَ الصِّينِ","هَذَا الْقَلَمُ مِنَ الْهِنْدِ"],correct:1}
-     ]},
-
-    /* ===== LEÇON 15 ===== */
-    {id:"t1l15", num:15, title:"Leçon 15", desc:"Pronoms féminins · أَنْتِ / أَنْتُنَّ / هُنَّ",
-     active:true, audio:"assets/audio/madinah/tome1/L15.mp3",
-     text:["أَنْتِ طَالِبَةٌ مُجْتَهِدَةٌ","أَنْتُنَّ طَالِبَاتٌ مُجْتَهِدَاتٌ","هُنَّ مُدَرِّسَاتٌ",
-           "هِيَ طَبِيبَةٌ مَاهِرَةٌ","أَنْتِ أُمٌّ كَرِيمَةٌ","هُنَّ أَخَوَاتٌ صَالِحَاتٌ"],
+       /* Bloc 1 — ذَاكَ (10 questions) */
+       {type:"qcm",q:"Que veut dire ذَاكَ ؟",options:["Cela (variante de ذَلِكَ)","Ceci (proche)","Celle-là","Ceux-là"],correct:0},
+       {type:"qcm",q:"ذَاكَ s'emploie pour :",options:["Singulier masculin lointain","Pluriel masculin proche","Féminin singulier","Duel"],correct:0},
+       {type:"qcm",q:"ذَاكَ est :",options:["Invariable (مَبْنِي)","Variable (مُعَرَب)","Toujours مرفوع","Toujours منصوب"],correct:0},
+       {type:"fill",sentence:"___ كُرْسِيُّهُ (lointain, masc.)",options:["ذَاكَ","هَذَا","تِلْكَ","هَذِهِ"],correct:0},
+       {type:"type",q:"Traduire : ذَاكَ زَيْدٌ",answers:["Cela est Zayd"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : ذَاكَ كُرْسِيُّهُ",answers:["Cela est sa chaise"],hint:"Phrase nominale"},
+       {type:"tf",q:"ذَاكَ est une variante de ذَلِكَ",correct:true,explain:""},
+       {type:"tf",q:"ذَاكَ s'emploie pour le pluriel",correct:false,explain:"Non, ذَاكَ s'emploie pour le singulier masculin lointain."},
+       {type:"qcm",q:"Quelle est la différence entre ذَاكَ et ذَلِكَ ?",options:["Aucune différence de sens, variantes","ذَاكَ pour le pluriel","ذَلِكَ pour le féminin","ذَاكَ pour le proche"],correct:0},
+       {type:"fill",sentence:"هَذَا مَكْتَبُ الْمُدَرِّسِ وَ___ كُرْسِيُّهُ",options:["ذَاكَ","هَذَا","تِلْكَ","هَذِهِ"],correct:0},
+       /* Bloc 2 — La description de l'école (10 questions) */
+       {type:"qcm",q:"Que veut dire وَاسِعٌ ؟",options:["Large / Spacieux","Étroit","Grand","Petit"],correct:0},
+       {type:"qcm",q:"Que veut dire نَافِذَةٌ ؟",options:["Fenêtre","Porte","Mur","Toit"],correct:0},
+       {type:"qcm",q:"Que veut dire سَبُّورَةٌ ؟",options:["Tableau","Bureau","Chaise","Livre"],correct:0},
+       {type:"fill",sentence:"فِي الْمَدْرَسَةِ ___ كَثِيرَةٌ",options:["فُصُولٌ","فَصْلٌ","فَصْلَانِ","فَاصِلٌ"],correct:0},
+       {type:"fill",sentence:"فِيهِ ___ كَبِيرَتَانِ",options:["نَافِذَتَانِ","نَافِذَةٌ","نَوَافِذُ","نَافِذٌ"],correct:0},
+       {type:"fill",sentence:"وَفِيهِ ___ كَبِيرَةٌ",options:["سَبُّورَةٌ","سَبُّورَتَانِ","سَبُّورَاتٌ","سَبَابِيرُ"],correct:0},
+       {type:"type",q:"Traduire : هَذِهِ مَدْرَسَتِي",answers:["Ceci est mon école"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هِيَ قَرِيبَةٌ مِنَ الْمَسْجِدِ",answers:["Elle est proche de la mosquée"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : فِي الْمَدْرَسَةِ فُصُولٌ كَثِيرَةٌ",answers:["Dans l'école, il y a beaucoup de classes"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : مَكْتَبُ الْمُدَرِّسِ كَبِيرٌ",answers:["Le bureau du professeur est grand"],hint:"Phrase nominale"},
+       /* Bloc 3 — Les pays et les origines (10 questions) */
+       {type:"qcm",q:"Que veut dire غَانَا ؟",options:["Ghana","Nigeria","Inde","Malaisie"],correct:0},
+       {type:"qcm",q:"Que veut dire نِيجِيرِيَا ؟",options:["Nigeria","Ghana","Inde","Malaisie"],correct:0},
+       {type:"qcm",q:"Que veut dire إِنْكِلْتِرَا ؟",options:["Angleterre","France","Allemagne","Amérique"],correct:0},
+       {type:"qcm",q:"Que veut dire مَالِيزِيَا ؟",options:["Malaisie","Indonésie","Philippines","Thaïlande"],correct:0},
+       {type:"fill",sentence:"هَذَا مُحَمَّدٌ وَهُوَ مِنَ ___",options:["الْيَابَانِ","الصِّينِ","الْهِنْدِ","غَانَا"],correct:0},
+       {type:"fill",sentence:"وَهَذَا خَالِدٌ وَهُوَ مِنَ ___",options:["الصِّينِ","الْيَابَانِ","الْهِنْدِ","غَانَا"],correct:0},
+       {type:"fill",sentence:"وَهَذَا أَحْمَدُ وَهُوَ مِنَ ___",options:["الْهِنْدِ","الصِّينِ","الْيَابَانِ","غَانَا"],correct:0},
+       {type:"fill",sentence:"وَهَذَا إِبْرَاهِيمُ وَهُوَ مِنْ ___",options:["غَانَا","الصِّينِ","الْيَابَانِ","الْهِنْدِ"],correct:0},
+       {type:"fill",sentence:"وَهَذَا إِسْمَاعِيلُ وَهُوَ مِنْ ___",options:["نِيجِيرِيَا","غَانَا","الصِّينِ","الْيَابَانِ"],correct:0},
+       {type:"tf",q:"نِيجِيرِيَا signifie Nigeria",correct:true,explain:""},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : هَذَا مُحَمَّدٌ وَهُوَ مِنَ الْيَابَانِ",answers:["Ceci est Muhammad et il est du Japon"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَذَا خَالِدٌ وَهُوَ مِنَ الصِّينِ",answers:["Ceci est Khalid et il est de Chine"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هُمْ مِنْ بِلَادٍ مُخْتَلِفَةٍ",answers:["Ils viennent de différents pays"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : لُغَاتُهُمْ مُخْتَلِفَةٌ",answers:["Leurs langues sont différentes"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَذَا مَكْتَبُ الْمُدَرِّسِ وَذَاكَ كُرْسِيُّهُ",answers:["Ceci est le bureau du professeur et cela est sa chaise"],hint:"Avec ذَاكَ"},
+       {type:"type",q:"Traduire : أَبْوَابُهَا مَفْتُوحَةٌ الْآنَ",answers:["Ses portes sont ouvertes maintenant"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : فِي فَصْلِنَا عَشَرَةُ طُلَّابٍ",answers:["Dans notre classe, il y a dix étudiants"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَذَا فَصْلُنَا وَهُوَ فَصْلٌ وَاسِعٌ",answers:["Ceci est notre classe et c'est une classe spacieuse"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : مَكَاتِبُ الطُّلَّابِ صَغِيرَةٌ",answers:["Les bureaux des étudiants sont petits"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَذَا شَيْخٌ صَالِحٌ",answers:["C'est un cheikh pieux"],hint:"Phrase nominale"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire لَوْنٌ ؟",options:["Couleur","Forme","Taille","Poids"],correct:0},
+       {type:"qcm",q:"Que veut dire صَالِحٌ ؟",options:["Pieux","Méchant","Grand","Petit"],correct:0},
+       {type:"qcm",q:"Que veut dire لَكِنْ ؟",options:["Mais","Et","Ou","Donc"],correct:0},
+       {type:"qcm",q:"Que veut dire نَبِيٌّ ؟",options:["Prophète","Roi","Imam","Cheikh"],correct:0},
+       {type:"qcm",q:"Que veut dire وَاسِعٌ ؟",options:["Large","Étroit","Long","Court"],correct:0},
+       {type:"qcm",q:"Que veut dire بِلَادٌ ؟",options:["Pays (pluriel)","Ville","Village","Rue"],correct:0},
+       {type:"qcm",q:"Que veut dire لُغَةٌ ؟",options:["Langue","Parole","Mot","Phrase"],correct:0},
+       {type:"qcm",q:"Que veut dire مُخْتَلِفٌ ؟",options:["Différent","Identique","Semblable","Même"],correct:0},
+       {type:"qcm",q:"Que veut dire شَيْخٌ ؟",options:["Cheikh","Jeune","Enfant","Vieille femme"],correct:0},
+       {type:"qcm",q:"Que veut dire كَرَاسِيٌّ ؟",options:["Chaises","Bureaux","Tables","Portes"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « cela (variante) » :",answers:["ذَاكَ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « école » :",answers:["مَدْرَسَةٌ"],hint:"م د ر س + ة"},
+       {type:"type",q:"Écris « fenêtre » :",answers:["نَافِذَةٌ"],hint:"ن ا ف ذ + ة"},
+       {type:"type",q:"Écris « large » :",answers:["وَاسِعٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « Ghana » :",answers:["غَانَا"],hint:"4 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["مَدْرَسَتِي","هَذِهِ"],answer:"هَذِهِ مَدْرَسَتِي"},
+       {type:"order",q:"Reconstitue :",words:["الْمَسْجِدِ","مِنَ","قَرِيبَةٌ","هِيَ"],answer:"هِيَ قَرِيبَةٌ مِنَ الْمَسْجِدِ"},
+       {type:"order",q:"Reconstitue :",words:["كُرْسِيُّهُ","ذَاكَ"],answer:"ذَاكَ كُرْسِيُّهُ"},
+       {type:"order",q:"Reconstitue :",words:["الْيَابَانِ","مِنَ","مُحَمَّدٌ","هَذَا"],answer:"هَذَا مُحَمَّدٌ مِنَ الْيَابَانِ"},
+       {type:"order",q:"Reconstitue :",words:["مُخْتَلِفَةٍ","بِلَادٍ","مِنْ","هُمْ"],answer:"هُمْ مِنْ بِلَادٍ مُخْتَلِفَةٍ"}
+     ]},    /* ===== LEÇON 26 ===== */
+    {id:"t1l26", num:26, title:"Leçon 26", desc:"الممنوع من الصرف · Les couleurs",
+     active:true, audio:null, pdf:"",
+     text:[
+       "حَامِدٌ طَبِيبٌ","زَوْجَتُهُ مُدَرِّسَةٌ","اسْمُهَا آمِنَةُ",
+       "حَامِدٌ لَهُ أَرْبَعَةُ أَبْنَاءٍ","هُمْ: حَمْزَةُ وَعُثْمَانُ وَأَحْمَدُ وَإِبْرَاهِيمُ",
+       "أَحْمَدُ وَحَمْزَةُ طَالِبٌ مُجْتَهِدٌ","وَعُثْمَانُ طَالِبٌ كَسْلَانُ",
+       "قَالَ يُوسُفُ: عِنْدِي خَمْسَةُ أَقْلَامٍ","هَذَا قَلَمٌ أَحْمَرُ وَهَذَا قَلَمٌ أَزْرَقُ",
+       "وَهَذَا قَلَمٌ أَخْضَرُ وَهَذَا قَلَمٌ أَسْوَدُ","وَهَذَا قَلَمٌ أَصْفَرُ",
+       "قَالَتْ زَيْنَبُ: عِنْدِي مَنَادِيلُ كَثِيرَةٌ","هَذَا أَبْيَضُ وَهَذَا أَصْفَرُ",
+       "وَهَذَا أَحْمَرُ وَهَذَا أَزْرَقُ",
+       "قَالَتْ فَاطِمَةُ: أَعِنْدَكِ مَنْدِيلٌ أَخْضَرُ؟",
+       "قَالَتْ: لَا، مَا عِنْدِي مَنْدِيلٌ أَخْضَرُ",
+       "قَالَ طَلْحَةُ: عِنْدِي مَفَاتِيحُ كَثِيرَةٌ","هَذَا مِفْتَاحُ الْغُرْفَةِ وَهَذَا مِفْتَاحُ الْحَقِيبَةِ",
+       "قَالَ سُفْيَانُ: فِي بَلَدِنَا مَسَاجِدُ وَمَدَارِسُ كَثِيرَةٌ","وَفَنَادِقُ قَلِيلَةٌ",
+       "هَؤُلَاءِ أَطِبَّاءُ؟ لَا، هُمْ مُدَرِّسُونَ","وَهُمْ عُلَمَاءُ كِبَارٌ"
+     ],
      vocab:[
-       {ar:"الْقَاهِرَةُ",fr:"Le Caire",tr:"al-qāhira"},
-       {ar:"الْآنَ",fr:"Maintenant",tr:"al-ān"},
-       {ar:"قَبْلَ",fr:"Avant",tr:"qabla"},
-       {ar:"بَعْدَ",fr:"Après",tr:"baʿda"},
-       {ar:"كَيْفَ",fr:"Comment ?",tr:"kayfa"},
-       {ar:"مَتَى",fr:"Quand ?",tr:"matā"},
-       {ar:"أَنْتُنَّ",fr:"Vous (fém.)",tr:"antunna"},
-       {ar:"هُنَّ",fr:"Elles",tr:"hunna"},
-       {ar:"صَالِحٌ",fr:"Vertueux",tr:"ṣāliḥ"},
-       {ar:"صَالِحَةٌ",fr:"Vertueuse",tr:"ṣāliḥa"},
-       {ar:"مَاهِرٌ",fr:"Habile",tr:"māhir"},
-       {ar:"مَاهِرَةٌ",fr:"Habile (fém.)",tr:"māhira"},
-       {ar:"كَرِيمٌ",fr:"Généreux",tr:"karīm"},
-       {ar:"كَرِيمَةٌ",fr:"Généreuse",tr:"karīma"},
-       {ar:"جَمِيلٌ",fr:"Beau",tr:"jamīl"},
-       {ar:"جَمِيلَةٌ",fr:"Belle",tr:"jamīla"},
-       {ar:"مُجْتَهِدٌ",fr:"Travailleur",tr:"mujtahid"},
-       {ar:"مُجْتَهِدَةٌ",fr:"Travailleuse",tr:"mujtahida"},
-       {ar:"مُدَرِّسَةٌ",fr:"Professeure",tr:"mudarrisa"},
-       {ar:"طَبِيبَةٌ",fr:"Médecin (fém.)",tr:"ṭabība"},
-       {ar:"مُهَنْدِسَةٌ",fr:"Ingénieure",tr:"muhandisa"},
-       {ar:"كَاتِبَةٌ",fr:"Écrivaine",tr:"kātiba"},
-       {ar:"قَارِئَةٌ",fr:"Lectrice",tr:"qāriʾa"},
-       {ar:"حَامِلَةٌ",fr:"Enceinte",tr:"ḥāmila"},
-       {ar:"كَبِيرَةٌ",fr:"Grande",tr:"kabīra"},
-       {ar:"صَغِيرَةٌ",fr:"Petite",tr:"ṣaghīra"},
-       {ar:"الْأُمُّ",fr:"La mère",tr:"al-umm"},
-       {ar:"الْبِنْتُ",fr:"La fille",tr:"al-bint"},
-       {ar:"الْأُخْتُ",fr:"La sœur",tr:"al-ukht"},
-       {ar:"الْجَدَّةُ",fr:"La grand-mère",tr:"al-jadda"},
-       {ar:"الْعَمَّةُ",fr:"La tante paternelle",tr:"al-ʿamma"},
-       {ar:"الْخَالَةُ",fr:"La tante maternelle",tr:"al-khāla"},
-       {ar:"الصَّدِيقَةُ",fr:"L'amie",tr:"aṣ-ṣadīqa"},
-       {ar:"الْجَارَةُ",fr:"La voisine",tr:"al-jāra"},
-       {ar:"الزَّوْجَةُ",fr:"L'épouse",tr:"az-zawja"},
-       {ar:"الْمَلِكَةُ",fr:"La reine",tr:"al-malika"},
-       {ar:"الْمُؤْمِنَةُ",fr:"La croyante",tr:"al-muʾmina"},
-       {ar:"الْمُسْلِمَةُ",fr:"La musulmane",tr:"al-muslima"},
-       {ar:"الْأُسْتَاذَةُ",fr:"La professeure (titre)",tr:"al-ustādha"},
-       {ar:"الْمَرْأَةُ",fr:"La femme",tr:"al-marʾa"},
-       {ar:"النِّسَاءُ",fr:"Les femmes",tr:"an-nisāʾ"},
-       {ar:"الْبَنَاتُ",fr:"Les filles",tr:"al-banāt"},
-       {ar:"الْأَخَوَاتُ",fr:"Les sœurs",tr:"al-akhawāt"},
-       {ar:"الْأُمَّهَاتُ",fr:"Les mères",tr:"al-ummahāt"},
-       {ar:"الْمُسْلِمَاتُ",fr:"Les musulmanes",tr:"al-muslimāt"}
-     ],
-     grammar:{title:"Les pronoms personnels féminins",
-       rule:"أَنْتِ (tu fém.), أَنْتُنَّ (vous fém. pl.), هُنَّ (elles). Ces pronoms s'accordent avec des adjectifs au féminin.",
-       examples:["أَنْتِ طَالِبَةٌ = Tu es étudiante","أَنْتُنَّ طَالِبَاتٌ = Vous êtes étudiantes","هُنَّ مُدَرِّسَاتٌ = Elles sont professeures"]},
-     dialogue:[
-       {sp:"A",ar:"كَيْفَ حَالُكِ يَا فَاطِمَةُ؟",fr:"Comment vas-tu, Fatima ?"},
-       {sp:"B",ar:"أَنَا بِخَيْرٍ، شُكْرًا.",fr:"Je vais bien, merci."},
-       {sp:"A",ar:"مَتَى رَجَعْتِ مِنَ الْقَاهِرَةِ؟",fr:"Quand es-tu revenue du Caire ?"},
-       {sp:"B",ar:"رَجَعْتُ الْآنَ.",fr:"Je suis revenue maintenant."},
-       {sp:"A",ar:"وَكَيْفَ حَالُ أُخْتِكِ؟",fr:"Et comment va ta sœur ?"},
-       {sp:"B",ar:"هِيَ بِخَيْرٍ أَيْضًا.",fr:"Elle va bien aussi."},
-       {sp:"A",ar:"وَمَا أَخْبَارُ صَدِيقَاتِكِ؟",fr:"Et tes amies ?"},
-       {sp:"B",ar:"هُنَّ بِخَيْرٍ، شُكْرًا.",fr:"Elles vont bien, merci."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire أَنْتِ ؟",options:["Tu (fém.)","Tu (masc.)","Vous (fém.)","Elle"],correct:0},
-       {type:"qcm",q:"Que veut dire هُنَّ ؟",options:["Elles","Ils","Vous (fém.)","Nous"],correct:0},
-       {type:"qcm",q:"Comment dit-on « maintenant » ?",options:["الْآنَ","قَبْلَ","بَعْدَ","مَتَى"],correct:0},
-       {type:"qcm",q:"Comment dit-on « avant » ?",options:["قَبْلَ","بَعْدَ","الْآنَ","مَتَى"],correct:0},
-       {type:"qcm",q:"Comment dit-on « quand ? »",options:["مَتَى","كَيْفَ","أَيْنَ","مَا"],correct:0},
-       {type:"qcm",q:"Comment dit-on « comment ? »",options:["كَيْفَ","مَتَى","أَيْنَ","مَا"],correct:0},
-       {type:"qcm",q:"Que veut dire الْقَاهِرَةُ ؟",options:["Le Caire","Alexandrie","Damas","Bagdad"],correct:0},
-       {type:"qcm",q:"Féminin de مُجْتَهِدٌ ?",options:["مُجْتَهِدَةٌ","مُجْتَهِدَاتٌ","مُجْتَهِدُونَ","مُجْتَهِدَانِ"],correct:0},
-       {type:"qcm",q:"Féminin de كَرِيمٌ ?",options:["كَرِيمَةٌ","كُرَمَاءُ","كَرِيمَانِ","كَرِيمُونَ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « belle » ?",options:["جَمِيلَةٌ","جَمِيلٌ","جُمَلَاءُ","جَمِيلَانِ"],correct:0},
-       {type:"qcm",q:"Que veut dire الصَّدِيقَةُ ؟",options:["L'amie","L'ami","La sœur","La mère"],correct:0},
-       {type:"qcm",q:"Comment dit-on « voisine » ?",options:["الْجَارَةُ","الْجَارُ","الْأُخْتُ","الْأُمُّ"],correct:0},
-       {type:"tf",ar:"أَنْتِ طَالِبَةٌ",q:"Signifie « Tu es étudiante »",correct:true},
-       {type:"tf",ar:"هُنَّ مُدَرِّسَاتٌ",q:"Signifie « Ils sont professeurs »",correct:false,explain:"هُنَّ = elles (fém. pl.)."},
-       {type:"tf",ar:"أَنْتُنَّ طَالِبَاتٌ",q:"Signifie « Vous êtes étudiantes »",correct:true},
-       {type:"tf",q:"Le pluriel de مُسْلِمَةٌ est مُسْلِمَاتٌ",correct:true},
-       {type:"fill",sentence:"___ طَالِبَةٌ",options:["أَنْتِ","أَنْتَ","هُوَ","هُمْ"],correct:0},
-       {type:"fill",sentence:"___ مُدَرِّسَاتٌ",options:["هُنَّ","هُمْ","أَنْتُمْ","نَحْنُ"],correct:0},
-       {type:"fill",sentence:"___ طَالِبَاتٌ",options:["أَنْتُنَّ","أَنْتُمْ","هُمْ","هِيَ"],correct:0},
-       {type:"type",q:"Écris « maintenant » :",answer:"الْآنَ",hint:"4 lettres"},
-       {type:"type",q:"Écris « avant » :",answer:"قَبْلَ",hint:"3 lettres"},
-       {type:"type",q:"Écris « après » :",answer:"بَعْدَ",hint:"3 lettres"},
-       {type:"type",q:"Écris « comment » :",answer:"كَيْفَ",hint:"3 lettres"},
-       {type:"type",q:"Écris « quand » :",answer:"مَتَى",hint:"3 lettres"},
-       {type:"type",q:"Écris « tu (fém.) » :",answer:"أَنْتِ",hint:"3 lettres"},
-       {type:"order",q:"Reconstitue :",words:["طَالِبَةٌ","أَنْتِ"],answer:"أَنْتِ طَالِبَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["مُدَرِّسَاتٌ","هُنَّ"],answer:"هُنَّ مُدَرِّسَاتٌ"},
-       {type:"order",q:"Reconstitue :",words:["طَالِبَاتٌ","أَنْتُنَّ"],answer:"أَنْتُنَّ طَالِبَاتٌ"},
-       {type:"order",q:"Reconstitue :",words:["الْقَاهِرَةِ","مِنَ","رَجَعْتُ"],answer:"رَجَعْتُ مِنَ الْقَاهِرَةِ"},
-       {type:"order",q:"Reconstitue :",words:["حَالُكِ","كَيْفَ","؟"],answer:"كَيْفَ حَالُكِ ؟"},
-       {type:"audio",audioText:"أَنْتِ طَالِبَةٌ",options:["أَنْتِ طَالِبَةٌ","أَنْتَ طَالِبٌ","هِيَ طَالِبَةٌ","أَنَا طَالِبَةٌ"],correct:0},
-       {type:"audio",audioText:"هُنَّ مُدَرِّسَاتٌ",options:["هُمْ مُدَرِّسُونَ","هُنَّ مُدَرِّسَاتٌ","أَنْتُنَّ مُدَرِّسَاتٌ","نَحْنُ مُدَرِّسَاتٌ"],correct:1},
-       {type:"audio",audioText:"أَنْتُنَّ طَالِبَاتٌ",options:["أَنْتُنَّ طَالِبَاتٌ","أَنْتُمْ طُلَّابٌ","هُنَّ طَالِبَاتٌ","نَحْنُ طَالِبَاتٌ"],correct:0},
-       {type:"audio",audioText:"كَيْفَ حَالُكِ؟",options:["كَيْفَ حَالُكِ؟","كَيْفَ حَالُكَ؟","كَيْفَ حَالُهَا؟","مَا اسْمُكِ؟"],correct:0}
-     ]},    /* ===== LEÇON 16 ===== */
-    {id:"t1l16", num:16, title:"Leçon 16", desc:"La nature · Paysages",
-     active:true, audio:"assets/audio/madinah/tome1/L16.mp3",
-     text:["النَّهْرُ يَجْرِي بَيْنَ الْجِبَالِ","الْفُنْدُقُ كَبِيرٌ","الْبَحْرُ جَمِيلٌ",
-           "الطَّائِرَةُ سَرِيعَةٌ","الْجِبَالُ عَالِيَةٌ","الشَّمْسُ مُشْرِقَةٌ",
-           "الْقَمَرُ مُنِيرٌ","النُّجُومُ لَامِعَةٌ"],
-     vocab:[
-       {ar:"النَّهْرُ",fr:"La rivière",tr:"an-nahr"},
-       {ar:"الْبَحْرُ",fr:"La mer",tr:"al-baḥr"},
-       {ar:"الْجَبَلُ",fr:"La montagne",tr:"al-jabal"},
-       {ar:"الْغَابَةُ",fr:"La forêt",tr:"al-ghāba"},
-       {ar:"الصَّحْرَاءُ",fr:"Le désert",tr:"aṣ-ṣaḥrāʾ"},
-       {ar:"الْفُنْدُقُ",fr:"L'hôtel",tr:"al-funduq"},
-       {ar:"الطَّائِرَةُ",fr:"L'avion",tr:"aṭ-ṭāʾira"},
-       {ar:"السَّفِينَةُ",fr:"Le bateau",tr:"as-safīna"},
-       {ar:"السَّيَّارَةُ",fr:"La voiture",tr:"as-sayyāra"},
-       {ar:"الدَّرَّاجَةُ",fr:"Le vélo",tr:"ad-darrāja"},
-       {ar:"الْقِطَارُ",fr:"Le train",tr:"al-qiṭār"},
-       {ar:"الْحَافِلَةُ",fr:"Le bus",tr:"al-ḥāfila"},
-       {ar:"الطَّرِيقُ",fr:"La route",tr:"aṭ-ṭarīq"},
-       {ar:"الْجِسْرُ",fr:"Le pont",tr:"al-jisr"},
-       {ar:"السَّمَاءُ",fr:"Le ciel",tr:"as-samāʾ"},
-       {ar:"الشَّمْسُ",fr:"Le soleil",tr:"ash-shams"},
-       {ar:"الْقَمَرُ",fr:"La lune",tr:"al-qamar"},
-       {ar:"النَّجْمُ",fr:"L'étoile",tr:"an-najm"},
-       {ar:"النُّجُومُ",fr:"Les étoiles",tr:"an-nujūm"},
-       {ar:"السَّحَابُ",fr:"Les nuages",tr:"as-saḥāb"},
-       {ar:"الْمَطَرُ",fr:"La pluie",tr:"al-maṭar"},
-       {ar:"الثَّلْجُ",fr:"La neige",tr:"ath-thalj"},
-       {ar:"الرِّيحُ",fr:"Le vent",tr:"ar-rīḥ"},
-       {ar:"الْحَرَارَةُ",fr:"La chaleur",tr:"al-ḥarāra"},
-       {ar:"الْبَرْدُ",fr:"Le froid",tr:"al-bard"},
-       {ar:"الشَّجَرَةُ",fr:"L'arbre",tr:"ash-shajara"},
-       {ar:"الزَّهْرَةُ",fr:"La fleur",tr:"az-zahra"},
-       {ar:"الْوَرْدَةُ",fr:"La rose",tr:"al-warda"},
-       {ar:"النَّبَاتُ",fr:"La plante",tr:"an-nabāt"},
-       {ar:"الْحَيَوَانُ",fr:"L'animal",tr:"al-ḥayawān"},
-       {ar:"الطَّائِرُ",fr:"L'oiseau",tr:"aṭ-ṭāʾir"},
-       {ar:"السَّمَكُ",fr:"Le poisson",tr:"as-samak"},
-       {ar:"الْقِطُّ",fr:"Le chat",tr:"al-qiṭṭ"},
-       {ar:"الْكَلْبُ",fr:"Le chien",tr:"al-kalb"},
-       {ar:"الْحِصَانُ",fr:"Le cheval",tr:"al-ḥiṣān"},
-       {ar:"الْجَمَلُ",fr:"Le chameau",tr:"al-jamal"},
-       {ar:"الْبَقَرَةُ",fr:"La vache",tr:"al-baqara"},
-       {ar:"الْخَرُوفُ",fr:"Le mouton",tr:"al-kharūf"},
-       {ar:"الطَّاوُوسُ",fr:"Le paon",tr:"aṭ-ṭāwūs"},
-       {ar:"الْأَسَدُ",fr:"Le lion",tr:"al-asad"},
-       {ar:"الْفِيلُ",fr:"L'éléphant",tr:"al-fīl"},
-       {ar:"يَجْرِي",fr:"Coule",tr:"yajrī"},
-       {ar:"عَالِيَةٌ",fr:"Haute",tr:"ʿāliya"},
-       {ar:"مُنِيرٌ",fr:"Lumineux",tr:"munīr"},
-       {ar:"لَامِعَةٌ",fr:"Brillante",tr:"lāmiʿa"}
-     ],
-     grammar:{title:"Les noms de la nature",
-       rule:"Les noms liés à la nature et aux éléments. Attention au genre : certains sont masculins (الْبَحْرُ, الْجَبَلُ) et d'autres féminins (الشَّمْسُ, الْأَرْضُ).",
-       examples:["السَّفَرُ مُمْتِعٌ = Le voyage est amusant","الْقِرَاءَةُ مُفِيدَةٌ = La lecture est utile","الطَّائِرَةُ سَرِيعَةٌ = L'avion est rapide"]},
-     dialogue:[
-       {sp:"A",ar:"أَيْنَ الْفُنْدُقُ؟",fr:"Où est l'hôtel ?"},
-       {sp:"B",ar:"هُوَ أَمَامَ الْبَحْرِ.",fr:"Il est devant la mer."},
-       {sp:"A",ar:"هَلِ الْبَحْرُ جَمِيلٌ؟",fr:"La mer est-elle belle ?"},
-       {sp:"B",ar:"نَعَمْ، الْبَحْرُ جَمِيلٌ جِدًّا.",fr:"Oui, la mer est très belle."},
-       {sp:"A",ar:"أَيْنَ النَّهْرُ؟",fr:"Où est la rivière ?"},
-       {sp:"B",ar:"هُوَ بَيْنَ الْجِبَالِ.",fr:"Elle est entre les montagnes."},
-       {sp:"A",ar:"هَلْ الْجِبَالُ عَالِيَةٌ؟",fr:"Les montagnes sont-elles hautes ?"},
-       {sp:"B",ar:"نَعَمْ، هِيَ عَالِيَةٌ جِدًّا.",fr:"Oui, elles sont très hautes."},
-       {sp:"A",ar:"مَا هَذَا؟",fr:"Qu'est-ce que c'est ?"},
-       {sp:"B",ar:"هَذَا نَجْمٌ لَامِعٌ فِي السَّمَاءِ.",fr:"C'est une étoile brillante dans le ciel."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire النَّهْرُ ؟",options:["La rivière","La mer","La montagne","L'hôtel"],correct:0},
-       {type:"qcm",q:"Comment dit-on « avion » ?",options:["الطَّائِرَةُ","الْفُنْدُقُ","الْبَحْرُ","النَّهْرُ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « entre » ?",options:["بَيْنَ","أَمَامَ","وَرَاءَ","تَحْتَ"],correct:0},
-       {type:"qcm",q:"Que veut dire الْجَبَلُ ؟",options:["La montagne","La rivière","La mer","La forêt"],correct:0},
-       {type:"qcm",q:"Comment dit-on « ciel » ?",options:["السَّمَاءُ","الْأَرْضُ","الشَّمْسُ","الْقَمَرُ"],correct:0},
-       {type:"qcm",q:"Que veut dire الشَّمْسُ ؟",options:["Le soleil","La lune","L'étoile","Le nuage"],correct:0},
-       {type:"qcm",q:"Comment dit-on « lune » ?",options:["الْقَمَرُ","الشَّمْسُ","النَّجْمُ","السَّحَابُ"],correct:0},
-       {type:"qcm",q:"Que veut dire الْمَطَرُ ؟",options:["La pluie","La neige","Le vent","La chaleur"],correct:0},
-       {type:"qcm",q:"Comment dit-on « étoile » ?",options:["النَّجْمُ","الْقَمَرُ","الشَّمْسُ","السَّحَابُ"],correct:0},
-       {type:"qcm",q:"Que veut dire الْحَيَوَانُ ؟",options:["L'animal","L'oiseau","Le poisson","La plante"],correct:0},
-       {type:"qcm",q:"Comment dit-on « cheval » ?",options:["الْحِصَانُ","الْجَمَلُ","الْبَقَرَةُ","الْخَرُوفُ"],correct:0},
-       {type:"qcm",q:"Que veut dire الْأَسَدُ ؟",options:["Le lion","L'éléphant","Le tigre","Le loup"],correct:0},
-       {type:"tf",ar:"الْبَحْرُ جَمِيلٌ",q:"Signifie « La mer est belle »",correct:true},
-       {type:"tf",ar:"النَّهْرُ يَجْرِي بَيْنَ الْجِبَالِ",q:"Signifie « La rivière coule entre les montagnes »",correct:true},
-       {type:"tf",ar:"الطَّائِرَةُ سَرِيعَةٌ",q:"Signifie « L'avion est rapide »",correct:true},
-       {type:"tf",ar:"الْقَمَرُ مُنِيرٌ",q:"Signifie « La lune est lumineuse »",correct:true},
-       {type:"fill",sentence:"النَّهْرُ ___ بَيْنَ الْجِبَالِ",options:["يَجْرِي","يَقْرَأ","يَكْتُب","يَذْهَب"],correct:0},
-       {type:"fill",sentence:"___ كَبِيرٌ",options:["الْفُنْدُقُ","الطَّائِرَةُ","النَّهْرُ","الْبَحْرُ"],correct:0},
-       {type:"fill",sentence:"الْجِبَالُ ___",options:["عَالِيَةٌ","عَالٍ","عُلُوٌّ","عَالِيَاتٌ"],correct:0},
-       {type:"type",q:"Écris « la mer » :",answer:"الْبَحْرُ",hint:"avec ال"},
-       {type:"type",q:"Écris « la rivière » :",answer:"النَّهْرُ",hint:"avec ال"},
-       {type:"type",q:"Écris « le soleil » :",answer:"الشَّمْسُ",hint:"avec ال"},
-       {type:"type",q:"Écris « la lune » :",answer:"الْقَمَرُ",hint:"avec ال"},
-       {type:"type",q:"Écris « l'étoile » :",answer:"النَّجْمُ",hint:"avec ال"},
-       {type:"type",q:"Écris « la montagne » :",answer:"الْجَبَلُ",hint:"avec ال"},
-       {type:"order",q:"Reconstitue :",words:["جَمِيلٌ","الْبَحْرُ"],answer:"الْبَحْرُ جَمِيلٌ"},
-       {type:"order",q:"Reconstitue :",words:["الْجِبَالِ","بَيْنَ","النَّهْرُ","يَجْرِي"],answer:"النَّهْرُ يَجْرِي بَيْنَ الْجِبَالِ"},
-       {type:"order",q:"Reconstitue :",words:["كَبِيرٌ","الْفُنْدُقُ"],answer:"الْفُنْدُقُ كَبِيرٌ"},
-       {type:"order",q:"Reconstitue :",words:["سَرِيعَةٌ","الطَّائِرَةُ"],answer:"الطَّائِرَةُ سَرِيعَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["مُنِيرٌ","الْقَمَرُ"],answer:"الْقَمَرُ مُنِيرٌ"},
-       {type:"audio",audioText:"الْبَحْرُ جَمِيلٌ",options:["الْبَحْرُ جَمِيلٌ","الْبَحْرُ كَبِيرٌ","النَّهْرُ جَمِيلٌ","الْبَحْرُ وَاسِعٌ"],correct:0},
-       {type:"audio",audioText:"النَّهْرُ يَجْرِي بَيْنَ الْجِبَالِ",options:["النَّهْرُ يَجْرِي بَيْنَ الْجِبَالِ","النَّهْرُ يَجْرِي أَمَامَ الْجِبَالِ","الْبَحْرُ يَجْرِي بَيْنَ الْجِبَالِ","النَّهْرُ يَجْرِي فِي الْجِبَالِ"],correct:0},
-       {type:"audio",audioText:"الْقَمَرُ مُنِيرٌ",options:["الْقَمَرُ مُنِيرٌ","الشَّمْسُ مُشْرِقَةٌ","الْقَمَرُ جَمِيلٌ","الشَّمْسُ كَبِيرَةٌ"],correct:0},
-       {type:"audio",audioText:"الطَّائِرَةُ سَرِيعَةٌ",options:["الطَّائِرَةُ سَرِيعَةٌ","السَّيَّارَةُ سَرِيعَةٌ","الطَّائِرَةُ كَبِيرَةٌ","السَّفِينَةُ سَرِيعَةٌ"],correct:0}
-     ]},
-
-    /* ===== LEÇON 17 ===== */
-    {id:"t1l17", num:17, title:"Leçon 17", desc:"Adjectifs (suite) · Ouvert / Fermé",
-     active:true, audio:"assets/audio/madinah/tome1/L17.mp3",
-     text:["الْبَابُ مَفْتُوحٌ","النَّافِذَةُ مَفْتُوحَةٌ","الْكِتَابُ جَدِيدٌ","الْمَدْرَسَةُ كَبِيرَةٌ",
-           "الْحَدِيقَةُ وَاسِعَةٌ","الْبَيْتُ نَظِيفٌ","الْكُرْسِيُّ مَكْسُورٌ"],
-     vocab:[
-       {ar:"مَفْتُوحٌ",fr:"Ouvert",tr:"maftūḥ"},
-       {ar:"مَفْتُوحَةٌ",fr:"Ouverte",tr:"maftūḥa"},
-       {ar:"مُغْلَقٌ",fr:"Fermé",tr:"mughlaq"},
-       {ar:"مُغْلَقَةٌ",fr:"Fermée",tr:"mughlaqa"},
-       {ar:"مَكْسُورٌ",fr:"Cassé",tr:"maksūr"},
-       {ar:"مَكْسُورَةٌ",fr:"Cassée",tr:"maksūra"},
-       {ar:"وَاسِعٌ",fr:"Large",tr:"wāsiʿ"},
-       {ar:"وَاسِعَةٌ",fr:"Large (fém.)",tr:"wāsiʿa"},
-       {ar:"ضَيِّقٌ",fr:"Étroit",tr:"ḍayyiq"},
-       {ar:"ضَيِّقَةٌ",fr:"Étroite",tr:"ḍayyiqa"},
-       {ar:"طَوِيلٌ",fr:"Long",tr:"ṭawīl"},
-       {ar:"طَوِيلَةٌ",fr:"Longue",tr:"ṭawīla"},
-       {ar:"قَصِيرٌ",fr:"Court",tr:"qaṣīr"},
-       {ar:"قَصِيرَةٌ",fr:"Courte",tr:"qaṣīra"},
-       {ar:"كَثِيرٌ",fr:"Nombreux",tr:"kathīr"},
-       {ar:"كَثِيرَةٌ",fr:"Nombreuse",tr:"kathīra"},
-       {ar:"قَلِيلٌ",fr:"Peu",tr:"qalīl"},
-       {ar:"قَلِيلَةٌ",fr:"Peu (fém.)",tr:"qalīla"},
-       {ar:"مُمْتِعٌ",fr:"Amusant",tr:"mumtiʿ"},
-       {ar:"مُفِيدٌ",fr:"Utile",tr:"mufīd"},
-       {ar:"مُهِمٌّ",fr:"Important",tr:"muhimm"},
-       {ar:"صَعْبٌ",fr:"Difficile",tr:"ṣaʿb"},
-       {ar:"سَهْلٌ",fr:"Facile",tr:"sahl"},
-       {ar:"جَدِيدٌ",fr:"Nouveau",tr:"jadīd"},
-       {ar:"جَدِيدَةٌ",fr:"Nouvelle",tr:"jadīda"},
-       {ar:"قَدِيمٌ",fr:"Vieux",tr:"qadīm"},
-       {ar:"قَدِيمَةٌ",fr:"Vieille",tr:"qadīma"},
-       {ar:"نَظِيفٌ",fr:"Propre",tr:"naẓīf"},
-       {ar:"نَظِيفَةٌ",fr:"Propre (fém.)",tr:"naẓīfa"},
-       {ar:"وَسِخٌ",fr:"Sale",tr:"wasikh"},
-       {ar:"وَسِخَةٌ",fr:"Sale (fém.)",tr:"wasikha"},
-       {ar:"كَبِيرٌ",fr:"Grand",tr:"kabīr"},
-       {ar:"كَبِيرَةٌ",fr:"Grande",tr:"kabīra"},
-       {ar:"صَغِيرٌ",fr:"Petit",tr:"ṣaghīr"},
-       {ar:"صَغِيرَةٌ",fr:"Petite",tr:"ṣaghīra"},
-       {ar:"جَمِيلٌ",fr:"Beau",tr:"jamīl"},
-       {ar:"جَمِيلَةٌ",fr:"Belle",tr:"jamīla"},
-       {ar:"قَبِيحٌ",fr:"Laid",tr:"qabīḥ"},
-       {ar:"الْمَكْتَبَةُ",fr:"La bibliothèque",tr:"al-maktaba"},
-       {ar:"الْمَدْرَسَةُ",fr:"L'école",tr:"al-madrasa"},
-       {ar:"الْحَدِيقَةُ",fr:"Le jardin",tr:"al-ḥadīqa"},
-       {ar:"الْبَيْتُ",fr:"La maison",tr:"al-bayt"},
-       {ar:"الْكُرْسِيُّ",fr:"La chaise",tr:"al-kursī"},
-       {ar:"الطَّاوِلَةُ",fr:"La table",tr:"aṭ-ṭāwila"}
-     ],
-     grammar:{title:"L'accord de l'adjectif (suite)",
-       rule:"L'adjectif s'accorde en genre (masculin/féminin) et en nombre (singulier/pluriel) avec le nom. Féminin singulier : ajouter ة. Exemple : كَبِيرٌ → كَبِيرَةٌ.",
-       examples:["الْبَابُ مَفْتُوحٌ","النَّافِذَةُ مَفْتُوحَةٌ","الْمَدْرَسَةُ كَبِيرَةٌ","الْكِتَابُ جَدِيدٌ"]},
-     dialogue:[
-       {sp:"A",ar:"هَلِ الْبَابُ مَفْتُوحٌ؟",fr:"La porte est-elle ouverte ?"},
-       {sp:"B",ar:"نَعَمْ، الْبَابُ مَفْتُوحٌ.",fr:"Oui, la porte est ouverte."},
-       {sp:"A",ar:"وَهَلِ النَّافِذَةُ مَفْتُوحَةٌ؟",fr:"Et la fenêtre est-elle ouverte ?"},
-       {sp:"B",ar:"لَا، النَّافِذَةُ مُغْلَقَةٌ.",fr:"Non, la fenêtre est fermée."},
-       {sp:"A",ar:"هَلِ الْكِتَابُ جَدِيدٌ؟",fr:"Le livre est-il nouveau ?"},
-       {sp:"B",ar:"لَا، هُوَ قَدِيمٌ.",fr:"Non, il est vieux."},
-       {sp:"A",ar:"وَهَلِ الْمَدْرَسَةُ كَبِيرَةٌ؟",fr:"Et l'école est-elle grande ?"},
-       {sp:"B",ar:"نَعَمْ، هِيَ كَبِيرَةٌ جِدًّا.",fr:"Oui, elle est très grande."},
-       {sp:"A",ar:"هَلِ الْحَدِيقَةُ وَاسِعَةٌ؟",fr:"Le jardin est-il large ?"},
-       {sp:"B",ar:"نَعَمْ، هِيَ وَاسِعَةٌ.",fr:"Oui, il est large."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire مَفْتُوحَةٌ ؟",options:["Ouverte","Fermée","Grande","Petite"],correct:0},
-       {type:"qcm",q:"Que veut dire مَكْسُورٌ ؟",options:["Cassé","Ouvert","Fermé","Grand"],correct:0},
-       {type:"qcm",q:"Comment dit-on « long » ?",options:["طَوِيلٌ","قَصِيرٌ","وَاسِعٌ","ضَيِّقٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « étroit » ?",options:["ضَيِّقٌ","وَاسِعٌ","طَوِيلٌ","قَصِيرٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire وَاسِعَةٌ ؟",options:["Large (fém.)","Étroite","Longue","Courte"],correct:0},
-       {type:"qcm",q:"Que veut dire مُمْتِعٌ ؟",options:["Amusant","Ennuyeux","Utile","Inutile"],correct:0},
-       {type:"qcm",q:"Comment dit-on « utile » ?",options:["مُفِيدٌ","مُمْتِعٌ","مُهِمٌّ","صَعْبٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire مُهِمٌّ ؟",options:["Important","Amusant","Utile","Facile"],correct:0},
-       {type:"qcm",q:"Comment dit-on « nombreuse » ?",options:["كَثِيرَةٌ","كَثِيرٌ","قَلِيلَةٌ","قَلِيلٌ"],correct:0},
-       {type:"qcm",q:"Féminin de جَدِيدٌ ?",options:["جَدِيدَةٌ","جُدُدٌ","جَدِيدَانِ","جَدَائِدُ"],correct:0},
-       {type:"qcm",q:"Féminin de نَظِيفٌ ?",options:["نَظِيفَةٌ","نُظَفَاءُ","نَظِيفَانِ","نَظِيفُونَ"],correct:0},
-       {type:"qcm",q:"Féminin de جَمِيلٌ ?",options:["جَمِيلَةٌ","جُمَلَاءُ","جَمِيلَانِ","جَمِيلُونَ"],correct:0},
-       {type:"tf",ar:"الْبَابُ مَفْتُوحٌ",q:"Signifie « La porte est ouverte »",correct:true},
-       {type:"tf",ar:"النَّافِذَةُ مَفْتُوحَةٌ",q:"Signifie « La fenêtre est fermée »",correct:false,explain:"مَفْتُوحَةٌ = ouverte."},
-       {type:"tf",ar:"الْمَدْرَسَةُ كَبِيرَةٌ",q:"Signifie « L'école est grande »",correct:true},
-       {type:"tf",ar:"الْحَدِيقَةُ وَاسِعَةٌ",q:"Signifie « Le jardin est large »",correct:true},
-       {type:"fill",sentence:"الْبَابُ ___",options:["مَفْتُوحٌ","مَفْتُوحَةٌ","مَفْتُوحَانِ","مَفْتُوحَاتٌ"],correct:0},
-       {type:"fill",sentence:"النَّافِذَةُ ___",options:["مَفْتُوحَةٌ","مَفْتُوحٌ","مَفْتُوحَانِ","مَفْتُوحُونَ"],correct:0},
-       {type:"fill",sentence:"الْمَدْرَسَةُ ___",options:["كَبِيرَةٌ","كَبِيرٌ","كِبَارٌ","كَبِيرَاتٌ"],correct:0},
-       {type:"type",q:"Écris « ouvert » :",answer:"مَفْتُوحٌ",hint:"م ف ت و ح"},
-       {type:"type",q:"Écris « ouverte » :",answer:"مَفْتُوحَةٌ",hint:"م ف ت و ح + ة"},
-       {type:"type",q:"Écris « fermé » :",answer:"مُغْلَقٌ",hint:"م غ ل ق"},
-       {type:"type",q:"Écris « cassé » :",answer:"مَكْسُورٌ",hint:"م ك س و ر"},
-       {type:"type",q:"Écris « large » :",answer:"وَاسِعٌ",hint:"4 lettres"},
-       {type:"type",q:"Écris « nouvelle » :",answer:"جَدِيدَةٌ",hint:"ج د ي د + ة"},
-       {type:"order",q:"Reconstitue :",words:["مَفْتُوحٌ","الْبَابُ"],answer:"الْبَابُ مَفْتُوحٌ"},
-       {type:"order",q:"Reconstitue :",words:["مَفْتُوحَةٌ","النَّافِذَةُ"],answer:"النَّافِذَةُ مَفْتُوحَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["كَبِيرَةٌ","الْمَدْرَسَةُ"],answer:"الْمَدْرَسَةُ كَبِيرَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["وَاسِعَةٌ","الْحَدِيقَةُ"],answer:"الْحَدِيقَةُ وَاسِعَةٌ"},
-       {type:"order",q:"Reconstitue :",words:["جَدِيدٌ","الْكِتَابُ"],answer:"الْكِتَابُ جَدِيدٌ"},
-       {type:"audio",audioText:"الْبَابُ مَفْتُوحٌ",options:["الْبَابُ مَفْتُوحٌ","الْبَابُ مُغْلَقٌ","النَّافِذَةُ مَفْتُوحَةٌ","الْبَابُ كَبِيرٌ"],correct:0},
-       {type:"audio",audioText:"الْمَدْرَسَةُ كَبِيرَةٌ",options:["الْمَدْرَسَةُ صَغِيرَةٌ","الْمَدْرَسَةُ كَبِيرَةٌ","الْمَدْرَسَةُ جَدِيدَةٌ","الْمَدْرَسَةُ قَدِيمَةٌ"],correct:1},
-       {type:"audio",audioText:"الْحَدِيقَةُ وَاسِعَةٌ",options:["الْحَدِيقَةُ وَاسِعَةٌ","الْحَدِيقَةُ ضَيِّقَةٌ","الْبَيْتُ وَاسِعٌ","الْحَدِيقَةُ جَمِيلَةٌ"],correct:0},
-       {type:"audio",audioText:"النَّافِذَةُ مُغْلَقَةٌ",options:["النَّافِذَةُ مَفْتُوحَةٌ","النَّافِذَةُ مُغْلَقَةٌ","الْبَابُ مُغْلَقٌ","النَّافِذَةُ كَبِيرَةٌ"],correct:1}
-     ]},
-
-    /* ===== LEÇON 18 ===== */
-    {id:"t1l18", num:18, title:"Leçon 18", desc:"Le duel (المثنى)",
-     active:true, audio:"assets/audio/madinah/tome1/L18.mp3",
-     text:["كِتَابَانِ","طَالِبَانِ","مُدَرِّسَتَانِ","الْكِتَابَانِ جَدِيدَانِ","الطَّالِبَانِ مُجْتَهِدَانِ",
-           "الْبِنْتَانِ صَغِيرَتَانِ"],
-     vocab:[
-       {ar:"سَنَةٌ",fr:"Année",tr:"sana"},
-       {ar:"عَامٌ",fr:"An",tr:"ʿām"},
-       {ar:"كِتَابَانِ",fr:"Deux livres",tr:"kitābāni"},
-       {ar:"طَالِبَانِ",fr:"Deux étudiants",tr:"ṭālibāni"},
-       {ar:"مُدَرِّسَتَانِ",fr:"Deux professeures",tr:"mudarrisatāni"},
-       {ar:"بِنْتَانِ",fr:"Deux filles",tr:"bintāni"},
-       {ar:"وَلَدَانِ",fr:"Deux garçons",tr:"waladāni"},
-       {ar:"قَلَمَانِ",fr:"Deux stylos",tr:"qalamāni"},
-       {ar:"رَجُلَانِ",fr:"Deux hommes",tr:"rajulāni"},
-       {ar:"اِمْرَأَتَانِ",fr:"Deux femmes",tr:"imraʾatāni"},
-       {ar:"بَيْتٌ",fr:"Deux maisons",tr:"baytāni"},
-       {ar:"مَسْجِدَانِ",fr:"Deux mosquées",tr:"masjidāni"},
-       {ar:"مَدْرَسَتَانِ",fr:"Deux écoles",tr:"madrasatāni"},
-       {ar:"جَدِيدَانِ",fr:"Deux nouveaux",tr:"jadīdāni"},
-       {ar:"جَدِيدَتَانِ",fr:"Deux nouvelles",tr:"jadīdatāni"},
-       {ar:"قَدِيمَانِ",fr:"Deux vieux",tr:"qadīmāni"},
-       {ar:"كَبِيرَانِ",fr:"Deux grands",tr:"kabīrāni"},
-       {ar:"صَغِيرَانِ",fr:"Deux petits",tr:"ṣaghīrāni"},
-       {ar:"مُجْتَهِدَانِ",fr:"Deux travailleurs",tr:"mujtahidāni"},
-       {ar:"مُجْتَهِدَتَانِ",fr:"Deux travailleuses",tr:"mujtahidatāni"},
-       {ar:"صَغِيرَتَانِ",fr:"Deux petites",tr:"ṣaghīratāni"},
-       {ar:"أُخْتَانِ",fr:"Deux sœurs",tr:"ukhtāni"},
-       {ar:"أَخَوَانِ",fr:"Deux frères",tr:"akhawāni"},
-       {ar:"صَدِيقَانِ",fr:"Deux amis",tr:"ṣadīqāni"},
-       {ar:"صَدِيقَتَانِ",fr:"Deux amies",tr:"ṣadīqatāni"},
-       {ar:"يَدَانِ",fr:"Deux mains",tr:"yadāni"},
-       {ar:"رِجْلَانِ",fr:"Deux pieds",tr:"rijlāni"},
-       {ar:"عَيْنَانِ",fr:"Deux yeux",tr:"ʿaynāni"},
-       {ar:"أُذُنَانِ",fr:"Deux oreilles",tr:"udhunāni"},
-       {ar:"كَتِفَانِ",fr:"Deux épaules",tr:"katifāni"},
-       {ar:"قَدَمَانِ",fr:"Deux pieds",tr:"qadamāni"},
-       {ar:"مِئَةٌ",fr:"Cent",tr:"miʾa"},
-       {ar:"أَلْفٌ",fr:"Mille",tr:"alf"},
-       {ar:"مِلْيُونٌ",fr:"Un million",tr:"milyūn"},
-       {ar:"زَوْجَانِ",fr:"Deux couples / époux",tr:"zawjāni"},
-       {ar:"اِثْنَانِ",fr:"Deux",tr:"ithnāni"},
-       {ar:"اِثْنَتَانِ",fr:"Deux (fém.)",tr:"ithnatāni"},
-       {ar:"عِشْرُونَ",fr:"Vingt",tr:"ʿishrūn"},
-       {ar:"ثَلَاثُونَ",fr:"Trente",tr:"thalāthūn"},
-       {ar:"خَمْسُونَ",fr:"Cinquante",tr:"khamsūn"},
-       {ar:"مِئَتَانِ",fr:"Deux cents",tr:"miʾatāni"},
-       {ar:"أَلْفَانِ",fr:"Deux mille",tr:"alfāni"},
-       {ar:"كَمْ؟",fr:"Combien ?",tr:"kam"},
-       {ar:"هَلْ",fr:"Est-ce que ?",tr:"hal"},
-       {ar:"نَعَمْ",fr:"Oui",tr:"naʿam"}
-     ],
-     grammar:{title:"Le duel (المثنى)",
-       rule:"Le duel désigne exactement deux personnes ou deux choses. On ajoute ـانِ (nominatif) ou ـيْنِ (accusatif/génitif) au nom singulier. Exemple : كِتَابٌ → كِتَابَانِ (deux livres).",
-       examples:["كِتَابٌ → كِتَابَانِ","طَالِبٌ → طَالِبَانِ","بِنْتٌ → بِنْتَانِ","الْكِتَابَانِ جَدِيدَانِ"]},
-     dialogue:[
-       {sp:"A",ar:"كَمْ كِتَابًا عِنْدَكَ؟",fr:"Combien de livres as-tu ?"},
-       {sp:"B",ar:"عِنْدِي كِتَابَانِ.",fr:"J'ai deux livres."},
-       {sp:"A",ar:"وَكَمْ طَالِبًا فِي الْفَصْلِ؟",fr:"Et combien d'étudiants dans la classe ?"},
-       {sp:"B",ar:"طَالِبَانِ.",fr:"Deux étudiants."},
-       {sp:"A",ar:"مَنْ هَذَانِ؟",fr:"Qui sont ces deux-là ?"},
-       {sp:"B",ar:"هَذَانِ أَخَوَانِ.",fr:"Ce sont deux frères."},
-       {sp:"A",ar:"وَمَنْ هَاتَانِ؟",fr:"Et qui sont ces deux-ci ?"},
-       {sp:"B",ar:"هَاتَانِ أُخْتَانِ.",fr:"Ce sont deux sœurs."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire كِتَابَانِ ؟",options:["Deux livres","Un livre","Trois livres","Des livres"],correct:0},
-       {type:"qcm",q:"Comment dit-on « deux filles » ?",options:["بِنْتَانِ","بِنْتٌ","بَنَاتٌ","بِنْتًا"],correct:0},
-       {type:"qcm",q:"Quel suffixe pour le duel (nominatif) ?",options:["ـانِ","ـينَ","ـونَ","ـاتٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « deux professeures » ?",options:["مُدَرِّسَتَانِ","مُدَرِّسَةٌ","مُدَرِّسَاتٌ","مُدَرِّسٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire طَالِبَانِ ؟",options:["Deux étudiants","Un étudiant","Trois étudiants","Des étudiants"],correct:0},
-       {type:"qcm",q:"Comment dit-on « deux garçons » ?",options:["وَلَدَانِ","وَلَدٌ","أَوْلَادٌ","وَلَدَيْنِ"],correct:0},
-       {type:"qcm",q:"Que veut dire عَيْنَانِ ؟",options:["Deux yeux","Un œil","Trois yeux","Des yeux"],correct:0},
-       {type:"qcm",q:"Comment dit-on « deux mains » ?",options:["يَدَانِ","يَدٌ","أَيْدٍ","يَدَيْنِ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « deux cents » ?",options:["مِئَتَانِ","مِئَةٌ","مِئَاتٌ","مِئُونَ"],correct:0},
-       {type:"qcm",q:"Que veut dire أَلْفٌ ؟",options:["Mille","Cent","Un million","Dix"],correct:0},
-       {type:"qcm",q:"Comment dit-on « deux frères » ?",options:["أَخَوَانِ","أَخٌ","إِخْوَةٌ","أَخَوَيْنِ"],correct:0},
-       {type:"qcm",q:"Quel suffixe pour le duel à l'accusatif ?",options:["ـيْنِ","ـانِ","ـونَ","ـاتٌ"],correct:0},
-       {type:"tf",q:"Le duel désigne deux personnes ou deux choses",correct:true},
-       {type:"tf",q:"Le duel de طَالِبٌ est طَالِبُونَ",correct:false,explain:"C'est طَالِبَانِ."},
-       {type:"tf",ar:"الطَّالِبَانِ مُجْتَهِدَانِ",q:"Signifie « Les deux étudiants sont travailleurs »",correct:true},
-       {type:"tf",ar:"الْكِتَابَانِ جَدِيدَانِ",q:"Signifie « Les deux livres sont nouveaux »",correct:true},
-       {type:"fill",sentence:"عِنْدِي ___",options:["كِتَابَانِ","كِتَابٌ","كُتُبٌ","كِتَابَاتٌ"],correct:0},
-       {type:"fill",sentence:"___ جَدِيدَانِ",options:["الْكِتَابَانِ","الْكِتَابُ","الْكُتُبُ","كِتَابٌ"],correct:0},
-       {type:"fill",sentence:"هَذَانِ ___",options:["أَخَوَانِ","أَخٌ","إِخْوَةٌ","أَخَاوَاتٌ"],correct:0},
-       {type:"type",q:"Écris « deux livres » :",answer:"كِتَابَانِ",hint:"ك ت ا ب + ان"},
-       {type:"type",q:"Écris « deux filles » :",answer:"بِنْتَانِ",hint:"ب ن ت + ان"},
-       {type:"type",q:"Écris « deux étudiants » :",answer:"طَالِبَانِ",hint:"ط ا ل ب + ان"},
-       {type:"type",q:"Écris « deux mains » :",answer:"يَدَانِ",hint:"ي د + ان"},
-       {type:"type",q:"Écris « deux yeux » :",answer:"عَيْنَانِ",hint:"ع ي ن + ان"},
-       {type:"type",q:"Écris « deux cents » :",answer:"مِئَتَانِ",hint:"م ئ + ت + ان"},
-       {type:"order",q:"Reconstitue :",words:["كِتَابَانِ","عِنْدِي"],answer:"عِنْدِي كِتَابَانِ"},
-       {type:"order",q:"Reconstitue :",words:["جَدِيدَانِ","الْكِتَابَانِ"],answer:"الْكِتَابَانِ جَدِيدَانِ"},
-       {type:"order",q:"Reconstitue :",words:["مُجْتَهِدَانِ","الطَّالِبَانِ"],answer:"الطَّالِبَانِ مُجْتَهِدَانِ"},
-       {type:"order",q:"Reconstitue :",words:["أُخْتَانِ","هَاتَانِ"],answer:"هَاتَانِ أُخْتَانِ"},
-       {type:"order",q:"Reconstitue :",words:["أَخَوَانِ","هَذَانِ"],answer:"هَذَانِ أَخَوَانِ"},
-       {type:"audio",audioText:"عِنْدِي كِتَابَانِ",options:["عِنْدِي كِتَابَانِ","عِنْدِي كِتَابٌ","عِنْدِي كُتُبٌ","عِنْدِي كِتَابَاتٌ"],correct:0},
-       {type:"audio",audioText:"الطَّالِبَانِ مُجْتَهِدَانِ",options:["الطَّالِبَانِ مُجْتَهِدَانِ","الطَّالِبُ مُجْتَهِدٌ","الطُّلَّابُ مُجْتَهِدُونَ","الطَّالِبَاتُ مُجْتَهِدَاتٌ"],correct:0},
-       {type:"audio",audioText:"هَذَانِ أَخَوَانِ",options:["هَذَانِ أَخَوَانِ","هَاتَانِ أُخْتَانِ","هَذَا أَخٌ","هَؤُلَاءِ إِخْوَةٌ"],correct:0},
-       {type:"audio",audioText:"عِنْدِي كِتَابَانِ جَدِيدَانِ",options:["عِنْدِي كِتَابَانِ جَدِيدَانِ","عِنْدِي كِتَابَانِ قَدِيمَانِ","عِنْدِي كِتَابٌ جَدِيدٌ","عِنْدِي كُتُبٌ جَدِيدَةٌ"],correct:0}
-     ]},
-
-    /* ===== LEÇON 19 ===== */
-    {id:"t1l19", num:19, title:"Leçon 19", desc:"Les nombres de 1 à 10",
-     active:true, audio:"assets/audio/madinah/tome1/L19.mp3",
-     text:["وَاحِدٌ","اِثْنَانِ","ثَلَاثَةٌ","أَرْبَعَةٌ","خَمْسَةٌ",
-           "سِتَّةٌ","سَبْعَةٌ","ثَمَانِيَةٌ","تِسْعَةٌ","عَشَرَةٌ"],
-     vocab:[
-       {ar:"وَاحِدٌ",fr:"Un (1)",tr:"wāḥid"},
-       {ar:"اِثْنَانِ",fr:"Deux (2)",tr:"ithnāni"},
-       {ar:"ثَلَاثَةٌ",fr:"Trois (3)",tr:"thalātha"},
-       {ar:"أَرْبَعَةٌ",fr:"Quatre (4)",tr:"arbaʿa"},
-       {ar:"خَمْسَةٌ",fr:"Cinq (5)",tr:"khamsa"},
-       {ar:"سِتَّةٌ",fr:"Six (6)",tr:"sitta"},
-       {ar:"سَبْعَةٌ",fr:"Sept (7)",tr:"sabʿa"},
-       {ar:"ثَمَانِيَةٌ",fr:"Huit (8)",tr:"thamāniya"},
-       {ar:"تِسْعَةٌ",fr:"Neuf (9)",tr:"tisʿa"},
-       {ar:"عَشَرَةٌ",fr:"Dix (10)",tr:"ʿashara"},
-       {ar:"أَحَدَ عَشَرَ",fr:"Onze (11)",tr:"aḥada ʿashara"},
-       {ar:"اِثْنَا عَشَرَ",fr:"Douze (12)",tr:"ithnā ʿashara"},
-       {ar:"ثَلَاثَةَ عَشَرَ",fr:"Treize (13)",tr:"thalāthata ʿashara"},
-       {ar:"أَرْبَعَةَ عَشَرَ",fr:"Quatorze (14)",tr:"arbaʿata ʿashara"},
-       {ar:"خَمْسَةَ عَشَرَ",fr:"Quinze (15)",tr:"khamsata ʿashara"},
-       {ar:"عِشْرُونَ",fr:"Vingt (20)",tr:"ʿishrūn"},
-       {ar:"ثَلَاثُونَ",fr:"Trente (30)",tr:"thalāthūn"},
-       {ar:"أَرْبَعُونَ",fr:"Quarante (40)",tr:"arbaʿūn"},
-       {ar:"خَمْسُونَ",fr:"Cinquante (50)",tr:"khamsūn"},
-       {ar:"سِتُّونَ",fr:"Soixante (60)",tr:"sittūn"},
-       {ar:"سَبْعُونَ",fr:"Soixante-dix (70)",tr:"sabʿūn"},
-       {ar:"ثَمَانُونَ",fr:"Quatre-vingts (80)",tr:"thamānūn"},
-       {ar:"تِسْعُونَ",fr:"Quatre-vingt-dix (90)",tr:"tisʿūn"},
-       {ar:"مِئَةٌ",fr:"Cent (100)",tr:"miʾa"},
-       {ar:"أَلْفٌ",fr:"Mille (1000)",tr:"alf"},
-       {ar:"عِنَبٌ",fr:"Raisin",tr:"ʿinab"},
-       {ar:"دُوَلٌ",fr:"Pays",tr:"duwal"},
-       {ar:"مُسَافِرُونَ",fr:"Voyageurs",tr:"musāfirūn"},
-       {ar:"أَوْلَادٌ",fr:"Enfants",tr:"awlād"},
-       {ar:"كُتُبٌ",fr:"Livres",tr:"kutub"},
-       {ar:"طُلَّابٌ",fr:"Étudiants",tr:"ṭullāb"},
-       {ar:"أَيَّامٌ",fr:"Jours",tr:"ayyām"},
-       {ar:"شُهُورٌ",fr:"Mois",tr:"shuhūr"},
-       {ar:"سَنَوَاتٌ",fr:"Années",tr:"sanawāt"},
-       {ar:"دَقَائِقُ",fr:"Minutes",tr:"daqāʾiq"},
-       {ar:"سَاعَاتٌ",fr:"Heures",tr:"sāʿāt"},
-       {ar:"أَسَابِيعُ",fr:"Semaines",tr:"asābīʿ"},
-       {ar:"كَمْ؟",fr:"Combien ?",tr:"kam"},
-       {ar:"عَدَدٌ",fr:"Nombre",tr:"ʿadad"},
-       {ar:"رَقْمٌ",fr:"Chiffre / Numéro",tr:"raqm"},
-       {ar:"أَوَّلٌ",fr:"Premier",tr:"awwal"},
-       {ar:"ثَانِي",fr:"Deuxième",tr:"thānī"},
-       {ar:"ثَالِثٌ",fr:"Troisième",tr:"thālith"},
-       {ar:"أَخِيرٌ",fr:"Dernier",tr:"akhīr"}
-     ],
-     grammar:{title:"Les nombres de 1 à 10",
-       rule:"Les nombres de 3 à 10 sont suivis d'un nom au pluriel et au génitif. Exemple : ثَلَاثَةُ كُتُبٍ (trois livres). Les nombres 1 et 2 s'accordent directement avec le nom.",
-       examples:["ثَلَاثَةُ كُتُبٍ = trois livres","عَشَرَةُ طُلَّابٍ = dix étudiants","خَمْسَةُ أَقْلَامٍ = cinq stylos"]},
-     dialogue:[
-       {sp:"A",ar:"كَمْ عِنْدَكَ مِنْ كِتَابٍ؟",fr:"Combien as-tu de livres ?"},
-       {sp:"B",ar:"عِنْدِي ثَلَاثَةُ كُتُبٍ.",fr:"J'ai trois livres."},
-       {sp:"A",ar:"وَكَمْ طَالِبًا فِي الْفَصْلِ؟",fr:"Et combien d'étudiants dans la classe ?"},
-       {sp:"B",ar:"عَشَرَةُ طُلَّابٍ.",fr:"Dix étudiants."},
-       {sp:"A",ar:"كَمْ عُمْرُكَ؟",fr:"Quel âge as-tu ?"},
-       {sp:"B",ar:"عُمْرِي عِشْرُونَ سَنَةً.",fr:"J'ai vingt ans."},
-       {sp:"A",ar:"وَكَمْ أَخًا عِنْدَكَ؟",fr:"Et combien de frères as-tu ?"},
-       {sp:"B",ar:"عِنْدِي أَخَوَانِ وَأُخْتَانِ.",fr:"J'ai deux frères et deux sœurs."},
-       {sp:"A",ar:"كَمْ سَاعَةً فِي الْيَوْمِ؟",fr:"Combien d'heures dans une journée ?"},
-       {sp:"B",ar:"أَرْبَعٌ وَعِشْرُونَ سَاعَةً.",fr:"Vingt-quatre heures."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire وَاحِدٌ ؟",options:["Un","Deux","Trois","Quatre"],correct:0},
-       {type:"qcm",q:"Comment dit-on « dix » ?",options:["عَشَرَةٌ","تِسْعَةٌ","ثَمَانِيَةٌ","سَبْعَةٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « cinq » ?",options:["خَمْسَةٌ","سِتَّةٌ","سَبْعَةٌ","أَرْبَعَةٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « deux » ?",options:["اِثْنَانِ","وَاحِدٌ","ثَلَاثَةٌ","أَرْبَعَةٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « huit » ?",options:["ثَمَانِيَةٌ","سَبْعَةٌ","تِسْعَةٌ","عَشَرَةٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « neuf » ?",options:["تِسْعَةٌ","ثَمَانِيَةٌ","عَشَرَةٌ","سَبْعَةٌ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « sept » ?",options:["سَبْعَةٌ","سِتَّةٌ","ثَمَانِيَةٌ","خَمْسَةٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire عِشْرُونَ ؟",options:["Vingt","Trente","Quarante","Cinquante"],correct:0},
-       {type:"qcm",q:"Comment dit-on « cent » ?",options:["مِئَةٌ","أَلْفٌ","عَشَرَةٌ","مِلْيُونٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire أَلْفٌ ؟",options:["Mille","Cent","Dix","Un million"],correct:0},
-       {type:"qcm",q:"Que veut dire عِنَبٌ ؟",options:["Raisin","Pomme","Orange","Banane"],correct:0},
-       {type:"qcm",q:"Que veut dire مُسَافِرُونَ ؟",options:["Voyageurs","Étudiants","Professeurs","Enfants"],correct:0},
-       {type:"tf",ar:"عِنْدِي ثَلَاثَةُ كُتُبٍ",q:"Signifie « J'ai trois livres »",correct:true},
-       {type:"tf",ar:"عَشَرَةُ طُلَّابٍ",q:"Signifie « Neuf étudiants »",correct:false,explain:"عَشَرَةٌ = dix."},
-       {type:"tf",q:"سِتَّةٌ = 6",correct:true},
-       {type:"tf",ar:"عُمْرِي عِشْرُونَ سَنَةً",q:"Signifie « J'ai vingt ans »",correct:true},
-       {type:"fill",sentence:"عِنْدِي ___ كُتُبٍ",options:["ثَلَاثَةُ","ثَلَاثٌ","ثَلَاثَ","ثَلَاثِ"],correct:0},
-       {type:"fill",sentence:"___ طُلَّابٍ",options:["عَشَرَةُ","عَشَرٌ","عَشَرَ","عَشَرِ"],correct:0},
-       {type:"fill",sentence:"عُمْرِي ___ سَنَةً",options:["عِشْرُونَ","عِشْرِينُ","عِشْرِينَ","عِشْرُونُ"],correct:0},
-       {type:"type",q:"Écris « trois » :",answer:"ثَلَاثَةٌ",hint:"6 lettres"},
-       {type:"type",q:"Écris « cinq » :",answer:"خَمْسَةٌ",hint:"5 lettres"},
-       {type:"type",q:"Écris « dix » :",answer:"عَشَرَةٌ",hint:"5 lettres"},
-       {type:"type",q:"Écris « vingt » :",answer:"عِشْرُونَ",hint:"ع ش ر + ون"},
-       {type:"type",q:"Écris « cent » :",answer:"مِئَةٌ",hint:"3 lettres"},
-       {type:"type",q:"Écris « mille » :",answer:"أَلْفٌ",hint:"3 lettres"},
-       {type:"order",q:"Reconstitue :",words:["كُتُبٍ","ثَلَاثَةُ","عِنْدِي"],answer:"عِنْدِي ثَلَاثَةُ كُتُبٍ"},
-       {type:"order",q:"Reconstitue :",words:["طُلَّابٍ","عَشَرَةُ"],answer:"عَشَرَةُ طُلَّابٍ"},
-       {type:"order",q:"Reconstitue :",words:["كُتُبٍ","خَمْسَةُ","عِنْدِي"],answer:"عِنْدِي خَمْسَةُ كُتُبٍ"},
-       {type:"order",q:"Reconstitue :",words:["سَنَةً","عِشْرُونَ","عُمْرِي"],answer:"عُمْرِي عِشْرُونَ سَنَةً"},
-       {type:"order",q:"Reconstitue :",words:["عِنْدَكَ","كَمْ","كِتَابٍ","مِنْ","؟"],answer:"كَمْ عِنْدَكَ مِنْ كِتَابٍ ؟"},
-       {type:"audio",audioText:"عِنْدِي ثَلَاثَةُ كُتُبٍ",options:["عِنْدِي ثَلَاثَةُ كُتُبٍ","عِنْدِي كِتَابَانِ","عِنْدِي كِتَابٌ","عِنْدِي عَشَرَةُ كُتُبٍ"],correct:0},
-       {type:"audio",audioText:"عَشَرَةُ طُلَّابٍ",options:["عَشَرَةُ طُلَّابٍ","تِسْعَةُ طُلَّابٍ","ثَمَانِيَةُ طُلَّابٍ","خَمْسَةُ طُلَّابٍ"],correct:0},
-       {type:"audio",audioText:"عُمْرِي عِشْرُونَ سَنَةً",options:["عُمْرِي عِشْرُونَ سَنَةً","عُمْرِي ثَلَاثُونَ سَنَةً","عُمْرِي خَمْسُونَ سَنَةً","عُمْرِي عَشَرَةُ سَنَوَاتٍ"],correct:0},
-       {type:"audio",audioText:"خَمْسَةُ أَقْلَامٍ",options:["خَمْسَةُ أَقْلَامٍ","أَرْبَعَةُ أَقْلَامٍ","سِتَّةُ أَقْلَامٍ","ثَلَاثَةُ أَقْلَامٍ"],correct:0}
-     ]},
-
-    /* ===== LEÇON 20 ===== */
-    {id:"t1l20", num:20, title:"Leçon 20", desc:"Pronom relatif الَّذِي",
-     active:true, audio:"assets/audio/madinah/tome1/L20.mp3",
-     text:["الرَّجُلُ الَّذِي فِي الْبَيْتِ","الطَّالِبُ الَّذِي نَجَحَ","الْمُدَرِّسُ الَّذِي فِي الْفَصْلِ",
-           "هَذَا هُوَ الْكِتَابُ الَّذِي قَرَأْتُهُ"],
-     vocab:[
-       {ar:"كَلِمَةٌ",fr:"Mot",tr:"kalima"},
-       {ar:"كَلِمَاتٌ",fr:"Mots",tr:"kalimāt"},
-       {ar:"الَّذِي",fr:"Celui qui / qui (masc.)",tr:"alladhī"},
-       {ar:"الَّتِي",fr:"Celle qui / qui (fém.)",tr:"allatī"},
-       {ar:"الَّذِينَ",fr:"Ceux qui",tr:"alladhīna"},
-       {ar:"اللَّاتِي",fr:"Celles qui",tr:"allātī"},
-       {ar:"اللَّذَانِ",fr:"Les deux qui (masc.)",tr:"alladhāni"},
-       {ar:"اللَّتَانِ",fr:"Les deux qui (fém.)",tr:"allatāni"},
-       {ar:"نَجَحَ",fr:"Réussir",tr:"najaḥa"},
-       {ar:"نَجَحَتْ",fr:"Elle a réussi",tr:"najaḥat"},
-       {ar:"نَجَحُوا",fr:"Ils ont réussi",tr:"najaḥū"},
-       {ar:"نَجَحْنَ",fr:"Elles ont réussi",tr:"najaḥna"},
-       {ar:"قَرَأَ",fr:"Lire",tr:"qaraʾa"},
-       {ar:"قَرَأْتُ",fr:"J'ai lu",tr:"qaraʾtu"},
-       {ar:"قَرَأْتُهُ",fr:"Je l'ai lu",tr:"qaraʾtuhu"},
-       {ar:"كَتَبَ",fr:"Écrire",tr:"kataba"},
-       {ar:"كَتَبْتُ",fr:"J'ai écrit",tr:"katabtu"},
-       {ar:"فَهِمَ",fr:"Comprendre",tr:"fahima"},
-       {ar:"فَهِمْتُ",fr:"J'ai compris",tr:"fahimtu"},
-       {ar:"عَرَفَ",fr:"Connaître",tr:"ʿarafa"},
-       {ar:"عَرَفْتُ",fr:"J'ai connu",tr:"ʿaraftu"},
-       {ar:"وَجَدَ",fr:"Trouver",tr:"wajada"},
-       {ar:"وَجَدْتُ",fr:"J'ai trouvé",tr:"wajadtu"},
-       {ar:"أَخَذَ",fr:"Prendre",tr:"akhadha"},
-       {ar:"أَخَذْتُ",fr:"J'ai pris",tr:"akhadhtu"},
-       {ar:"أَكَلَ",fr:"Manger",tr:"akala"},
-       {ar:"أَكَلْتُ",fr:"J'ai mangé",tr:"akaltu"},
-       {ar:"شَرِبَ",fr:"Boire",tr:"shariba"},
-       {ar:"شَرِبْتُ",fr:"J'ai bu",tr:"sharibtu"},
-       {ar:"ذَهَبَ",fr:"Aller",tr:"dhahaba"},
-       {ar:"ذَهَبْتُ",fr:"Je suis allé",tr:"dhahabtu"},
-       {ar:"جَاءَ",fr:"Venir",tr:"jāʾa"},
-       {ar:"جَاءَ الَّذِي",fr:"Celui qui est venu",tr:"jāʾa alladhī"},
-       {ar:"الْفَصْلُ",fr:"La classe / saison",tr:"al-faṣl"},
-       {ar:"الْمَكْتَبُ",fr:"Le bureau",tr:"al-maktab"},
-       {ar:"الْمَكْتَبَةُ",fr:"La bibliothèque",tr:"al-maktaba"},
-       {ar:"الْمُدِيرُ",fr:"Le directeur",tr:"al-mudīr"},
-       {ar:"الْمُوَظَّفُ",fr:"L'employé",tr:"al-muwaẓẓaf"},
-       {ar:"الْجَامِعَةُ",fr:"L'université",tr:"al-jāmiʿa"},
-       {ar:"الْاِخْتِبَارُ",fr:"L'examen",tr:"al-ikhtibār"},
-       {ar:"الدَّرْسُ",fr:"La leçon",tr:"ad-dars"},
-       {ar:"الْوَاجِبُ",fr:"Le devoir",tr:"al-wājib"},
-       {ar:"السُّؤَالُ",fr:"La question",tr:"as-suʾāl"},
-       {ar:"الْجَوَابُ",fr:"La réponse",tr:"al-jawāb"},
-       {ar:"النَّتِيجَةُ",fr:"Le résultat",tr:"an-natīja"}
-     ],
-     grammar:{title:"Le pronom relatif الَّذِي",
-       rule:"الَّذِي (masc. sing.), الَّتِي (fém. sing.), الَّذِينَ (masc. pl.), اللَّاتِي (fém. pl.), اللَّذَانِ (duel masc.), اللَّتَانِ (duel fém.). Le relatif s'accorde avec son antécédent en genre et en nombre.",
-       examples:["الرَّجُلُ الَّذِي فِي الْبَيْتِ = L'homme qui est dans la maison","الطَّالِبَةُ الَّتِي نَجَحَتْ = L'étudiante qui a réussi","الطُّلَّابُ الَّذِينَ نَجَحُوا = Les étudiants qui ont réussi"]},
-     dialogue:[
-       {sp:"A",ar:"مَنْ هَذَا الرَّجُلُ؟",fr:"Qui est cet homme ?"},
-       {sp:"B",ar:"هَذَا الرَّجُلُ الَّذِي فِي الْبَيْتِ.",fr:"C'est l'homme qui est dans la maison."},
-       {sp:"A",ar:"مَنْ هَذِهِ الْمَرْأَةُ؟",fr:"Qui est cette femme ?"},
-       {sp:"B",ar:"هَذِهِ الْمَرْأَةُ الَّتِي نَجَحَتْ.",fr:"C'est la femme qui a réussi."},
-       {sp:"A",ar:"مَنْ هَؤُلَاءِ الطُّلَّابُ؟",fr:"Qui sont ces étudiants ?"},
-       {sp:"B",ar:"هَؤُلَاءِ الطُّلَّابُ الَّذِينَ نَجَحُوا.",fr:"Ce sont les étudiants qui ont réussi."},
-       {sp:"A",ar:"مَا هَذَا الْكِتَابُ؟",fr:"Quel est ce livre ?"},
-       {sp:"B",ar:"هَذَا هُوَ الْكِتَابُ الَّذِي قَرَأْتُهُ.",fr:"C'est le livre que j'ai lu."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire الَّذِي ؟",options:["Celui qui","Celle qui","Ceux qui","Celles qui"],correct:0},
-       {type:"qcm",q:"Comment dit-on « celle qui » ?",options:["الَّتِي","الَّذِي","الَّذِينَ","اللَّاتِي"],correct:0},
-       {type:"qcm",q:"Comment dit-on « ceux qui » ?",options:["الَّذِينَ","الَّذِي","الَّتِي","اللَّاتِي"],correct:0},
-       {type:"qcm",q:"Comment dit-on « celles qui » ?",options:["اللَّاتِي","الَّذِينَ","الَّتِي","الَّذِي"],correct:0},
-       {type:"qcm",q:"Que veut dire كَلِمَةٌ ؟",options:["Mot","Phrase","Lettre","Livre"],correct:0},
-       {type:"qcm",q:"Que veut dire نَجَحَ ؟",options:["Réussir","Échouer","Étudier","Travailler"],correct:0},
-       {type:"qcm",q:"Comment dit-on « lire » ?",options:["قَرَأَ","كَتَبَ","فَهِمَ","عَرَفَ"],correct:0},
-       {type:"qcm",q:"Que veut dire كَتَبَ ؟",options:["Écrire","Lire","Comprendre","Voir"],correct:0},
-       {type:"qcm",q:"Que veut dire فَهِمَ ؟",options:["Comprendre","Savoir","Voir","Écouter"],correct:0},
-       {type:"qcm",q:"Comment dit-on « trouver » ?",options:["وَجَدَ","أَخَذَ","أَكَلَ","شَرِبَ"],correct:0},
-       {type:"qcm",q:"Que veut dire الِاخْتِبَارُ ؟",options:["L'examen","Le résultat","Le devoir","La question"],correct:0},
-       {type:"qcm",q:"Comment dit-on « la réponse » ?",options:["الْجَوَابُ","السُّؤَالُ","الدَّرْسُ","الْوَاجِبُ"],correct:0},
-       {type:"tf",ar:"الطَّالِبُ الَّذِي نَجَحَ",q:"Signifie « L'étudiant qui a réussi »",correct:true},
-       {type:"tf",q:"Le relatif s'accorde avec son antécédent en genre et nombre",correct:true},
-       {type:"tf",ar:"الرَّجُلُ الَّذِي فِي الْبَيْتِ",q:"Signifie « La femme qui est dans la maison »",correct:false,explain:"الرَّجُلُ = l'homme."},
-       {type:"tf",ar:"الطَّالِبَةُ الَّتِي نَجَحَتْ",q:"Signifie « L'étudiante qui a réussi »",correct:true},
-       {type:"fill",sentence:"الطَّالِبُ ___ نَجَحَ",options:["الَّذِي","الَّتِي","الَّذِينَ","اللَّاتِي"],correct:0},
-       {type:"fill",sentence:"الطَّالِبَةُ ___ نَجَحَتْ",options:["الَّتِي","الَّذِي","الَّذِينَ","اللَّاتِي"],correct:0},
-       {type:"fill",sentence:"الطُّلَّابُ ___ نَجَحُوا",options:["الَّذِينَ","الَّذِي","الَّتِي","اللَّاتِي"],correct:0},
-       {type:"type",q:"Écris « celui qui » :",answer:"الَّذِي",hint:"ال + ذ ي"},
-       {type:"type",q:"Écris « celle qui » :",answer:"الَّتِي",hint:"ال + ت ي"},
-       {type:"type",q:"Écris « ceux qui » :",answer:"الَّذِينَ",hint:"ال + ذ ي ن"},
-       {type:"type",q:"Écris « celles qui » :",answer:"اللَّاتِي",hint:"ال + ل ا ت ي"},
-       {type:"type",q:"Écris « réussir » :",answer:"نَجَحَ",hint:"3 lettres"},
-       {type:"type",q:"Écris « lire » :",answer:"قَرَأَ",hint:"3 lettres"},
-       {type:"order",q:"Reconstitue :",words:["نَجَحَ","الَّذِي","الطَّالِبُ"],answer:"الطَّالِبُ الَّذِي نَجَحَ"},
-       {type:"order",q:"Reconstitue :",words:["الْبَيْتِ","فِي","الَّذِي","الرَّجُلُ"],answer:"الرَّجُلُ الَّذِي فِي الْبَيْتِ"},
-       {type:"order",q:"Reconstitue :",words:["نَجَحَتْ","الَّتِي","الطَّالِبَةُ"],answer:"الطَّالِبَةُ الَّتِي نَجَحَتْ"},
-       {type:"order",q:"Reconstitue :",words:["نَجَحُوا","الَّذِينَ","الطُّلَّابُ"],answer:"الطُّلَّابُ الَّذِينَ نَجَحُوا"},
-       {type:"order",q:"Reconstitue :",words:["قَرَأْتُهُ","الَّذِي","الْكِتَابُ","هَذَا"],answer:"هَذَا الْكِتَابُ الَّذِي قَرَأْتُهُ"},
-       {type:"audio",audioText:"الطَّالِبُ الَّذِي نَجَحَ",options:["الطَّالِبُ الَّذِي نَجَحَ","الطَّالِبَةُ الَّتِي نَجَحَتْ","الطُّلَّابُ الَّذِينَ نَجَحُوا","الطَّالِبُ الَّذِي دَرَسَ"],correct:0},
-       {type:"audio",audioText:"الرَّجُلُ الَّذِي فِي الْبَيْتِ",options:["الرَّجُلُ الَّذِي فِي الْبَيْتِ","الرَّجُلُ الَّذِي فِي الْمَسْجِدِ","الْمَرْأَةُ الَّتِي فِي الْبَيْتِ","الطِّفْلُ الَّذِي فِي الْبَيْتِ"],correct:0},
-       {type:"audio",audioText:"الطَّالِبَةُ الَّتِي نَجَحَتْ",options:["الطَّالِبَةُ الَّتِي نَجَحَتْ","الطَّالِبُ الَّذِي نَجَحَ","الطُّلَّابُ الَّذِينَ نَجَحُوا","الطَّالِبَةُ الَّتِي دَرَسَتْ"],correct:0},
-       {type:"audio",audioText:"الطُّلَّابُ الَّذِينَ نَجَحُوا",options:["الطُّلَّابُ الَّذِينَ نَجَحُوا","الطَّالِبُ الَّذِي نَجَحَ","الطَّالِبَاتُ اللَّاتِي نَجَحْنَ","الطُّلَّابُ الَّذِينَ دَرَسُوا"],correct:0}
-     ]},
-
-    /* ===== LEÇON 21 ===== */
-    {id:"t1l21", num:21, title:"Leçon 21", desc:"Pronoms relatifs (suite)",
-     active:true, audio:"assets/audio/madinah/tome1/L21.mp3",
-     text:["الطَّالِبَةُ الَّتِي نَجَحَتْ","الطُّلَّابُ الَّذِينَ نَجَحُوا","الطَّالِبَاتُ اللَّاتِي نَجَحْنَ",
-           "هَذَا هُوَ الْكِتَابُ الَّذِي قَرَأْتُهُ"],
-     vocab:[
-       {ar:"الَّتِي",fr:"Celle qui",tr:"allatī"},
-       {ar:"الَّذِينَ",fr:"Ceux qui",tr:"alladhīna"},
-       {ar:"اللَّاتِي",fr:"Celles qui",tr:"allātī"},
-       {ar:"اللَّذَانِ",fr:"Les deux qui (masc.)",tr:"alladhāni"},
-       {ar:"اللَّتَانِ",fr:"Les deux qui (fém.)",tr:"allatāni"},
-       {ar:"نَجَحَتْ",fr:"Elle a réussi",tr:"najaḥat"},
-       {ar:"نَجَحُوا",fr:"Ils ont réussi",tr:"najaḥū"},
-       {ar:"نَجَحْنَ",fr:"Elles ont réussi",tr:"najaḥna"},
-       {ar:"قَرَأَتْ",fr:"Elle a lu",tr:"qaraʾat"},
-       {ar:"قَرَأُوا",fr:"Ils ont lu",tr:"qaraʾū"},
-       {ar:"قَرَأْنَ",fr:"Elles ont lu",tr:"qaraʾna"},
-       {ar:"كَتَبَتْ",fr:"Elle a écrit",tr:"katabat"},
-       {ar:"كَتَبُوا",fr:"Ils ont écrit",tr:"katabū"},
-       {ar:"كَتَبْنَ",fr:"Elles ont écrit",tr:"katabna"},
-       {ar:"ذَهَبَتْ",fr:"Elle est allée",tr:"dhahabat"},
-       {ar:"ذَهَبُوا",fr:"Ils sont allés",tr:"dhahabū"},
-       {ar:"ذَهَبْنَ",fr:"Elles sont allées",tr:"dhahabna"},
-       {ar:"جَاءَتْ",fr:"Elle est venue",tr:"jāʾat"},
-       {ar:"جَاءُوا",fr:"Ils sont venus",tr:"jāʾū"},
-       {ar:"جَاءْنَ",fr:"Elles sont venues",tr:"jāʾna"},
-       {ar:"أَكَلَتْ",fr:"Elle a mangé",tr:"akalat"},
-       {ar:"أَكَلُوا",fr:"Ils ont mangé",tr:"akalū"},
-       {ar:"أَكَلْنَ",fr:"Elles ont mangé",tr:"akalna"},
-       {ar:"شَرِبَتْ",fr:"Elle a bu",tr:"sharibat"},
-       {ar:"شَرِبُوا",fr:"Ils ont bu",tr:"sharibū"},
-       {ar:"شَرِبْنَ",fr:"Elles ont bu",tr:"sharibna"},
-       {ar:"فَهِمَتْ",fr:"Elle a compris",tr:"fahimat"},
-       {ar:"فَهِمُوا",fr:"Ils ont compris",tr:"fahimū"},
-       {ar:"فَهِمْنَ",fr:"Elles ont compris",tr:"fahimna"},
-       {ar:"عَرَفَتْ",fr:"Elle a connu",tr:"ʿarafat"},
-       {ar:"عَرَفُوا",fr:"Ils ont connu",tr:"ʿarafū"},
-       {ar:"عَرَفْنَ",fr:"Elles ont connu",tr:"ʿarafna"},
-       {ar:"سَافَرَتْ",fr:"Elle a voyagé",tr:"sāfarat"},
-       {ar:"سَافَرُوا",fr:"Ils ont voyagé",tr:"sāfarū"},
-       {ar:"سَافَرْنَ",fr:"Elles ont voyagé",tr:"sāfarna"},
-       {ar:"الْمَدْرَسَةُ",fr:"L'école",tr:"al-madrasa"},
-       {ar:"الْجَامِعَةُ",fr:"L'université",tr:"al-jāmiʿa"},
-       {ar:"الْفَصْلُ",fr:"La classe",tr:"al-faṣl"},
-       {ar:"السُّوقُ",fr:"Le marché",tr:"as-sūq"},
-       {ar:"الْحَدِيقَةُ",fr:"Le jardin",tr:"al-ḥadīqa"},
-       {ar:"الْبَيْتُ",fr:"La maison",tr:"al-bayt"},
-       {ar:"الْكِتَابُ",fr:"Le livre",tr:"al-kitāb"},
-       {ar:"الدَّرْسُ",fr:"La leçon",tr:"ad-dars"},
-       {ar:"الْاِخْتِبَارُ",fr:"L'examen",tr:"al-ikhtibār"},
-       {ar:"النَّجَاحُ",fr:"Le succès",tr:"an-najāḥ"}
-     ],
-     grammar:{title:"Les pronoms relatifs (accord)",
-       rule:"Le relatif s'accorde avec son antécédent en genre et en nombre : الَّذِي (m. s.), الَّتِي (f. s.), الَّذِينَ (m. pl.), اللَّاتِي (f. pl.), اللَّذَانِ (duel m.), اللَّتَانِ (duel f.).",
-       examples:["الطَّالِبُ الَّذِي نَجَحَ = L'étudiant qui a réussi","الطَّالِبَةُ الَّتِي نَجَحَتْ = L'étudiante qui a réussi","الطُّلَّابُ الَّذِينَ نَجَحُوا = Les étudiants qui ont réussi","الطَّالِبَاتُ اللَّاتِي نَجَحْنَ = Les étudiantes qui ont réussi"]},
-     dialogue:[
-       {sp:"A",ar:"مَنْ هَذِهِ الطَّالِبَةُ؟",fr:"Qui est cette étudiante ?"},
-       {sp:"B",ar:"هَذِهِ الطَّالِبَةُ الَّتِي نَجَحَتْ.",fr:"C'est l'étudiante qui a réussi."},
-       {sp:"A",ar:"وَمَنْ هَؤُلَاءِ الطُّلَّابُ؟",fr:"Et qui sont ces étudiants ?"},
-       {sp:"B",ar:"هَؤُلَاءِ الطُّلَّابُ الَّذِينَ نَجَحُوا.",fr:"Ce sont les étudiants qui ont réussi."},
-       {sp:"A",ar:"وَمَنْ هَؤُلَاءِ الطَّالِبَاتُ؟",fr:"Et qui sont ces étudiantes ?"},
-       {sp:"B",ar:"هَؤُلَاءِ الطَّالِبَاتُ اللَّاتِي نَجَحْنَ.",fr:"Ce sont les étudiantes qui ont réussi."},
-       {sp:"A",ar:"مَا هَذَا الْكِتَابُ؟",fr:"Quel est ce livre ?"},
-       {sp:"B",ar:"هَذَا هُوَ الْكِتَابُ الَّذِي قَرَأْتُهُ.",fr:"C'est le livre que j'ai lu."}
-     ],
-     exercises:[
-       {type:"qcm",q:"Que veut dire اللَّاتِي ؟",options:["Celles qui","Ceux qui","Celui qui","Celle qui"],correct:0},
-       {type:"qcm",q:"Comment dit-on « ils ont réussi » ?",options:["نَجَحُوا","نَجَحَ","نَجَحَتْ","نَجَحْنَ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « elles ont réussi » ?",options:["نَجَحْنَ","نَجَحَ","نَجَحَتْ","نَجَحُوا"],correct:0},
-       {type:"qcm",q:"Comment dit-on « elle a réussi » ?",options:["نَجَحَتْ","نَجَحَ","نَجَحُوا","نَجَحْنَ"],correct:0},
-       {type:"qcm",q:"Que veut dire اللَّذَانِ ؟",options:["Les deux qui (masc.)","Les deux qui (fém.)","Celui qui","Ceux qui"],correct:0},
-       {type:"qcm",q:"Comment dit-on « elle a lu » ?",options:["قَرَأَتْ","قَرَأَ","قَرَأُوا","قَرَأْنَ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « ils ont écrit » ?",options:["كَتَبُوا","كَتَبَ","كَتَبَتْ","كَتَبْنَ"],correct:0},
-       {type:"qcm",q:"Que veut dire سَافَرُوا ؟",options:["Ils ont voyagé","Elle a voyagé","Elles ont voyagé","Il a voyagé"],correct:0},
-       {type:"qcm",q:"Que veut dire النَّجَاحُ ؟",options:["Le succès","L'échec","L'examen","Le résultat"],correct:0},
-       {type:"qcm",q:"Comment dit-on « l'université » ?",options:["الْجَامِعَةُ","الْمَدْرَسَةُ","الْفَصْلُ","الْمَكْتَبَةُ"],correct:0},
-       {type:"tf",ar:"الطَّالِبَةُ الَّتِي نَجَحَتْ",q:"Signifie « L'étudiante qui a réussi »",correct:true},
-       {type:"tf",ar:"الطُّلَّابُ الَّذِينَ نَجَحُوا",q:"Signifie « Les étudiantes qui ont réussi »",correct:false,explain:"الَّذِينَ est masculin pluriel."},
-       {type:"tf",q:"الَّذِينَ est utilisé pour un groupe de femmes",correct:false,explain:"Non, c'est اللَّاتِي pour les femmes."},
-       {type:"tf",ar:"الطَّالِبَاتُ اللَّاتِي نَجَحْنَ",q:"Signifie « Les étudiantes qui ont réussi »",correct:true},
-       {type:"fill",sentence:"الطُّلَّابُ ___ نَجَحُوا",options:["الَّذِينَ","الَّذِي","الَّتِي","اللَّاتِي"],correct:0},
-       {type:"fill",sentence:"الطَّالِبَاتُ ___ نَجَحْنَ",options:["اللَّاتِي","الَّذِينَ","الَّتِي","الَّذِي"],correct:0},
-       {type:"fill",sentence:"الطَّالِبَةُ ___ نَجَحَتْ",options:["الَّتِي","الَّذِي","الَّذِينَ","اللَّاتِي"],correct:0},
-       {type:"type",q:"Écris « celles qui » :",answer:"اللَّاتِي",hint:"ال + ل ا ت ي"},
-       {type:"type",q:"Écris « ils ont réussi » :",answer:"نَجَحُوا",hint:"ن ج ح + وا"},
-       {type:"type",q:"Écris « elles ont réussi » :",answer:"نَجَحْنَ",hint:"ن ج ح + ن"},
-       {type:"type",q:"Écris « elle a réussi » :",answer:"نَجَحَتْ",hint:"ن ج ح + ت"},
-       {type:"type",q:"Écris « le succès » :",answer:"النَّجَاحُ",hint:"avec ال"},
-       {type:"type",q:"Écris « l'université » :",answer:"الْجَامِعَةُ",hint:"avec ال"},
-       {type:"order",q:"Reconstitue :",words:["نَجَحَتْ","الَّتِي","الطَّالِبَةُ"],answer:"الطَّالِبَةُ الَّتِي نَجَحَتْ"},
-       {type:"order",q:"Reconstitue :",words:["نَجَحُوا","الَّذِينَ","الطُّلَّابُ"],answer:"الطُّلَّابُ الَّذِينَ نَجَحُوا"},
-       {type:"order",q:"Reconstitue :",words:["نَجَحْنَ","اللَّاتِي","الطَّالِبَاتُ"],answer:"الطَّالِبَاتُ اللَّاتِي نَجَحْنَ"},
-       {type:"order",q:"Reconstitue :",words:["قَرَأْتُهُ","الَّذِي","الْكِتَابُ","هَذَا"],answer:"هَذَا الْكِتَابُ الَّذِي قَرَأْتُهُ"},
-       {type:"order",q:"Reconstitue :",words:["الْفَصْلِ","فِي","الَّذِي","الطَّالِبُ"],answer:"الطَّالِبُ الَّذِي فِي الْفَصْلِ"},
-       {type:"audio",audioText:"الطَّالِبَةُ الَّتِي نَجَحَتْ",options:["الطَّالِبَةُ الَّتِي نَجَحَتْ","الطَّالِبُ الَّذِي نَجَحَ","الطَّالِبَاتُ اللَّاتِي نَجَحْنَ","الطَّالِبَةُ الَّتِي دَرَسَتْ"],correct:0},
-       {type:"audio",audioText:"الطُّلَّابُ الَّذِينَ نَجَحُوا",options:["الطُّلَّابُ الَّذِينَ نَجَحُوا","الطَّالِبُ الَّذِي نَجَحَ","الطَّالِبَاتُ اللَّاتِي نَجَحْنَ","الطُّلَّابُ الَّذِينَ دَرَسُوا"],correct:0},
-       {type:"audio",audioText:"الطَّالِبَاتُ اللَّاتِي نَجَحْنَ",options:["الطَّالِبَاتُ اللَّاتِي نَجَحْنَ","الطُّلَّابُ الَّذِينَ نَجَحُوا","الطَّالِبَةُ الَّتِي نَجَحَتْ","الطَّالِبَاتُ اللَّاتِي دَرَسْنَ"],correct:0},
-       {type:"audio",audioText:"هَذَا الْكِتَابُ الَّذِي قَرَأْتُهُ",options:["هَذَا الْكِتَابُ الَّذِي قَرَأْتُهُ","هَذَا الْكِتَابُ الَّذِي كَتَبْتُهُ","هَذَا الْقَلَمُ الَّذِي قَرَأْتُهُ","هَذَا الْكِتَابُ الَّذِي أَخَذْتُهُ"],correct:0}
-     ]},
-
-    /* ===== LEÇON 22 ===== */
-    {id:"t1l22", num:22, title:"Leçon 22", desc:"Couleurs (diptotes)",
-     active:true, audio:"assets/audio/madinah/tome1/L22.mp3",
-     text:["الْبَابُ الْأَحْمَرُ","النَّافِذَةُ الْحَمْرَاءُ","السَّمَاءُ الزَّرْقَاءُ",
-           "الشَّجَرَةُ الْخَضْرَاءُ","الثَّوْبُ الْأَسْوَدُ","الْوَرَقُ الْأَبْيَضُ"],
-     vocab:[
+       {ar:"الْمَمْنُوعُ مِنَ الصَّرْفِ",fr:"Interdit de tanwin",tr:"al-mamnūʿ min al-ṣarf"},
        {ar:"أَحْمَرُ",fr:"Rouge",tr:"aḥmar"},
-       {ar:"أَزْرَقُ",fr:"Bleu",tr:"azraq"},
+       {ar:"أَبْيَضُ",fr:"Blanc",tr:"abyaḍ"},
        {ar:"أَخْضَرُ",fr:"Vert",tr:"akhḍar"},
+       {ar:"أَزْرَقُ",fr:"Bleu",tr:"azraq"},
        {ar:"أَسْوَدُ",fr:"Noir",tr:"aswad"},
        {ar:"أَصْفَرُ",fr:"Jaune",tr:"aṣfar"},
-       {ar:"أَبْيَضُ",fr:"Blanc",tr:"abyaḍ"},
-       {ar:"بُنِّيٌّ",fr:"Marron",tr:"bunniyy"},
-       {ar:"بُرْتُقَالِيٌّ",fr:"Orange",tr:"burtuqāliyy"},
-       {ar:"وَرْدِيٌّ",fr:"Rose",tr:"wardiyy"},
-       {ar:"رَمَادِيٌّ",fr:"Gris",tr:"ramādiyy"},
-       {ar:"بَنَفْسَجِيٌّ",fr:"Violet",tr:"banafsajiyy"},
-       {ar:"ذَهَبِيٌّ",fr:"Doré",tr:"dhahabiyy"},
-       {ar:"فِضِّيٌّ",fr:"Argenté",tr:"fiḍḍiyy"},
-       {ar:"حَمْرَاءُ",fr:"Rouge (fém.)",tr:"ḥamrāʾ"},
-       {ar:"زَرْقَاءُ",fr:"Bleue (fém.)",tr:"zarqāʾ"},
-       {ar:"خَضْرَاءُ",fr:"Verte (fém.)",tr:"khaḍrāʾ"},
-       {ar:"سَوْدَاءُ",fr:"Noire (fém.)",tr:"sawdāʾ"},
-       {ar:"صَفْرَاءُ",fr:"Jaune (fém.)",tr:"ṣafrāʾ"},
-       {ar:"بَيْضَاءُ",fr:"Blanche (fém.)",tr:"bayḍāʾ"},
-       {ar:"بُنِّيَّةٌ",fr:"Marron (fém.)",tr:"bunniyya"},
-       {ar:"بُرْتُقَالِيَّةٌ",fr:"Orange (fém.)",tr:"burtuqāliyya"},
-       {ar:"وَرْدِيَّةٌ",fr:"Rose (fém.)",tr:"wardiyya"},
-       {ar:"رَمَادِيَّةٌ",fr:"Grise (fém.)",tr:"ramādiyya"},
-       {ar:"بَنَفْسَجِيَّةٌ",fr:"Violette (fém.)",tr:"banafsajiyya"},
-       {ar:"اللَّوْنُ",fr:"La couleur",tr:"al-lawn"},
-       {ar:"الْأَلْوَانُ",fr:"Les couleurs",tr:"al-alwān"},
-       {ar:"الثَّوْبُ",fr:"Le vêtement",tr:"ath-thawb"},
-       {ar:"الْقَمِيصُ",fr:"La chemise",tr:"al-qamīṣ"},
-       {ar:"الْحِذَاءُ",fr:"La chaussure",tr:"al-ḥidhāʾ"},
-       {ar:"الْوَرَقُ",fr:"Le papier",tr:"al-waraq"},
-       {ar:"الْبَابُ",fr:"La porte",tr:"al-bāb"},
-       {ar:"النَّافِذَةُ",fr:"La fenêtre",tr:"an-nāfidha"},
-       {ar:"السَّمَاءُ",fr:"Le ciel",tr:"as-samāʾ"},
-       {ar:"الشَّجَرَةُ",fr:"L'arbre",tr:"ash-shajara"},
-       {ar:"الزَّهْرَةُ",fr:"La fleur",tr:"az-zahra"},
-       {ar:"الْوَرْدَةُ",fr:"La rose",tr:"al-warda"},
-       {ar:"السَّيَّارَةُ",fr:"La voiture",tr:"as-sayyāra"},
-       {ar:"الْبَيْتُ",fr:"La maison",tr:"al-bayt"},
-       {ar:"الْكِتَابُ",fr:"Le livre",tr:"al-kitāb"},
-       {ar:"الْقَلَمُ",fr:"Le stylo",tr:"al-qalam"},
-       {ar:"الْحَقِيبَةُ",fr:"Le sac",tr:"al-ḥaqība"},
-       {ar:"الْأَرْضُ",fr:"La terre",tr:"al-arḍ"},
-       {ar:"الْبَحْرُ",fr:"La mer",tr:"al-baḥr"},
-       {ar:"الْمَاءُ",fr:"L'eau",tr:"al-māʾ"}
+       {ar:"أَحْمَدُ",fr:"Ahmad",tr:"Aḥmad"},
+       {ar:"أَمْجَدُ",fr:"Amjad",tr:"Amjad"},
+       {ar:"أَكْبَرُ",fr:"Plus grand",tr:"akbar"},
+       {ar:"أَجْمَلُ",fr:"Plus beau",tr:"ajmal"},
+       {ar:"كَسْلَانُ",fr:"Paresseux",tr:"kaslān"},
+       {ar:"غَضْبَانُ",fr:"En colère",tr:"ghaḍbān"},
+       {ar:"عُثْمَانُ",fr:"Othman",tr:"ʿUthmān"},
+       {ar:"مَرْوَانُ",fr:"Marwan",tr:"Marwān"},
+       {ar:"فَاطِمَةُ",fr:"Fatima",tr:"Fāṭima"},
+       {ar:"زَيْنَبُ",fr:"Zaynab",tr:"Zaynab"},
+       {ar:"مَكَّةُ",fr:"La Mecque",tr:"Makka"},
+       {ar:"جُدَّةُ",fr:"Djeddah",tr:"Jidda"},
+       {ar:"إِبْرَاهِيمُ",fr:"Ibrahim",tr:"Ibrāhīm"},
+       {ar:"إِسْمَاعِيلُ",fr:"Ismail",tr:"Ismāʿīl"},
+       {ar:"حَمْزَةُ",fr:"Hamza",tr:"Ḥamza"},
+       {ar:"طَلْحَةُ",fr:"Talha",tr:"Ṭalḥa"},
+       {ar:"مَنْدِيلٌ",fr:"Mouchoir",tr:"mandīl"},
+       {ar:"مَنَادِيلُ",fr:"Mouchoirs",tr:"manādīl"},
+       {ar:"مِفْتَاحٌ",fr:"Clé",tr:"miftāḥ"},
+       {ar:"مَفَاتِيحُ",fr:"Clés",tr:"mafātīḥ"},
+       {ar:"مَسَاجِدُ",fr:"Mosquées",tr:"masājid"},
+       {ar:"مَدَارِسُ",fr:"Écoles",tr:"madāris"},
+       {ar:"فَنَادِقُ",fr:"Hôtels",tr:"fanādiq"},
+       {ar:"طَبِيبٌ",fr:"Médecin",tr:"ṭabīb"},
+       {ar:"أَطِبَّاءُ",fr:"Médecins",tr:"aṭibbāʾ"},
+       {ar:"عَالِمٌ",fr:"Savant",tr:"ʿālim"},
+       {ar:"عُلَمَاءُ",fr:"Savants",tr:"ʿulamāʾ"},
+       {ar:"سُفْيَانُ",fr:"Sufyan",tr:"Sufyān"},
+       {ar:"يُوسُفُ",fr:"Youssef",tr:"Yūsuf"}
      ],
-     grammar:{title:"Les adjectifs de couleur (diptotes)",
-       rule:"Les adjectifs de couleur masculins sont diptotes (pas de tanwin). Au féminin, ils prennent la forme فَعْلَاءُ. Exemple : أَحْمَرُ (rouge masc.) → حَمْرَاءُ (rouge fém.).",
-       examples:["الْبَابُ الْأَحْمَرُ = La porte rouge","النَّافِذَةُ الْحَمْرَاءُ = La fenêtre rouge","السَّمَاءُ الزَّرْقَاءُ = Le ciel bleu"]},
+     grammar:{title:"الْمَمْنُوعُ مِنَ الصَّرْف pour raison de forme et عِلْم",
+       rule:"Le الْمَمْنُوعُ مِنَ الصَّرْف est un nom qui ne prend pas de tanwin. Il y a plusieurs catégories : 1) Forme (أَفْعَل) : أَحْمَر، أَبْيَض، أَخْضَر، أَزْرَق، أَسْوَد، أَصْفَر (couleurs) ; أَحْمَد، أَمْجَد (noms propres) ; أَكْبَر، أَجْمَل (adjectifs). 2) Forme (فَعْلَان) : كَسْلَان، غَضْبَان، عَطْشَان (attributs) ; عُثْمَان، مَرْوَان، سُفْيَان (noms propres). 3) عِلْم مُؤَنَّث : فَاطِمَة، زَيْنَب، مَكَّة، جُدَّة، عَائِشَة. 4) عِلْم أَعْجَمِيّ : إِبْرَاهِيم، إِسْمَاعِيل، إِسْحَاق، يَعْقُوب.",
+       examples:["عِنْدِي قَلَمٌ أَحْمَرُ = J'ai un stylo rouge","عِنْدِي مَنْدِيلٌ أَبْيَضُ = J'ai un mouchoir blanc","فِي بَلَدِنَا مَسَاجِدُ كَثِيرَةٌ = Dans notre pays, il y a beaucoup de mosquées","هَؤُلَاءِ عُلَمَاءُ كِبَارٌ = Ce sont de grands savants"]},
      dialogue:[
-       {sp:"A",ar:"مَا لَوْنُ الْبَابِ؟",fr:"Quelle est la couleur de la porte ?"},
-       {sp:"B",ar:"الْبَابُ أَحْمَرُ.",fr:"La porte est rouge."},
-       {sp:"A",ar:"وَمَا لَوْنُ النَّافِذَةِ؟",fr:"Et quelle est la couleur de la fenêtre ?"},
-       {sp:"B",ar:"النَّافِذَةُ حَمْرَاءُ.",fr:"La fenêtre est rouge."},
-       {sp:"A",ar:"وَمَا لَوْنُ السَّمَاءِ؟",fr:"Et quelle est la couleur du ciel ?"},
-       {sp:"B",ar:"السَّمَاءُ زَرْقَاءُ.",fr:"Le ciel est bleu."},
-       {sp:"A",ar:"وَمَا لَوْنُ الشَّجَرَةِ؟",fr:"Et quelle est la couleur de l'arbre ?"},
-       {sp:"B",ar:"الشَّجَرَةُ خَضْرَاءُ.",fr:"L'arbre est vert."}
+       {sp:"A",ar:"عِنْدِي خَمْسَةُ أَقْلَامٍ.",fr:"J'ai cinq stylos."},
+       {sp:"B",ar:"مَا أَلْوَانُهَا؟",fr:"Quelles sont leurs couleurs ?"},
+       {sp:"A",ar:"هَذَا قَلَمٌ أَحْمَرُ وَهَذَا قَلَمٌ أَزْرَقُ.",fr:"Ceci est un stylo rouge et ceci est un stylo bleu."},
+       {sp:"B",ar:"وَهَذَا؟",fr:"Et celui-ci ?"},
+       {sp:"A",ar:"وَهَذَا قَلَمٌ أَخْضَرُ وَهَذَا قَلَمٌ أَسْوَدُ.",fr:"Et ceci est un stylo vert et ceci est un stylo noir."},
+       {sp:"B",ar:"وَهَذَا الْأَخِيرُ؟",fr:"Et ce dernier ?"},
+       {sp:"A",ar:"وَهَذَا قَلَمٌ أَصْفَرُ.",fr:"Et ceci est un stylo jaune."},
+       {sp:"A",ar:"عِنْدِي مَنَادِيلُ كَثِيرَةٌ.",fr:"J'ai beaucoup de mouchoirs."},
+       {sp:"B",ar:"مَا أَلْوَانُهَا؟",fr:"Quelles sont leurs couleurs ?"},
+       {sp:"A",ar:"هَذَا أَبْيَضُ وَهَذَا أَصْفَرُ وَهَذَا أَحْمَرُ وَهَذَا أَزْرَقُ.",fr:"Celui-ci est blanc, celui-ci est jaune, celui-ci est rouge et celui-ci est bleu."},
+       {sp:"A",ar:"فِي بَلَدِنَا مَسَاجِدُ وَمَدَارِسُ كَثِيرَةٌ.",fr:"Dans notre pays, il y a beaucoup de mosquées et d'écoles."},
+       {sp:"B",ar:"وَهَلْ فِيهَا فَنَادِقُ؟",fr:"Et y a-t-il des hôtels ?"},
+       {sp:"A",ar:"نَعَمْ، وَلَكِنْ فَنَادِقُ قَلِيلَةٌ.",fr:"Oui, mais il y a peu d'hôtels."},
+       {sp:"B",ar:"هَؤُلَاءِ أَطِبَّاءُ؟",fr:"Ceux-ci sont-ils des médecins ?"},
+       {sp:"A",ar:"لَا، هُمْ مُدَرِّسُونَ وَهُمْ عُلَمَاءُ كِبَارٌ.",fr:"Non, ils sont professeurs et ce sont de grands savants."}
      ],
      exercises:[
-       {type:"qcm",q:"Que veut dire أَحْمَرُ ؟",options:["Rouge","Bleu","Vert","Noir"],correct:0},
-       {type:"qcm",q:"Comment dit-on « bleu » ?",options:["أَزْرَقُ","أَحْمَرُ","أَخْضَرُ","أَسْوَدُ"],correct:0},
-       {type:"qcm",q:"Féminin de أَحْمَرُ ?",options:["حَمْرَاءُ","أَحْمَرَةٌ","أَحْمَرَاتٌ","حُمْرٌ"],correct:0},
-       {type:"qcm",q:"Féminin de أَزْرَقُ ?",options:["زَرْقَاءُ","أَزْرَقَةٌ","أَزْرَقَاتٌ","زُرْقٌ"],correct:0},
-       {type:"qcm",q:"Féminin de أَخْضَرُ ?",options:["خَضْرَاءُ","أَخْضَرَةٌ","أَخْضَرَاتٌ","خُضْرٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire أَسْوَدُ ؟",options:["Noir","Blanc","Rouge","Bleu"],correct:0},
-       {type:"qcm",q:"Que veut dire أَبْيَضُ ؟",options:["Blanc","Noir","Jaune","Vert"],correct:0},
-       {type:"qcm",q:"Comment dit-on « jaune » ?",options:["أَصْفَرُ","أَحْمَرُ","أَزْرَقُ","أَخْضَرُ"],correct:0},
-       {type:"qcm",q:"Féminin de أَسْوَدُ ?",options:["سَوْدَاءُ","أَسْوَدَةٌ","أَسْوَدَاتٌ","سُودٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire اللَّوْنُ ؟",options:["La couleur","Le vêtement","Le papier","L'arbre"],correct:0},
-       {type:"qcm",q:"Comment dit-on « vert (fém.) » ?",options:["خَضْرَاءُ","أَخْضَرُ","خَضِرٌ","خُضْرٌ"],correct:0},
-       {type:"qcm",q:"Que veut dire الْمَاءُ ؟",options:["L'eau","La terre","La mer","Le ciel"],correct:0},
-       {type:"tf",ar:"الْبَابُ الْأَحْمَرُ",q:"Signifie « La porte rouge »",correct:true},
-       {type:"tf",ar:"النَّافِذَةُ الْحَمْرَاءُ",q:"Signifie « La fenêtre bleue »",correct:false,explain:"الْحَمْرَاءُ = rouge (fém.)."},
-       {type:"tf",ar:"السَّمَاءُ الزَّرْقَاءُ",q:"Signifie « Le ciel bleu »",correct:true},
-       {type:"tf",ar:"الشَّجَرَةُ الْخَضْرَاءُ",q:"Signifie « L'arbre vert »",correct:true},
-       {type:"fill",sentence:"الْبَابُ ___",options:["الْأَحْمَرُ","الْحَمْرَاءُ","أَحْمَرَاتٌ","حُمْرٌ"],correct:0},
-       {type:"fill",sentence:"النَّافِذَةُ ___",options:["الْحَمْرَاءُ","الْأَحْمَرُ","الْحُمْرُ","أَحْمَرَاتٌ"],correct:0},
-       {type:"fill",sentence:"السَّمَاءُ ___",options:["الزَّرْقَاءُ","الْأَزْرَقُ","الزُّرْقُ","أَزْرَقَاتٌ"],correct:0},
-       {type:"type",q:"Écris « rouge » (masc.) :",answer:"أَحْمَرُ",hint:"5 lettres"},
-       {type:"type",q:"Écris « bleu » (masc.) :",answer:"أَزْرَقُ",hint:"5 lettres"},
-       {type:"type",q:"Écris « vert » (masc.) :",answer:"أَخْضَرُ",hint:"5 lettres"},
-       {type:"type",q:"Écris « noir » (masc.) :",answer:"أَسْوَدُ",hint:"5 lettres"},
-       {type:"type",q:"Écris « blanc » (masc.) :",answer:"أَبْيَضُ",hint:"5 lettres"},
-       {type:"type",q:"Écris « jaune » (masc.) :",answer:"أَصْفَرُ",hint:"5 lettres"},
-       {type:"order",q:"Reconstitue :",words:["الْأَحْمَرُ","الْبَابُ"],answer:"الْبَابُ الْأَحْمَرُ"},
-       {type:"order",q:"Reconstitue :",words:["الْحَمْرَاءُ","النَّافِذَةُ"],answer:"النَّافِذَةُ الْحَمْرَاءُ"},
-       {type:"order",q:"Reconstitue :",words:["الزَّرْقَاءُ","السَّمَاءُ"],answer:"السَّمَاءُ الزَّرْقَاءُ"},
-       {type:"order",q:"Reconstitue :",words:["الْخَضْرَاءُ","الشَّجَرَةُ"],answer:"الشَّجَرَةُ الْخَضْرَاءُ"},
-       {type:"order",q:"Reconstitue :",words:["الْأَسْوَدُ","الثَّوْبُ"],answer:"الثَّوْبُ الْأَسْوَدُ"},
-       {type:"audio",audioText:"الْبَابُ الْأَحْمَرُ",options:["الْبَابُ الْأَحْمَرُ","الْبَابُ الْأَزْرَقُ","النَّافِذَةُ الْحَمْرَاءُ","الْبَابُ الْأَخْضَرُ"],correct:0},
-       {type:"audio",audioText:"السَّمَاءُ الزَّرْقَاءُ",options:["السَّمَاءُ الزَّرْقَاءُ","السَّمَاءُ الْحَمْرَاءُ","السَّمَاءُ الْخَضْرَاءُ","الْبَحْرُ الْأَزْرَقُ"],correct:0},
-       {type:"audio",audioText:"النَّافِذَةُ الْحَمْرَاءُ",options:["النَّافِذَةُ الْحَمْرَاءُ","الْبَابُ الْأَحْمَرُ","النَّافِذَةُ الزَّرْقَاءُ","النَّافِذَةُ الْخَضْرَاءُ"],correct:0},
-       {type:"audio",audioText:"الشَّجَرَةُ الْخَضْرَاءُ",options:["الشَّجَرَةُ الْخَضْرَاءُ","الشَّجَرَةُ الْحَمْرَاءُ","النَّافِذَةُ الْخَضْرَاءُ","الشَّجَرَةُ الزَّرْقَاءُ"],correct:0}
-     ]},
-
-    /* ===== LEÇON 23 ===== */
-    {id:"t1l23", num:23, title:"Leçon 23", desc:"Noms de lieu · Villes du monde",
-     active:true, audio:"assets/audio/madinah/tome1/L23.mp3",
-     text:["أَنَا مِنْ وَاشِنْطُن","هُوَ مِنْ إِسْطَنْبُول","هِيَ مِنْ مَكَّةَ",
-           "هُمْ مِنَ الْمَدِينَةِ الْمُنَوَّرَةِ","أَنْتَ مِنَ الْقَاهِرَةِ","نَحْنُ مِنْ دِمَشْقَ"],
+       /* Bloc 1 — Les couleurs (10 questions) */
+       {type:"qcm",q:"Que veut dire أَحْمَرُ ؟",options:["Rouge","Vert","Bleu","Jaune"],correct:0},
+       {type:"qcm",q:"Que veut dire أَبْيَضُ ؟",options:["Blanc","Noir","Rouge","Vert"],correct:0},
+       {type:"qcm",q:"Que veut dire أَخْضَرُ ؟",options:["Vert","Bleu","Jaune","Rouge"],correct:0},
+       {type:"qcm",q:"Que veut dire أَزْرَقُ ؟",options:["Bleu","Vert","Rouge","Noir"],correct:0},
+       {type:"qcm",q:"Que veut dire أَسْوَدُ ؟",options:["Noir","Blanc","Rouge","Vert"],correct:0},
+       {type:"qcm",q:"Que veut dire أَصْفَرُ ؟",options:["Jaune","Bleu","Vert","Rouge"],correct:0},
+       {type:"fill",sentence:"هَذَا قَلَمٌ ___ (rouge)",options:["أَحْمَرُ","أَحْمَرَ","أَحْمَرِ","أَحْمَرْ"],correct:0},
+       {type:"fill",sentence:"هَذَا قَلَمٌ ___ (bleu)",options:["أَزْرَقُ","أَزْرَقَ","أَزْرَقِ","أَزْرَقْ"],correct:0},
+       {type:"type",q:"Écris « rouge » :",answers:["أَحْمَرُ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « vert » :",answers:["أَخْضَرُ"],hint:"4 lettres"},
+       /* Bloc 2 — الممنوع من الصرف : forme أَفْعَل (10 questions) */
+       {type:"qcm",q:"Quelle est la forme de أَحْمَرُ ?",options:["أَفْعَل","فَعْلَان","فَاعِل","مَفْعُول"],correct:0},
+       {type:"qcm",q:"La forme أَفْعَل est :",options:["مَمْنُوع مِنَ الصَّرْف","Normal","Avec tanwin","Défini"],correct:0},
+       {type:"qcm",q:"Parmi ces noms, lequel est ممنوع من الصرف ?",options:["أَحْمَرُ","أَحْمَرَة","حَمْرَاء","حُمْرَة"],correct:0},
+       {type:"fill",sentence:"هَذَا قَلَمٌ ___ (rouge)",options:["أَحْمَرُ","أَحْمَرَ","أَحْمَرِ","أَحْمَرْ"],correct:0},
+       {type:"fill",sentence:"عِنْدِي قَلَمٌ ___ (jaune)",options:["أَصْفَرُ","أَصْفَرَ","أَصْفَرِ","أَصْفَرْ"],correct:0},
+       {type:"type",q:"Écris « plus grand » :",answers:["أَكْبَرُ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « plus beau » :",answers:["أَجْمَلُ"],hint:"4 lettres"},
+       {type:"tf",q:"أَحْمَرُ est ممنوع من الصرف",correct:true,explain:""},
+       {type:"tf",q:"أَحْمَرُ prend le tanwin",correct:false,explain:"Non, أَحْمَرُ est ممنوع من الصرف, il ne prend pas le tanwin."},
+       {type:"type",q:"Traduire : عِنْدِي قَلَمٌ أَحْمَرُ",answers:["J'ai un stylo rouge"],hint:"Phrase nominale"},
+       /* Bloc 3 — الممنوع من الصرف : forme فَعْلَان (10 questions) */
+       {type:"qcm",q:"Quelle est la forme de كَسْلَانُ ?",options:["فَعْلَان","أَفْعَل","فَاعِل","مَفْعُول"],correct:0},
+       {type:"qcm",q:"La forme فَعْلَان est :",options:["مَمْنُوع مِنَ الصَّرْف","Normale","Avec tanwin","Définie"],correct:0},
+       {type:"fill",sentence:"عُثْمَانُ ___",options:["ممنوع من الصرف","avec tanwin","défini","indéfini"],correct:0},
+       {type:"fill",sentence:"كَسْلَانُ ___",options:["ممنوع من الصرف","avec tanwin","défini","indéfini"],correct:0},
+       {type:"type",q:"Écris « paresseux » :",answers:["كَسْلَانُ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « en colère » :",answers:["غَضْبَانُ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « Othman » :",answers:["عُثْمَانُ"],hint:"5 lettres"},
+       {type:"tf",q:"كَسْلَانُ est ممنوع من الصرف",correct:true,explain:""},
+       {type:"tf",q:"عُثْمَانُ prend le tanwin",correct:false,explain:"Non, عُثْمَانُ est ممنوع من الصرف, il ne prend pas le tanwin."},
+       {type:"type",q:"Traduire : عُثْمَانُ طَالِبٌ كَسْلَانُ",answers:["Othman est un étudiant paresseux"],hint:"Phrase nominale"},
+       /* Bloc 4 — الممنوع من الصرف : عِلْم مُؤَنَّث (10 questions) */
+       {type:"qcm",q:"Quel est le point commun entre فَاطِمَة et زَيْنَب ?",options:["Ce sont des noms propres féminins","Ce sont des verbes","Ce sont des lieux","Ce sont des adjectifs"],correct:0},
+       {type:"qcm",q:"فَاطِمَةُ est :",options:["ممنوع من الصرف","Avec tanwin","Défini","Indéfini"],correct:0},
+       {type:"qcm",q:"زَيْنَبُ est :",options:["ممنوع من الصرف","Avec tanwin","Défini","Indéfini"],correct:0},
+       {type:"qcm",q:"مَكَّةُ est :",options:["ممنوع من الصرف","Avec tanwin","Défini","Indéfini"],correct:0},
+       {type:"qcm",q:"جُدَّةُ est :",options:["ممنوع من الصرف","Avec tanwin","Défini","Indéfini"],correct:0},
+       {type:"type",q:"Écris « Fatima » :",answers:["فَاطِمَةُ"],hint:"ف ا ط م + ة"},
+       {type:"type",q:"Écris « Zaynab » :",answers:["زَيْنَبُ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « La Mecque » :",answers:["مَكَّةُ"],hint:"3 lettres"},
+       {type:"tf",q:"فَاطِمَةُ est ممنوع من الصرف",correct:true,explain:""},
+       {type:"tf",q:"فَاطِمَةُ prend le tanwin",correct:false,explain:"Non, فَاطِمَةُ est ممنوع من الصرف, elle ne prend pas le tanwin."},
+       /* Bloc 5 — الممنوع من الصرف : عِلْم أَعْجَمِيّ (10 questions) */
+       {type:"qcm",q:"Quelle est la caractéristique d'إِبْرَاهِيمُ ?",options:["Nom propre non-arabe","Nom propre arabe","Nom commun","Verbe"],correct:0},
+       {type:"qcm",q:"إِبْرَاهِيمُ est :",options:["ممنوع من الصرف","Avec tanwin","Défini","Indéfini"],correct:0},
+       {type:"qcm",q:"إِسْمَاعِيلُ est :",options:["ممنوع من الصرف","Avec tanwin","Défini","Indéfini"],correct:0},
+       {type:"qcm",q:"يُوسُفُ est :",options:["ممنوع من الصرف","Avec tanwin","Défini","Indéfini"],correct:0},
+       {type:"qcm",q:"إِسْحَاقُ est :",options:["ممنوع من الصرف","Avec tanwin","Défini","Indéfini"],correct:0},
+       {type:"type",q:"Écris « Ibrahim » :",answers:["إِبْرَاهِيمُ"],hint:"إ ب ر ا ه ي م"},
+       {type:"type",q:"Écris « Ismail » :",answers:["إِسْمَاعِيلُ"],hint:"إ س م ا ع ي ل"},
+       {type:"type",q:"Écris « Youssef » :",answers:["يُوسُفُ"],hint:"4 lettres"},
+       {type:"tf",q:"إِبْرَاهِيمُ est ممنوع من الصرف",correct:true,explain:""},
+       {type:"tf",q:"إِبْرَاهِيمُ prend le tanwin",correct:false,explain:"Non, إِبْرَاهِيمُ est ممنوع من الصرف, il ne prend pas le tanwin."},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « rouge » :",answers:["أَحْمَرُ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « paresseux » :",answers:["كَسْلَانُ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « Fatima » :",answers:["فَاطِمَةُ"],hint:"ف ا ط م + ة"},
+       {type:"type",q:"Écris « Ibrahim » :",answers:["إِبْرَاهِيمُ"],hint:"إ ب ر ا ه ي م"},
+       {type:"type",q:"Écris « Othman » :",answers:["عُثْمَانُ"],hint:"5 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["أَحْمَرُ","قَلَمٌ","عِنْدِي"],answer:"عِنْدِي قَلَمٌ أَحْمَرُ"},
+       {type:"order",q:"Reconstitue :",words:["كَثِيرَةٌ","مَسَاجِدُ","بَلَدِنَا","فِي"],answer:"فِي بَلَدِنَا مَسَاجِدُ كَثِيرَةٌ"},
+       {type:"order",q:"Reconstitue :",words:["كِبَارٌ","عُلَمَاءُ","هُمْ"],answer:"هُمْ عُلَمَاءُ كِبَارٌ"},
+       {type:"order",q:"Reconstitue :",words:["أَصْفَرُ","مَنْدِيلٌ","عِنْدِي"],answer:"عِنْدِي مَنْدِيلٌ أَصْفَرُ"},
+       {type:"order",q:"Reconstitue :",words:["أَزْرَقُ","قَلَمٌ","هَذَا"],answer:"هَذَا قَلَمٌ أَزْرَقُ"}
+     ]},    /* ===== LEÇON 27 ===== */
+    {id:"t1l27", num:27, title:"Leçon 27", desc:"Le ممنوع من الصرف à l'إعراب",
+     active:true, audio:null, pdf:"",
+     text:[
+       "فَاطِمَةُ فِي الْفَصْلِ","سَلَّمَ زَيْدٌ عَلَى فَاطِمَةَ",
+       "لَا تَكُنْ كَسْلَانَ","مَرَرْتُ بِإِبْرَاهِيمَ",
+       "هَذَا كِتَابُ مُحَمَّدٍ","هَذَا كِتَابُ إِبْرَاهِيمَ",
+       "ذَهَبَ خَالِدٌ إِلَى أَحْمَدَ","ذَهَبَ أَبِي إِلَى مَكَّةَ وَذَهَبَ عَمِّي إِلَى جُدَّةَ",
+       "أُخْتُ مَرْوَانَ مَرِيضَةٌ","أَيْنَ زَوْجُ خَدِيجَةَ؟ هُوَ فِي لَنْدُنَ",
+       "سَيَّارَةُ حَامِدٍ جَدِيدَةٌ وَسَيَّارَةُ إِبْرَاهِيمَ قَدِيمَةٌ",
+       "بَيْتُ خَالِدٍ كَبِيرٌ وَبَيْتُ أُسَامَةَ صَغِيرٌ",
+       "أَيْنَ ذَهَبَ أَبُوكَ يَا لَيْلَى؟ ذَهَبَ إِلَى بَغْدَادَ",
+       "فِي إِسْطَنْبُولَ مَسَاجِدُ كَثِيرَةٌ","عِنْدِي خَمْسَةُ مَفَاتِيحَ",
+       "سَيَّارَةُ لُؤَيٍّ أَخْضَرُ","عِنْدِي قَلَمٌ أَحْمَرُ",
+       "الْبَيْتُ الْحَرَامُ فِي مَكَّةَ","ذَهَبَ أَحْمَدُ إِلَى مُحَمَّدٍ",
+       "ذَهَبَ مُحَمَّدٌ إِلَى أَحْمَدَ","أَنْتَ مِنْ مَكَّةَ؟ لَا، أَنَا مِنَ الطَّائِفِ",
+       "أُخْتُ فَاطِمَةَ طَالِبَةٌ"
+     ],
      vocab:[
-       {ar:"وَاشِنْطُن",fr:"Washington",tr:"wāshinṭun"},
-       {ar:"إِسْطَنْبُول",fr:"Istanbul",tr:"isṭanbūl"},
-       {ar:"الطَّائِفُ",fr:"Taif",tr:"aṭ-ṭāʾif"},
-       {ar:"الْمَدِينَةُ الْمُنَوَّرَةُ",fr:"Médine",tr:"al-madīna al-munawwara"},
-       {ar:"مَكَّةُ",fr:"La Mecque",tr:"makka"},
-       {ar:"الْقَاهِرَةُ",fr:"Le Caire",tr:"al-qāhira"},
-       {ar:"دِمَشْقُ",fr:"Damas",tr:"dimashq"},
-       {ar:"بَغْدَادُ",fr:"Bagdad",tr:"baghdād"},
-       {ar:"بَيْرُوتُ",fr:"Beyrouth",tr:"bayrūt"},
-       {ar:"عَمَّانُ",fr:"Amman",tr:"ʿammān"},
-       {ar:"الرِّيَاضُ",fr:"Riyad",tr:"ar-riyāḍ"},
-       {ar:"جُدَّةُ",fr:"Djeddah",tr:"judda"},
-       {ar:"الْكُوَيْتُ",fr:"Koweït",tr:"al-kuwayt"},
-       {ar:"الدَّوْحَةُ",fr:"Doha",tr:"ad-dawḥa"},
-       {ar:"أَبُو ظَبْي",fr:"Abou Dabi",tr:"abū ẓaby"},
-       {ar:"دُبَيْ",fr:"Dubaï",tr:"dubayy"},
-       {ar:"صَنْعَاءُ",fr:"Sanaa",tr:"ṣanʿāʾ"},
-       {ar:"مَوْصِلُ",fr:"Mossoul",tr:"mawṣil"},
-       {ar:"حَلَبُ",fr:"Alep",tr:"ḥalab"},
-       {ar:"طَنْطَا",fr:"Tanta",tr:"ṭanṭā"},
-       {ar:"الْإِسْكَنْدَرِيَّةُ",fr:"Alexandrie",tr:"al-iskandariyya"},
-       {ar:"طَرَابُلُسُ",fr:"Tripoli",tr:"ṭarābulus"},
-       {ar:"تُونُسُ",fr:"Tunis",tr:"tūnus"},
-       {ar:"الْجَزَائِرُ",fr:"Alger",tr:"al-jazāʾir"},
-       {ar:"الرِّبَاطُ",fr:"Rabat",tr:"ar-ribāṭ"},
-       {ar:"دَارُ الْبَيْضَاءِ",fr:"Casablanca",tr:"dāru l-bayḍāʾ"},
-       {ar:"مَرَّاكُشُ",fr:"Marrakech",tr:"marrākush"},
-       {ar:"نِيُويُورْك",fr:"New York",tr:"niyūyūrk"},
-       {ar:"لَنْدَن",fr:"Londres",tr:"landan"},
-       {ar:"بَارِيس",fr:"Paris",tr:"bārīs"},
-       {ar:"بِرْلِين",fr:"Berlin",tr:"birlīn"},
-       {ar:"مَدْرِيد",fr:"Madrid",tr:"madrīd"},
-       {ar:"رُومَا",fr:"Rome",tr:"rūmā"},
-       {ar:"مُوسْكُو",fr:"Moscou",tr:"mūskū"},
-       {ar:"بِكِين",fr:"Pékin",tr:"bikīn"},
-       {ar:"طُوكْيُو",fr:"Tokyo",tr:"ṭūkyū"},
-       {ar:"سِيُول",fr:"Séoul",tr:"siyūl"},
-       {ar:"بَاكِسْتَان",fr:"Pakistan",tr:"bākistān"},
-       {ar:"الْهِنْدُ",fr:"Inde",tr:"al-hind"},
-       {ar:"الْمَدِينَةُ",fr:"La ville",tr:"al-madīna"},
-       {ar:"الْقَرْيَةُ",fr:"Le village",tr:"al-qarya"},
-       {ar:"الْبَلَدُ",fr:"Le pays",tr:"al-balad"},
-       {ar:"الْعَالَمُ",fr:"Le monde",tr:"al-ʿālam"},
-       {ar:"الْجِهَةُ",fr:"La région",tr:"al-jiha"},
-       {ar:"الْمَنْطِقَةُ",fr:"La zone",tr:"al-minṭiqa"}
+       {ar:"الْمَمْنُوعُ مِنَ الصَّرْفِ",fr:"Interdit de tanwin",tr:"al-mamnūʿ min al-ṣarf"},
+       {ar:"مَرَرْتُ",fr:"Je suis passé",tr:"marartu"},
+       {ar:"لَنْدُنُ",fr:"Londres",tr:"Landun"},
+       {ar:"بَغْدَادُ",fr:"Bagdad",tr:"Baghdād"},
+       {ar:"إِسْطَنْبُولُ",fr:"Istanbul",tr:"Isṭanbūl"},
+       {ar:"الطَّائِفُ",fr:"Taïf",tr:"al-Ṭāʾif"},
+       {ar:"حَرَمٌ",fr:"Sacré",tr:"ḥaram"},
+       {ar:"حَرَامٌ",fr:"Interdit",tr:"ḥarām"},
+       {ar:"الْبَيْتُ الْحَرَامُ",fr:"La Maison Sacrée",tr:"al-bayt al-ḥarām"},
+       {ar:"الْمَسْجِدُ الْحَرَامُ",fr:"La Mosquée Sacrée",tr:"al-masjid al-ḥarām"},
+       {ar:"الْأَشْهُرُ الْحُرُمُ",fr:"Les mois sacrés",tr:"al-ashhur al-ḥurum"},
+       {ar:"لُؤَيٌّ",fr:"Lu'ay",tr:"Luʾayy"},
+       {ar:"أُسَامَةُ",fr:"Oussama",tr:"Usāma"},
+       {ar:"خَدِيجَةُ",fr:"Khadija",tr:"Khadīja"},
+       {ar:"مَرْوَانُ",fr:"Marwan",tr:"Marwān"},
+       {ar:"شَيْخٌ",fr:"Cheikh",tr:"shaykh"},
+       {ar:"طَالِبَةٌ",fr:"Étudiante",tr:"ṭāliba"},
+       {ar:"سَيَّارَةٌ",fr:"Voiture",tr:"sayyāra"},
+       {ar:"أَخْضَرُ",fr:"Vert",tr:"akhḍar"},
+       {ar:"أَحْمَرُ",fr:"Rouge",tr:"aḥmar"},
+       {ar:"مِفْتَاحٌ",fr:"Clé",tr:"miftāḥ"},
+       {ar:"مَفَاتِيحُ",fr:"Clés",tr:"mafātīḥ"}
      ],
-     grammar:{title:"Les noms de lieu",
-       rule:"Les noms de lieu (villes, pays, régions) sont souvent diptotes (pas de tanwin). Exemple : مَكَّةُ (La Mecque), الْمَدِينَةُ (Médine). Ils peuvent être définis par ال.",
-       examples:["أَنَا مِنْ وَاشِنْطُن = Je viens de Washington","هُوَ مِنْ إِسْطَنْبُول = Il vient d'Istanbul","هِيَ مِنْ مَكَّةَ = Elle vient de La Mecque"]},
+     grammar:{title:"L'إعراب du الْمَمْنُوع مِنَ الصَّرْف",
+       rule:"Le الْمَمْنُوعُ مِنَ الصَّرْف suit la règle de base en ce qui concerne l'إعراب SAUF au الجر. 1) Au رفع : il prend une ضمة (comme les autres noms). Exemple : فَاطِمَةُ فِي الْفَصْلِ. 2) Au نصب : il prend une فتحة. Exemple : لَا تَكُنْ كَسْلَانَ. 3) Au جر : il prend une فتحة au lieu d'une كسرة. Exemple : سَلَّمَ زَيْدٌ عَلَى فَاطِمَةَ. 4) Il ne prend PAS de tanwin. En résumé, le الْمَمْنُوع مِنَ الصَّرْف diverge des noms en général sur 2 points : (1) au جر il prend une فتحة, (2) il ne prend pas de tanwin.",
+       examples:["فَاطِمَةُ فِي الْفَصْلِ = Fatima est dans la classe (رفع)","لَا تَكُنْ كَسْلَانَ = Ne sois pas paresseux (نصب)","سَلَّمَ زَيْدٌ عَلَى فَاطِمَةَ = Zayd a salué Fatima (جر avec فتحة)","مَرَرْتُ بِإِبْرَاهِيمَ = Je suis passé par Ibrahim (جر avec فتحة)"]},
      dialogue:[
-       {sp:"A",ar:"مِنْ أَيْنَ أَنْتَ؟",fr:"D'où viens-tu ?"},
-       {sp:"B",ar:"أَنَا مِنْ وَاشِنْطُن.",fr:"Je viens de Washington."},
-       {sp:"A",ar:"وَمِنْ أَيْنَ هُوَ؟",fr:"Et lui ?"},
-       {sp:"B",ar:"هُوَ مِنْ إِسْطَنْبُول.",fr:"Il vient d'Istanbul."},
-       {sp:"A",ar:"وَمِنْ أَيْنَ هِيَ؟",fr:"Et elle ?"},
-       {sp:"B",ar:"هِيَ مِنْ مَكَّةَ.",fr:"Elle vient de La Mecque."},
-       {sp:"A",ar:"وَمِنْ أَيْنَ أَنْتُمْ؟",fr:"Et vous ?"},
-       {sp:"B",ar:"نَحْنُ مِنَ الْمَدِينَةِ الْمُنَوَّرَةِ.",fr:"Nous venons de Médine."}
+       {sp:"A",ar:"أَيْنَ ذَهَبَ أَبُوكَ يَا لَيْلَى؟",fr:"Où est allé ton père, ô Layla ?"},
+       {sp:"B",ar:"ذَهَبَ إِلَى بَغْدَادَ.",fr:"Il est allé à Bagdad."},
+       {sp:"A",ar:"وَأَيْنَ ذَهَبَ عَمُّكَ؟",fr:"Et où est allé ton oncle ?"},
+       {sp:"B",ar:"ذَهَبَ إِلَى مَكَّةَ.",fr:"Il est allé à La Mecque."},
+       {sp:"A",ar:"فِي إِسْطَنْبُولَ مَسَاجِدُ كَثِيرَةٌ.",fr:"À Istanbul, il y a beaucoup de mosquées."},
+       {sp:"A",ar:"عِنْدِي خَمْسَةُ مَفَاتِيحَ.",fr:"J'ai cinq clés."},
+       {sp:"B",ar:"مَا لَوْنُ سَيَّارَةِ لُؤَيٍّ؟",fr:"Quelle est la couleur de la voiture de Lu'ay ?"},
+       {sp:"A",ar:"سَيَّارَةُ لُؤَيٍّ أَخْضَرُ.",fr:"La voiture de Lu'ay est verte."},
+       {sp:"A",ar:"الْبَيْتُ الْحَرَامُ فِي مَكَّةَ.",fr:"La Maison Sacrée est à La Mecque."},
+       {sp:"A",ar:"ذَهَبَ أَحْمَدُ إِلَى مُحَمَّدٍ.",fr:"Ahmad est allé chez Muhammad."},
+       {sp:"A",ar:"أَنْتَ مِنْ مَكَّةَ؟",fr:"Es-tu de La Mecque ?"},
+       {sp:"B",ar:"لَا، أَنَا مِنَ الطَّائِفِ.",fr:"Non, je suis de Taïf."},
+       {sp:"A",ar:"أُخْتُ فَاطِمَةَ طَالِبَةٌ.",fr:"La sœur de Fatima est étudiante."},
+       {sp:"A",ar:"سَلَّمَ زَيْدٌ عَلَى فَاطِمَةَ.",fr:"Zayd a salué Fatima."}
      ],
      exercises:[
-       {type:"qcm",q:"Que veut dire وَاشِنْطُن ؟",options:["Washington","Istanbul","Taif","Médine"],correct:0},
-       {type:"qcm",q:"Comment dit-on « La Mecque » ?",options:["مَكَّةُ","الْمَدِينَةُ","الطَّائِفُ","وَاشِنْطُن"],correct:0},
-       {type:"qcm",q:"Comment dit-on « Le Caire » ?",options:["الْقَاهِرَةُ","دِمَشْقُ","بَغْدَادُ","مَكَّةُ"],correct:0},
-       {type:"qcm",q:"Que veut dire إِسْطَنْبُول ؟",options:["Istanbul","Washington","Le Caire","Damas"],correct:0},
-       {type:"qcm",q:"Comment dit-on « Damas » ?",options:["دِمَشْقُ","بَغْدَادُ","الْقَاهِرَةُ","الطَّائِفُ"],correct:0},
-       {type:"qcm",q:"Comment dit-on « Bagdad » ?",options:["بَغْدَادُ","دِمَشْقُ","الْقَاهِرَةُ","مَكَّةُ"],correct:0},
-       {type:"qcm",q:"Que veut dire بَيْرُوتُ ؟",options:["Beyrouth","Amman","Riyad","Doha"],correct:0},
-       {type:"qcm",q:"Comment dit-on « Riyad » ?",options:["الرِّيَاضُ","جُدَّةُ","الدَّوْحَةُ","دُبَيْ"],correct:0},
-       {type:"qcm",q:"Que veut dire دُبَيْ ؟",options:["Dubaï","Koweït","Doha","Abou Dabi"],correct:0},
-       {type:"qcm",q:"Comment dit-on « Paris » ?",options:["بَارِيس","لَنْدَن","بِرْلِين","مَدْرِيد"],correct:0},
-       {type:"qcm",q:"Que veut dire الْعَالَمُ ؟",options:["Le monde","La ville","Le pays","Le village"],correct:0},
-       {type:"qcm",q:"Comment dit-on « pays » ?",options:["الْبَلَدُ","الْعَالَمُ","الْمَدِينَةُ","الْقَرْيَةُ"],correct:0},
-       {type:"tf",ar:"أَنَا مِنْ وَاشِنْطُن",q:"Signifie « Je viens de Washington »",correct:true},
-       {type:"tf",ar:"هُوَ مِنْ إِسْطَنْبُول",q:"Signifie « Il vient d'Istanbul »",correct:true},
-       {type:"tf",ar:"هِيَ مِنْ مَكَّةَ",q:"Signifie « Elle vient de Médine »",correct:false,explain:"مَكَّةُ = La Mecque."},
-       {type:"tf",ar:"نَحْنُ مِنَ الْمَدِينَةِ الْمُنَوَّرَةِ",q:"Signifie « Nous venons de Médine »",correct:true},
-       {type:"fill",sentence:"أَنَا ___ وَاشِنْطُن",options:["مِنْ","فِي","عَلَى","إِلَى"],correct:0},
-       {type:"fill",sentence:"هُوَ ___ إِسْطَنْبُول",options:["مِنْ","فِي","عَلَى","إِلَى"],correct:0},
-       {type:"fill",sentence:"هِيَ ___ مَكَّةَ",options:["مِنْ","فِي","عَلَى","إِلَى"],correct:0},
-       {type:"type",q:"Écris « Washington » :",answer:"وَاشِنْطُن",hint:"8 lettres"},
-       {type:"type",q:"Écris « Istanbul » :",answer:"إِسْطَنْبُول",hint:"9 lettres"},
-       {type:"type",q:"Écris « La Mecque » :",answer:"مَكَّةُ",hint:"3 lettres"},
-       {type:"type",q:"Écris « Le Caire » :",answer:"الْقَاهِرَةُ",hint:"avec ال"},
-       {type:"type",q:"Écris « Damas » :",answer:"دِمَشْقُ",hint:"4 lettres"},
-       {type:"type",q:"Écris « Bagdad » :",answer:"بَغْدَادُ",hint:"5 lettres"},
-       {type:"order",q:"Reconstitue :",words:["وَاشِنْطُن","مِنْ","أَنَا"],answer:"أَنَا مِنْ وَاشِنْطُن"},
-       {type:"order",q:"Reconstitue :",words:["إِسْطَنْبُول","مِنْ","هُوَ"],answer:"هُوَ مِنْ إِسْطَنْبُول"},
-       {type:"order",q:"Reconstitue :",words:["مَكَّةَ","مِنْ","هِيَ"],answer:"هِيَ مِنْ مَكَّةَ"},
-       {type:"order",q:"Reconstitue :",words:["الْقَاهِرَةِ","مِنَ","أَنْتَ"],answer:"أَنْتَ مِنَ الْقَاهِرَةِ"},
-       {type:"order",q:"Reconstitue :",words:["دِمَشْقَ","مِنْ","نَحْنُ"],answer:"نَحْنُ مِنْ دِمَشْقَ"},
-       {type:"audio",audioText:"أَنَا مِنْ وَاشِنْطُن",options:["أَنَا مِنْ وَاشِنْطُن","أَنَا مِنْ إِسْطَنْبُول","أَنَا مِنْ مَكَّةَ","أَنَا مِنْ فَرَنْسَا"],correct:0},
-       {type:"audio",audioText:"هُوَ مِنْ إِسْطَنْبُول",options:["هُوَ مِنْ وَاشِنْطُن","هُوَ مِنْ إِسْطَنْبُول","هُوَ مِنْ مَكَّةَ","هُوَ مِنْ دِمَشْقَ"],correct:1},
-       {type:"audio",audioText:"هِيَ مِنْ مَكَّةَ",options:["هِيَ مِنَ الْمَدِينَةِ","هِيَ مِنْ مَكَّةَ","هِيَ مِنَ الْقَاهِرَةِ","هِيَ مِنْ دِمَشْقَ"],correct:1},
-       {type:"audio",audioText:"نَحْنُ مِنَ الْمَدِينَةِ الْمُنَوَّرَةِ",options:["نَحْنُ مِنَ الْمَدِينَةِ الْمُنَوَّرَةِ","نَحْنُ مِنْ مَكَّةَ","نَحْنُ مِنَ الْقَاهِرَةِ","نَحْنُ مِنْ دِمَشْقَ"],correct:0}
-     ]}
-
-    /* ⚠️ FIN DES LEÇONS DU TOME 1 — Fermeture du tableau lessons ci-dessous */
+       /* Bloc 1 — L'إعراب du ممنوع من الصرف (10 questions) */
+       {type:"qcm",q:"Le ممنوع من الصرف suit la règle de base SAUF :",options:["Au جر","Au رفع","Au نصب","Dans tous les cas"],correct:0},
+       {type:"qcm",q:"Au رفع, le ممنوع من الصرف prend :",options:["Une ضمة","Une فتحة","Une كسرة","Un sukun"],correct:0},
+       {type:"qcm",q:"Au نصب, le ممنوع من الصرف prend :",options:["Une فتحة","Une ضمة","Une كسرة","Un sukun"],correct:0},
+       {type:"qcm",q:"Au جر, le ممنوع من الصرف prend :",options:["Une فتحة","Une كسرة","Une ضمة","Un sukun"],correct:0},
+       {type:"qcm",q:"Le ممنوع من الصرف prend le tanwin ?",options:["Non","Oui","Parfois","Toujours"],correct:0},
+       {type:"fill",sentence:"فَاطِمَةُ فِي الْفَصْلِ — le cas de فَاطِمَةُ ?",options:["رفع","نصب","جر","مجزوم"],correct:0},
+       {type:"fill",sentence:"سَلَّمَ زَيْدٌ عَلَى فَاطِمَةَ — le cas de فَاطِمَةَ ?",options:["جر","رفع","نصب","مجزوم"],correct:0},
+       {type:"fill",sentence:"لَا تَكُنْ كَسْلَانَ — le cas de كَسْلَانَ ?",options:["نصب","رفع","جر","مجزوم"],correct:0},
+       {type:"tf",q:"Le ممنوع من الصرف prend une فتحة au جر",correct:true,explain:""},
+       {type:"tf",q:"Le ممنوع من الصرف prend une كسرة au جر",correct:false,explain:"Non, le ممنوع من الصرف prend une فتحة au جر (pas une كسرة)."},
+       /* Bloc 2 — Les exemples avec ممنوع من الصرف (10 questions) */
+       {type:"type",q:"Traduire : فَاطِمَةُ فِي الْفَصْلِ",answers:["Fatima est dans la classe"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : لَا تَكُنْ كَسْلَانَ",answers:["Ne sois pas paresseux"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : سَلَّمَ زَيْدٌ عَلَى فَاطِمَةَ",answers:["Zayd a salué Fatima"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : مَرَرْتُ بِإِبْرَاهِيمَ",answers:["Je suis passé par Ibrahim"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : هَذَا كِتَابُ مُحَمَّدٍ",answers:["Ceci est le livre de Muhammad"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَذَا كِتَابُ إِبْرَاهِيمَ",answers:["Ceci est le livre d'Ibrahim"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : ذَهَبَ خَالِدٌ إِلَى أَحْمَدَ",answers:["Khalid est allé chez Ahmad"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : ذَهَبَ أَبِي إِلَى مَكَّةَ",answers:["Mon père est allé à La Mecque"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : الْبَيْتُ الْحَرَامُ فِي مَكَّةَ",answers:["La Maison Sacrée est à La Mecque"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُخْتُ فَاطِمَةَ طَالِبَةٌ",answers:["La sœur de Fatima est étudiante"],hint:"Phrase nominale"},
+       /* Bloc 3 — Les noms ممنوع من الصرف (10 questions) */
+       {type:"qcm",q:"Lequel de ces noms est ممنوع من الصرف ?",options:["فَاطِمَةُ","فَاطِمَةٌ","الْفَاطِمَةُ","فَاطِمَاتٌ"],correct:0},
+       {type:"qcm",q:"Lequel de ces noms est ممنوع من الصرف ?",options:["إِبْرَاهِيمُ","إِبْرَاهِيمٌ","إِبْرَاهِيمَ","إِبْرَاهِيمِ"],correct:0},
+       {type:"qcm",q:"Lequel de ces noms est ممنوع من الصرف ?",options:["أَحْمَدُ","أَحْمَدٌ","أَحْمَدَ","أَحْمَدِ"],correct:0},
+       {type:"qcm",q:"Lequel de ces noms est ممنوع من الصرف ?",options:["مَكَّةُ","مَكَّةٌ","مَكَّةَ","مَكَّةِ"],correct:0},
+       {type:"qcm",q:"Lequel de ces noms est ممنوع من الصرف ?",options:["عُثْمَانُ","عُثْمَانٌ","عُثْمَانَ","عُثْمَانِ"],correct:0},
+       {type:"qcm",q:"Lequel de ces noms est ممنوع من الصرف ?",options:["أَحْمَرُ","أَحْمَرٌ","أَحْمَرَ","أَحْمَرِ"],correct:0},
+       {type:"qcm",q:"Lequel de ces noms est ممنوع من الصرف ?",options:["كَسْلَانُ","كَسْلَانٌ","كَسْلَانَ","كَسْلَانِ"],correct:0},
+       {type:"qcm",q:"Lequel de ces noms est ممنوع من الصرف ?",options:["مَرْوَانُ","مَرْوَانٌ","مَرْوَانَ","مَرْوَانِ"],correct:0},
+       {type:"tf",q:"فَاطِمَةُ est ممنوع من الصرف",correct:true,explain:""},
+       {type:"tf",q:"حَامِدٌ est ممنوع من الصرف",correct:false,explain:"Non, حَامِدٌ n'est pas ممنوع من الصرف, il prend le tanwin."},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : ذَهَبَ مُحَمَّدٌ إِلَى أَحْمَدَ",answers:["Muhammad est allé chez Ahmad"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : أَنْتَ مِنْ مَكَّةَ؟",answers:["Es-tu de La Mecque ?"],hint:"Question"},
+       {type:"type",q:"Traduire : لَا، أَنَا مِنَ الطَّائِفِ",answers:["Non, je suis de Taïf"],hint:"Réponse"},
+       {type:"type",q:"Traduire : فِي إِسْطَنْبُولَ مَسَاجِدُ كَثِيرَةٌ",answers:["À Istanbul, il y a beaucoup de mosquées"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : عِنْدِي خَمْسَةُ مَفَاتِيحَ",answers:["J'ai cinq clés"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : سَيَّارَةُ لُؤَيٍّ أَخْضَرُ",answers:["La voiture de Lu'ay est verte"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْبَيْتُ الْحَرَامُ فِي مَكَّةَ",answers:["La Maison Sacrée est à La Mecque"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أَيْنَ زَوْجُ خَدِيجَةَ؟",answers:["Où est le mari de Khadija ?"],hint:"Question"},
+       {type:"type",q:"Traduire : سَيَّارَةُ حَامِدٍ جَدِيدَةٌ",answers:["La voiture de Hamid est nouvelle"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أُخْتُ مَرْوَانَ مَرِيضَةٌ",answers:["La sœur de Marwan est malade"],hint:"Phrase nominale"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire حَرَامٌ ؟",options:["Interdit","Sacré","Permis","Recommandé"],correct:0},
+       {type:"qcm",q:"Que veut dire حَرَمٌ ؟",options:["Sacré","Interdit","Permis","Recommandé"],correct:0},
+       {type:"qcm",q:"Que veut dire الْبَيْتُ الْحَرَامُ ؟",options:["La Maison Sacrée","La Maison Interdite","La Maison Blanche","La Maison Noire"],correct:0},
+       {type:"qcm",q:"Que veut dire الْمَسْجِدُ الْحَرَامُ ؟",options:["La Mosquée Sacrée","La Mosquée Interdite","La Mosquée Blanche","La Mosquée Noire"],correct:0},
+       {type:"qcm",q:"Que veut dire لَنْدُنُ ؟",options:["Londres","Paris","Berlin","Rome"],correct:0},
+       {type:"qcm",q:"Que veut dire بَغْدَادُ ؟",options:["Bagdad","Damas","Le Caire","Beyrouth"],correct:0},
+       {type:"qcm",q:"Que veut dire إِسْطَنْبُولُ ؟",options:["Istanbul","Ankara","Izmir","Bursa"],correct:0},
+       {type:"qcm",q:"Que veut dire الطَّائِفُ ؟",options:["Taïf","La Mecque","Médine","Djeddah"],correct:0},
+       {type:"qcm",q:"Que veut dire الْأَشْهُرُ الْحُرُمُ ؟",options:["Les mois sacrés","Les mois interdits","Les mois blancs","Les mois noirs"],correct:0},
+       {type:"qcm",q:"Que veut dire مَرَرْتُ ؟",options:["Je suis passé","Je suis allé","Je suis venu","Je suis resté"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « La Mecque » :",answers:["مَكَّةُ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « Bagdad » :",answers:["بَغْدَادُ"],hint:"5 lettres"},
+       {type:"type",q:"Écris « Londres » :",answers:["لَنْدُنُ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « interdit » :",answers:["حَرَامٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « sacré » :",answers:["حَرَمٌ"],hint:"3 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["الْفَصْلِ","فِي","فَاطِمَةُ"],answer:"فَاطِمَةُ فِي الْفَصْلِ"},
+       {type:"order",q:"Reconstitue :",words:["كَثِيرَةٌ","مَسَاجِدُ","إِسْطَنْبُولَ","فِي"],answer:"فِي إِسْطَنْبُولَ مَسَاجِدُ كَثِيرَةٌ"},
+       {type:"order",q:"Reconstitue :",words:["مَفَاتِيحَ","خَمْسَةُ","عِنْدِي"],answer:"عِنْدِي خَمْسَةُ مَفَاتِيحَ"},
+       {type:"order",q:"Reconstitue :",words:["مَكَّةَ","فِي","الْحَرَامُ","الْبَيْتُ"],answer:"الْبَيْتُ الْحَرَامُ فِي مَكَّةَ"},
+       {type:"order",q:"Reconstitue :",words:["طَالِبَةٌ","فَاطِمَةَ","أُخْتُ"],answer:"أُخْتُ فَاطِمَةَ طَالِبَةٌ"}
+     ]},    /* ===== LEÇON 28 ===== */
+    {id:"t1l28", num:28, title:"Révision 5", desc:"Semaine 2 · Les signes d'إعراب",
+     active:true, audio:null, pdf:"",
+     text:[
+       "زَيْدٌ فِي الْفَصْلِ","الرَّفْعُ: الضَّمَّةُ",
+       "ضَرَبَ زَيْدٌ يَاسِرًا","النَّصْبُ: الْفَتْحَةُ",
+       "فِي الْفَصْلِ طَالِبٌ","الْجَرُّ: الْكَسْرَةُ",
+       "جَاءَ الْمُسْلِمُونَ","جَاءَ طَالِبَانِ","الرَّفْعُ: الْوَاوُ وَالْأَلِفُ",
+       "أَحَبَّ الْمُسْلِمِينَ","ضَرَبَ زَيْدٌ طَالِبَيْنِ","النَّصْبُ: الْيَاءُ",
+       "أَكْرَمَ الطَّالِبَاتِ","النَّصْبُ: الْكَسْرَةُ",
+       "السَّلَامُ عَلَى الْمُسْلِمِينَ","السَّلَامُ عَلَى الطَّالِبَيْنِ","الْجَرُّ: الْيَاءُ",
+       "السَّلَامُ عَلَى فَاطِمَةَ","الْجَرُّ: الْفَتْحَةُ",
+       "الْمُسْلِمُونَ فِي الْمَسْجِدِ","الطَّالِبَانِ فِي الْفَصْلِ",
+       "الطَّالِبَاتُ فِي الْفَصْلِ"
+     ],
+     vocab:[
+       {ar:"الْإِعْرَابُ",fr:"L'analyse grammaticale",tr:"al-iʿrāb"},
+       {ar:"الرَّفْعُ",fr:"Le nominatif",tr:"al-rafʿ"},
+       {ar:"النَّصْبُ",fr:"L'accusatif",tr:"al-naṣb"},
+       {ar:"الْجَرُّ",fr:"Le génitif",tr:"al-jarr"},
+       {ar:"الضَّمَّةُ",fr:"La damma",tr:"al-ḍamma"},
+       {ar:"الْفَتْحَةُ",fr:"La fatha",tr:"al-fatḥa"},
+       {ar:"الْكَسْرَةُ",fr:"La kasra",tr:"al-kasra"},
+       {ar:"الْوَاوُ",fr:"Le waw",tr:"al-wāw"},
+       {ar:"الْأَلِفُ",fr:"Le alif",tr:"al-alif"},
+       {ar:"الْيَاءُ",fr:"Le ya",tr:"al-yāʾ"},
+       {ar:"جَمْعُ الْمُذَكَّرِ السَّالِمُ",fr:"Pluriel masculin régulier",tr:"jamʿ al-mudhakkar al-sālim"},
+       {ar:"جَمْعُ الْمُؤَنَّثِ السَّالِمُ",fr:"Pluriel féminin régulier",tr:"jamʿ al-muʾannath al-sālim"},
+       {ar:"الْمَثْنَى",fr:"Le duel",tr:"al-mathnā"},
+       {ar:"الْمَمْنُوعُ مِنَ الصَّرْفِ",fr:"Interdit de tanwin",tr:"al-mamnūʿ min al-ṣarf"},
+       {ar:"الْمُسْلِمُونَ",fr:"Les musulmans",tr:"al-muslimūn"},
+       {ar:"الْمُسْلِمِينَ",fr:"Les musulmans (acc./gén.)",tr:"al-muslimīn"},
+       {ar:"الطَّالِبَانِ",fr:"Les deux étudiants",tr:"al-ṭālibāni"},
+       {ar:"الطَّالِبَيْنِ",fr:"Les deux étudiants (acc./gén.)",tr:"al-ṭālibayni"},
+       {ar:"الطَّالِبَاتُ",fr:"Les étudiantes",tr:"al-ṭālibāt"},
+       {ar:"الطَّالِبَاتِ",fr:"Les étudiantes (acc./gén.)",tr:"al-ṭālibāt"},
+       {ar:"فَاطِمَةُ",fr:"Fatima",tr:"Fāṭima"},
+       {ar:"ضَرَبَ",fr:"Frapper",tr:"ḍaraba"},
+       {ar:"أَحَبَّ",fr:"Aimer",tr:"aḥabba"},
+       {ar:"أَكْرَمَ",fr:"Honorer",tr:"akrama"},
+       {ar:"جَاءَ",fr:"Venir",tr:"jāʾa"}
+     ],
+     grammar:{title:"Les signes d'إعراب : حَرَكَة et حَرْف",
+       rule:"1) Le signe de base de l'إعراب est une حَرَكَة (voyelle) : الضمة (رفع), الفتحة (نصب), الكسرة (جر). 2) Dans certains cas, le signe distinctif peut être une حَرْف (lettre). 3) Tableau complet : الرفع : ضمة (base), واو (جمع مذكر سالم), ألف (مثنى). النصب : فتحة (base), ياء (جمع مذكر سالم/مثنى), كسرة (جمع مؤنث سالم). الجر : كسرة (base), ياء (جمع مذكر سالم/مثنى), فتحة (ممنوع من الصرف).",
+       examples:["زَيْدٌ فِي الْفَصْلِ = Zayd est dans la classe (رفع par ضمة)","جَاءَ الْمُسْلِمُونَ = Les musulmans sont venus (رفع par واو)","جَاءَ طَالِبَانِ = Deux étudiants sont venus (رفع par ألف)","السَّلَامُ عَلَى فَاطِمَةَ = Que la paix soit sur Fatima (جر par فتحة)"]},
+     dialogue:[
+       {sp:"A",ar:"مَا هُوَ الْإِعْرَابُ؟",fr:"Qu'est-ce que l'إعراب ?"},
+       {sp:"B",ar:"هُوَ تَغْيِيرُ آخِرِ الْكَلِمَةِ بِسَبَبِ عَامِلٍ.",fr:"C'est le changement de la fin du mot à cause d'un facteur."},
+       {sp:"A",ar:"مَا هِيَ عَلَامَاتُ الْإِعْرَابِ؟",fr:"Quels sont les signes d'إعراب ?"},
+       {sp:"B",ar:"الضَّمَّةُ وَالْفَتْحَةُ وَالْكَسْرَةُ.",fr:"La damma, la fatha et la kasra."},
+       {sp:"A",ar:"وَهَلْ تَكُونُ الْعَلَامَةُ حَرْفًا؟",fr:"Et le signe peut-il être une lettre ?"},
+       {sp:"B",ar:"نَعَمْ، مِثْلُ الْوَاوِ وَالْأَلِفِ وَالْيَاءِ.",fr:"Oui, comme le waw, le alif et le ya."},
+       {sp:"A",ar:"مَتَى تَكُونُ الْوَاوُ عَلَامَةً؟",fr:"Quand le waw est-il un signe ?"},
+       {sp:"B",ar:"فِي جَمْعِ الْمُذَكَّرِ السَّالِمِ فِي الرَّفْعِ.",fr:"Dans le pluriel masculin régulier au nominatif."},
+       {sp:"A",ar:"وَمَتَى تَكُونُ الْأَلِفُ عَلَامَةً؟",fr:"Et quand le alif est-il un signe ?"},
+       {sp:"B",ar:"فِي الْمَثْنَى فِي الرَّفْعِ.",fr:"Dans le duel au nominatif."},
+       {sp:"A",ar:"وَمَتَى تَكُونُ الْيَاءُ عَلَامَةً؟",fr:"Et quand le ya est-il un signe ?"},
+       {sp:"B",ar:"فِي جَمْعِ الْمُذَكَّرِ وَالْمَثْنَى فِي النَّصْبِ وَالْجَرِّ.",fr:"Dans le pluriel masculin et le duel au نصب et au جر."},
+       {sp:"A",ar:"وَمَتَى تَكُونُ الْكَسْرَةُ عَلَامَةً لِلنَّصْبِ؟",fr:"Et quand la kasra est-elle un signe de نصب ?"},
+       {sp:"B",ar:"فِي جَمْعِ الْمُؤَنَّثِ السَّالِمِ.",fr:"Dans le pluriel féminin régulier."}
+     ],
+     exercises:[
+       /* Bloc 1 — Les signes de base (10 questions) */
+       {type:"qcm",q:"Quel est le signe de base du رفع ?",options:["الضمة","الفتحة","الكسرة","الواو"],correct:0},
+       {type:"qcm",q:"Quel est le signe de base du نصب ?",options:["الفتحة","الضمة","الكسرة","الياء"],correct:0},
+       {type:"qcm",q:"Quel est le signe de base du جر ?",options:["الكسرة","الفتحة","الضمة","الياء"],correct:0},
+       {type:"qcm",q:"Le signe de base de l'إعراب est :",options:["Une حَرَكَة","Une حَرْف","Un nom","Un verbe"],correct:0},
+       {type:"fill",sentence:"زَيْدٌ فِي الْفَصْلِ — le signe du رفع ?",options:["الضمة","الفتحة","الكسرة","الواو"],correct:0},
+       {type:"fill",sentence:"ضَرَبَ زَيْدٌ يَاسِرًا — le signe du نصب ?",options:["الفتحة","الضمة","الكسرة","الياء"],correct:0},
+       {type:"fill",sentence:"فِي الْفَصْلِ طَالِبٌ — le signe du جر ?",options:["الكسرة","الفتحة","الضمة","الياء"],correct:0},
+       {type:"type",q:"Traduire : زَيْدٌ فِي الْفَصْلِ",answers:["Zayd est dans la classe"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : ضَرَبَ زَيْدٌ يَاسِرًا",answers:["Zayd a frappé Yasir"],hint:"Phrase verbale"},
+       {type:"tf",q:"Le signe de base de l'إعراب est une حَرَكَة",correct:true,explain:""},
+       /* Bloc 2 — Les signes secondaires (10 questions) */
+       {type:"qcm",q:"Le signe du رفع du جمع مذكر سالم est :",options:["الواو","الضمة","الألف","الياء"],correct:0},
+       {type:"qcm",q:"Le signe du رفع du المثنى est :",options:["الألف","الواو","الضمة","الياء"],correct:0},
+       {type:"qcm",q:"Le signe du نصب du جمع مذكر سالم est :",options:["الياء","الفتحة","الواو","الكسرة"],correct:0},
+       {type:"qcm",q:"Le signe du جر du جمع مذكر سالم est :",options:["الياء","الكسرة","الفتحة","الواو"],correct:0},
+       {type:"qcm",q:"Le signe du نصب du جمع مؤنث سالم est :",options:["الكسرة","الفتحة","الياء","الضمة"],correct:0},
+       {type:"qcm",q:"Le signe du جر du ممنوع من الصرف est :",options:["الفتحة","الكسرة","الياء","الضمة"],correct:0},
+       {type:"fill",sentence:"جَاءَ الْمُسْلِمُونَ — le signe du رفع ?",options:["الواو","الضمة","الألف","الياء"],correct:0},
+       {type:"fill",sentence:"جَاءَ طَالِبَانِ — le signe du رفع ?",options:["الألف","الواو","الضمة","الياء"],correct:0},
+       {type:"fill",sentence:"أَحَبَّ الْمُسْلِمِينَ — le signe du نصب ?",options:["الياء","الفتحة","الواو","الكسرة"],correct:0},
+       {type:"fill",sentence:"السَّلَامُ عَلَى فَاطِمَةَ — le signe du جر ?",options:["الفتحة","الكسرة","الياء","الضمة"],correct:0},
+       /* Bloc 3 — Les exemples avec les signes secondaires (10 questions) */
+       {type:"type",q:"Traduire : جَاءَ الْمُسْلِمُونَ",answers:["Les musulmans sont venus"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : جَاءَ طَالِبَانِ",answers:["Deux étudiants sont venus"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : أَحَبَّ الْمُسْلِمِينَ",answers:["Il aime les musulmans"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : ضَرَبَ زَيْدٌ طَالِبَيْنِ",answers:["Zayd a frappé deux étudiants"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : أَكْرَمَ الطَّالِبَاتِ",answers:["Il a honoré les étudiantes"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : السَّلَامُ عَلَى الْمُسْلِمِينَ",answers:["Que la paix soit sur les musulmans"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : السَّلَامُ عَلَى الطَّالِبَيْنِ",answers:["Que la paix soit sur les deux étudiants"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : السَّلَامُ عَلَى فَاطِمَةَ",answers:["Que la paix soit sur Fatima"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْمُسْلِمُونَ فِي الْمَسْجِدِ",answers:["Les musulmans sont dans la mosquée"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الطَّالِبَاتُ فِي الْفَصْلِ",answers:["Les étudiantes sont dans la classe"],hint:"Phrase nominale"},
+       /* Bloc 4 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire الْإِعْرَابُ ؟",options:["L'analyse grammaticale","La conjugaison","La déclinaison","La syntaxe"],correct:0},
+       {type:"qcm",q:"Que veut dire الرَّفْعُ ؟",options:["Le nominatif","L'accusatif","Le génitif","Le jussif"],correct:0},
+       {type:"qcm",q:"Que veut dire النَّصْبُ ؟",options:["L'accusatif","Le nominatif","Le génitif","Le jussif"],correct:0},
+       {type:"qcm",q:"Que veut dire الْجَرُّ ؟",options:["Le génitif","Le nominatif","L'accusatif","Le jussif"],correct:0},
+       {type:"qcm",q:"Que veut dire الضَّمَّةُ ؟",options:["La damma","La fatha","La kasra","Le sukun"],correct:0},
+       {type:"qcm",q:"Que veut dire الْفَتْحَةُ ؟",options:["La fatha","La damma","La kasra","Le sukun"],correct:0},
+       {type:"qcm",q:"Que veut dire الْكَسْرَةُ ؟",options:["La kasra","La damma","La fatha","Le sukun"],correct:0},
+       {type:"qcm",q:"Que veut dire الْوَاوُ ؟",options:["Le waw","Le alif","Le ya","Le nun"],correct:0},
+       {type:"qcm",q:"Que veut dire الْأَلِفُ ؟",options:["Le alif","Le waw","Le ya","Le nun"],correct:0},
+       {type:"qcm",q:"Que veut dire الْيَاءُ ؟",options:["Le ya","Le waw","Le alif","Le nun"],correct:0},
+       /* Bloc 5 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « le nominatif » :",answers:["الرَّفْعُ"],hint:"avec ال"},
+       {type:"type",q:"Écris « l'accusatif » :",answers:["النَّصْبُ"],hint:"avec ال"},
+       {type:"type",q:"Écris « le génitif » :",answers:["الْجَرُّ"],hint:"avec ال"},
+       {type:"type",q:"Écris « la damma » :",answers:["الضَّمَّةُ"],hint:"avec ال"},
+       {type:"type",q:"Écris « la kasra » :",answers:["الْكَسْرَةُ"],hint:"avec ال"},
+       /* Bloc 6 — Traduction (5 questions) */
+       {type:"type",q:"Traduire : جَاءَ الْمُسْلِمُونَ",answers:["Les musulmans sont venus"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : السَّلَامُ عَلَى الطَّالِبَاتِ",answers:["Que la paix soit sur les étudiantes"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْمُسْلِمُونَ فِي الْمَسْجِدِ",answers:["Les musulmans sont dans la mosquée"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الطَّالِبَانِ فِي الْفَصْلِ",answers:["Les deux étudiants sont dans la classe"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : أَكْرَمَ الطَّالِبَاتِ",answers:["Il a honoré les étudiantes"],hint:"Phrase verbale"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["الْفَصْلِ","فِي","زَيْدٌ"],answer:"زَيْدٌ فِي الْفَصْلِ"},
+       {type:"order",q:"Reconstitue :",words:["الْمُسْلِمُونَ","جَاءَ"],answer:"جَاءَ الْمُسْلِمُونَ"},
+       {type:"order",q:"Reconstitue :",words:["الْمُسْلِمِينَ","عَلَى","السَّلَامُ"],answer:"السَّلَامُ عَلَى الْمُسْلِمِينَ"},
+       {type:"order",q:"Reconstitue :",words:["فَاطِمَةَ","عَلَى","السَّلَامُ"],answer:"السَّلَامُ عَلَى فَاطِمَةَ"},
+       {type:"order",q:"Reconstitue :",words:["الْمَسْجِدِ","فِي","الْمُسْلِمُونَ"],answer:"الْمُسْلِمُونَ فِي الْمَسْجِدِ"}
+     ]},    /* ===== LEÇON 29 ===== */
+    {id:"t1l29", num:29, title:"Révision 6", desc:"Semaine 2 · Noms définis, pronoms, interrogatifs",
+     active:true, audio:null, pdf:"",
+     text:[
+       "الطَّالِبُ فِي الْجَامِعَةِ","الرَّجُلُ فِي الْمَسْجِدِ",
+       "أَيْنَ زَيْنَبُ؟ هِيَ فِي الْغُرْفَةِ","الْقَلَمُ عَلَى الْمَكْتَبِ",
+       "أَيْنَ الْوَرَقُ؟ هُوَ عَلَى الْمَكْتَبِ","هَذَا كِتَابٌ",
+       "كَيْفَ أَنْتَ يَا زَيْدُ؟ أَجْلِسْ مَعَ الطُّلَّابِ",
+       "أَيْنَ يَاسِرٌ يَا أُسْتَاذُ؟","هُوَ مَرِيضٌ الْيَوْمَ",
+       "مَنْ كَتَبَ تَمَارِينَهُ؟","أَنَا يَا أُسْتَاذُ",
+       "مَتَى الْاِخْتِبَارُ يَا أُسْتَاذُ؟","غَدًا إِنْ شَاءَ اللَّهُ",
+       "أَيُّ دَرْسٍ مَوْضُوعُ الْاِخْتِبَارِ؟","وَكَمْ سُؤَالًا فِيهِ؟",
+       "فِيهِ عَشَرَةُ أَسْئِلَةٍ وَمَوْضُوعُهُ النَّحْوُ",
+       "مَا رَأْيُكُمْ فِي مُرَاجَعَةِ الْيَوْمِ يَا أُسْتَاذُ؟",
+       "حَسَنًا، افْتَحُوا دَفَاتِرَكُمْ",
+       "هَذَا فَصْلِي وَهَذِهِ حَقِيبَتِي"
+     ],
+     vocab:[
+       {ar:"النَّكِرَةُ",fr:"L'indéfini",tr:"al-nakira"},
+       {ar:"الْمَعْرِفَةُ",fr:"Le défini",tr:"al-maʿrifa"},
+       {ar:"الْمُعَرَّفُ بِالْ",fr:"Défini par ال",tr:"al-muʿarraf bi-al"},
+       {ar:"أَسْمَاءُ الْإِشَارَةِ",fr:"Les démonstratifs",tr:"asmāʾ al-ishāra"},
+       {ar:"الضَّمَائِرُ",fr:"Les pronoms",tr:"al-ḍamāʾir"},
+       {ar:"الْعَلَمُ",fr:"Le nom propre",tr:"al-ʿalam"},
+       {ar:"الضَّمَائِرُ الْمُنْفَصِلَةُ",fr:"Les pronoms isolés",tr:"al-ḍamāʾir al-munfaṣila"},
+       {ar:"الضَّمَائِرُ الْمُتَّصِلَةُ",fr:"Les pronoms affixes",tr:"al-ḍamāʾir al-muttaṣila"},
+       {ar:"كَيْفَ",fr:"Comment ?",tr:"kayfa"},
+       {ar:"أَيْنَ",fr:"Où ?",tr:"ayna"},
+       {ar:"مَنْ",fr:"Qui ?",tr:"man"},
+       {ar:"مَا",fr:"Quoi ?",tr:"mā"},
+       {ar:"أَيُّ",fr:"Quel ?",tr:"ayyu"},
+       {ar:"كَمْ",fr:"Combien ?",tr:"kam"},
+       {ar:"مَتَى",fr:"Quand ?",tr:"matā"},
+       {ar:"مَرِيضٌ",fr:"Malade",tr:"marīḍ"},
+       {ar:"تَمَارِينُ",fr:"Exercices",tr:"tamārīn"},
+       {ar:"مَوْضُوعٌ",fr:"Sujet",tr:"mawḍūʿ"},
+       {ar:"سُؤَالٌ",fr:"Question",tr:"suʾāl"},
+       {ar:"أَسْئِلَةٌ",fr:"Questions",tr:"asʾila"},
+       {ar:"النَّحْوُ",fr:"La grammaire",tr:"al-naḥw"},
+       {ar:"مُرَاجَعَةٌ",fr:"Révision",tr:"murājaʿa"},
+       {ar:"دَفْتَرٌ",fr:"Cahier",tr:"daftar"},
+       {ar:"دَفَاتِرُ",fr:"Cahiers",tr:"dafātir"},
+       {ar:"حَقِيبَةٌ",fr:"Sac",tr:"ḥaqība"},
+       {ar:"جَامِعَةٌ",fr:"Université",tr:"jāmiʿa"}
+     ],
+     grammar:{title:"Révision : noms définis, pronoms et interrogatifs",
+       rule:"1) Les noms définis (الْمَعْرِفَة) sont de 4 types : الْمُعَرَّف بِال (avec ال), أَسْمَاء الْإِشَارَة (démonstratifs), الضَّمَائِر (pronoms), الْعَلَم (noms propres). 2) Les pronoms sont de 2 types : الْمُنْفَصِلَة (isolés : أَنَا، أَنْتَ، هُوَ، هِيَ...) et الْمُتَّصِلَة (affixes : ي، كَ، هُ، هَا...). 3) Les 7 noms interrogatifs : مَا (êtres non doués de raison), مَنْ (êtres doués de raison), أَيْنَ (lieu), كَيْفَ (état), أَيُّ (général, annexé), كَمْ (quantité), مَتَى (temps).",
+       examples:["الطَّالِبُ فِي الْجَامِعَةِ = L'étudiant est à l'université","كَيْفَ أَنْتَ يَا زَيْدُ؟ = Comment vas-tu, ô Zayd ?","مَتَى الْاِخْتِبَارُ؟ = Quand est l'examen ?","فِيهِ عَشَرَةُ أَسْئِلَةٍ = Il y a dix questions"]},
+     dialogue:[
+       {sp:"A",ar:"كَيْفَ أَنْتَ يَا زَيْدُ؟",fr:"Comment vas-tu, ô Zayd ?"},
+       {sp:"B",ar:"أَنَا بِخَيْرٍ، الْحَمْدُ لِلَّهِ.",fr:"Je vais bien, louange à Allah."},
+       {sp:"A",ar:"أَيْنَ يَاسِرٌ يَا أُسْتَاذُ؟",fr:"Où est Yasir, ô professeur ?"},
+       {sp:"B",ar:"هُوَ مَرِيضٌ الْيَوْمَ.",fr:"Il est malade aujourd'hui."},
+       {sp:"A",ar:"مَنْ كَتَبَ تَمَارِينَهُ؟",fr:"Qui a écrit ses exercices ?"},
+       {sp:"B",ar:"أَنَا يَا أُسْتَاذُ.",fr:"Moi, ô professeur."},
+       {sp:"A",ar:"وَمَا كَتَبْتَ مِنْهَا؟",fr:"Et combien en as-tu écrit ?"},
+       {sp:"B",ar:"كَتَبْتُ كُلَّهَا.",fr:"J'ai écrit tout."},
+       {sp:"A",ar:"حَسَنًا، هَاتِ دَفْتَرَكَ.",fr:"Bien, donne ton cahier."},
+       {sp:"A",ar:"مَتَى الْاِخْتِبَارُ يَا أُسْتَاذُ؟",fr:"Quand est l'examen, ô professeur ?"},
+       {sp:"B",ar:"غَدًا إِنْ شَاءَ اللَّهُ.",fr:"Demain, si Allah le veut."},
+       {sp:"A",ar:"أَيُّ دَرْسٍ مَوْضُوعُ الْاِخْتِبَارِ؟ وَكَمْ سُؤَالًا فِيهِ؟",fr:"Quelle leçon est le sujet de l'examen ? Et combien de questions contient-il ?"},
+       {sp:"B",ar:"فِيهِ عَشَرَةُ أَسْئِلَةٍ وَمَوْضُوعُهُ النَّحْوُ.",fr:"Il contient dix questions et son sujet est la grammaire."},
+       {sp:"A",ar:"مَا رَأْيُكُمْ فِي مُرَاجَعَةِ الْيَوْمِ يَا أُسْتَاذُ؟",fr:"Quel est votre avis sur la révision d'aujourd'hui, ô professeur ?"},
+       {sp:"B",ar:"حَسَنًا، افْتَحُوا دَفَاتِرَكُمْ.",fr:"Bien, ouvrez vos cahiers."}
+     ],
+     exercises:[
+       /* Bloc 1 — Les noms définis (10 questions) */
+       {type:"qcm",q:"Combien de types de noms définis ?",options:["4","3","5","6"],correct:0},
+       {type:"qcm",q:"Quels sont les 4 types de noms définis ?",options:["ال + أسماء الإشارة + الضمائر + العلم","ال + الفعل + الحرف + الاسم","المبتدأ + الخبر + الفاعل + المفعول","المرفوع + المنصوب + المجرور + المجزوم"],correct:0},
+       {type:"qcm",q:"الطَّالِبُ est défini par :",options:["ال","الإشارة","الضمير","العلم"],correct:0},
+       {type:"qcm",q:"هَذَا est :",options:["اسم إشارة","معرف بال","ضمير","علم"],correct:0},
+       {type:"qcm",q:"هُوَ est :",options:["ضمير","اسم إشارة","معرف بال","علم"],correct:0},
+       {type:"qcm",q:"مُحَمَّدٌ est :",options:["علم","اسم إشارة","معرف بال","ضمير"],correct:0},
+       {type:"fill",sentence:"الطَّالِبُ ___",options:["معرفة","نكرة","فعل","حرف"],correct:0},
+       {type:"fill",sentence:"كِتَابٌ ___",options:["نكرة","معرفة","فعل","حرف"],correct:0},
+       {type:"tf",q:"Les 4 types de noms définis sont : ال + أسماء الإشارة + الضمائر + العلم",correct:true,explain:""},
+       {type:"tf",q:"كِتَابٌ est un nom défini",correct:false,explain:"Non, كِتَابٌ est un nom indéfini (نكرة)."},
+       /* Bloc 2 — Les pronoms (10 questions) */
+       {type:"qcm",q:"Quels sont les 2 types de pronoms ?",options:["منفصلة et متصلة","مرفوعة et منصوبة","مفرد et جمع","مذكر et مؤنث"],correct:0},
+       {type:"qcm",q:"أَنَا est un pronom :",options:["منفصل","متصل","اسم إشارة","علم"],correct:0},
+       {type:"qcm",q:"كَ (dans كِتَابُكَ) est un pronom :",options:["متصل","منفصل","اسم إشارة","علم"],correct:0},
+       {type:"qcm",q:"Quel pronom est pour la 1ère personne ?",options:["أَنَا","أَنْتَ","هُوَ","هِيَ"],correct:0},
+       {type:"qcm",q:"Quel pronom est pour la 2ème personne ?",options:["أَنْتَ","أَنَا","هُوَ","هِيَ"],correct:0},
+       {type:"qcm",q:"Quel pronom est pour la 3ème personne ?",options:["هُوَ","أَنَا","أَنْتَ","نَحْنُ"],correct:0},
+       {type:"fill",sentence:"___ طَالِبٌ (je)",options:["أَنَا","أَنْتَ","هُوَ","هِيَ"],correct:0},
+       {type:"fill",sentence:"كِتَابُ ___ (ton)",options:["ـكَ","ـي","ـهُ","ـهَا"],correct:0},
+       {type:"tf",q:"Les pronoms sont de 2 types : منفصلة et متصلة",correct:true,explain:""},
+       {type:"tf",q:"أَنَا est un pronom متصل",correct:false,explain:"Non, أَنَا est un pronom منفصل (isolé)."},
+       /* Bloc 3 — Les interrogatifs (10 questions) */
+       {type:"qcm",q:"Combien de noms interrogatifs ?",options:["7","5","6","8"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour le lieu ?",options:["أَيْنَ","كَيْفَ","مَتَى","مَنْ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour l'état ?",options:["كَيْفَ","أَيْنَ","مَتَى","مَنْ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour le temps ?",options:["مَتَى","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour la quantité ?",options:["كَمْ","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif est général et toujours annexé ?",options:["أَيُّ","كَيْفَ","أَيْنَ","مَتَى"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour les êtres doués de raison ?",options:["مَنْ","مَا","أَيْنَ","كَيْفَ"],correct:0},
+       {type:"qcm",q:"Quel interrogatif pour les êtres non doués de raison ?",options:["مَا","مَنْ","أَيْنَ","كَيْفَ"],correct:0},
+       {type:"fill",sentence:"___ أَنْتَ يَا زَيْدُ ؟",options:["كَيْفَ","أَيْنَ","مَتَى","مَنْ"],correct:0},
+       {type:"fill",sentence:"___ الْاِخْتِبَارُ ؟",options:["مَتَى","كَيْفَ","أَيْنَ","مَنْ"],correct:0},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : الطَّالِبُ فِي الْجَامِعَةِ",answers:["L'étudiant est à l'université"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : كَيْفَ أَنْتَ يَا زَيْدُ ؟",answers:["Comment vas-tu, ô Zayd ?"],hint:"Question"},
+       {type:"type",q:"Traduire : أَيْنَ يَاسِرٌ يَا أُسْتَاذُ ؟",answers:["Où est Yasir, ô professeur ?"],hint:"Question"},
+       {type:"type",q:"Traduire : هُوَ مَرِيضٌ الْيَوْمَ",answers:["Il est malade aujourd'hui"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : مَنْ كَتَبَ تَمَارِينَهُ ؟",answers:["Qui a écrit ses exercices ?"],hint:"Question"},
+       {type:"type",q:"Traduire : مَتَى الْاِخْتِبَارُ ؟",answers:["Quand est l'examen ?"],hint:"Question"},
+       {type:"type",q:"Traduire : فِيهِ عَشَرَةُ أَسْئِلَةٍ",answers:["Il contient dix questions"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : مَوْضُوعُهُ النَّحْوُ",answers:["Son sujet est la grammaire"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : هَذَا فَصْلِي وَهَذِهِ حَقِيبَتِي",answers:["Ceci est ma classe et ceci est mon sac"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : افْتَحُوا دَفَاتِرَكُمْ",answers:["Ouvrez vos cahiers"],hint:"Impératif pluriel"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire النَّكِرَةُ ؟",options:["L'indéfini","Le défini","Le nom","Le verbe"],correct:0},
+       {type:"qcm",q:"Que veut dire الْمَعْرِفَةُ ؟",options:["Le défini","L'indéfini","Le nom","Le verbe"],correct:0},
+       {type:"qcm",q:"Que veut dire مَرِيضٌ ؟",options:["Malade","En bonne santé","Fatigué","Content"],correct:0},
+       {type:"qcm",q:"Que veut dire تَمَارِينُ ؟",options:["Exercices","Leçons","Devoirs","Cours"],correct:0},
+       {type:"qcm",q:"Que veut dire مَوْضُوعٌ ؟",options:["Sujet","Verbe","Objet","Complément"],correct:0},
+       {type:"qcm",q:"Que veut dire سُؤَالٌ ؟",options:["Question","Réponse","Phrase","Mot"],correct:0},
+       {type:"qcm",q:"Que veut dire النَّحْوُ ؟",options:["La grammaire","La conjugaison","L'orthographe","La lecture"],correct:0},
+       {type:"qcm",q:"Que veut dire مُرَاجَعَةٌ ؟",options:["Révision","Leçon","Exercice","Examen"],correct:0},
+       {type:"qcm",q:"Que veut dire دَفْتَرٌ ؟",options:["Cahier","Livre","Feuille","Stylo"],correct:0},
+       {type:"qcm",q:"Que veut dire حَقِيبَةٌ ؟",options:["Sac","Valise","Cartable","Poche"],correct:0},
+       {type:"qcm",q:"Que veut dire جَامِعَةٌ ؟",options:["Université","École","Lycée","Institut"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « le défini » :",answers:["الْمَعْرِفَةُ"],hint:"avec ال"},
+       {type:"type",q:"Écris « l'indéfini » :",answers:["النَّكِرَةُ"],hint:"avec ال"},
+       {type:"type",q:"Écris « comment ? » :",answers:["كَيْفَ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « quand ? » :",answers:["مَتَى"],hint:"3 lettres"},
+       {type:"type",q:"Écris « combien ? » :",answers:["كَمْ"],hint:"2 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["الْجَامِعَةِ","فِي","الطَّالِبُ"],answer:"الطَّالِبُ فِي الْجَامِعَةِ"},
+       {type:"order",q:"Reconstitue :",words:["زَيْدُ","أَنْتَ","كَيْفَ","يَا","؟"],answer:"كَيْفَ أَنْتَ يَا زَيْدُ ؟"},
+       {type:"order",q:"Reconstitue :",words:["الْاِخْتِبَارُ","مَتَى","؟"],answer:"مَتَى الْاِخْتِبَارُ ؟"},
+       {type:"order",q:"Reconstitue :",words:["أَسْئِلَةٍ","عَشَرَةُ","فِيهِ"],answer:"فِيهِ عَشَرَةُ أَسْئِلَةٍ"},
+       {type:"order",q:"Reconstitue :",words:["حَقِيبَتِي","وَهَذِهِ","فَصْلِي","هَذَا"],answer:"هَذَا فَصْلِي وَهَذِهِ حَقِيبَتِي"}
+     ]},    /* ===== LEÇON 30 ===== */
+    {id:"t1l30", num:30, title:"Révision 7", desc:"Semaine 2 · Les nombres, le pluriel, le duel",
+     active:true, audio:null, pdf:"",
+     text:[
+       "لِي ثَلَاثَةُ كُتُبٍ","فِي الْفَصْلِ عَشَرَةُ طُلَّابٍ",
+       "فِي الْفَصْلِ خَمْسُ طَالِبَاتٍ","عِنْدِي سِتَّةُ أَقْلَامٍ",
+       "الْمُسْلِمُونَ فِي الْمَسْجِدِ","الْمُسْلِمَاتُ فِي الْمَسْجِدِ",
+       "الْكُتُبُ فِي الْفَصْلِ","الرِّجَالُ فِي الْمَسَاجِدِ",
+       "الطَّالِبَانِ فِي الْفَصْلِ","الطَّالِبَتَانِ فِي الْفَصْلِ",
+       "زَيْدٌ يَتَأَمَّلُ كُلَّ لَيْلَةٍ مُبَكِّرًا","وَيَسْتَيْقِظُ قَبْلَ أَذَانِ صَلَاةِ الْفَجْرِ",
+       "فَيَتَوَضَّأُ ثُمَّ يَذْهَبُ إِلَى الْمَسْجِدِ","فَيُصَلِّي مَعَ الْجَمَاعَةِ",
+       "وَبَعْدَ الصَّلَاةِ يَجْلِسُ يَذْكُرُ اللَّهَ","وَيَتْلُو الْقُرْآنَ حَتَّى تَطْلُعَ الشَّمْسُ",
+       "فَيُصَلِّي صَلَاةَ الضُّحَى","ثُمَّ يَرْجِعُ إِلَى بَيْتِهِ لِيَتَنَاوَلَ الْغَدَاءَ",
+       "ثُمَّ يُنَظِّفُ غُرْفَتَهُ","وَيَسْتَعِدُّ لِلذَّهَابِ إِلَى الْمَدْرَسَةِ",
+       "فِي السَّنَةِ عِيدَانِ: عِيدُ الْفِطْرِ وَعِيدُ الْأَضْحَى"
+     ],
+     vocab:[
+       {ar:"مُبَكِّرًا",fr:"Tôt",tr:"mubakkiran"},
+       {ar:"ضُحَى",fr:"Matinée",tr:"ḍuḥā"},
+       {ar:"حَيَاةٌ",fr:"Vie",tr:"ḥayāh"},
+       {ar:"غَدَاءٌ",fr:"Déjeuner",tr:"ghadāʾ"},
+       {ar:"يَتَأَمَّلُ",fr:"Méditer / Contempler",tr:"yataʾammalu"},
+       {ar:"يَسْتَيْقِظُ",fr:"Se réveiller",tr:"yastayqiẓu"},
+       {ar:"أَذَانٌ",fr:"Appel à la prière",tr:"adhān"},
+       {ar:"فَجْرٌ",fr:"Aube",tr:"fajr"},
+       {ar:"يَتَوَضَّأُ",fr:"Faire les ablutions",tr:"yatawaḍḍaʾu"},
+       {ar:"يُصَلِّي",fr:"Prier",tr:"yuṣallī"},
+       {ar:"جَمَاعَةٌ",fr:"Groupe / Congrégation",tr:"jamāʿa"},
+       {ar:"يَذْكُرُ",fr:"Invoquer / Se rappeler",tr:"yadhkuru"},
+       {ar:"يَتْلُو",fr:"Lire / Réciter",tr:"yatlū"},
+       {ar:"قُرْآنٌ",fr:"Coran",tr:"qurʾān"},
+       {ar:"تَطْلُعُ",fr:"Se lever (soleil)",tr:"taṭluʿu"},
+       {ar:"شَمْسٌ",fr:"Soleil",tr:"shams"},
+       {ar:"ضُحَى",fr:"Matinée",tr:"ḍuḥā"},
+       {ar:"يَرْجِعُ",fr:"Retourner",tr:"yarjiʿu"},
+       {ar:"يَتَنَاوَلُ",fr:"Prendre / Consommer",tr:"yatanāwalu"},
+       {ar:"يُنَظِّفُ",fr:"Nettoyer",tr:"yunaẓẓifu"},
+       {ar:"غُرْفَةٌ",fr:"Chambre",tr:"ghurfa"},
+       {ar:"يَسْتَعِدُّ",fr:"Se préparer",tr:"yastaʿiddu"},
+       {ar:"عِيدٌ",fr:"Fête",tr:"ʿīd"},
+       {ar:"عِيدَانِ",fr:"Deux fêtes",tr:"ʿīdāni"},
+       {ar:"فِطْرٌ",fr:"Rupture du jeûne",tr:"fiṭr"},
+       {ar:"أَضْحَى",fr:"Sacrifice",tr:"aḍḥā"}
+     ],
+     grammar:{title:"Révision : les nombres, le pluriel et le duel",
+       rule:"1) Les nombres de 3 à 10 : le dénombré est annexé au nombre, pluriel, et le nombre contredit le dénombré dans son genre. Le nombre annexant prend un ي et perd sa كسرة. 2) Le pluriel régulier (سالم) : masculin (ونَ/ينَ) et féminin (ات). Le pluriel irrégulier (تكسير) dénature la forme du singulier. 3) Le duel (المثنى) : ajout de ان/ين, avec une فتحة avant les lettres ajoutées. 4) L'إعراب : رفع (ضمة/واو/ألف), نصب (فتحة/ياء/كسرة), جر (كسرة/ياء/فتحة).",
+       examples:["لِي ثَلَاثَةُ كُتُبٍ = J'ai trois livres","فِي الْفَصْلِ عَشَرَةُ طُلَّابٍ = Dans la classe, il y a dix étudiants","الْمُسْلِمُونَ فِي الْمَسْجِدِ = Les musulmans sont dans la mosquée","فِي السَّنَةِ عِيدَانِ = Dans l'année, il y a deux fêtes"]},
+     dialogue:[
+       {sp:"A",ar:"كَيْفَ تَبْدَأُ يَوْمَكَ يَا زَيْدُ؟",fr:"Comment commences-tu ta journée, ô Zayd ?"},
+       {sp:"B",ar:"أَتَأَمَّلُ كُلَّ لَيْلَةٍ مُبَكِّرًا.",fr:"Je médite chaque nuit tôt."},
+       {sp:"A",ar:"وَمَتَى تَسْتَيْقِظُ؟",fr:"Et quand te réveilles-tu ?"},
+       {sp:"B",ar:"أَسْتَيْقِظُ قَبْلَ أَذَانِ صَلَاةِ الْفَجْرِ.",fr:"Je me réveille avant l'appel à la prière de l'aube."},
+       {sp:"A",ar:"وَمَاذَا تَفْعَلُ بَعْدَ ذَلِكَ؟",fr:"Et que fais-tu après cela ?"},
+       {sp:"B",ar:"أَتَوَضَّأُ ثُمَّ أَذْهَبُ إِلَى الْمَسْجِدِ فَأُصَلِّي مَعَ الْجَمَاعَةِ.",fr:"Je fais les ablutions puis je vais à la mosquée et je prie avec la congrégation."},
+       {sp:"A",ar:"وَبَعْدَ الصَّلَاةِ؟",fr:"Et après la prière ?"},
+       {sp:"B",ar:"أَجْلِسُ أَذْكُرُ اللَّهَ وَأَتْلُو الْقُرْآنَ حَتَّى تَطْلُعَ الشَّمْسُ.",fr:"Je m'assois, j'invoque Allah et je récite le Coran jusqu'à ce que le soleil se lève."},
+       {sp:"A",ar:"ثُمَّ؟",fr:"Ensuite ?"},
+       {sp:"B",ar:"أُصَلِّي صَلَاةَ الضُّحَى ثُمَّ أَرْجِعُ إِلَى بَيْتِي لِأَتَنَاوَلَ الْغَدَاءَ.",fr:"Je prie la prière de la matinée puis je retourne à ma maison pour prendre le déjeuner."},
+       {sp:"A",ar:"وَبَعْدَ الْغَدَاءِ؟",fr:"Et après le déjeuner ?"},
+       {sp:"B",ar:"أُنَظِّفُ غُرْفَتِي وَأَسْتَعِدُّ لِلذَّهَابِ إِلَى الْمَدْرَسَةِ.",fr:"Je nettoie ma chambre et je me prépare pour aller à l'école."},
+       {sp:"A",ar:"فِي السَّنَةِ عِيدَانِ: عِيدُ الْفِطْرِ وَعِيدُ الْأَضْحَى.",fr:"Dans l'année, il y a deux fêtes : Aïd al-Fitr et Aïd al-Adha."},
+       {sp:"A",ar:"الْحَيَاةُ الدُّنْيَا قَصِيرَةٌ.",fr:"La vie d'ici-bas est courte."},
+       {sp:"B",ar:"نَعَمْ، فَلْنَسْتَغِلَّهَا فِي الطَّاعَةِ.",fr:"Oui, exploitons-la dans l'obéissance."}
+     ],
+     exercises:[
+       /* Bloc 1 — Les nombres (10 questions) */
+       {type:"qcm",q:"Combien de règles pour les nombres de 3 à 10 ?",options:["3","2","4","5"],correct:0},
+       {type:"qcm",q:"Le dénombré est :",options:["Annexé au nombre","Isolé","Défini","Indéfini"],correct:0},
+       {type:"qcm",q:"Le dénombré est :",options:["Pluriel","Singulier","Duel","Invariable"],correct:0},
+       {type:"qcm",q:"Le nombre contredit le dénombré dans :",options:["Son genre","Son nombre","Son cas","Sa définitude"],correct:0},
+       {type:"fill",sentence:"لِي ___ كُتُبٍ",options:["ثَلَاثَةُ","ثَلَاثُ","ثَلَاثَةٌ","ثَلَاثٌ"],correct:0},
+       {type:"fill",sentence:"فِي الْفَصْلِ ___ طُلَّابٍ",options:["عَشَرَةُ","عَشْرُ","عَشَرَةٌ","عَشْرٌ"],correct:0},
+       {type:"fill",sentence:"فِي الْفَصْلِ ___ طَالِبَاتٍ",options:["خَمْسُ","خَمْسَةُ","خَمْسٌ","خَمْسَةٌ"],correct:0},
+       {type:"fill",sentence:"عِنْدِي ___ أَقْلَامٍ",options:["سِتَّةُ","سِتُّ","سِتَّةٌ","سِتٌّ"],correct:0},
+       {type:"type",q:"Traduire : لِي ثَلَاثَةُ كُتُبٍ",answers:["J'ai trois livres"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : فِي الْفَصْلِ عَشَرَةُ طُلَّابٍ",answers:["Dans la classe, il y a dix étudiants"],hint:"Phrase nominale"},
+       /* Bloc 2 — Le pluriel (10 questions) */
+       {type:"qcm",q:"Combien de types de pluriel ?",options:["2","3","4","5"],correct:0},
+       {type:"qcm",q:"Le جمع سالم est :",options:["Régulier","Irrégulier","Duel","Singulier"],correct:0},
+       {type:"qcm",q:"Le جمع تكسير est :",options:["Irrégulier","Régulier","Duel","Singulier"],correct:0},
+       {type:"fill",sentence:"مُسْلِمٌ → ___",options:["مُسْلِمُونَ","مُسْلِمِينَ","مُسْلِمَاتٌ","مُسْلِمَةٌ"],correct:0},
+       {type:"fill",sentence:"مُسْلِمَةٌ → ___",options:["مُسْلِمَاتٌ","مُسْلِمُونَ","مُسْلِمَةٌ","مُسْلِمَتَانِ"],correct:0},
+       {type:"fill",sentence:"كِتَابٌ → ___",options:["كُتُبٌ","كِتَابَاتٌ","كِتَابُونَ","كِتَابَانِ"],correct:0},
+       {type:"fill",sentence:"بَيْتٌ → ___",options:["بُيُوتٌ","بَيْتٌ","بَيْتَانِ","بُيُوتَاتٌ"],correct:0},
+       {type:"type",q:"Traduire : الْمُسْلِمُونَ فِي الْمَسْجِدِ",answers:["Les musulmans sont dans la mosquée"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْكُتُبُ فِي الْفَصْلِ",answers:["Les livres sont dans la classe"],hint:"Phrase nominale"},
+       {type:"tf",q:"Le جمع سالم est régulier, le جمع تكسير est irrégulier",correct:true,explain:""},
+       /* Bloc 3 — Le duel (10 questions) */
+       {type:"qcm",q:"Le duel indique :",options:["2 unités","3 unités","1 unité","Plus de 3"],correct:0},
+       {type:"qcm",q:"Le duel est formé par l'ajout de :",options:["ان/ين","ونَ/ينَ","ات","ة"],correct:0},
+       {type:"qcm",q:"Une فتحة précède :",options:["Les lettres du duel","Les lettres du pluriel","Les lettres du singulier","Le tanwin"],correct:0},
+       {type:"fill",sentence:"طَالِبٌ → ___",options:["طَالِبَانِ","طَالِبُونَ","طَالِبَاتٌ","طَالِبَةٌ"],correct:0},
+       {type:"fill",sentence:"طَالِبَةٌ → ___",options:["طَالِبَتَانِ","طَالِبَاتٌ","طَالِبُونَ","طَالِبَةٌ"],correct:0},
+       {type:"fill",sentence:"رَجُلٌ → ___",options:["رَجُلَانِ","رِجَالٌ","رَجُلُونَ","رَجُلَةٌ"],correct:0},
+       {type:"fill",sentence:"كِتَابٌ → ___",options:["كِتَابَانِ","كُتُبٌ","كِتَابُونَ","كِتَابَاتٌ"],correct:0},
+       {type:"type",q:"Traduire : الطَّالِبَانِ فِي الْفَصْلِ",answers:["Les deux étudiants sont dans la classe"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الطَّالِبَتَانِ فِي الْفَصْلِ",answers:["Les deux étudiantes sont dans la classe"],hint:"Phrase nominale"},
+       {type:"tf",q:"Le duel indique 2 unités",correct:true,explain:""},
+       /* Bloc 4 — Traduction (10 questions) */
+       {type:"type",q:"Traduire : فِي الْفَصْلِ خَمْسُ طَالِبَاتٍ",answers:["Dans la classe, il y a cinq étudiantes"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : عِنْدِي سِتَّةُ أَقْلَامٍ",answers:["J'ai six stylos"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْمُسْلِمَاتُ فِي الْمَسْجِدِ",answers:["Les musulmanes sont dans la mosquée"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الرِّجَالُ فِي الْمَسَاجِدِ",answers:["Les hommes sont dans les mosquées"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : زَيْدٌ يَتَأَمَّلُ كُلَّ لَيْلَةٍ مُبَكِّرًا",answers:["Zayd médite chaque nuit tôt"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : يَسْتَيْقِظُ قَبْلَ أَذَانِ صَلَاةِ الْفَجْرِ",answers:["Il se réveille avant l'appel à la prière de l'aube"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : يَتَوَضَّأُ ثُمَّ يَذْهَبُ إِلَى الْمَسْجِدِ",answers:["Il fait les ablutions puis va à la mosquée"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : يُصَلِّي مَعَ الْجَمَاعَةِ",answers:["Il prie avec la congrégation"],hint:"Phrase verbale"},
+       {type:"type",q:"Traduire : فِي السَّنَةِ عِيدَانِ: عِيدُ الْفِطْرِ وَعِيدُ الْأَضْحَى",answers:["Dans l'année, il y a deux fêtes : Aïd al-Fitr et Aïd al-Adha"],hint:"Phrase nominale"},
+       {type:"type",q:"Traduire : الْحَيَاةُ الدُّنْيَا قَصِيرَةٌ",answers:["La vie d'ici-bas est courte"],hint:"Phrase nominale"},
+       /* Bloc 5 — Vocabulaire QCM (10 questions) */
+       {type:"qcm",q:"Que veut dire مُبَكِّرًا ؟",options:["Tôt","Tard","Maintenant","Bientôt"],correct:0},
+       {type:"qcm",q:"Que veut dire ضُحَى ؟",options:["Matinée","Soirée","Nuit","Aube"],correct:0},
+       {type:"qcm",q:"Que veut dire حَيَاةٌ ؟",options:["Vie","Mort","Naissance","Jeunesse"],correct:0},
+       {type:"qcm",q:"Que veut dire غَدَاءٌ ؟",options:["Déjeuner","Dîner","Petit-déjeuner","Goûter"],correct:0},
+       {type:"qcm",q:"Que veut dire أَذَانٌ ؟",options:["Appel à la prière","Prière","Mosquée","Imam"],correct:0},
+       {type:"qcm",q:"Que veut dire فَجْرٌ ؟",options:["Aube","Midi","Coucher du soleil","Nuit"],correct:0},
+       {type:"qcm",q:"Que veut dire جَمَاعَةٌ ؟",options:["Groupe","Individu","Foule","Assemblée"],correct:0},
+       {type:"qcm",q:"Que veut dire قُرْآنٌ ؟",options:["Coran","Livre","Récitation","Prière"],correct:0},
+       {type:"qcm",q:"Que veut dire شَمْسٌ ؟",options:["Soleil","Lune","Étoile","Ciel"],correct:0},
+       {type:"qcm",q:"Que veut dire عِيدٌ ؟",options:["Fête","Jour","Semaine","Mois"],correct:0},
+       /* Bloc 6 — Saisie libre (5 questions) */
+       {type:"type",q:"Écris « tôt » :",answers:["مُبَكِّرًا"],hint:"5 lettres"},
+       {type:"type",q:"Écris « vie » :",answers:["حَيَاةٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « Coran » :",answers:["قُرْآنٌ"],hint:"4 lettres"},
+       {type:"type",q:"Écris « soleil » :",answers:["شَمْسٌ"],hint:"3 lettres"},
+       {type:"type",q:"Écris « fête » :",answers:["عِيدٌ"],hint:"3 lettres"},
+       /* Bloc 7 — Ordre des mots (5 questions) */
+       {type:"order",q:"Reconstitue :",words:["كُتُبٍ","ثَلَاثَةُ","لِي"],answer:"لِي ثَلَاثَةُ كُتُبٍ"},
+       {type:"order",q:"Reconstitue :",words:["الْمَسْجِدِ","فِي","الْمُسْلِمُونَ"],answer:"الْمُسْلِمُونَ فِي الْمَسْجِدِ"},
+       {type:"order",q:"Reconstitue :",words:["الْفَصْلِ","فِي","الطَّالِبَانِ"],answer:"الطَّالِبَانِ فِي الْفَصْلِ"},
+       {type:"order",q:"Reconstitue :",words:["مُبَكِّرًا","لَيْلَةٍ","كُلَّ","يَتَأَمَّلُ","زَيْدٌ"],answer:"زَيْدٌ يَتَأَمَّلُ كُلَّ لَيْلَةٍ مُبَكِّرًا"},
+       {type:"order",q:"Reconstitue :",words:["عِيدَانِ","السَّنَةِ","فِي"],answer:"فِي السَّنَةِ عِيدَانِ"}
+     ]},
     ]
-  },
-  {id:"t2", num:2, title:"Tome 2", subtitle:"Grammaire intermédiaire", desc:"À venir · 20 leçons prévues", active:false, lessons:[]},
-  {id:"t3", num:3, title:"Tome 3", subtitle:"Grammaire avancée", desc:"À venir · 20 leçons prévues", active:false, lessons:[]},
-  {id:"t4", num:4, title:"Tome 4", subtitle:"Perfectionnement", desc:"À venir", active:false, lessons:[]}
+  }
 ];
 
 /* ============================================================
-   INTERFACE MADINAH SCREEN
+   EXPORT + AGRÉGATION POUR L'APP
    ============================================================ */
+
+/* ---------- 1. AGRÉGATION DES DONNÉES ---------- */
+var MADINAH_VOCAB = [];
+var MADINAH_EXERCISES = [];
+
+for (var ti = 0; ti < TOMES.length; ti++){
+  var tome = TOMES[ti];
+  for (var li = 0; li < tome.lessons.length; li++){
+    var lesson = tome.lessons[li];
+    /* --- Vocabulaire --- */
+    for (var vi = 0; vi < lesson.vocab.length; vi++){
+      var word = lesson.vocab[vi];
+      MADINAH_VOCAB.push({
+        id: lesson.id + "_v" + vi,
+        ar: word.ar,
+        fr: word.fr,
+        tr: word.tr || "",
+        t: lesson.title,
+        lv: "MEDINE"
+      });
+    }
+    /* --- Exercices --- */
+    for (var ei = 0; ei < lesson.exercises.length; ei++){
+      var ex = lesson.exercises[ei];
+      ex.tome = tome.title;
+      ex.lesson = lesson.title;
+      ex.lessonId = lesson.id;
+      MADINAH_EXERCISES.push(ex);
+    }
+  }
+}
+
+/* ---------- 2. INTERFACE MADINAH ---------- */
 var MadinahScreen = {
 
-  /* ---------- ACCUEIL : liste des tomes ---------- */
   home: function(){
     var h = '<button class="back" onclick="App.home()">← Accueil</button>' +
       '<h2>📖 Tomes de Médine</h2>' +
       '<p class="muted" style="margin-bottom:14px">Méthode du Dr. V. Abdur Rahim</p>';
-    for (var i = 0; i < TOMES.length; i++){
-      var t = TOMES[i];
-      h += '<button class="lesson-item' + (t.active ? '' : ' locked') + '" ' +
-        (t.active ? 'onclick="MadinahScreen.tome(\'' + t.id + '\')"' : 'disabled') + '>' +
-        '<div class="num" style="background:' + (t.active ? '#8b0000' : '#999') + '">' + t.num + '</div>' +
-        '<div><div class="title">' + t.title + ' — ' + t.subtitle + '</div>' +
-        '<div class="desc">' + t.desc + (t.active ? '' : ' · 🔒 bientôt') + '</div></div>' +
-      '</button>';
-    }
-    h += '<div class="card" style="margin-top:20px;font-size:12px;color:var(--muted);text-align:center">' +
-      'Crédits : Dr. V. Abdur Rahim · Université Islamique de Médine</div>';
-    document.getElementById('app').innerHTML = h;
-  },
 
-  /* ---------- LISTE DES LEÇONS D'UN TOME ---------- */
-  tome: function(id){
-    var t = this._findTome(id);
-    if (!t) return;
-    var h = '<button class="back" onclick="MadinahScreen.home()">← Tomes</button>' +
-      '<h2>' + t.title + ' — ' + t.subtitle + '</h2>' +
-      '<p class="muted" style="margin-bottom:14px">' + t.lessons.length + ' leçons</p>';
-    h += '<button class="menu-btn" onclick="MadinahScreen.showPdf(\'' + esc(t.pdf || '') + '\')">' +
-      '<div class="icon">📄</div><div><div class="label">PDF du ' + t.title + '</div>' +
-      '<div class="sub">' + (t.pdf || 'Non disponible') + '</div></div></button>';
-    for (var j = 0; j < t.lessons.length; j++){
-      var L = t.lessons[j];
-      h += '<button class="lesson-item' + (L.active ? '' : ' locked') + '" ' +
-        (L.active ? 'onclick="MadinahScreen.lesson(\'' + t.id + '\',\'' + L.id + '\')"' : 'disabled') + '>' +
-        '<div class="num">' + L.num + '</div>' +
-        '<div><div class="title">' + L.title + '</div>' +
-        '<div class="desc">' + L.desc + (L.active ? '' : ' · 📝 à venir') + '</div></div>' +
-      '</button>';
-    }
-    document.getElementById('app').innerHTML = h;
-  },
-
-  /* ---------- MENU D'UNE LEÇON ---------- */
-  lesson: function(tomeId, lessonId){
-    var t = this._findTome(tomeId);
-    if (!t) return;
-    var L = this._findLesson(t, lessonId);
-    if (!L) return;
-    var h = '<button class="back" onclick="MadinahScreen.tome(\'' + t.id + '\')">← ' + t.title + '</button>' +
-      '<h2>' + L.title + ' — ' + t.title + '</h2>' +
-      '<p class="muted" style="margin-bottom:14px">' + L.desc + '</p>';
-    var menu = [
-      {icon:"📖",label:"Texte de la leçon",sub:(L.text?L.text.length+" phrases":"Non disponible"),fn:"MadinahScreen.text('"+t.id+"','"+L.id+"')"},
-      {icon:"🔊",label:"Audio (prononciation)",sub:(L.audio||"Non disponible"),fn:"MadinahScreen.audio('"+t.id+"','"+L.id+"')"},
-      {icon:"📚",label:"Vocabulaire",sub:(L.vocab?L.vocab.length+" mots":"Non disponible"),fn:"MadinahScreen.vocab('"+t.id+"','"+L.id+"')"},
-      {icon:"📝",label:"Grammaire",sub:(L.grammar?L.grammar.title:"Non disponible"),fn:"MadinahScreen.grammar('"+t.id+"','"+L.id+"')"},
-      {icon:"💬",label:"Dialogue",sub:(L.dialogue?L.dialogue.length+" répliques":"Non disponible"),fn:"MadinahScreen.dialogue('"+t.id+"','"+L.id+"')"},
-      {icon:"✏️",label:"Exercices",sub:(L.exercises?L.exercises.length+" questions":"Non disponible"),fn:"MadinahScreen.exercises('"+t.id+"','"+L.id+"')"}
-    ];
-    for (var i = 0; i < menu.length; i++){
-      var M = menu[i];
-      h += '<button class="menu-btn" onclick="' + M.fn + '">' +
-        '<div class="icon">' + M.icon + '</div>' +
-        '<div><div class="label">' + M.label + '</div>' +
-        '<div class="sub">' + M.sub + '</div></div></button>';
-    }
-    document.getElementById('app').innerHTML = h;
-  },
-
-  /* ---------- SOUS-MODULE : TEXTE ---------- */
-  text: function(tomeId, lessonId){
-    var L = this._getLesson(tomeId, lessonId);
-    if (!L || !L.text) return this._notAvailable();
-    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
-      '<h2>📖 Texte de la leçon</h2>';
-    for (var i = 0; i < L.text.length; i++){
-      h += '<div class="card" style="text-align:center;cursor:pointer" onclick="speak(\'' + esc(L.text[i]) + '\')">' +
-        '<div class="ar" style="font-size:32px;color:var(--primary);line-height:1.8">' + L.text[i] + '</div>' +
-        '<div style="font-size:12px;color:var(--muted);margin-top:8px">🔊 Toucher pour écouter</div></div>';
-    }
-    document.getElementById('app').innerHTML = h;
-  },
-
-  /* ---------- SOUS-MODULE : AUDIO ---------- */
-  audio: function(tomeId, lessonId){
-    var L = this._getLesson(tomeId, lessonId);
-    if (!L) return;
-    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
-      '<h2>🔊 Audio de la leçon</h2>' +
-      '<div class="card" style="text-align:center;padding:30px">' +
-        '<div style="font-size:60px;margin-bottom:16px">🎧</div>' +
-        '<p style="font-weight:700;margin-bottom:8px">' + (L.audio || 'Non disponible') + '</p>' +
-        '<p class="muted" style="font-size:13px;margin-bottom:20px">Lecture de la leçon complète</p>' +
-        (L.audio ?
-          '<audio controls style="width:100%;margin-bottom:16px" preload="metadata">' +
-          '<source src="' + esc(L.audio) + '" type="audio/mpeg"></audio>' +
-          '<button class="btn" onclick="MadinahScreen.playAudio(\'' + esc(L.audio) + '\')">▶️ Relire</button>'
-          : '<button class="btn" onclick="speak(\'' + esc(L.text ? L.text[0] : '') + '\')">🔊 Utiliser la synthèse vocale</button>') +
+    for (var t = 0; t < TOMES.length; t++){
+      var tome = TOMES[t];
+      h += '<div class="card" style="background:linear-gradient(135deg,#8b0000,#b71c1c);color:#fff;margin-bottom:14px">' +
+        '<div style="font-size:13px;opacity:.85;font-weight:600">' + tome.subtitle + '</div>' +
+        '<div style="font-size:22px;font-weight:800;margin-top:4px">' + tome.title + '</div>' +
+        '<div style="font-size:13px;opacity:.85;margin-top:4px">' + tome.desc + '</div>' +
       '</div>';
+
+      h += '<div style="margin:12px 0 8px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase">Leçons du ' + tome.title + '</div>';
+      for (var l = 0; l < tome.lessons.length; l++){
+        var les = tome.lessons[l];
+        if (!les.active) continue;
+        h += '<button class="lesson-item" onclick="MadinahScreen.lesson(\'' + tome.id + '\',\'' + les.id + '\')">' +
+          '<div class="num" style="background:#8b0000">' + les.num + '</div>' +
+          '<div><div class="title">' + les.title + '</div>' +
+          '<div class="desc">' + les.desc + ' · ' + les.vocab.length + ' mots · ' + les.exercises.length + ' ex.</div></div>' +
+        '</button>';
+      }
+    }
     document.getElementById('app').innerHTML = h;
   },
 
-  playAudio: function(filename){
-    if (!filename) return;
-    try {
-      var audio = new Audio(filename);
-      audio.play().catch(function(){ toast('Fichier audio non trouvé'); });
-    } catch(e){ toast('Erreur audio'); }
+  lesson: function(tomeId, lessonId){
+    var tome = null, lesson = null;
+    for (var t = 0; t < TOMES.length; t++){
+      if (TOMES[t].id === tomeId){
+        tome = TOMES[t];
+        for (var l = 0; l < tome.lessons.length; l++){
+          if (tome.lessons[l].id === lessonId){ lesson = tome.lessons[l]; break; }
+        }
+        break;
+      }
+    }
+    if (!lesson) return;
+
+    var h = '<button class="back" onclick="MadinahScreen.home()">← Leçons</button>' +
+      '<h2>' + lesson.title + '</h2>' +
+      '<p class="muted" style="margin-bottom:14px">' + lesson.desc + '</p>' +
+      '<div class="grid-2" style="margin-bottom:16px">' +
+        '<button class="btn" onclick="MadinahScreen.text(\'' + lesson.id + '\')">📖 Textes</button>' +
+        '<button class="btn" onclick="MadinahScreen.vocab(\'' + lesson.id + '\')">📚 Vocabulaire</button>' +
+        '<button class="btn" onclick="MadinahScreen.grammar(\'' + lesson.id + '\')">📝 Grammaire</button>' +
+        '<button class="btn" onclick="MadinahScreen.dialogue(\'' + lesson.id + '\')">💬 Dialogue</button>' +
+      '</div>' +
+      '<button class="btn" style="background:var(--accent)" onclick="MadinahScreen.exercises(\'' + lesson.id + '\')">✏️ ' + lesson.exercises.length + ' Exercices</button>';
+    document.getElementById('app').innerHTML = h;
   },
 
-  /* ---------- SOUS-MODULE : VOCABULAIRE ---------- */
-  vocab: function(tomeId, lessonId){
-    var L = this._getLesson(tomeId, lessonId);
-    if (!L || !L.vocab) return this._notAvailable();
-    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
-      '<h2>📚 Vocabulaire — ' + L.vocab.length + ' mots</h2>';
-    for (var i = 0; i < L.vocab.length; i++){
-      var v = L.vocab[i];
+  text: function(lessonId){
+    var les = findLesson(lessonId);
+    if (!les) return;
+    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
+      '<h2>' + les.title + ' · Textes</h2>';
+    for (var i = 0; i < les.text.length; i++){
+      h += '<div class="card" style="cursor:pointer;text-align:center;padding:16px" onclick="speak(\'' + esc(les.text[i]) + '\')">' +
+        '<div class="ar" style="font-size:24px;color:var(--primary)">' + les.text[i] + '</div>' +
+        '<div style="font-size:11px;color:var(--muted);margin-top:8px">🔊 Toucher pour écouter</div>' +
+      '</div>';
+    }
+    document.getElementById('app').innerHTML = h;
+  },
+
+  vocab: function(lessonId){
+    var les = findLesson(lessonId);
+    if (!les) return;
+    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
+      '<h2>' + les.title + ' · Vocabulaire</h2>' +
+      '<p class="muted" style="margin-bottom:12px">' + les.vocab.length + ' mots</p>';
+    for (var i = 0; i < les.vocab.length; i++){
+      var v = les.vocab[i];
       h += '<div class="card" style="padding:14px;margin-bottom:8px;cursor:pointer" onclick="speak(\'' + esc(v.ar) + '\')">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px">' +
-        '<div><div class="ar" style="font-size:26px;color:var(--primary)">' + v.ar + '</div>' +
-        '<div style="font-size:14px;font-weight:700;margin-top:4px">' + v.fr + '</div>' +
-        '<div style="font-size:12px;color:var(--muted);font-style:italic">' + (v.tr || '') + '</div></div>' +
-        '<div style="font-size:24px">🔊</div></div></div>';
+          '<div><div class="ar" style="font-size:26px;color:var(--primary)">' + v.ar + '</div>' +
+          '<div style="font-size:14px;font-weight:700;margin-top:4px">' + v.fr + '</div>' +
+          '<div style="font-size:12px;color:var(--muted);font-style:italic">' + (v.tr || '') + '</div></div>' +
+          '<div style="font-size:24px">🔊</div>' +
+        '</div></div>';
     }
     document.getElementById('app').innerHTML = h;
   },
 
-  /* ---------- SOUS-MODULE : GRAMMAIRE ---------- */
-  grammar: function(tomeId, lessonId){
-    var L = this._getLesson(tomeId, lessonId);
-    if (!L || !L.grammar) return this._notAvailable();
-    var g = L.grammar;
-    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
-      '<h2>📝 Grammaire</h2>' +
-      '<div class="card"><h3>' + g.title + '</h3>' +
-      '<p style="font-size:14px;line-height:1.7;margin:14px 0">' + g.rule + '</p></div>';
-    if (g.examples){
+  grammar: function(lessonId){
+    var les = findLesson(lessonId);
+    if (!les || !les.grammar) return;
+    var g = les.grammar;
+    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
+      '<h2>' + g.title + '</h2>' +
+      '<div class="card"><p style="font-size:14px;line-height:1.7">' + g.rule + '</p></div>';
+    if (g.examples && g.examples.length){
       h += '<div class="card"><h3>Exemples</h3>';
       for (var i = 0; i < g.examples.length; i++){
-        h += '<div style="padding:10px 0;border-bottom:1px solid #eee;font-size:15px">• ' + g.examples[i] + '</div>';
+        h += '<div style="padding:10px 0;border-bottom:1px solid #eee;cursor:pointer" onclick="speak(\'' + esc(g.examples[i]) + '\')">' +
+          '<div class="ar" style="font-size:18px;color:var(--primary)">' + g.examples[i] + '</div></div>';
       }
       h += '</div>';
     }
     document.getElementById('app').innerHTML = h;
   },
 
-  /* ---------- SOUS-MODULE : DIALOGUE ---------- */
-  dialogue: function(tomeId, lessonId){
-    var L = this._getLesson(tomeId, lessonId);
-    if (!L || !L.dialogue) return this._notAvailable();
-    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
-      '<h2>💬 Dialogue</h2><div class="dialogue-wrap">';
-    for (var i = 0; i < L.dialogue.length; i++){
-      var d = L.dialogue[i];
-      h += '<div class="dialogue-line ' + (d.sp === 'A' ? 'left' : 'right') + '" onclick="speak(\'' + esc(d.ar) + '\')">' +
-        '<div class="ar">' + d.ar + '</div>' +
-        '<div class="fr">' + d.fr + '</div></div>';
+  dialogue: function(lessonId){
+    var les = findLesson(lessonId);
+    if (!les || !les.dialogue) return;
+    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + les.tomeId + '\',\'' + lessonId + '\')">← Leçon</button>' +
+      '<h2>' + les.title + ' · Dialogue</h2>' +
+      '<div class="dialogue-wrap">';
+    for (var i = 0; i < les.dialogue.length; i++){
+      var ln = les.dialogue[i];
+      h += '<div class="dialogue-line ' + (ln.sp === 'A' ? 'left' : 'right') + '" onclick="speak(\'' + esc(ln.ar) + '\')">' +
+        '<div class="ar">' + ln.ar + '</div>' +
+        '<div class="fr">' + ln.fr + '</div></div>';
     }
-    h += '</div><p class="muted" style="text-align:center;font-size:12px">👆 Touche une réplique pour l\'écouter</p>';
+    h += '</div>';
     document.getElementById('app').innerHTML = h;
   },
 
-  /* ---------- SOUS-MODULE : EXERCICES (6 types) ---------- */
-  exercises: function(tomeId, lessonId){
-    var L = this._getLesson(tomeId, lessonId);
-    if (!L || !L.exercises || !L.exercises.length) return this._notAvailable();
-    this._currentEx = { list: L.exercises, idx: 0, score: 0, tome: tomeId, lesson: lessonId, state: null };
-    this._renderExercise();
-  },
-
-  _renderExercise: function(){
-    var s = this._currentEx;
-    if (!s) return;
-    if (s.idx >= s.list.length) return this._endExercises();
-    var ex = s.list[s.idx];
-    delete ex._shuffled;
-    var type = ex.type || "qcm";
-    var p = Math.round((s.idx / s.list.length) * 100);
-    var h = '<button class="back" onclick="MadinahScreen.lesson(\'' + s.tome + '\',\'' + s.lesson + '\')">← Quitter</button>' +
-      '<div class="counter">Q ' + (s.idx + 1) + '/' + s.list.length + ' · Score : ' + s.score + '</div>' +
-      '<div class="progress"><div class="progress-bar" style="width:' + p + '%"></div></div>';
-    if (type === "qcm") h += this._renderQCM(ex);
-    else if (type === "fill") h += this._renderFill(ex);
-    else if (type === "audio") h += this._renderAudio(ex);
-    else if (type === "tf") h += this._renderTF(ex);
-    else if (type === "type") h += this._renderType(ex);
-    else if (type === "order") h += this._renderOrder(ex);
-    document.getElementById('app').innerHTML = h;
-    if (type === "order"){
-      s.state = { selected: [], remaining: ex.words.slice() };
-      this._refreshOrder();
-    }
-    if (type === "audio" && ex.audioText){
-      setTimeout(function(){ speak(ex.audioText); }, 300);
-    }
-    if (type === "type"){
-      var inp = document.getElementById('typeInput');
-      if (inp){
-        inp.focus();
-        inp.onkeydown = function(e){
-          if (e.key === 'Enter'){ MadinahScreen._answerType(); }
-        };
-      }
-    }
-  },
-
-  _shuffleOptions: function(ex){
-    if (!ex.options || !ex.options.length) return { options: [], correct: 0 };
-    var pairs = [];
-    for (var i = 0; i < ex.options.length; i++){
-      pairs.push({ text: ex.options[i], isCorrect: (i === ex.correct) });
-    }
-    for (var j = pairs.length - 1; j > 0; j--){
-      var k = Math.floor(Math.random() * (j + 1));
-      var tmp = pairs[j]; pairs[j] = pairs[k]; pairs[k] = tmp;
-    }
-    var newOptions = [], newCorrect = 0;
-    for (var m = 0; m < pairs.length; m++){
-      newOptions.push(pairs[m].text);
-      if (pairs[m].isCorrect) newCorrect = m;
-    }
-    ex._shuffled = { options: newOptions, correct: newCorrect };
-    return ex._shuffled;
-  },
-
-  _renderQCM: function(ex){
-    var sh = this._shuffleOptions(ex);
-    var h = '<div class="card" style="padding:24px 20px"><p style="font-size:16px;font-weight:700">' + ex.q + '</p></div>' +
-      '<div style="display:grid;gap:8px">';
-    for (var i = 0; i < sh.options.length; i++){
-      h += '<button class="quiz-option" onclick="MadinahScreen._answerQCM(' + i + ')">' + sh.options[i] + '</button>';
-    }
-    return h + '</div>';
-  },
-
-  _renderFill: function(ex){
-    var sh = this._shuffleOptions(ex);
-    var h = '<div class="card" style="padding:28px 20px;text-align:center">' +
-      '<p class="ar" style="font-size:30px;line-height:2;color:var(--primary)">' + ex.sentence + '</p>' +
-      '<p style="font-size:13px;font-weight:600;margin-top:14px;color:var(--muted)">Complète la phrase</p></div>' +
-      '<div style="display:grid;gap:8px">';
-    for (var i = 0; i < sh.options.length; i++){
-      h += '<button class="quiz-option" onclick="MadinahScreen._answerQCM(' + i + ')">' + sh.options[i] + '</button>';
-    }
-    return h + '</div>';
-  },
-
-  _renderAudio: function(ex){
-    var sh = this._shuffleOptions(ex);
-    return '<div class="card" style="padding:28px 20px;text-align:center">' +
-      '<button class="btn" style="max-width:220px;margin:0 auto 18px" onclick="speak(\'' + esc(ex.audioText || '') + '\')">🔊 Écouter</button>' +
-      '<p style="font-size:14px;font-weight:600;color:var(--muted)">Qu\'entends-tu ?</p></div>' +
-      '<div style="display:grid;gap:8px">' +
-      sh.options.map(function(o, i){
-        return '<button class="quiz-option ar" style="text-align:center;font-size:22px" onclick="MadinahScreen._answerQCM(' + i + ')">' + o + '</button>';
-      }).join('') + '</div>';
-  },
-
-  _renderTF: function(ex){
-    return '<div class="card" style="padding:28px 20px;text-align:center">' +
-      (ex.ar ? '<p class="ar" style="font-size:32px;color:var(--primary);line-height:1.8">' + ex.ar + '</p>' : '') +
-      '<p style="font-size:16px;font-weight:700;margin-top:14px">' + ex.q + '</p></div>' +
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
-      '<button class="btn" style="background:var(--success)" onclick="MadinahScreen._answerTF(true)">✅ Vrai</button>' +
-      '<button class="btn" style="background:var(--danger)" onclick="MadinahScreen._answerTF(false)">❌ Faux</button></div>';
-  },
-
-  _renderType: function(ex){
-    return '<div class="card" style="padding:24px 20px;text-align:center">' +
-      '<p style="font-size:16px;font-weight:700;margin-bottom:12px">' + ex.q + '</p>' +
-      (ex.hint ? '<p class="muted" style="font-size:13px;margin-bottom:14px">💡 ' + ex.hint + '</p>' : '') +
-      '<input id="typeInput" type="text" dir="rtl" autocomplete="off" autocorrect="off" spellcheck="false" ' +
-      'style="width:100%;padding:14px;border:2px solid var(--primary);border-radius:12px;font-size:24px;' +
-      'font-family:\'Traditional Arabic\',serif;text-align:center;background:var(--card);color:var(--text)" ' +
-      'placeholder="Écris en arabe…"></div>' +
-      '<div style="display:grid;gap:10px">' +
-      '<button class="btn" onclick="MadinahScreen._answerType()">✅ Valider</button>' +
-      '<button class="btn secondary" onclick="MadinahScreen._skipType()">⏭️ Passer</button></div>';
-  },
-
-  _renderOrder: function(ex){
-    return '<div class="card" style="padding:20px;text-align:center">' +
-      '<p style="font-size:14px;font-weight:700;color:var(--muted);margin-bottom:12px">' + ex.q + '</p>' +
-      '<div id="orderSlot" style="min-height:70px;background:#e6eeea;border-radius:12px;padding:12px;' +
-      'font-size:22px;font-family:\'Traditional Arabic\',serif;direction:rtl;line-height:1.6;' +
-      'display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center"></div></div>' +
-      '<div id="orderPool" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:14px"></div>' +
-      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
-      '<button class="btn secondary" onclick="MadinahScreen._resetOrder()">🔄 Effacer</button>' +
-      '<button class="btn" onclick="MadinahScreen._answerOrder()">✅ Valider</button></div>';
-  },
-
-  _answerQCM: function(i){
-    var s = this._currentEx;
-    var ex = s.list[s.idx];
-    var correct = (ex._shuffled && ex._shuffled.correct !== undefined) ? ex._shuffled.correct : ex.correct;
-    var btns = document.querySelectorAll('.quiz-option');
-    for (var k = 0; k < btns.length; k++){
-      btns[k].disabled = true;
-      if (k === correct) btns[k].classList.add('correct');
-      else if (k === i) btns[k].classList.add('wrong');
-    }
-    if (i === correct){ s.score++; toast('✅ Correct !'); } else toast('❌ Mauvaise réponse');
-    var self = this;
-    setTimeout(function(){ s.idx++; self._renderExercise(); }, 1200);
-  },
-
-  _answerTF: function(val){
-    var s = this._currentEx;
-    var ex = s.list[s.idx];
-    var correct = ex.correct;
-    var allBtns = document.querySelectorAll('button.btn');
-    for (var k = 0; k < allBtns.length; k++) allBtns[k].disabled = true;
-    if (val === correct){ s.score++; toast('✅ Correct !'); }
-    else {
-      toast('❌ Faux — c\'était ' + (correct ? 'Vrai' : 'Faux'));
-      if (ex.explain) setTimeout(function(){ toast('💡 ' + ex.explain); }, 1500);
-    }
-    var self = this;
-    setTimeout(function(){ s.idx++; self._renderExercise(); }, 1600);
-  },
-
-  _answerType: function(){
-    var s = this._currentEx;
-    var ex = s.list[s.idx];
-    var input = document.getElementById('typeInput');
-    if (!input) return;
-    var val = input.value;
-    var ok = this._normalizeArabic(val) === this._normalizeArabic(ex.answer);
-    input.disabled = true;
-    input.style.borderColor = ok ? 'var(--success)' : 'var(--danger)';
-    input.style.background = ok ? '#e8f5e9' : '#ffebee';
-    if (ok){ s.score++; toast('✅ Correct !'); } else toast('❌ Réponse : ' + ex.answer);
-    var self = this;
-    setTimeout(function(){ s.idx++; self._renderExercise(); }, 1700);
-  },
-
-  _skipType: function(){
-    var s = this._currentEx;
-    var ex = s.list[s.idx];
-    toast('Réponse : ' + ex.answer);
-    var self = this;
-    setTimeout(function(){ s.idx++; self._renderExercise(); }, 1500);
-  },
-
-  _resetOrder: function(){
-    var s = this._currentEx;
-    var ex = s.list[s.idx];
-    s.state = { selected: [], remaining: ex.words.slice() };
-    this._refreshOrder();
-  },
-
-  _refreshOrder: function(){
-    var s = this._currentEx;
-    var st = s.state;
-    var slot = document.getElementById('orderSlot');
-    var pool = document.getElementById('orderPool');
-    if (!slot || !pool) return;
-    var slotHTML = '';
-    for (var i = 0; i < st.selected.length; i++){
-      slotHTML += '<span style="display:inline-block;padding:6px 12px;background:#fff;border-radius:8px;cursor:pointer;' +
-        'box-shadow:0 2px 6px rgba(0,0,0,.1)" onclick="MadinahScreen._removeFromOrder(' + i + ')">' + st.selected[i] + '</span>';
-    }
-    slot.innerHTML = slotHTML || '<span style="opacity:.4;font-family:-apple-system,sans-serif;font-size:14px">Touche les mots ci-dessous…</span>';
-    var poolHTML = '';
-    for (var j = 0; j < st.remaining.length; j++){
-      poolHTML += '<button class="btn secondary" style="width:auto;padding:10px 18px;font-size:20px;' +
-        'font-family:\'Traditional Arabic\',serif;direction:rtl" onclick="MadinahScreen._addToOrder(' + j + ')">' + st.remaining[j] + '</button>';
-    }
-    pool.innerHTML = poolHTML;
-  },
-
-  _addToOrder: function(idx){
-    var s = this._currentEx; var st = s.state;
-    st.selected.push(st.remaining[idx]);
-    st.remaining.splice(idx, 1);
-    this._refreshOrder();
-  },
-
-  _removeFromOrder: function(idx){
-    var s = this._currentEx; var st = s.state;
-    st.remaining.push(st.selected[idx]);
-    st.selected.splice(idx, 1);
-    this._refreshOrder();
-  },
-
-  _answerOrder: function(){
-    var s = this._currentEx;
-    var ex = s.list[s.idx];
-    var st = s.state;
-    if (!st.selected.length) return;
-    var userAnswer = st.selected.join(' ');
-    var correct = this._normalizeArabic(userAnswer) === this._normalizeArabic(ex.answer);
-    if (correct){ s.score++; toast('✅ Correct !'); } else toast('❌ Réponse : ' + ex.answer);
-    var self = this;
-    setTimeout(function(){ s.idx++; self._renderExercise(); }, 1700);
-  },
-
-  _normalizeArabic: function(str){
-    if (!str) return '';
-    var s = String(str).replace(/[\u064B-\u0652\u0670\u06D6-\u06DC\u06DF-\u06E8\u06EA-\u06ED]/g, '');
-    s = s.replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/ـ/g, '');
-    s = s.replace(/\s+/g, ' ').trim();
-    return s;
-  },
-
-  _endExercises: function(){
-    var s = this._currentEx;
-    var pct = Math.round((s.score / s.list.length) * 100);
-    var em = pct >= 80 ? '🏆' : (pct >= 50 ? '👍' : '💪');
-    var h = '<div class="empty" style="padding-top:60px"><div class="big">' + em + '</div>' +
-      '<h2>Exercices terminés</h2>' +
-      '<div class="stat-grid" style="margin-top:24px">' +
-      '<div class="stat"><div class="num">' + s.score + '/' + s.list.length + '</div><div class="lbl">Score</div></div>' +
-      '<div class="stat"><div class="num">' + pct + '%</div><div class="lbl">Réussite</div></div></div>' +
-      '<button class="btn" style="margin-bottom:10px" onclick="MadinahScreen.exercises(\'' + s.tome + '\',\'' + s.lesson + '\')">Rejouer</button>' +
-      '<button class="btn secondary" onclick="MadinahScreen.lesson(\'' + s.tome + '\',\'' + s.lesson + '\')">Retour leçon</button></div>';
-    document.getElementById('app').innerHTML = h;
-  },
-
-  /* ---------- PDF (info) ---------- */
-  showPdf: function(name){
-    if (!name){ toast('📄 PDF non disponible'); return; }
-    toast('📄 PDF : ' + name);
-  },
-
-  /* ---------- UTILITAIRES INTERNES ---------- */
-  _findTome: function(id){
-    for (var i = 0; i < TOMES.length; i++) if (TOMES[i].id === id) return TOMES[i];
-    return null;
-  },
-
-  _findLesson: function(tome, id){
-    for (var i = 0; i < tome.lessons.length; i++) if (tome.lessons[i].id === id) return tome.lessons[i];
-    return null;
-  },
-
-  _getLesson: function(tomeId, lessonId){
-    var t = this._findTome(tomeId);
-    if (!t) return null;
-    return this._findLesson(t, lessonId);
-  },
-
-  _notAvailable: function(){
-    document.getElementById('app').innerHTML =
-      '<button class="back" onclick="MadinahScreen.home()">← Tomes</button>' +
-      '<div class="empty"><div class="big">📝</div>' +
-      '<h2>Contenu à venir</h2>' +
-      '<p style="margin-top:8px">Cette section sera bientôt disponible.</p>' +
-      '<button class="btn" style="margin-top:20px" onclick="MadinahScreen.home()">Retour</button></div>';
+  exercises: function(lessonId){
+    var les = findLesson(lessonId);
+    if (!les) return;
+    MadinahQuiz.start(les);
   }
 };
 
-/* ============================================================
-   EXPORT DU VOCABULAIRE DE MÉDINE POUR AUTRES MODULES
-   Permet à Quiz/Memory/SRS/Stats d'utiliser ces mots
-   ============================================================ */
-(function exportMadinahVocab(){
-  var all = [];
-  for (var ti = 0; ti < TOMES.length; ti++){
-    var tome = TOMES[ti];
-    if (!tome.lessons) continue;
-    for (var li = 0; li < tome.lessons.length; li++){
-      var lesson = tome.lessons[li];
-      if (!lesson.vocab || !lesson.vocab.length) continue;
-      for (var vi = 0; vi < lesson.vocab.length; vi++){
-        var v = lesson.vocab[vi];
-        all.push({
-          id: "med_" + lesson.id + "_" + vi,
-          ar: v.ar,
-          fr: v.fr,
-          tr: v.tr || '',
-          t: "Tome " + tome.num + " - Leçon " + lesson.num,
-          lv: "MEDINE",
-          source: "madinah"
-        });
+/* ---------- 3. QUIZ MADINAH ---------- */
+var MadinahQuiz = {
+  session: null,
+
+  start: function(lesson){
+    this.session = {
+      queue: shuffleMadinah(lesson.exercises.slice()),
+      index: 0, correct: 0, total: lesson.exercises.length,
+      lessonTitle: lesson.title
+    };
+    this.render();
+  },
+
+  render: function(){
+    var s = this.session;
+    if (!s || s.index >= s.queue.length) return this.end();
+    var ex = s.queue[s.index];
+    var p = Math.round((s.index / s.total) * 100);
+    var h = '<button class="back" onclick="MadinahScreen.home()">← Quitter</button>' +
+      '<div class="counter">' + s.lessonTitle + ' · ' + (s.index + 1) + ' / ' + s.total + '</div>' +
+      '<div class="progress"><div class="progress-bar" style="width:' + p + '%"></div></div>';
+
+    /* --- QCM --- */
+    if (ex.type === 'qcm'){
+      h += '<div class="card" style="text-align:center;padding:24px"><p style="font-size:16px;font-weight:700;line-height:1.6">' + ex.q + '</p></div>';
+      for (var i = 0; i < ex.options.length; i++){
+        h += '<button class="quiz-option" onclick="MadinahQuiz.answer(' + i + ')">' + ex.options[i] + '</button>';
+      }
+    }
+    /* --- Vrai/Faux --- */
+    else if (ex.type === 'tf'){
+      h += '<div class="card" style="text-align:center;padding:24px">' +
+        (ex.ar ? '<div class="ar" style="font-size:26px;color:var(--primary);margin-bottom:10px">' + ex.ar + '</div>' : '') +
+        '<p style="font-size:16px;font-weight:700;line-height:1.6">' + ex.q + '</p></div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
+          '<button class="btn" style="background:var(--success)" onclick="MadinahQuiz.answerTF(true)">✅ Vrai</button>' +
+          '<button class="btn" style="background:var(--danger)" onclick="MadinahQuiz.answerTF(false)">❌ Faux</button>' +
+        '</div>';
+    }
+    /* --- Fill --- */
+    else if (ex.type === 'fill'){
+      h += '<div class="card" style="text-align:center;padding:24px"><p class="ar" style="font-size:24px;font-weight:700">' + ex.sentence + '</p></div>';
+      for (var j = 0; j < ex.options.length; j++){
+        h += '<button class="quiz-option" onclick="MadinahQuiz.answer(' + j + ')">' + ex.options[j] + '</button>';
+      }
+    }
+    /* --- Type (saisie) --- */
+    else if (ex.type === 'type'){
+      h += '<div class="card" style="text-align:center;padding:24px">' +
+        '<p style="font-size:16px;font-weight:700">' + ex.q + '</p>' +
+        (ex.hint ? '<p style="font-size:12px;color:var(--muted);margin-top:8px">💡 ' + ex.hint + '</p>' : '') +
+        '<input type="text" id="typeInput" class="ar" style="width:100%;margin-top:14px;padding:14px;border-radius:12px;border:2px solid var(--primary);font-size:22px;text-align:center;font-family:inherit;background:var(--card);color:var(--text)" />' +
+        '<button class="btn" style="margin-top:14px" onclick="MadinahQuiz.answerType()">Valider</button>' +
+      '</div>';
+    }
+    /* --- Order --- */
+    else if (ex.type === 'order'){
+      h += '<div class="card" style="text-align:center;padding:24px">' +
+        '<p style="font-size:14px;font-weight:700;margin-bottom:14px">' + ex.q + '</p>' +
+        '<div id="orderZone" class="ar" style="min-height:50px;font-size:22px;padding:10px;border:2px dashed var(--muted);border-radius:12px;color:var(--primary)"></div>' +
+        '<div id="orderWords" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center">';
+      for (var k = 0; k < ex.words.length; k++){
+        h += '<button class="btn secondary" style="width:auto;padding:8px 14px" onclick="MadinahQuiz.addWord(\'' + ex.words[k].replace(/'/g, "\\'") + '\')">' + ex.words[k] + '</button>';
+      }
+      h += '</div>' +
+        '<button class="btn" style="margin-top:14px" onclick="MadinahQuiz.answerOrder()">Valider</button>' +
+      '</div>';
+    }
+    document.getElementById('app').innerHTML = h;
+  },
+
+  answer: function(i){
+    var s = this.session; var ex = s.queue[s.index];
+    if (ex.answered) return;
+    ex.answered = true;
+    var correctText = ex.options[ex.correct];
+    var sel = ex.options[i];
+    var btns = document.querySelectorAll('.quiz-option');
+    for (var k = 0; k < btns.length; k++){
+      btns[k].disabled = true;
+      if (ex.options[k] === correctText) btns[k].classList.add('correct');
+      else if (k === i) btns[k].classList.add('wrong');
+    }
+    if (sel === correctText) s.correct++;
+    var self = this;
+    setTimeout(function(){ s.index++; self.render(); }, 1000);
+  },
+
+  answerTF: function(val){
+    var s = this.session; var ex = s.queue[s.index];
+    if (ex.answered) return;
+    ex.answered = true;
+    if (val === ex.correct) s.correct++;
+    var self = this;
+    setTimeout(function(){ s.index++; self.render(); }, 1000);
+  },
+
+  answerType: function(){
+    var s = this.session; var ex = s.queue[s.index];
+    var input = document.getElementById('typeInput');
+    if (!input) return;
+    var val = input.value.trim();
+    var answers = ex.answers || [ex.answer];
+    var ok = false;
+    for (var i = 0; i < answers.length; i++){
+      if (val === answers[i]){ ok = true; break; }
+    }
+    if (ok) s.correct++;
+    input.disabled = true;
+    input.style.borderColor = ok ? 'var(--success)' : 'var(--danger)';
+    toast(ok ? '✅ Correct' : '❌ Réponse : ' + answers[0]);
+    var self = this;
+    setTimeout(function(){ s.index++; self.render(); }, 1400);
+  },
+
+  addWord: function(w){
+    var z = document.getElementById('orderZone');
+    var words = z.dataset.words ? z.dataset.words.split('|') : [];
+    words.push(w);
+    z.dataset.words = words.join('|');
+    z.textContent = words.join(' ');
+  },
+
+  answerOrder: function(){
+    var s = this.session; var ex = s.queue[s.index];
+    var z = document.getElementById('orderZone');
+    var val = z.dataset.words ? z.dataset.words.split('|').join(' ') : '';
+    if (val === ex.answer) s.correct++;
+    var self = this;
+    setTimeout(function(){ s.index++; self.render(); }, 800);
+  },
+
+  end: function(){
+    var s = this.session;
+    var pct = Math.round((s.correct / s.total) * 100);
+    var em = pct >= 80 ? '🏆' : (pct >= 50 ? '👍' : '💪');
+    document.getElementById('app').innerHTML =
+      '<div class="empty" style="padding-top:60px"><div class="big">' + em + '</div>' +
+      '<h2>Exercices terminés</h2>' +
+      '<div class="stat-grid" style="margin-top:24px">' +
+        '<div class="stat"><div class="num">' + s.correct + '/' + s.total + '</div><div class="lbl">Score</div></div>' +
+        '<div class="stat"><div class="num">' + pct + '%</div><div class="lbl">Réussite</div></div>' +
+      '</div>' +
+      '<button class="btn" onclick="MadinahScreen.home()">Retour Médine</button>' +
+      '<button class="btn secondary" onclick="App.home()">Accueil</button></div>';
+  }
+};
+
+/* ---------- 4. UTILITAIRES INTERNES ---------- */
+function findLesson(lessonId){
+  for (var t = 0; t < TOMES.length; t++){
+    for (var l = 0; l < TOMES[t].lessons.length; l++){
+      if (TOMES[t].lessons[l].id === lessonId){
+        var les = TOMES[t].lessons[l];
+        les.tomeId = TOMES[t].id;
+        return les;
       }
     }
   }
-  window.MADINAH_VOCAB = all;
-})();
-/* ============================================================
-   EXPORT DES EXERCICES DE MÉDINE POUR LE QUIZ GLOBAL
-   ============================================================ */
-(function exportMadinahExercises(){
-  var all = [];
-  for (var ti = 0; ti < TOMES.length; ti++){
-    var tome = TOMES[ti];
-    if (!tome.lessons) continue;
-    for (var li = 0; li < tome.lessons.length; li++){
-      var lesson = tome.lessons[li];
-      if (!lesson.exercises) continue;
-      for (var ei = 0; ei < lesson.exercises.length; ei++){
-        var ex = lesson.exercises[ei];
-        all.push({
-          id: "med_ex_" + lesson.id + "_" + ei,
-          type: ex.type,
-          q: ex.q || ex.sentence || '',
-          sentence: ex.sentence || '',
-          audioText: ex.audioText || '',
-          options: ex.options ? ex.options.slice() : null,
-          correct: ex.correct,
-          answer: ex.answer || '',
-          ar: ex.ar || '',
-          explain: ex.explain || '',
-          hint: ex.hint || '',
-          lesson: lesson.title,
-          tome: tome.title
-        });
-      }
-    }
+  return null;
+}
+
+function shuffleMadinah(a){
+  for (var i = a.length - 1; i > 0; i--){
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
   }
-  window.MADINAH_EXERCISES = all;
-})();/* ============================================================
-   EXPORT DES EXERCICES DE MÉDINE POUR LE QUIZ GLOBAL
-   ============================================================ */
-(function exportMadinahExercises(){
-  var all = [];
-  for (var ti = 0; ti < TOMES.length; ti++){
-    var tome = TOMES[ti];
-    if (!tome.lessons) continue;
-    for (var li = 0; li < tome.lessons.length; li++){
-      var lesson = tome.lessons[li];
-      if (!lesson.exercises) continue;
-      for (var ei = 0; ei < lesson.exercises.length; ei++){
-        var ex = lesson.exercises[ei];
-        all.push({
-          id: "med_ex_" + lesson.id + "_" + ei,
-          type: ex.type,
-          q: ex.q || ex.sentence || '',
-          sentence: ex.sentence || '',
-          audioText: ex.audioText || '',
-          options: ex.options ? ex.options.slice() : null,
-          correct: ex.correct,
-          answer: ex.answer || '',
-          ar: ex.ar || '',
-          explain: ex.explain || '',
-          hint: ex.hint || '',
-          lesson: lesson.title,
-          tome: tome.title
-        });
-      }
-    }
-  }
-  window.MADINAH_EXERCISES = all;
-})();window.MadinahScreen = MadinahScreen;
+  return a;
+}
+
+/* ---------- 5. EXPORT GLOBAL ---------- */
+if (typeof module !== 'undefined' && module.exports){
+  module.exports = { TOMES: TOMES, esc: esc, MadinahScreen: MadinahScreen };
+} else if (typeof window !== 'undefined'){
+  window.TOMES = TOMES;
+  window.esc = esc;
+  window.MadinahScreen = MadinahScreen;
+  window.MADINAH_VOCAB = MADINAH_VOCAB;
+  window.MADINAH_EXERCISES = MADINAH_EXERCISES;
+}
 
 })();
