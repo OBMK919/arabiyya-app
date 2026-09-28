@@ -130,49 +130,197 @@ h3{font-size:16px;margin-bottom:8px}
 }
 
 /* =====================================================
-   HOME TILE (NOUVEAU v5.3)
-   Tuiles 3 colonnes de l'accueil
+   HOME TILE 3D AVANCÉ (Version 5.4)
+   Effets : tilt 3D, ombre dynamique, brillance, animation
    ===================================================== */
+
+/* Conteneur du grid : permet la perspective 3D */
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  perspective:800px;
+}
+
 .home-tile{
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  padding:16px 8px;
-  border-radius:14px;
+  padding:18px 8px;
+  border-radius:18px;
   border:none;
   cursor:pointer;
-  box-shadow:var(--shadow);
-  transition:transform var(--t-fast);
   font-family:inherit;
   text-align:center;
   aspect-ratio:1;
-  min-height:100px;
+  min-height:110px;
   position:relative;
+  overflow:hidden;
+  color:#fff;
+  transform-style:preserve-3d;
+  transform:
+    translateY(0)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    scale(var(--sc, 1));
+  transition:
+    transform .18s cubic-bezier(.2,.8,.3,1),
+    box-shadow .18s ease;
+  box-shadow:
+    0 8px 0 rgba(0,0,0,.15),
+    0 12px 20px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.25),
+    inset 0 -2px 4px rgba(0,0,0,.15);
+  background-image:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.25), transparent 55%),
+    linear-gradient(135deg, var(--tile-c1, #0f5132), var(--tile-c2, #1a7f52));
+  /* Animation d'entrée en cascade */
+  opacity:0;
+  animation:tileEnter .5s ease-out forwards;
+  will-change:transform;
 }
-.home-tile:active{transform:scale(.95)}
+
+/* Cascade : chaque tuile a un léger délai */
+.home-tile:nth-child(1){animation-delay:.05s}
+.home-tile:nth-child(2){animation-delay:.1s}
+.home-tile:nth-child(3){animation-delay:.15s}
+
+@keyframes tileEnter{
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.9);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* Reflet lumineux permanent en haut */
+.home-tile::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:40%;
+  background:linear-gradient(180deg, rgba(255,255,255,.18) 0%, transparent 100%);
+  border-radius:18px 18px 60% 60%;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* Brillance qui balaye au survol */
+.home-tile::after{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:80%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,.35) 50%,
+    transparent 100%
+  );
+  transform:skewX(-20deg);
+  transition:left .6s ease;
+  pointer-events:none;
+  z-index:2;
+}
+
+/* Icône, label, sub au-dessus des effets */
 .home-tile-icon{
-  font-size:32px;
+  font-size:36px;
   line-height:1;
-  margin-bottom:8px;
+  margin-bottom:10px;
+  filter:drop-shadow(0 3px 4px rgba(0,0,0,.35));
+  position:relative;
+  z-index:3;
+  transition:transform .3s cubic-bezier(.2,.8,.3,1);
 }
 .home-tile-label{
   font-size:13px;
   font-weight:800;
   line-height:1.2;
+  text-shadow:0 1px 2px rgba(0,0,0,.25);
+  position:relative;
+  z-index:3;
 }
 .home-tile-sub{
   font-size:10px;
-  margin-top:2px;
+  margin-top:3px;
   font-weight:600;
-  opacity:.85;
+  opacity:.9;
+  text-shadow:0 1px 1px rgba(0,0,0,.2);
+  position:relative;
+  z-index:3;
 }
 
-/* Fallback aspect-ratio pour vieux navigateurs */
-@supports not (aspect-ratio: 1){
-  .home-tile{
-    min-height:110px;
+/* ========== SURVOL (PC uniquement) ========== */
+@media (hover:hover) and (pointer:fine){
+  .home-tile:hover{
+    /* L'ombre "s'éloigne" pour simuler le soulèvement */
+    box-shadow:
+      0 14px 0 rgba(0,0,0,.15),
+      0 20px 30px rgba(0,0,0,.3),
+      inset 0 1px 0 rgba(255,255,255,.35),
+      inset 0 -2px 4px rgba(0,0,0,.15);
   }
+  /* La brillance traverse la tuile */
+  .home-tile:hover::after{
+    left:120%;
+  }
+  /* L'icône rebondit */
+  .home-tile:hover .home-tile-icon{
+    transform:scale(1.15) translateY(-3px);
+  }
+}
+
+/* ========== APPUI ========== */
+.home-tile:active{
+  transform:
+    translateY(4px)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    scale(.96);
+  box-shadow:
+    0 2px 0 rgba(0,0,0,.15),
+    0 4px 8px rgba(0,0,0,.25),
+    inset 0 2px 6px rgba(0,0,0,.35);
+  transition-duration:.08s;
+}
+
+/* ========== FALLBACK ========== */
+@supports not (aspect-ratio: 1){
+  .home-tile{min-height:120px}
+}
+
+/* ========== MODE SOMBRE ========== */
+[data-theme="dark"] .home-tile{
+  box-shadow:
+    0 8px 0 rgba(0,0,0,.5),
+    0 12px 20px rgba(0,0,0,.6),
+    inset 0 1px 0 rgba(255,255,255,.15),
+    inset 0 -2px 4px rgba(0,0,0,.4);
+}
+[data-theme="dark"] .home-tile:active{
+  box-shadow:
+    0 2px 0 rgba(0,0,0,.5),
+    0 4px 8px rgba(0,0,0,.5),
+    inset 0 2px 6px rgba(0,0,0,.6);
+}
+
+/* ========== REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce){
+  .home-tile{
+    animation:none;
+    opacity:1;
+    transition:none;
+  }
+  .home-tile::after{display:none}
 }
 
 /* =====================================================

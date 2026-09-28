@@ -1,12 +1,11 @@
 /* =====================================================
    ARABIYYA — Logique principale
-   Version 5.3 — Nouveau design + Erreurs + DataSources + TTS propre
+   Version 5.4 — Tilt 3D + tuiles dynamiques
    ===================================================== */
 
 /* ---------- AGRÉGATION VIA DATASOURCES ---------- */
 function getAllVocab(){
   if (typeof DataSources !== 'undefined') return DataSources.vocab();
-  /* Fallback si DataSources pas chargé */
   var base = (typeof VOCAB !== 'undefined' && VOCAB) ? VOCAB : [];
   var med = (window.MADINAH_VOCAB && window.MADINAH_VOCAB.length) ? window.MADINAH_VOCAB : [];
   return base.concat(med);
@@ -185,7 +184,6 @@ function speak(text){
   } catch(e){ }
 }
 
-/* Wrapper TTS avec nettoyage */
 function speakClean(text){
   if (!text) return;
   if (!('speechSynthesis' in window)){
@@ -196,7 +194,6 @@ function speakClean(text){
   if (cleaned) speak(cleaned);
 }
 
-/* Vérifie si une voix arabe est dispo */
 function hasArabicVoice(){
   if (!('speechSynthesis' in window)) return false;
   var voices = speechSynthesis.getVoices();
@@ -265,20 +262,20 @@ var App = {
     /* ---------- SECTION APPRENDRE ---------- */
     h += '<div class="section-title">📚 Apprendre</div>' +
       '<div class="grid-3">' +
-        '<button class="home-tile" onclick="NourScreen.home()" style="background:linear-gradient(135deg,#0f5132,#1a7f52);color:#fff">' +
+        '<button class="home-tile" onclick="NourScreen.home()" style="--tile-c1:#0f5132;--tile-c2:#1a7f52">' +
           '<div class="home-tile-icon">📖</div>' +
-          '<div class="home-tile-label" style="color:#fff">Nour</div>' +
-          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">7 niveaux</div>' +
+          '<div class="home-tile-label">Nour</div>' +
+          '<div class="home-tile-sub">7 niveaux</div>' +
         '</button>' +
-        '<button class="home-tile" onclick="MadinahScreen.home()" style="background:linear-gradient(135deg,#8b0000,#b71c1c);color:#fff">' +
+        '<button class="home-tile" onclick="MadinahScreen.home()" style="--tile-c1:#8b0000;--tile-c2:#b71c1c">' +
           '<div class="home-tile-icon">📖</div>' +
-          '<div class="home-tile-label" style="color:#fff">Tomes</div>' +
-          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">30 leçons</div>' +
+          '<div class="home-tile-label">Tomes</div>' +
+          '<div class="home-tile-sub">30 leçons</div>' +
         '</button>' +
-        '<button class="home-tile" onclick="GrammaireScreen.home()" style="background:linear-gradient(135deg,#4a148c,#7b1fa2);color:#fff">' +
+        '<button class="home-tile" onclick="GrammaireScreen.home()" style="--tile-c1:#4a148c;--tile-c2:#7b1fa2">' +
           '<div class="home-tile-icon">📝</div>' +
-          '<div class="home-tile-label" style="color:#fff">Grammaire</div>' +
-          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">49 règles</div>' +
+          '<div class="home-tile-label">Grammaire</div>' +
+          '<div class="home-tile-sub">49 règles</div>' +
         '</button>' +
       '</div>';
 
@@ -295,46 +292,46 @@ var App = {
     /* ---------- SECTION ENTRAÎNEMENT ---------- */
     h += '<div class="section-title">🎯 Entraînement</div>' +
       '<div class="grid-3">' +
-        '<button class="home-tile" onclick="App.quizStart()" style="background:linear-gradient(135deg,#1565c0,#1976d2);color:#fff">' +
+        '<button class="home-tile" onclick="App.quizStart()" style="--tile-c1:#1565c0;--tile-c2:#1976d2">' +
           '<div class="home-tile-icon">🎯</div>' +
-          '<div class="home-tile-label" style="color:#fff">Quiz</div>' +
-          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">' + totalEx + ' ex.</div>' +
+          '<div class="home-tile-label">Quiz</div>' +
+          '<div class="home-tile-sub">' + totalEx + ' ex.</div>' +
         '</button>' +
-        '<button class="home-tile" onclick="App.memory()" style="background:linear-gradient(135deg,#00897b,#00acc1);color:#fff">' +
+        '<button class="home-tile" onclick="App.memory()" style="--tile-c1:#00897b;--tile-c2:#00acc1">' +
           '<div class="home-tile-icon">🎮</div>' +
-          '<div class="home-tile-label" style="color:#fff">Memory</div>' +
-          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">Jeu</div>' +
+          '<div class="home-tile-label">Memory</div>' +
+          '<div class="home-tile-sub">Jeu</div>' +
         '</button>' +
-        '<button class="home-tile" onclick="App.writing()" style="background:linear-gradient(135deg,#ef6c00,#f57c00);color:#fff">' +
+        '<button class="home-tile" onclick="App.writing()" style="--tile-c1:#ef6c00;--tile-c2:#f57c00">' +
           '<div class="home-tile-icon">✍️</div>' +
-          '<div class="home-tile-label" style="color:#fff">Écriture</div>' +
-          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">28 lettres</div>' +
+          '<div class="home-tile-label">Écriture</div>' +
+          '<div class="home-tile-sub">28 lettres</div>' +
         '</button>' +
       '</div>';
 
     /* ---------- SECTION EXPLORER ---------- */
     h += '<div class="section-title">💬 Explorer</div>' +
       '<div class="grid-3">' +
-        '<button class="home-tile" onclick="App.vocab()" style="background:linear-gradient(135deg,#37474f,#546e7a);color:#fff">' +
+        '<button class="home-tile" onclick="App.vocab()" style="--tile-c1:#37474f;--tile-c2:#546e7a">' +
           '<div class="home-tile-icon">📚</div>' +
-          '<div class="home-tile-label" style="color:#fff">Vocab</div>' +
-          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">' + totalVocab + ' mots</div>' +
+          '<div class="home-tile-label">Vocab</div>' +
+          '<div class="home-tile-sub">' + totalVocab + ' mots</div>' +
         '</button>' +
-        '<button class="home-tile" onclick="App.dialogues()" style="background:linear-gradient(135deg,#5e35b1,#7e57c2);color:#fff">' +
+        '<button class="home-tile" onclick="App.dialogues()" style="--tile-c1:#5e35b1;--tile-c2:#7e57c2">' +
           '<div class="home-tile-icon">💬</div>' +
-          '<div class="home-tile-label" style="color:#fff">Dialogues</div>' +
-          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">' + DIALOGUES.length + ' scènes</div>' +
+          '<div class="home-tile-label">Dialogues</div>' +
+          '<div class="home-tile-sub">' + DIALOGUES.length + ' scènes</div>' +
         '</button>' +
-        '<button class="home-tile" onclick="App.statsScreen()" style="background:linear-gradient(135deg,#00695c,#00897b);color:#fff">' +
+        '<button class="home-tile" onclick="App.statsScreen()" style="--tile-c1:#00695c;--tile-c2:#00897b">' +
           '<div class="home-tile-icon">📊</div>' +
-          '<div class="home-tile-label" style="color:#fff">Stats</div>' +
-          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">Progrès</div>' +
+          '<div class="home-tile-label">Stats</div>' +
+          '<div class="home-tile-sub">Progrès</div>' +
         '</button>' +
       '</div>';
 
     /* ---------- PIED DE PAGE (Réglages) ---------- */
     h += '<div style="text-align:center;margin-top:24px;padding-top:16px;border-top:1px solid var(--muted);opacity:.6">' +
-      '<button class="link-btn" onclick="App.settings()" style="background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;padding:8px;font-family:inherit">⚙️ Réglages · À propos</button>' +
+      '<button class="link-btn" onclick="App.settings()">⚙️ Réglages · À propos</button>' +
     '</div>';
 
     $(h);
@@ -651,7 +648,6 @@ var App = {
   quizStart: function(){
     var allQs = buildQuizQuestions();
     if (!allQs.length){ toast('❌ Aucune question disponible'); return; }
-    /* Pas de limite : toutes les questions */
     this.quiz = { questions: shuffle(allQs), index: 0, score: 0, total: allQs.length };
     this.renderQuiz();
   },
@@ -690,7 +686,6 @@ var App = {
       for (var i = 0; i < cur.options.length; i++){
         h += '<button class="quiz-option" onclick="App.quizAnswer(' + i + ')">' + cur.options[i] + '</button>';
       }
-      /* Bouton "Je ne sais pas" */
       h += '<button class="btn secondary" style="margin-top:12px;font-size:13px" onclick="App.quizDontKnow()">🤷 Je ne sais pas</button>';
     }
     h += '<div id="correctionZone" style="margin-top:16px"></div>';
@@ -877,11 +872,9 @@ var App = {
   },
 
   resetMistakes: function(btn){
-    /* Double-clic pour confirmer */
     if (!btn.dataset.confirming){
       btn.dataset.confirming = '1';
       btn.textContent = '⚠️ Appuie encore pour confirmer';
-      var self = this;
       setTimeout(function(){
         if (btn && btn.dataset){
           delete btn.dataset.confirming;
@@ -964,7 +957,7 @@ var App = {
         '<p class="muted" style="margin:8px 0 12px">Efface toute la progression (y compris les erreurs).</p>' +
         '<button class="btn danger" onclick="App.resetAll(this)">Réinitialiser</button>' +
       '</div>' +
-      '<div class="card" style="text-align:center;font-size:13px;color:var(--muted)"><strong style="color:var(--primary)">Arabiyya</strong> v5.3 · 100% hors ligne</div>');
+      '<div class="card" style="text-align:center;font-size:13px;color:var(--muted)"><strong style="color:var(--primary)">Arabiyya</strong> v5.4 · 100% hors ligne</div>');
   },
 
   setTheme: function(t){
@@ -974,7 +967,6 @@ var App = {
   },
 
   resetAll: function(btn){
-    /* Double-clic pour confirmer (plus de confirm() bloquant) */
     if (!btn.dataset.confirming){
       btn.dataset.confirming = '1';
       btn.textContent = '⚠️ Appuie encore pour tout effacer';
@@ -996,6 +988,73 @@ var App = {
 window.App = App;
 
 /* ============================================================
+   TILT 3D — Ombre dynamique qui suit la souris
+   Active la parallaxe 3D sur les .home-tile au survol
+   ============================================================ */
+function initTile3D(){
+  if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+
+  var tiles = document.querySelectorAll('.home-tile');
+  if (!tiles.length) return;
+
+  var MAX_TILT = 12;
+
+  function handleMove(e){
+    var tile = e.currentTarget;
+    var rect = tile.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+
+    var nx = (x / rect.width)  * 2 - 1;
+    var ny = (y / rect.height) * 2 - 1;
+
+    var ry =  nx * MAX_TILT;
+    var rx = -ny * MAX_TILT;
+
+    tile.style.setProperty('--rx', rx + 'deg');
+    tile.style.setProperty('--ry', ry + 'deg');
+    tile.style.setProperty('--sc', '1.03');
+
+    var shadowX = -nx * 6;
+    var shadowY = -ny * 6 + 14;
+    tile.style.boxShadow =
+      '0 ' + (14 - ny * 4) + 'px 0 rgba(0,0,0,.15),' +
+      shadowX + 'px ' + shadowY + 'px 30px rgba(0,0,0,.3),' +
+      'inset 0 1px 0 rgba(255,255,255,.35),' +
+      'inset 0 -2px 4px rgba(0,0,0,.15)';
+  }
+
+  function handleLeave(e){
+    var tile = e.currentTarget;
+    tile.style.setProperty('--rx', '0deg');
+    tile.style.setProperty('--ry', '0deg');
+    tile.style.setProperty('--sc', '1');
+    tile.style.boxShadow = '';
+  }
+
+  function attach(){
+    tiles = document.querySelectorAll('.home-tile');
+    for (var i = 0; i < tiles.length; i++){
+      var tile = tiles[i];
+      tile.removeEventListener('mousemove', handleMove);
+      tile.removeEventListener('mouseleave', handleLeave);
+      tile.addEventListener('mousemove', handleMove);
+      tile.addEventListener('mouseleave', handleLeave);
+    }
+  }
+
+  attach();
+
+  var observer = new MutationObserver(function(){
+    setTimeout(attach, 50);
+  });
+  var app = document.getElementById('app');
+  if (app){
+    observer.observe(app, { childList: true, subtree: false });
+  }
+}
+
+/* ============================================================
    INITIALISATION
    ============================================================ */
 function initApp(){
@@ -1011,6 +1070,7 @@ function initApp(){
       navigator.serviceWorker.register('./sw.js').catch(function(){});
     });
   }
+  setTimeout(initTile3D, 150);
 }
 
 if (document.readyState === 'loading'){
