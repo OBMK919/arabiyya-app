@@ -1,6 +1,8 @@
 /* =====================================================
    ARABIYYA — Données (alphabet, vocab, grammaire, dialogues, leçons)
-   Version 2.0 — 155 mots · 28 lettres · 6 règles · 10 dialogues · 8 leçons · 6 badges
+   Version 2.2 — 155 mots · 28 lettres · 6 règles · 10 dialogues · 8 leçons · 6 badges
+   Ajout v2.1 : module Mistakes (enregistrement des erreurs)
+   Ajout v2.2 : module DataSources (agrégation) + cleanForTTS + esc unifié
    ===================================================== */
 
 /* ---------- 28 LETTRES ARABES ---------- */
@@ -331,3 +333,234 @@ var BADGES = [
   {id:"b5",name:"💯 100 révisions",desc:"100 cartes révisées",req:function(s){return s.totalReviews>=100}},
   {id:"b6",name:"🎯 Sans faute",desc:"90% de bonnes réponses",req:function(s){return s.totalReviews>0 && s.correctReviews/s.totalReviews>=0.9}}
 ];
+
+/* =====================================================
+   MODULE 1 — MISTAKES (v2.1)
+   Enregistre les erreurs de quiz pour les réviser plus tard
+   ===================================================== */
+var Mistakes = {
+  KEY: 'arabiyya_mistakes',
+
+  /* Charge le dictionnaire des erreurs depuis localStorage */
+  load: function(){
+    try { return JSON.parse(localStorage.getItem(this.KEY)) || {}; } catch(e){ return {}; }
+  },
+
+  /* Sauvegarde le dictionnaire */
+  save: function(d){
+    try { localStorage.setItem(this.KEY, JSON.stringify(d)); } catch(e){ }
+  },
+
+  /* Enregistre une erreur (ou incrémente si déjà connue) */
+  add: function(question){
+    if (!question || !question.prompt) return;
+    var all = this.load();
+    var key = this._key(question);
+    var entry = all[key] || {
+      prompt: question.prompt,
+      options: question.options ? question.options.slice() : null,
+      correct: question.correct,
+      isAr: question.isAr || false,
+      isTF: question.isTF || false,
+      label: question.label || '',
+      count: 0,
+      firstSeen: Date.now(),
+      lastSeen: 0,
+      corrected: 0
+    };
+    entry.count++;
+    entry.lastSeen = Date.now();
+    entry.correct = question.correct; /* mise à jour au cas où */
+    all[key] = entry;
+    this.save(all);
+  },
+
+  /* Marque une erreur comme corrigée (si l'élève la réussit) */
+  markCorrected: function(question){
+    if (!question || !question.prompt) return;
+    var all = this.load();
+    var key = this._key(question);
+    if (all[key]){
+      all[key].corrected++;
+      all[key].lastSeen = Date.now();
+      /* Si réussi 2 fois → on supprime (l'élève a compris) */
+      if (all[key].corrected >= 2){
+        delete all[key];
+      }
+      this.save(all);
+    }
+  },
+
+  /* Liste triée des erreurs actives (les plus ratées en premier) */
+  list: function(){
+    var all = this.load();
+    var arr = [];
+    for (var k in all){
+      if (all.hasOwnProperty(k)){
+        arr.push(all[k]);
+      }
+    }
+    arr.sort(function(a, b){ return b.count - a.count; });
+    return arr;
+  },
+
+  /* Nombre total d'erreurs actives */
+  count: function(){
+    return this.list().length;
+  },
+
+  /* Efface tout */
+  reset: function(){
+    try { localStorage.removeItem(this.KEY); } catch(e){ }
+  },
+
+  /* Signature unique d'une question (prompt + bonne réponse) */
+  _key: function(q){
+    return (q.prompt || '').trim() + '|||' + (q.options ? q.options[q.correct] : (q.isTF ? q.correct : ''));
+  }
+};
+
+/* =====================================================
+   MODULE 2 — DATASOURCES (v2.2)
+   Agrège VOCAB + TOMES (Médine) en un seul point d'entrée
+   ===================================================== */
+var DataSources = {
+  _cache: null,
+
+  /* Construit (une seule fois) tous les vocabulaires et exercices */
+  _build: function(){
+    if (this._cache) return this._cache;
+
+    var vocab = (typeof VOCAB !== 'undefined' && VOCAB) ? VOCAB.slice() : [];
+    var exercises = [];
+
+    /* Ajouter les données Médine si TOMES est chargé */
+    if (typeof TOMES !== 'undefined' && TOMES.length){
+      for (var t = 0; t < TOMES.length; t++){
+        var tome = TOMES[t];
+        for (var l = 0; l < tome.lessons.length; l++){
+          var lesson = tome.lessons[l];
+
+          /* --- Vocabulaire Médine --- */
+          for (var v = 0; v < lesson.vocab.length; v++){
+            var w = lesson.vocab[v];
+            vocab.push({
+              id: lesson.id + '_v' + v,
+              ar: w.ar,
+              fr: w.fr,
+              tr: w.tr || '',
+              t: lesson.title,
+              lv: 'MEDINE'
+            });
+          }
+
+          /* --- Exercices Médine (clonés) --- */
+          for (var e = 0; e < lesson.exercises.length; e++){
+            var ex = lesson.exercises[e];
+            var cloned = {};
+            for (var k in ex){ if (ex.hasOwnProperty(k)) cloned[k] = ex[k]; }
+            cloned.tome = tome.title;
+            cloned.lesson = lesson.title;
+            cloned.lessonId = lesson.id;
+            exercises.push(cloned);
+          }
+        }
+      }
+    }
+
+    this._cache = { vocab: vocab, exercises: exercises };
+    return this._cache;
+  },
+
+  /* Récupère tout le vocabulaire (A1 + A2 + B1 + Médine) */
+  vocab: function(){
+    return this._build().vocab;
+  },
+
+  /* Récupère tous les exercices (Médine uniquement pour l'instant) */
+  exercises: function(){
+    return this._build().exercises;
+  },
+
+  /* Force un rebuild (utile après un reset ou ajout de données) */
+  refresh: function(){
+    this._cache = null;
+  },
+
+  /* Compteurs rapides */
+  vocabCount: function(){ return this._build().vocab.length; },
+  exercisesCount: function(){ return this._build().exercises.length; }
+};
+
+/* =====================================================
+   MODULE 3 — TTS UTILITIES (v2.2)
+   Nettoyage du texte avant lecture audio
+   ===================================================== */
+function cleanForTTS(text){
+  if (text === null || text === undefined) return '';
+  var s = String(text);
+
+  /* Retirer les parenthèses et leur contenu (FR : (livre), (masc.), etc.) */
+  s = s.replace(/\([^)]*\)/g, ' ');
+  s = s.replace(/\[[^\]]*\]/g, ' ');
+  s = s.replace(/\{[^}]*\}/g, ' ');
+
+  /* Retirer les guillemets et apostrophes */
+  s = s.replace(/["'«»„‟"‚‛]/g, ' ');
+
+  /* Retirer les ponctuations (arabe + latin) */
+  s = s.replace(/[،؛؟.,!?:;…]/g, ' ');
+
+  /* Retirer les symboles mathématiques et autres */
+  s = s.replace(/[+\-*/\\|=~^<>%$#@&]/g, ' ');
+
+  /* Retirer les chiffres occidentaux */
+  s = s.replace(/[0-9]/g, ' ');
+
+  /* Retirer les emojis (plage étendue) */
+  s = s.replace(/[\u{1F000}-\u{1FFFF}]/gu, ' ');
+  s = s.replace(/[\u{2600}-\u{27BF}]/gu, ' ');
+  s = s.replace(/[\u{1F300}-\u{1F9FF}]/gu, ' ');
+  s = s.replace(/[\u{FE00}-\u{FE0F}]/gu, ' '); /* variation selectors */
+
+  /* Retirer les caractères de contrôle et invisibles */
+  s = s.replace(/[\u200B-\u200F\u202A-\u202E\u2066-\u2069]/g, ' ');
+
+  /* Normaliser les espaces multiples */
+  s = s.replace(/\s+/g, ' ').trim();
+
+  return s;
+}
+
+/* =====================================================
+   MODULE 4 — ESC (v2.2)
+   Échappement unifié pour usage dans onclick / HTML
+   ===================================================== */
+function esc(s){
+  if (s === null || s === undefined) return '';
+  return String(s)
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\"')
+    .replace(/</g, '\\u003C')
+    .replace(/>/g, '\\u003E')
+    .replace(/&/g, '\\u0026')
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '\\r');
+}
+
+/* =====================================================
+   EXPOSITION GLOBALE
+   ===================================================== */
+if (typeof window !== 'undefined'){
+  window.ALPHABET = ALPHABET;
+  window.VOCAB = VOCAB;
+  window.GRAMMAR = GRAMMAR;
+  window.DIALOGUES = DIALOGUES;
+  window.LESSONS = LESSONS;
+  window.BADGES = BADGES;
+  window.Mistakes = Mistakes;
+  window.DataSources = DataSources;
+  window.cleanForTTS = cleanForTTS;
+  window.esc = esc;
+}

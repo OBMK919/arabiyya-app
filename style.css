@@ -1,6 +1,10 @@
 /* =====================================================
-   ARABIYYA — Styles (Version 5.1)
-   Corrections : mode sombre complet, input styles, fallbacks
+   ARABIYYA — Styles (Version 5.3)
+   Nouveautés v5.3 :
+   - .section-title (titres de section accueil)
+   - .home-tile (tuiles 3 colonnes)
+   - .link-btn (bouton discret "Réglages · À propos")
+   - Corrections mode sombre
    ===================================================== */
 :root{
   /* Couleurs principales */
@@ -47,13 +51,11 @@
   --primary-l:#22a86b;
   --accent:#e6b325;
 
-  /* Couleurs sémantiques adaptées */
   --success:#4caf50;
   --danger:#ef5350;
   --warn:#ff9800;
   --info:#42a5f5;
 
-  /* Ombre plus prononcée pour contraste sur fond sombre */
   --shadow:0 4px 16px rgba(0,0,0,.4);
   --shadow-lg:0 8px 24px rgba(0,0,0,.5);
   --shadow-toast:0 8px 24px rgba(0,0,0,.6);
@@ -113,6 +115,81 @@ h3{font-size:16px;margin-bottom:8px}
   box-shadow:var(--shadow);
   margin-bottom:14px;
 }
+
+/* =====================================================
+   SECTION TITLE (NOUVEAU v5.3)
+   Titres de section de l'accueil : "📚 Apprendre", etc.
+   ===================================================== */
+.section-title{
+  margin:20px 0 10px;
+  font-size:12px;
+  font-weight:800;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+/* =====================================================
+   HOME TILE (NOUVEAU v5.3)
+   Tuiles 3 colonnes de l'accueil
+   ===================================================== */
+.home-tile{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:16px 8px;
+  border-radius:14px;
+  border:none;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:transform var(--t-fast);
+  font-family:inherit;
+  text-align:center;
+  aspect-ratio:1;
+  min-height:100px;
+  position:relative;
+}
+.home-tile:active{transform:scale(.95)}
+.home-tile-icon{
+  font-size:32px;
+  line-height:1;
+  margin-bottom:8px;
+}
+.home-tile-label{
+  font-size:13px;
+  font-weight:800;
+  line-height:1.2;
+}
+.home-tile-sub{
+  font-size:10px;
+  margin-top:2px;
+  font-weight:600;
+  opacity:.85;
+}
+
+/* Fallback aspect-ratio pour vieux navigateurs */
+@supports not (aspect-ratio: 1){
+  .home-tile{
+    min-height:110px;
+  }
+}
+
+/* =====================================================
+   LINK BUTTON (NOUVEAU v5.3)
+   Bouton discret "Réglages · À propos"
+   ===================================================== */
+.link-btn{
+  background:none;
+  border:none;
+  color:var(--muted);
+  font-size:13px;
+  cursor:pointer;
+  padding:8px;
+  font-family:inherit;
+  transition:color var(--t-fast);
+}
+.link-btn:hover{color:var(--primary)}
 
 /* =====================================================
    MENU BOUTONS
@@ -348,7 +425,6 @@ textarea.ar{
 .tile .ar{font-size:32px;color:var(--primary);line-height:1}
 .tile .name{font-size:11px;color:var(--muted);margin-top:4px;font-weight:600}
 
-/* Fallback pour navigateurs sans aspect-ratio */
 @supports not (aspect-ratio: 1){
   .tile::before{
     content:'';
@@ -632,7 +708,6 @@ textarea.ar{
 }
 .memory-card .ar{font-size:24px}
 
-/* Fallback pour navigateurs sans aspect-ratio */
 @supports not (aspect-ratio: 1){
   .memory-card{
     min-height:80px;
@@ -666,7 +741,46 @@ textarea.ar{
 }
 
 /* =====================================================
-   SCROLLBAR PERSONNALISÉE (optionnel)
+   BLOC DE CORRECTION (v5.2)
+   Utilisé par : madinah.js + app.js
+   ===================================================== */
+.correction-ok{
+  background:#e8f5e9;
+  border:2px solid var(--success);
+  border-radius:var(--radius-sm);
+  padding:16px;
+  color:#1b5e20;
+  animation:slideUp .25s ease-out;
+  margin-bottom:12px;
+}
+.correction-ko{
+  background:#ffebee;
+  border:2px solid var(--danger);
+  border-radius:var(--radius-sm);
+  padding:16px;
+  color:#b71c1c;
+  animation:slideUp .25s ease-out;
+  margin-bottom:12px;
+}
+
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+[data-theme="dark"] .correction-ok{
+  background:#1b3a1d;
+  color:#81c784;
+  border-color:#4caf50;
+}
+[data-theme="dark"] .correction-ko{
+  background:#3a1c1c;
+  color:#ef9a9a;
+  border-color:#ef5350;
+}
+
+/* =====================================================
+   SCROLLBAR PERSONNALISÉE
    ===================================================== */
 ::-webkit-scrollbar{
   width:8px;
@@ -685,14 +799,16 @@ textarea.ar{
 }
 
 /* =====================================================
-   IMPRESSION (bonus)
+   IMPRESSION
    ===================================================== */
 @media print{
   .menu-btn,
   .btn,
   .back,
   .toast,
-  .answers{
+  .answers,
+  .home-tile,
+  .link-btn{
     display:none !important;
   }
   body{background:#fff;color:#000}
@@ -710,6 +826,10 @@ textarea.ar{
   .hero .big{font-size:100px}
   .menu-btn{padding:14px}
   .menu-btn .icon{width:40px;height:40px;font-size:20px}
+  .home-tile{padding:12px 6px}
+  .home-tile-icon{font-size:28px}
+  .home-tile-label{font-size:12px}
+  .home-tile-sub{font-size:9px}
 }
 
 /* =====================================================
@@ -719,6 +839,8 @@ textarea.ar{
   #app{padding:24px 16px 100px}
   .flashcard{min-height:360px}
   .hero .big{font-size:140px}
+  .home-tile-icon{font-size:38px}
+  .home-tile-label{font-size:15px}
 }
 
 /* =====================================================

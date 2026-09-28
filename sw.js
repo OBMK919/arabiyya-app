@@ -1,9 +1,10 @@
 /* ============================================================
-   ARABIYYA — Service Worker (Version 5.1)
+   ARABIYYA — Service Worker (Version 5.3)
    Cache pour fonctionnement 100% hors ligne
+   Changements v5.3 : bump CACHE_NAME pour forcer la mise à jour
    ============================================================ */
 
-var CACHE_NAME = 'arabiyya-v5.1';
+var CACHE_NAME = 'arabiyya-v5.3';
 
 var ASSETS = [
   './',

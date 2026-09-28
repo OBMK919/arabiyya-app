@@ -1,18 +1,20 @@
 /* =====================================================
    ARABIYYA — Logique principale
-   Version 5.1 — Intégration complète Tomes de Médine
+   Version 5.3 — Nouveau design + Erreurs + DataSources + TTS propre
    ===================================================== */
 
-/* ---------- AGRÉGATION DES SOURCES ---------- */
+/* ---------- AGRÉGATION VIA DATASOURCES ---------- */
 function getAllVocab(){
+  if (typeof DataSources !== 'undefined') return DataSources.vocab();
+  /* Fallback si DataSources pas chargé */
   var base = (typeof VOCAB !== 'undefined' && VOCAB) ? VOCAB : [];
   var med = (window.MADINAH_VOCAB && window.MADINAH_VOCAB.length) ? window.MADINAH_VOCAB : [];
   return base.concat(med);
 }
 
 function getAllExercises(){
-  var ex = (window.MADINAH_EXERCISES && window.MADINAH_EXERCISES.length) ? window.MADINAH_EXERCISES : [];
-  return ex;
+  if (typeof DataSources !== 'undefined') return DataSources.exercises();
+  return (window.MADINAH_EXERCISES && window.MADINAH_EXERCISES.length) ? window.MADINAH_EXERCISES : [];
 }
 
 /* ---------- GÉNÉRATION DES QUESTIONS DU QUIZ ---------- */
@@ -23,25 +25,34 @@ function buildQuizQuestions(){
 
   for (var i = 0; i < allEx.length; i++){
     var ex = allEx[i];
+
     if (ex.type === 'qcm' && ex.options && ex.options.length >= 2){
+      var optsQ = ex.options.slice();
+      var correctTextQ = optsQ[ex.correct];
+      optsQ = shuffle(optsQ);
       qs.push({
         source: 'madinah',
         prompt: ex.q,
-        options: ex.options.slice(),
-        correct: ex.correct,
+        options: optsQ,
+        correct: optsQ.indexOf(correctTextQ),
         label: ex.tome + ' · ' + ex.lesson
       });
     }
+
     if (ex.type === 'fill' && ex.options && ex.options.length >= 2){
+      var optsF = ex.options.slice();
+      var correctTextF = optsF[ex.correct];
+      optsF = shuffle(optsF);
       qs.push({
         source: 'madinah',
         prompt: ex.sentence,
-        options: ex.options.slice(),
-        correct: ex.correct,
+        options: optsF,
+        correct: optsF.indexOf(correctTextF),
         label: ex.tome + ' · ' + ex.lesson,
         isAr: true
       });
     }
+
     if (ex.type === 'tf'){
       qs.push({
         source: 'madinah',
@@ -160,7 +171,7 @@ function speak(text){
   try {
     speechSynthesis.cancel();
     var u = new SpeechSynthesisUtterance(text);
-    u.lang = 'ar-SA'; u.rate = 0.8;
+    u.lang = 'ar-SA'; u.rate = 0.8; u.pitch = 1.0; u.volume = 1.0;
     var voices = speechSynthesis.getVoices();
     var arabicVoice = null;
     if (voices && voices.length){
@@ -172,6 +183,27 @@ function speak(text){
     if (arabicVoice) u.voice = arabicVoice;
     speechSynthesis.speak(u);
   } catch(e){ }
+}
+
+/* Wrapper TTS avec nettoyage */
+function speakClean(text){
+  if (!text) return;
+  if (!('speechSynthesis' in window)){
+    if (typeof toast === 'function') toast('🔇 Voix non disponible');
+    return;
+  }
+  var cleaned = (typeof cleanForTTS === 'function') ? cleanForTTS(text) : text;
+  if (cleaned) speak(cleaned);
+}
+
+/* Vérifie si une voix arabe est dispo */
+function hasArabicVoice(){
+  if (!('speechSynthesis' in window)) return false;
+  var voices = speechSynthesis.getVoices();
+  for (var i = 0; i < voices.length; i++){
+    if ((voices[i].lang || '').indexOf('ar') === 0) return true;
+  }
+  return false;
 }
 
 /* ---------- UTILITAIRES ---------- */
@@ -194,10 +226,6 @@ function $(html){
   var app = document.getElementById('app');
   if (app) app.innerHTML = html;
 }
-function esc(s){
-  if (s === null || s === undefined) return '';
-  return String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-}
 
 /* ---------- APP ---------- */
 var App = {
@@ -206,90 +234,115 @@ var App = {
   home: function(){
     var s = Stats.get();
     var due = SRS.due().length;
-    var nw = SRS.newOnes().length;
+    var nw = Math.min(10, SRS.newOnes().length);
     var totalVocab = getAllVocab().length;
     var totalEx = getAllExercises().length;
+    var mistakesCount = (typeof Mistakes !== 'undefined') ? Mistakes.count() : 0;
     var theme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', theme);
 
-    $(
-      '<header><h1>🌙 Arabiyya</h1>' +
-      '<div style="font-size:13px;color:var(--muted);font-weight:700">🔥 ' + s.streak + ' j · ' + s.xp + ' XP</div></header>' +
+    var h = '';
 
-      '<div class="card" style="background:linear-gradient(135deg,var(--primary),var(--primary-l));color:#fff">' +
-        '<div style="font-size:13px;opacity:.85;font-weight:600;text-transform:uppercase">Aujourd\'hui</div>' +
-        '<div style="display:flex;gap:16px;margin-top:12px;justify-content:space-between">' +
-          '<div><div style="font-size:32px;font-weight:800">' + due + '</div><div style="font-size:12px;opacity:.85">à réviser</div></div>' +
-          '<div><div style="font-size:32px;font-weight:800">' + nw + '</div><div style="font-size:12px;opacity:.85">nouvelles</div></div>' +
-          '<div><div style="font-size:32px;font-weight:800">' + totalVocab + '</div><div style="font-size:12px;opacity:.85">mots</div></div>' +
-        '</div>' +
+    /* ---------- HEADER ---------- */
+    h += '<header style="padding-bottom:12px">' +
+      '<h1>🌙 Arabiyya</h1>' +
+      '<div style="font-size:13px;color:var(--muted);font-weight:700">🔥 ' + s.streak + ' j · ' + s.xp + ' XP</div>' +
+    '</header>';
+
+    /* ---------- CARTE PRINCIPALE (Étudier) ---------- */
+    h += '<div class="card" style="background:linear-gradient(135deg,var(--primary),var(--primary-l));color:#fff;padding:22px">' +
+      '<div style="font-size:13px;opacity:.85;font-weight:600;text-transform:uppercase;letter-spacing:.5px">Aujourd\'hui</div>' +
+      '<div style="display:flex;gap:16px;margin-top:12px;justify-content:space-between">' +
+        '<div><div style="font-size:30px;font-weight:800">' + due + '</div><div style="font-size:11px;opacity:.85">à réviser</div></div>' +
+        '<div><div style="font-size:30px;font-weight:800">' + nw + '</div><div style="font-size:11px;opacity:.85">nouvelles</div></div>' +
+        '<div><div style="font-size:30px;font-weight:800">' + totalVocab + '</div><div style="font-size:11px;opacity:.85">mots</div></div>' +
       '</div>' +
-
-      '<button class="menu-btn" onclick="NourScreen.home()" style="background:linear-gradient(135deg,#0f5132,#1a7f52);color:#fff">' +
-        '<div class="icon" style="background:rgba(255,255,255,.2)">📖</div>' +
-        '<div><div class="label" style="color:#fff">📖 Nour Al Bayan</div>' +
-        '<div class="sub" style="color:rgba(255,255,255,.85)">Méthode complète · 7 niveaux</div></div>' +
+      '<button class="btn" style="margin-top:16px;background:rgba(255,255,255,.2);backdrop-filter:blur(4px)" onclick="App.study()">' +
+        '▶ Étudier maintenant' +
       '</button>' +
+    '</div>';
 
-      '<button class="menu-btn" onclick="MadinahScreen.home()" style="background:linear-gradient(135deg,#8b0000,#b71c1c);color:#fff">' +
-        '<div class="icon" style="background:rgba(255,255,255,.2)">📖</div>' +
-        '<div><div class="label" style="color:#fff">📖 Tomes de Médine</div>' +
-        '<div class="sub" style="color:rgba(255,255,255,.85)">Méthode du Dr. V. Abdur Rahim</div></div>' +
-      '</button>' +
+    /* ---------- SECTION APPRENDRE ---------- */
+    h += '<div class="section-title">📚 Apprendre</div>' +
+      '<div class="grid-3">' +
+        '<button class="home-tile" onclick="NourScreen.home()" style="background:linear-gradient(135deg,#0f5132,#1a7f52);color:#fff">' +
+          '<div class="home-tile-icon">📖</div>' +
+          '<div class="home-tile-label" style="color:#fff">Nour</div>' +
+          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">7 niveaux</div>' +
+        '</button>' +
+        '<button class="home-tile" onclick="MadinahScreen.home()" style="background:linear-gradient(135deg,#8b0000,#b71c1c);color:#fff">' +
+          '<div class="home-tile-icon">📖</div>' +
+          '<div class="home-tile-label" style="color:#fff">Tomes</div>' +
+          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">30 leçons</div>' +
+        '</button>' +
+        '<button class="home-tile" onclick="GrammaireScreen.home()" style="background:linear-gradient(135deg,#4a148c,#7b1fa2);color:#fff">' +
+          '<div class="home-tile-icon">📝</div>' +
+          '<div class="home-tile-label" style="color:#fff">Grammaire</div>' +
+          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">49 règles</div>' +
+        '</button>' +
+      '</div>';
 
-      '<button class="menu-btn" onclick="GrammaireScreen.home()" style="background:linear-gradient(135deg,#4a148c,#7b1fa2);color:#fff">' +
-        '<div class="icon" style="background:rgba(255,255,255,.2)">📝</div>' +
-        '<div><div class="label" style="color:#fff">📝 Grammaire</div>' +
-        '<div class="sub" style="color:rgba(255,255,255,.85)">49 règles essentielles</div></div>' +
-      '</button>' +
+    /* ---------- SECTION ERREURS (si > 0) ---------- */
+    if (mistakesCount > 0){
+      h += '<div class="section-title" style="color:var(--danger)">📕 Erreurs à réviser</div>' +
+        '<button class="menu-btn" onclick="App.mistakesScreen()" style="background:linear-gradient(135deg,#c62828,#e53935);color:#fff">' +
+          '<div class="icon" style="background:rgba(255,255,255,.2)">📕</div>' +
+          '<div><div class="label" style="color:#fff">' + mistakesCount + ' question(s) à retravailler</div>' +
+          '<div class="sub" style="color:rgba(255,255,255,.85)">Réviser maintenant →</div></div>' +
+        '</button>';
+    }
 
-      '<button class="menu-btn" onclick="App.study()">' +
-        '<div class="icon">📚</div>' +
-        '<div><div class="label">Étudier maintenant</div><div class="sub">Répétition espacée · ' + totalVocab + ' cartes</div></div>' +
-      '</button>' +
+    /* ---------- SECTION ENTRAÎNEMENT ---------- */
+    h += '<div class="section-title">🎯 Entraînement</div>' +
+      '<div class="grid-3">' +
+        '<button class="home-tile" onclick="App.quizStart()" style="background:linear-gradient(135deg,#1565c0,#1976d2);color:#fff">' +
+          '<div class="home-tile-icon">🎯</div>' +
+          '<div class="home-tile-label" style="color:#fff">Quiz</div>' +
+          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">' + totalEx + ' ex.</div>' +
+        '</button>' +
+        '<button class="home-tile" onclick="App.memory()" style="background:linear-gradient(135deg,#00897b,#00acc1);color:#fff">' +
+          '<div class="home-tile-icon">🎮</div>' +
+          '<div class="home-tile-label" style="color:#fff">Memory</div>' +
+          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">Jeu</div>' +
+        '</button>' +
+        '<button class="home-tile" onclick="App.writing()" style="background:linear-gradient(135deg,#ef6c00,#f57c00);color:#fff">' +
+          '<div class="home-tile-icon">✍️</div>' +
+          '<div class="home-tile-label" style="color:#fff">Écriture</div>' +
+          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">28 lettres</div>' +
+        '</button>' +
+      '</div>';
 
-      '<button class="menu-btn" onclick="App.lessons()">' +
-        '<div class="icon">📖</div>' +
-        '<div><div class="label">Leçons guidées</div><div class="sub">8 leçons de base · 30 leçons de Médine</div></div>' +
-      '</button>' +
+    /* ---------- SECTION EXPLORER ---------- */
+    h += '<div class="section-title">💬 Explorer</div>' +
+      '<div class="grid-3">' +
+        '<button class="home-tile" onclick="App.vocab()" style="background:linear-gradient(135deg,#37474f,#546e7a);color:#fff">' +
+          '<div class="home-tile-icon">📚</div>' +
+          '<div class="home-tile-label" style="color:#fff">Vocab</div>' +
+          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">' + totalVocab + ' mots</div>' +
+        '</button>' +
+        '<button class="home-tile" onclick="App.dialogues()" style="background:linear-gradient(135deg,#5e35b1,#7e57c2);color:#fff">' +
+          '<div class="home-tile-icon">💬</div>' +
+          '<div class="home-tile-label" style="color:#fff">Dialogues</div>' +
+          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">' + DIALOGUES.length + ' scènes</div>' +
+        '</button>' +
+        '<button class="home-tile" onclick="App.statsScreen()" style="background:linear-gradient(135deg,#00695c,#00897b);color:#fff">' +
+          '<div class="home-tile-icon">📊</div>' +
+          '<div class="home-tile-label" style="color:#fff">Stats</div>' +
+          '<div class="home-tile-sub" style="color:rgba(255,255,255,.8)">Progrès</div>' +
+        '</button>' +
+      '</div>';
 
-      '<button class="menu-btn" onclick="App.vocab()">' +
-        '<div class="icon">📚</div>' +
-        '<div><div class="label">Vocabulaire</div><div class="sub">' + totalVocab + ' mots · A1 → B1 → Médine</div></div>' +
-      '</button>' +
+    /* ---------- PIED DE PAGE (Réglages) ---------- */
+    h += '<div style="text-align:center;margin-top:24px;padding-top:16px;border-top:1px solid var(--muted);opacity:.6">' +
+      '<button class="link-btn" onclick="App.settings()" style="background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;padding:8px;font-family:inherit">⚙️ Réglages · À propos</button>' +
+    '</div>';
 
-      '<button class="menu-btn" onclick="App.dialogues()">' +
-        '<div class="icon">💬</div>' +
-        '<div><div class="label">Dialogues</div><div class="sub">' + DIALOGUES.length + ' scènes du quotidien</div></div>' +
-      '</button>' +
-
-      '<button class="menu-btn" onclick="App.writing()">' +
-        '<div class="icon">✍️</div>' +
-        '<div><div class="label">Écriture</div><div class="sub">Trace les lettres</div></div>' +
-      '</button>' +
-
-      '<button class="menu-btn" onclick="App.memory()">' +
-        '<div class="icon">🎮</div>' +
-        '<div><div class="label">Jeu Memory</div><div class="sub">' + totalVocab + ' mots disponibles</div></div>' +
-      '</button>' +
-
-      '<button class="menu-btn" onclick="App.quizStart()">' +
-        '<div class="icon">🎯</div>' +
-        '<div><div class="label">Quiz</div><div class="sub">Mots + ' + totalEx + ' exercices du Tome 1</div></div>' +
-      '</button>' +
-
-      '<button class="menu-btn" onclick="App.statsScreen()">' +
-        '<div class="icon">📊</div>' +
-        '<div><div class="label">Statistiques</div><div class="sub">Progression & badges</div></div>' +
-      '</button>' +
-
-      '<button class="menu-btn" onclick="App.settings()">' +
-        '<div class="icon">⚙️</div>' +
-        '<div><div class="label">Réglages</div><div class="sub">Thème · Voix · Reset</div></div>' +
-      '</button>'
-    );
+    $(h);
   },
 
+  /* ============================================================
+     LEÇONS GUIDÉES
+     ============================================================ */
   lessons: function(){
     var h = '<button class="back" onclick="App.home()">← Retour</button><h2>Leçons guidées</h2>';
     for (var i = 0; i < LESSONS.length; i++){
@@ -320,6 +373,9 @@ var App = {
     this.renderCard();
   },
 
+  /* ============================================================
+     ÉTUDE SRS
+     ============================================================ */
   study: function(){
     var due = SRS.due();
     var nw = SRS.newOnes().slice(0, 10);
@@ -345,7 +401,7 @@ var App = {
       '<div class="counter">' + (s.index + 1) + ' / ' + s.total + '</div>' +
       '<div class="progress"><div class="progress-bar" style="width:' + p + '%"></div></div>' +
       '<div class="flashcard" onclick="App.flip()">' +
-        '<button class="speak" onclick="event.stopPropagation();speak(\'' + esc(c.ar) + '\')">🔊</button>' +
+        '<button class="speak" onclick="event.stopPropagation();speakClean(\'' + esc(c.ar) + '\')">🔊</button>' +
         '<div class="theme">' + (c.t || '') + '</div>' +
         '<div class="word ar">' + c.ar + '</div>' +
         (s.flipped
@@ -389,12 +445,15 @@ var App = {
       '<button class="btn" onclick="App.home()">Continuer</button></div>');
   },
 
+  /* ============================================================
+     VOCABULAIRE
+     ============================================================ */
   vocab: function(){
     var base = (typeof VOCAB !== 'undefined' && VOCAB) ? VOCAB : [];
     var a1 = base.filter(function(v){ return v.lv === 'A1'; }).length;
     var a2 = base.filter(function(v){ return v.lv === 'A2'; }).length;
     var b1 = base.filter(function(v){ return v.lv === 'B1'; }).length;
-    var med = (window.MADINAH_VOCAB && window.MADINAH_VOCAB.length) ? window.MADINAH_VOCAB.length : 0;
+    var med = getAllVocab().filter(function(v){ return v.lv === 'MEDINE'; }).length;
     $('<button class="back" onclick="App.home()">← Retour</button>' +
       '<h2>Vocabulaire</h2>' +
       '<p class="muted" style="margin-bottom:12px">' + getAllVocab().length + ' mots disponibles</p>' +
@@ -402,19 +461,19 @@ var App = {
         '<button class="btn secondary" onclick="App.vocabByLevel(\'A1\')">A1 (' + a1 + ')</button>' +
         '<button class="btn secondary" onclick="App.vocabByLevel(\'A2\')">A2 (' + a2 + ')</button>' +
         '<button class="btn secondary" onclick="App.vocabByLevel(\'B1\')">B1 (' + b1 + ')</button>' +
-        '<button class="btn secondary" onclick="App.vocabByLevel(\'MEDINE\')">Médine (' + med + ')</button>' +
+        '<button class="btn secondary" onclick="App.vocabByLevel(\'MEDINE\')">Tomes (' + med + ')</button>' +
       '</div>');
   },
 
   vocabByLevel: function(lv){
     var list = getAllVocab().filter(function(v){ return v.lv === lv; });
-    var titleMap = { A1: "Niveau A1", A2: "Niveau A2", B1: "Niveau B1", MEDINE: "Tomes de Médine" };
+    var titleMap = { A1: "Niveau A1", A2: "Niveau A2", B1: "Niveau B1", MEDINE: "Tomes" };
     var h = '<button class="back" onclick="App.vocab()">← Vocabulaire</button>' +
       '<h2>' + (titleMap[lv] || lv) + '</h2>' +
       '<p class="muted" style="margin-bottom:12px">' + list.length + ' mots</p>';
     for (var i = 0; i < list.length; i++){
       var v = list[i];
-      h += '<div class="card" style="padding:14px;margin-bottom:8px;cursor:pointer" onclick="speak(\'' + esc(v.ar) + '\')">' +
+      h += '<div class="card" style="padding:14px;margin-bottom:8px;cursor:pointer" onclick="speakClean(\'' + esc(v.ar) + '\')">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px">' +
           '<div><div class="ar" style="font-size:26px;color:var(--primary)">' + v.ar + '</div>' +
           '<div style="font-size:14px;font-weight:700;margin-top:4px">' + v.fr + '</div>' +
@@ -425,6 +484,9 @@ var App = {
     $(h);
   },
 
+  /* ============================================================
+     DIALOGUES
+     ============================================================ */
   dialogues: function(){
     var h = '<button class="back" onclick="App.home()">← Retour</button><h2>Dialogues</h2>';
     for (var i = 0; i < DIALOGUES.length; i++){
@@ -450,7 +512,7 @@ var App = {
       '<div class="dialogue-wrap">';
     for (var j = 0; j < d.lines.length; j++){
       var ln = d.lines[j];
-      h += '<div class="dialogue-line ' + (ln.sp === 'A' ? 'left' : 'right') + '" onclick="speak(\'' + esc(ln.ar) + '\')">' +
+      h += '<div class="dialogue-line ' + (ln.sp === 'A' ? 'left' : 'right') + '" onclick="speakClean(\'' + esc(ln.ar) + '\')">' +
         '<div class="ar">' + ln.ar + '</div>' +
         '<div class="fr">' + ln.fr + '</div></div>';
     }
@@ -458,6 +520,9 @@ var App = {
     $(h);
   },
 
+  /* ============================================================
+     ÉCRITURE
+     ============================================================ */
   writing: function(){
     var h = '<button class="back" onclick="App.home()">← Retour</button><h2>Écriture</h2>' +
       '<p class="muted" style="margin-bottom:12px">Choisis une lettre à tracer</p>' +
@@ -522,6 +587,9 @@ var App = {
     ctx.restore();
   },
 
+  /* ============================================================
+     MEMORY
+     ============================================================ */
   memory: function(){
     var pool = shuffle(getAllVocab()).slice(0, 6);
     var cards = [];
@@ -577,11 +645,14 @@ var App = {
     } else { this.renderMemory(); }
   },
 
+  /* ============================================================
+     QUIZ GLOBAL
+     ============================================================ */
   quizStart: function(){
     var allQs = buildQuizQuestions();
     if (!allQs.length){ toast('❌ Aucune question disponible'); return; }
-    var count = Math.min(20, allQs.length);
-    this.quiz = { questions: shuffle(allQs).slice(0, count), index: 0, score: 0, total: allQs.length };
+    /* Pas de limite : toutes les questions */
+    this.quiz = { questions: shuffle(allQs), index: 0, score: 0, total: allQs.length };
     this.renderQuiz();
   },
 
@@ -602,11 +673,11 @@ var App = {
     } else if (cur.card){
       h += '<div class="ar" style="font-size:60px;color:var(--primary)">' + cur.card.ar + '</div>' +
         '<div style="font-size:15px;color:var(--muted);margin-top:8px;font-style:italic">' + (cur.card.tr || '') + '</div>' +
-        '<button onclick="speak(\'' + esc(cur.card.ar) + '\')" style="background:#e6eeea;color:var(--primary);border:none;margin-top:14px;padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer;font-size:13px;font-family:inherit">🔊</button>';
+        '<button onclick="speakClean(\'' + esc(cur.card.ar) + '\')" style="background:#e6eeea;color:var(--primary);border:none;margin-top:14px;padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer;font-size:13px;font-family:inherit">🔊</button>';
     } else {
       h += '<p style="font-size:' + (cur.isAr ? '28px' : '16px') + ';font-weight:700;line-height:1.6" class="' + (cur.isAr ? 'ar' : '') + '">' + cur.prompt + '</p>';
       if (cur.isAr){
-        h += '<button onclick="speak(\'' + esc(cur.prompt) + '\')" style="background:#e6eeea;color:var(--primary);border:none;margin-top:14px;padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer;font-size:13px;font-family:inherit">🔊</button>';
+        h += '<button onclick="speakClean(\'' + esc(cur.prompt) + '\')" style="background:#e6eeea;color:var(--primary);border:none;margin-top:14px;padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer;font-size:13px;font-family:inherit">🔊</button>';
       }
     }
     h += '</div>';
@@ -619,7 +690,10 @@ var App = {
       for (var i = 0; i < cur.options.length; i++){
         h += '<button class="quiz-option" onclick="App.quizAnswer(' + i + ')">' + cur.options[i] + '</button>';
       }
+      /* Bouton "Je ne sais pas" */
+      h += '<button class="btn secondary" style="margin-top:12px;font-size:13px" onclick="App.quizDontKnow()">🤷 Je ne sais pas</button>';
     }
+    h += '<div id="correctionZone" style="margin-top:16px"></div>';
     $(h);
   },
 
@@ -637,9 +711,33 @@ var App = {
       if (cur.options[k] === correctText) btns[k].classList.add('correct');
       else if (k === i) btns[k].classList.add('wrong');
     }
-    if (sel === correctText){ q.score++; toast('✅ Correct !'); } else toast('❌ Mauvaise réponse');
-    var self = this;
-    setTimeout(function(){ q.index++; self.renderQuiz(); }, 1200);
+    var ok = (sel === correctText);
+    if (ok){
+      q.score++;
+      toast('✅ Correct !');
+      if (typeof Mistakes !== 'undefined') Mistakes.markCorrected(cur);
+    } else {
+      toast('❌ Mauvaise réponse');
+      if (typeof Mistakes !== 'undefined') Mistakes.add(cur);
+    }
+    this.showQuizCorrection(ok, correctText, '');
+  },
+
+  quizDontKnow: function(){
+    var q = this.quiz;
+    if (!q) return;
+    var cur = q.questions[q.index];
+    if (cur.answered) return;
+    cur.answered = true;
+    var correctText = cur.options[cur.correct];
+    var btns = document.querySelectorAll('.quiz-option');
+    for (var k = 0; k < btns.length; k++){
+      btns[k].disabled = true;
+      if (cur.options[k] === correctText) btns[k].classList.add('correct');
+    }
+    toast('🤷 À revoir');
+    if (typeof Mistakes !== 'undefined') Mistakes.add(cur);
+    this.showQuizCorrection(false, correctText, 'Enregistré dans les erreurs');
   },
 
   quizAnswerTF: function(val){
@@ -650,13 +748,37 @@ var App = {
     cur.answered = true;
     var btns = document.querySelectorAll('button.btn');
     for (var k = 0; k < btns.length; k++) btns[k].disabled = true;
-    if (val === cur.correct){ q.score++; toast('✅ Correct !'); }
-    else {
-      toast('❌ Faux — c\'était ' + (cur.correct ? 'Vrai' : 'Faux'));
-      if (cur.explain) setTimeout(function(){ toast('💡 ' + cur.explain); }, 1500);
+    var ok = (val === cur.correct);
+    if (ok){
+      q.score++;
+      toast('✅ Correct !');
+      if (typeof Mistakes !== 'undefined') Mistakes.markCorrected(cur);
+    } else {
+      toast('❌ Mauvaise réponse');
+      if (typeof Mistakes !== 'undefined') Mistakes.add(cur);
     }
-    var self = this;
-    setTimeout(function(){ q.index++; self.renderQuiz(); }, 1600);
+    this.showQuizCorrection(ok, cur.correct ? 'Vrai' : 'Faux', cur.explain || '');
+  },
+
+  showQuizCorrection: function(ok, correctText, explain){
+    var zone = document.getElementById('correctionZone');
+    if (!zone) return;
+    var cls = ok ? 'correction-ok' : 'correction-ko';
+    zone.innerHTML = '<div class="' + cls + '">' +
+      '<div style="font-weight:800;font-size:16px;margin-bottom:6px">' +
+        (ok ? '✅ Bonne réponse !' : '❌ Mauvaise réponse') +
+      '</div>' +
+      '<div style="font-size:15px">Réponse correcte : <b>' + correctText + '</b></div>' +
+      (explain ? '<div style="font-size:13px;margin-top:6px;opacity:.85">💡 ' + explain + '</div>' : '') +
+      '<button type="button" class="btn" style="margin-top:12px" onclick="App.quizNext()">Suivant →</button>' +
+    '</div>';
+  },
+
+  quizNext: function(){
+    var q = this.quiz;
+    if (!q) return;
+    q.index++;
+    this.renderQuiz();
   },
 
   endQuiz: function(){
@@ -665,7 +787,7 @@ var App = {
     var em = pct >= 80 ? '🏆' : (pct >= 50 ? '👍' : '💪');
     $('<div class="empty" style="padding-top:60px"><div class="big">' + em + '</div>' +
       '<h2>Quiz terminé</h2>' +
-      '<p class="muted" style="margin-top:8px">' + q.total + ' questions disponibles</p>' +
+      '<p class="muted" style="margin-top:8px">' + q.questions.length + ' questions</p>' +
       '<div class="stat-grid" style="margin-top:24px">' +
         '<div class="stat"><div class="num">' + q.score + '/' + q.questions.length + '</div><div class="lbl">Score</div></div>' +
         '<div class="stat"><div class="num">' + pct + '%</div><div class="lbl">Réussite</div></div>' +
@@ -674,6 +796,108 @@ var App = {
       '<button class="btn secondary" onclick="App.home()">Accueil</button></div>');
   },
 
+  /* ============================================================
+     ERREURS À RÉVISER
+     ============================================================ */
+  mistakesScreen: function(){
+    if (typeof Mistakes === 'undefined'){
+      toast('❌ Erreurs non disponibles');
+      return;
+    }
+    var list = Mistakes.list();
+    var h = '<button class="back" onclick="App.home()">← Accueil</button>' +
+      '<h2>📕 Erreurs à réviser</h2>';
+
+    if (!list.length){
+      h += '<div class="empty"><div class="big">🎉</div>' +
+        '<h2>Aucune erreur !</h2>' +
+        '<p style="margin-top:8px">Continue comme ça.</p>' +
+        '<button class="btn" style="margin-top:20px" onclick="App.home()">Accueil</button></div>';
+      $(h);
+      return;
+    }
+
+    h += '<p class="muted" style="margin-bottom:12px">' + list.length + ' question(s) à retravailler</p>' +
+      '<button class="btn" style="margin-bottom:16px;background:linear-gradient(135deg,#c62828,#e53935)" onclick="App.startMistakesReview()">🎯 Réviser maintenant (' + list.length + ')</button>';
+
+    for (var i = 0; i < list.length; i++){
+      var m = list[i];
+      var correctText = m.options ? m.options[m.correct] : (m.isTF ? (m.correct ? 'Vrai' : 'Faux') : '');
+      h += '<div class="card" style="padding:14px;margin-bottom:8px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px">' +
+          '<div style="font-size:14px;font-weight:700;line-height:1.5;flex:1' + (m.isAr ? ';direction:rtl;text-align:right' : '') + '" class="' + (m.isAr ? 'ar' : '') + '">' + m.prompt + '</div>' +
+          '<div style="background:var(--danger);color:#fff;border-radius:20px;padding:4px 10px;font-size:11px;font-weight:800;flex-shrink:0">×' + m.count + '</div>' +
+        '</div>' +
+        '<div style="font-size:13px;color:var(--success);font-weight:700">✅ ' + correctText + '</div>' +
+        (m.label ? '<div style="font-size:11px;color:var(--muted);margin-top:6px;text-transform:uppercase">' + m.label + '</div>' : '') +
+      '</div>';
+    }
+
+    h += '<button class="btn danger" style="margin-top:20px" onclick="App.resetMistakes(this)">🗑️ Effacer toutes les erreurs</button>';
+    $(h);
+  },
+
+  startMistakesReview: function(){
+    if (typeof Mistakes === 'undefined') return;
+    var list = Mistakes.list();
+    if (!list.length){
+      toast('🎉 Aucune erreur !');
+      return;
+    }
+    var questions = [];
+    for (var i = 0; i < list.length; i++){
+      var m = list[i];
+      if (m.isTF){
+        questions.push({
+          isTF: true,
+          prompt: m.prompt,
+          correct: m.correct,
+          label: '📕 Révision erreurs',
+          _mistake: true
+        });
+      } else {
+        questions.push({
+          prompt: m.prompt,
+          options: m.options.slice(),
+          correct: m.correct,
+          isAr: m.isAr,
+          label: '📕 Révision erreurs',
+          _mistake: true
+        });
+      }
+    }
+    this.quiz = {
+      questions: shuffle(questions),
+      index: 0,
+      score: 0,
+      total: list.length,
+      isMistakesReview: true
+    };
+    this.renderQuiz();
+  },
+
+  resetMistakes: function(btn){
+    /* Double-clic pour confirmer */
+    if (!btn.dataset.confirming){
+      btn.dataset.confirming = '1';
+      btn.textContent = '⚠️ Appuie encore pour confirmer';
+      var self = this;
+      setTimeout(function(){
+        if (btn && btn.dataset){
+          delete btn.dataset.confirming;
+          btn.textContent = '🗑️ Effacer toutes les erreurs';
+        }
+      }, 3000);
+      return;
+    }
+    if (typeof Mistakes !== 'undefined') Mistakes.reset();
+    toast('🗑️ Erreurs effacées');
+    this.mistakesScreen();
+  },
+
+  /* ============================================================
+     STATISTIQUES
+     ============================================================ */
   statsScreen: function(){
     var s = Stats.get();
     var pool = getAllVocab();
@@ -682,6 +906,7 @@ var App = {
     var learning = SRS.learning();
     var acc = s.totalReviews ? Math.round((s.correctReviews / s.totalReviews) * 100) : 0;
     var totalEx = getAllExercises().length;
+    var mistakesCount = (typeof Mistakes !== 'undefined') ? Mistakes.count() : 0;
     var h = '<button class="back" onclick="App.home()">← Retour</button><h2>Statistiques</h2>' +
       '<div class="stat-grid">' +
         '<div class="stat"><div class="num">🔥 ' + s.streak + '</div><div class="lbl">Jours de suite</div></div>' +
@@ -693,11 +918,12 @@ var App = {
         '<div style="display:flex;justify-content:space-between;margin:12px 0;font-size:14px"><span>🔵 Maîtrisés</span><strong>' + mastered + '/' + pool.length + '</strong></div>' +
         '<div style="display:flex;justify-content:space-between;margin:12px 0;font-size:14px"><span>🟡 En cours</span><strong>' + learning + '</strong></div>' +
         '<div style="display:flex;justify-content:space-between;margin:12px 0;font-size:14px"><span>⚪ Jamais vus</span><strong>' + (pool.length - seen) + '</strong></div>' +
-        '<div class="progress" style="margin-top:14px"><div class="progress-bar" style="width:' + Math.round(mastered / pool.length * 100) + '%"></div></div>' +
+        '<div class="progress" style="margin-top:14px"><div class="progress-bar" style="width:' + (pool.length ? Math.round(mastered / pool.length * 100) : 0) + '%"></div></div>' +
       '</div>' +
       '<div class="card"><h3>📚 Contenu</h3>' +
         '<div style="display:flex;justify-content:space-between;margin:12px 0;font-size:14px"><span>Mots au total</span><strong>' + pool.length + '</strong></div>' +
-        '<div style="display:flex;justify-content:space-between;margin:12px 0;font-size:14px"><span>Exercices du Tome 1</span><strong>' + totalEx + '</strong></div>' +
+        '<div style="display:flex;justify-content:space-between;margin:12px 0;font-size:14px"><span>Exercices</span><strong>' + totalEx + '</strong></div>' +
+        '<div style="display:flex;justify-content:space-between;margin:12px 0;font-size:14px"><span>📕 Erreurs actives</span><strong>' + mistakesCount + '</strong></div>' +
       '</div>' +
       '<div class="card"><h3>🏆 Badges</h3>';
     for (var i = 0; i < BADGES.length; i++){
@@ -710,10 +936,14 @@ var App = {
     $(h);
   },
 
+  /* ============================================================
+     RÉGLAGES
+     ============================================================ */
   settings: function(){
     var theme = localStorage.getItem('theme') || 'light';
     var poolSize = getAllVocab().length;
     var exSize = getAllExercises().length;
+    var voiceOk = hasArabicVoice();
     $('<button class="back" onclick="App.home()">← Retour</button><h2>Réglages</h2>' +
       '<div class="card"><h3>🎨 Thème</h3>' +
         '<div class="grid-2" style="margin-top:10px">' +
@@ -722,17 +952,19 @@ var App = {
         '</div>' +
       '</div>' +
       '<div class="card"><h3>🔊 Voix arabe</h3>' +
-        '<p class="muted" style="margin:8px 0 12px">Pour un audio de qualité hors ligne :<br><strong>Paramètres Android → Système → Langues → Synthèse vocale → Installer العربية</strong></p>' +
-        '<button class="btn secondary" onclick="speak(\'مَرْحَبًا\')">🔊 Tester</button>' +
+        (voiceOk
+          ? '<p class="muted" style="margin:8px 0 12px">✅ Une voix arabe est installée.</p>'
+          : '<p class="muted" style="margin:8px 0 12px">⚠️ Aucune voix arabe détectée.<br><strong>Paramètres Android → Système → Langues → Synthèse vocale → Installer العربية</strong></p>') +
+        '<button class="btn secondary" onclick="speakClean(\'مَرْحَبًا\')">🔊 Tester</button>' +
       '</div>' +
       '<div class="card"><h3>📚 Contenu</h3>' +
-        '<p class="muted">' + ALPHABET.length + ' lettres · ' + poolSize + ' mots · ' + DIALOGUES.length + ' dialogues · ' + exSize + ' exercices Tome 1</p>' +
+        '<p class="muted">' + ALPHABET.length + ' lettres · ' + poolSize + ' mots · ' + DIALOGUES.length + ' dialogues · ' + exSize + ' exercices</p>' +
       '</div>' +
       '<div class="card"><h3 style="color:var(--danger)">⚠️ Danger</h3>' +
-        '<p class="muted" style="margin:8px 0 12px">Efface toute la progression.</p>' +
-        '<button class="btn danger" onclick="App.resetAll()">Réinitialiser</button>' +
+        '<p class="muted" style="margin:8px 0 12px">Efface toute la progression (y compris les erreurs).</p>' +
+        '<button class="btn danger" onclick="App.resetAll(this)">Réinitialiser</button>' +
       '</div>' +
-      '<div class="card" style="text-align:center;font-size:13px;color:var(--muted)"><strong style="color:var(--primary)">Arabiyya</strong> v5.1 · 100% hors ligne</div>');
+      '<div class="card" style="text-align:center;font-size:13px;color:var(--muted)"><strong style="color:var(--primary)">Arabiyya</strong> v5.3 · 100% hors ligne</div>');
   },
 
   setTheme: function(t){
@@ -741,15 +973,31 @@ var App = {
     this.settings();
   },
 
-  resetAll: function(){
-    if (confirm('Effacer toute la progression ?')){
-      Stats.reset(); SRS.save({});
-      toast('Réinitialisé'); App.home();
+  resetAll: function(btn){
+    /* Double-clic pour confirmer (plus de confirm() bloquant) */
+    if (!btn.dataset.confirming){
+      btn.dataset.confirming = '1';
+      btn.textContent = '⚠️ Appuie encore pour tout effacer';
+      setTimeout(function(){
+        if (btn && btn.dataset){
+          delete btn.dataset.confirming;
+          btn.textContent = 'Réinitialiser';
+        }
+      }, 3000);
+      return;
     }
+    Stats.reset();
+    SRS.save({});
+    if (typeof Mistakes !== 'undefined') Mistakes.reset();
+    toast('Réinitialisé');
+    App.home();
   }
 };
 window.App = App;
 
+/* ============================================================
+   INITIALISATION
+   ============================================================ */
 function initApp(){
   var theme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', theme);
